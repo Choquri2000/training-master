@@ -146,3 +146,12 @@ textarea.notes { width: 100%; font: inherit; padding: 8px; border-radius: 8px; b
 .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 10px 0; }
 select, input[type=date] { font: inherit; padding: 6px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--text); }
 @media (max-width: 480px) { .logtable td:nth-child(5), .logtable th:nth-child(5) { display: none; } }
+
+/* cloud */
+.top { display: flex; align-items: center; justify-content: space-between; }
+.syncdot { font-size: .78rem; text-decoration: none; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+.syncdot.s-saved { color: var(--ok); border-color: var(--ok); }
+.syncdot.s-signed-out, .syncdot.s-error { color: var(--warn); border-color: var(--warn); }
+.cloud { margin-bottom: 12px; }
+.cloud input { display: block; width: 100%; font: inherit; padding: 10px; margin: 6px 0; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--text); }
+.cloud-status { font-weight: 600; }

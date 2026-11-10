@@ -18,8 +18,11 @@ function load() {
   catch { state = { ...DEFAULTS }; }
   return state;
 }
-function save() {
+const listeners = new Set();
+function save(fromRemote = false) {
+  if (!fromRemote) state.updatedAt = Date.now();
   try { localStorage.setItem(KEY, JSON.stringify(state)); } catch { /* private mode: keep in memory */ }
+  if (!fromRemote) listeners.forEach(f => f(state));
 }
 
 export const store = {
@@ -29,4 +32,7 @@ export const store = {
   export: () => JSON.stringify(store.get(), null, 2),
   import(json) { state = { ...DEFAULTS, ...JSON.parse(json) }; save(); },
   reset() { state = { ...DEFAULTS }; save(); },
+  onChange(f) { listeners.add(f); },
+  // Replace local state with merged cloud data without triggering another upload.
+  replace(next) { state = { ...DEFAULTS, ...next }; save(true); },
 };

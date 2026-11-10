@@ -4,6 +4,7 @@ import { createFigure } from './figure.js';
 import { Player, availableCombos } from './session.js';
 import { store } from './store.js';
 import { t, L, LANGS } from './i18n.js';
+import { initSync, onSync, signIn, signInGoogle, signOut, resetPassword, syncAvailable } from './sync.js';
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const view = $('#view');
@@ -41,9 +42,11 @@ function focusTechs(n) {
 
 function statusBadge(st) { return `<span class="badge st-${st}">${t(st)}</span>`; }
 
+let cloudOn = false;
+onSync(st => { cloudOn = !!st.email; });
 function backupDue() {
   const s = store.get();
-  if (s.log.length < 2) return false;
+  if (s.log.length < 2 || cloudOn) return false;
   return !s.lastExport || (Date.now() - new Date(s.lastExport)) / 864e5 > 14;
 }
 
@@ -269,7 +272,7 @@ function Session(kind, techCsv) {
     if (a === 'finish') { player.stop(); player.done = true; render(player); }
     if (a === 'save') {
       const minutes = Math.max(1, Math.round((Date.now() - startedAt) / 60000));
-      store.update(st => st.log.push({ date: isoDate(), type: kind, minutes, rpe: +$('.rpe', el).value, techs: focus }));
+      store.update(st => st.log.push({ date: isoDate(), at: new Date().toISOString().slice(11, 19), type: kind, minutes, rpe: +$('.rpe', el).value, techs: focus }));
       location.hash = '#/log';
     }
   });
@@ -297,6 +300,24 @@ function Log() {
 function Settings() {
   const s = store.get();
   const el = h(`<section><h1>${t('settings')}</h1>
+    ${syncAvailable() ? `<div class="card cloud">
+      <h3>Cloud save</h3>
+      <div class="cloud-in" hidden>
+        <p class="cloud-status"></p>
+        <button class="btn ghost" data-a="signout">Sign out</button>
+      </div>
+      <form class="cloud-out" hidden>
+        <p class="small">Sign in once and everything you do is saved to your account automatically, on every phone you use.</p>
+        <button class="btn primary" type="button" data-a="google">Continue with Google</button>
+        <p class="small muted">Or use email (works best if the app is installed on your home screen):</p>
+        <input type="email" name="email" placeholder="Email" autocomplete="email" required>
+        <input type="password" name="pw" placeholder="Password (6+ characters)" autocomplete="current-password" minlength="6" required>
+        <button class="btn" type="submit">Sign in</button>
+        <button class="btn" type="button" data-a="create">Create account</button>
+        <button class="btn ghost" type="button" data-a="forgot">Forgot password</button>
+        <p class="cloud-msg small"></p>
+      </form>
+    </div>` : ''}
     <label class="row"><input type="checkbox" class="voice" ${s.voice ? 'checked' : ''}> ${t('voice')}</label>
     <label class="row">${t('language')} <select class="lang">${LANGS.map(l => `<option value="${l.code}" ${l.code === s.lang ? 'selected' : ''}>${l.label}</option>`).join('')}</select> <span class="muted small">Georgian coming next.</span></label>
     <label class="row">Plan start (Monday of week 1) <input type="date" class="start" value="${s.startDate || '2026-11-16'}"></label>
@@ -310,6 +331,30 @@ function Settings() {
     <p class="muted small">Combos the timer can call right now: ${availableCombos().map(c => esc(c.say)).join(' · ')}</p>
   </section>`);
   view.replaceChildren(el);
+  if (syncAvailable()) {
+    const form = $('.cloud-out', el), msg = $('.cloud-msg', el);
+    onSync(st => {
+      if (!el.isConnected) return;
+      $('.cloud-in', el).hidden = !st.email; form.hidden = !!st.email;
+      if (st.email) $('.cloud-status', el).textContent = syncText(st);
+    });
+    const go = async create => {
+      if (!form.reportValidity()) return;
+      msg.textContent = create ? 'Creating account...' : 'Signing in...';
+      try { await signIn(form.email.value.trim(), form.pw.value, create); msg.textContent = ''; }
+      catch (e) { msg.textContent = authError(e); }
+    };
+    form.onsubmit = e => { e.preventDefault(); go(false); };
+    form.addEventListener('click', async e => {
+      if (e.target.dataset.a === 'create') go(true);
+      if (e.target.dataset.a === 'google') { try { msg.textContent = ''; await signInGoogle(); } catch (err) { msg.textContent = authError(err); } }
+      if (e.target.dataset.a === 'forgot') {
+        if (!form.email.value) { msg.textContent = 'Type your email first.'; return; }
+        try { await resetPassword(form.email.value.trim()); msg.textContent = 'Reset email sent.'; } catch (err) { msg.textContent = authError(err); }
+      }
+    });
+    $('[data-a=signout]', el).onclick = () => signOut();
+  }
   $('.voice', el).onchange = e => store.set({ voice: e.target.checked });
   $('.lang', el).onchange = e => { store.set({ lang: e.target.value }); render(); };
   $('.start', el).onchange = e => store.set({ startDate: e.target.value });
@@ -331,6 +376,21 @@ function Settings() {
   });
 }
 
+function syncText(st) {
+  if (st.state === 'saving') return `Saving... (${st.email})`;
+  if (st.state === 'error') return `Not saved yet, will retry: ${st.error}`;
+  if (st.state === 'saved') return `✓ Saved to the cloud at ${new Date(st.at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} (${st.email})`;
+  return `Signed in as ${st.email}`;
+}
+function authError(e) {
+  const c = e.code || '';
+  if (c.includes('invalid-credential') || c.includes('wrong-password') || c.includes('user-not-found')) return 'Email or password is wrong.';
+  if (c.includes('email-already-in-use')) return 'That email already has an account. Tap Sign in.';
+  if (c.includes('popup')) return 'Google sign-in was blocked or closed. Try again, or use email and password.';
+  if (c.includes('network')) return 'No internet. Try again when you are online.';
+  return e.message;
+}
+
 // ---------- router ----------
 const routes = { today: Today, week: Week, pathway: Pathway, library: Library, tech: Tech, session: Session, log: Log, settings: Settings };
 
@@ -350,8 +410,16 @@ function seed() {
 }
 
 seed();
+initSync(() => render());
 try { navigator.storage?.persist?.(); } catch { /* not supported */ }
 window.addEventListener('hashchange', render);
+onSync(st => {
+  const dot = document.getElementById('syncdot'); if (!dot) return;
+  dot.hidden = st.state === 'off';
+  dot.className = 'syncdot s-' + st.state;
+  dot.title = st.email ? syncText(st) : 'Not signed in: data is only on this phone';
+  dot.textContent = st.state === 'saved' ? '✓ Saved' : st.state === 'saving' ? 'Saving' : st.state === 'error' ? 'Offline' : 'Not backed up';
+});
 render();
 
 if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js');
