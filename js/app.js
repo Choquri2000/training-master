@@ -43,7 +43,10 @@ function focusTechs(n) {
 function statusBadge(st) { return `<span class="badge st-${st}">${t(st)}</span>`; }
 
 let cloudOn = false;
-onSync(st => { cloudOn = !!st.email; });
+onSync(st => {
+  const was = cloudOn; cloudOn = !!st.email;
+  if (was !== cloudOn && /^#?\/?(today)?$/.test(location.hash.replace('#/', ''))) render();
+});
 function backupDue() {
   const s = store.get();
   if (s.log.length < 2 || cloudOn) return false;
@@ -58,6 +61,7 @@ function Today() {
   const el = h(`<section>
     <h1>${L(DAY_NAMES)[d.day]} <small>· week ${weekNumber()}${isDeload() ? ' (deload)' : ''}</small></h1>
     ${isDeload() ? `<p class="note">${t('deloadNote')}</p>` : ''}
+    ${syncAvailable() && !cloudOn ? `<p class="note"><strong>Your progress isn't backed up yet.</strong> <a href="#/settings">Sign in once</a> to save it to the cloud automatically.</p>` : ''}
     ${backupDue() ? `<p class="note">Your progress is saved only on this phone. <a href="#/settings">Back it up</a> (takes 2 seconds).</p>` : ''}
     <div class="day-grid">
       <div class="card k-run"><h3>${t('run')}</h3><p>${d.run ? esc(L(d.run)) : t('rest')}</p></div>
@@ -422,4 +426,4 @@ onSync(st => {
 });
 render();
 
-if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js');
+if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' });

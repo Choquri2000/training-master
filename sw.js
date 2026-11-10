@@ -1,5 +1,5 @@
 // Offline cache. Bump VERSION whenever files change so phones pick up the update.
-const VERSION = 'cc-v5';
+const VERSION = 'cc-v6';
 const FILES = [
   './', 'index.html', 'css/style.css', 'manifest.webmanifest', 'icons/icon.svg', 'icons/icon-192.png',
   'js/app.js', 'js/figure.js', 'js/session.js', 'js/store.js', 'js/i18n.js',
@@ -13,7 +13,7 @@ self.addEventListener('activate', e => e.waitUntil(
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
   e.respondWith(
-    fetch(e.request).then(r => { const copy = r.clone(); caches.open(VERSION).then(c => c.put(e.request, copy)); return r; })
+    fetch(e.request, { cache: 'no-cache' }).then(r => { const copy = r.clone(); caches.open(VERSION).then(c => c.put(e.request, copy)); return r; })
       .catch(() => caches.match(e.request, { ignoreSearch: true }))
   );
 });
