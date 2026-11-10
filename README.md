@@ -36,4 +36,4 @@ Every text field is `{ en: '...' }`. Georgian is added by putting a `ka` value n
 After changing files, bump `VERSION` in `sw.js` so installed copies update.
 
 ## 3D motion capture
-`assets/fighter.glb` holds one character and 14 motion-capture clips from Adobe Mixamo (free, royalty-free for use in projects), converted with three.js and compressed with gltf-transform (meshopt, WebP textures). `vendor/three` is three.js r170 (MIT). Techniques without a clip use the built-in 3D stick figure.
+`assets/fighter.glb` holds one character and 27 motion-capture clips from Adobe Mixamo (cut, combined or mirrored per technique in js/mocap.js; every technique has one), plus `assets/mannequin.glb` (Mixamo X Bot), (free, royalty-free for use in projects), converted with three.js and compressed with gltf-transform (meshopt, WebP textures). `vendor/three` is three.js r170 (MIT). Techniques without a clip use the built-in 3D stick figure.

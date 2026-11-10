@@ -8,7 +8,7 @@ function createViewer(el, id, opts = {}) {
   if (!MOCAP.has(id) || !webglOK()) return createFigure(el, id, opts);
   let cur, state = { ...opts };
   const swap = () => { cur.destroy(); cur = createFigure(el, id, state); };
-  cur = createMocap(el, id, { ...opts, onFail: swap });
+  cur = createMocap(el, id, { model: store.get().model || 'fighter', ...opts, onFail: swap });
   return {
     setView: v => { state.view = v; cur.setView(v); }, setSpeed: s => { state.speed = s; cur.setSpeed(s); },
     setStep: b => { state.step = b; cur.setStep(b); }, pause: () => cur.pause(), play: () => cur.play(), destroy: () => cur.destroy(),
@@ -185,6 +185,7 @@ function Tech(id) {
       <div class="seg" data-g="mode">
         <button class="pill" data-mode="step">Step by step</button><button class="pill" data-mode="slow">Slow</button><button class="pill on" data-mode="normal">${t('normal')}</button>
       </div>
+      ${MOCAP.has(id) ? `<div class="seg" data-g="model"><button class="pill${(s.model || 'fighter') === 'fighter' ? ' on' : ''}" data-model="fighter">Fighter</button><button class="pill${s.model === 'mannequin' ? ' on' : ''}" data-model="mannequin">Mannequin (lead side blue)</button></div>` : ''}
       <p class="muted small">${MOCAP.has(id) ? 'Motion capture of a real fighter. Drag to turn the view, pinch to zoom. "Front" is what your opponent sees.' : 'Orthodox stance (left side leads). Blue = lead side, grey = rear side. "Front" is what your opponent sees.'}</p>
     </div>
     <h2>${t('keyPoints')}</h2>
@@ -203,6 +204,7 @@ function Tech(id) {
         <a class="btn" href="#/session/drill/${id}">Drill this (3 x 2 min)</a>`}
     </div>
   </section>`);
+  const rerender = () => { cleanup.forEach(f => f()); cleanup = []; Tech(id); };
   view.replaceChildren(el);
   const cap = $('.figcap', el);
   const fig = createViewer($('.fig-big', el), id, { onLabel: (txt, i, n) => { cap.textContent = n > 1 ? `${i}/${n} · ${txt}` : txt; } });
@@ -210,6 +212,7 @@ function Tech(id) {
   $('.figctl', el).addEventListener('click', e => {
     const b = e.target.closest('.pill'); if (!b) return;
     b.parentElement.querySelectorAll('.pill').forEach(x => x.classList.toggle('on', x === b));
+    if (b.dataset.model) { store.set({ model: b.dataset.model }); return rerender(); }
     if (b.dataset.view) fig.setView(b.dataset.view);
     if (b.dataset.mode) { fig.setStep(b.dataset.mode === 'step'); fig.setSpeed(b.dataset.mode === 'normal' ? 1 : 0.4); }
   });
@@ -218,7 +221,7 @@ function Tech(id) {
     if (!('st' in e.target.dataset)) return;
     store.update(st => { if (e.target.dataset.st) st.status[id] = e.target.dataset.st; else delete st.status[id]; },
       { learning: 'Marked as learning', done: 'Marked as solid', '': 'Status reset' }[e.target.dataset.st]);
-    Tech(id);
+    rerender();
   });
 }
 
