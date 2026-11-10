@@ -1,9 +1,9 @@
 // Offline cache. Bump VERSION whenever files change so phones pick up the update.
-const VERSION = 'cc-v1';
+const VERSION = 'cc-v3';
 const FILES = [
   './', 'index.html', 'css/style.css', 'manifest.webmanifest', 'icons/icon.svg', 'icons/icon-192.png',
   'js/app.js', 'js/figure.js', 'js/session.js', 'js/store.js', 'js/i18n.js',
-  'js/data/techniques.js', 'js/data/plan.js',
+  'js/data/techniques.js', 'js/data/plan.js', 'js/data/poses.js',
 ];
 self.addEventListener('install', e => e.waitUntil(caches.open(VERSION).then(c => c.addAll(FILES)).then(() => self.skipWaiting())));
 self.addEventListener('activate', e => e.waitUntil(

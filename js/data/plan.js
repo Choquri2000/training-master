@@ -26,7 +26,7 @@ export const PHASES = [
 export const SESSION_TYPES = {
   technique: {
     name: { en: 'Technique session' },
-    blurb: { en: '30 min, RPE 4 to 5. Learn and polish 2 to 3 techniques. Counts as easy.' },
+    blurb: { en: '30 min, RPE 4 to 5. Learn and polish 2 to 3 techniques, then lift.' },
     build: ({ focus }) => [
       { label: { en: 'Warm-up: light bounce, arm circles, shadowbox easy' }, kind: 'warm', secs: 300 },
       ...focus.flatMap(id => [
@@ -41,7 +41,7 @@ export const SESSION_TYPES = {
   },
   main: {
     name: { en: 'Main session (Friday)' },
-    blurb: { en: '50 to 60 min. Technique first, then rounds at RPE 6 to 7.' },
+    blurb: { en: '50 to 60 min. Technique first, then rounds at RPE 6 to 7. Strength C afterwards.' },
     build: ({ focus }) => [
       { label: { en: 'Warm-up: skipping in place, mobility, easy shadowbox' }, kind: 'warm', secs: 480 },
       ...focus.flatMap(id => [
@@ -74,12 +74,12 @@ export const SESSION_TYPES = {
 // Weekly plan. day: 0 = Monday ... 6 = Sunday.
 // run / strength are plain text (shown only). combat names a SESSION_TYPES key.
 export const WEEK = [
-  { day: 0, type: 'easy', run: { en: 'Easy 5 km (6:30-7:14 /km)' }, strength: 'A', combat: null },
-  { day: 1, type: 'hard', run: { en: 'Intervals: 3 x 1000 m (5:13-5:26 /km)' }, strength: null, combat: 'technique' },
-  { day: 2, type: 'easy', run: { en: 'Easy 6 km + 5 x 20 s strides' }, strength: 'B', combat: null },
-  { day: 3, type: 'hard', run: { en: 'Threshold 2 x 11 min, or Tempo 3.5 km on alternate weeks' }, strength: null, combat: 'technique' },
-  { day: 4, type: 'combat', run: null, strength: null, combat: 'main' },
-  { day: 5, type: 'easy', run: { en: 'Easy 5-6 km' }, strength: 'C', combat: 'footwork' },
+  { day: 0, type: 'garage', run: { en: 'Easy 5 km (6:30-7:14 /km)' }, strength: 'A', combat: 'technique' },
+  { day: 1, type: 'hard', run: { en: 'Intervals: 3 x 1000 m (5:13-5:26 /km)' }, strength: null, combat: null },
+  { day: 2, type: 'garage', run: { en: 'Easy 6 km + 5 x 20 s strides' }, strength: 'B', combat: 'technique' },
+  { day: 3, type: 'hard', run: { en: 'Threshold 2 x 11 min, or Tempo 3.5 km on alternate weeks' }, strength: null, combat: null },
+  { day: 4, type: 'garage', run: null, strength: 'C', combat: 'main' },
+  { day: 5, type: 'easy', run: { en: 'Easy 5-6 km' }, strength: null, combat: 'footwork' },
   { day: 6, type: 'long', run: { en: 'Long run 12 km' }, strength: null, combat: null },
 ];
 
@@ -108,7 +108,7 @@ export const STRENGTH = {
     ],
   },
   C: {
-    name: { en: 'Strength C: upper body and core' },
+    name: { en: 'Strength C: upper body and core (after Friday combat)' },
     items: [
       ['Incline dumbbell press', '3 x 8-12'],
       ['Double-arm bent-over row', '3 x 10-12'],
@@ -121,8 +121,11 @@ export const STRENGTH = {
 };
 
 export const RULES = { en: [
-  'Lift only on easy-run days, a few hours after the run.',
-  'Combat technique goes after the Tuesday and Thursday runs: keep it at RPE 4 to 5.',
-  'Hard combat rounds only on Friday, the day without a run.',
-  'Every 4th week is a deload: technique only, no hard rounds.',
+  'Garage days are Monday, Wednesday and Friday: combat and strength in one visit.',
+  'Combat first, strength second. Skill work needs a fresh body; lifting tired is safer than learning tired.',
+  'Monday and Wednesday: run in the morning (easy), garage later in the day.',
+  'Wednesday is legs day, so keep that combat session to technique and footwork, no hard kicking.',
+  'Hard combat rounds only on Friday, the day without a run. Strength C after it is upper body and core only.',
+  'Tuesday, Thursday and Sunday are run-only days, so the key runs stay fresh. Saturday footwork is optional.',
+  'Every 4th week is a deload: technique only, no hard rounds, half the strength sets.',
 ] };

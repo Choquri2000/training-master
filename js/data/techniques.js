@@ -37,7 +37,6 @@ export const TECHNIQUES = [
       { name: 'Stance reset', how: 'Walk around casually, then on a clap (or the bell) snap into stance. 20 reps.' },
     ]},
     callout: null,
-    anim: [[{}, 400], [{ pelvis: [96, 124], neck: [100, 64] }, 400]],
   },
   {
     id: 'step', discipline: 'footwork', phase: 1,
@@ -59,14 +58,6 @@ export const TECHNIQUES = [
       { name: 'Called steps', how: 'Use the timer with footwork callouts: react to each call with one clean step.' },
     ]},
     callout: { en: 'step' },
-    anim: [
-      [{}, 250],
-      [{ lf: [142, 200], lk: [128, 160] }, 200],
-      [{ dx: 14, lf: [128, 200], lk: [118, 160] }, 250],
-      [{ dx: 14 }, 300],
-      [{ dx: 14, rf: [56, 200], rk: [72, 162] }, 200],
-      [{}, 300],
-    ],
   },
   {
     id: 'pivot', discipline: 'footwork', phase: 1,
@@ -85,7 +76,6 @@ export const TECHNIQUES = [
       { name: 'Jab and pivot', how: 'Jab, then pivot. 3 x 2 min.' },
     ]},
     callout: { en: 'pivot' },
-    anim: [[{}, 300], [{ rf: [96, 204], rk: [92, 165], pelvis: [100, 122], neck: [104, 62] }, 300], [{ rf: [96, 204], rk: [92, 165], pelvis: [100, 122], neck: [104, 62] }, 300], [{}, 400]],
   },
   {
     id: 'jab', discipline: 'boxing', phase: 1,
@@ -109,7 +99,6 @@ export const TECHNIQUES = [
       { name: 'Light band jabs', how: 'Band anchored behind you at shoulder height: 3 x 20 fast jabs, focus on snap back.' },
     ]},
     callout: { en: 'one' },
-    anim: [[{}, 250], [{ le: [140, 60], lh: [168, 57], neck: [104, 62] }, 140], [{}, 260]],
   },
   {
     id: 'cross', discipline: 'boxing', phase: 1,
@@ -133,7 +122,6 @@ export const TECHNIQUES = [
       { name: 'Slow-motion cross', how: '10 reps at 10% speed watching the rear foot in the mirror.' },
     ]},
     callout: { en: 'two' },
-    anim: [[{}, 250], [{ re: [138, 60], rh: [168, 58], neck: [108, 62], pelvis: [100, 122], rf: [74, 196], rk: [86, 160], lh: [116, 50] }, 160], [{}, 300]],
   },
   {
     id: 'slip', discipline: 'boxing', phase: 1,
@@ -155,7 +143,6 @@ export const TECHNIQUES = [
       { name: 'Jab-slip-cross', how: 'Jab, slip right, cross. 3 x 2 min.' },
     ]},
     callout: { en: 'slip' },
-    anim: [[{}, 250], [{ neck: [110, 68], pelvis: [99, 125], lk: [120, 163], rk: [84, 164], lh: [128, 60], rh: [118, 58] }, 220], [{}, 280]],
   },
   {
     id: 'parry', discipline: 'boxing', phase: 1,
@@ -174,7 +161,6 @@ export const TECHNIQUES = [
       { name: 'Shadow parry', how: 'Imagine a jab, parry, answer with a jab. 3 x 1 min.' },
     ]},
     callout: { en: 'parry' },
-    anim: [[{}, 300], [{ rh: [128, 62], re: [108, 86] }, 150], [{ rh: [120, 70], re: [104, 90] }, 150], [{}, 300]],
   },
   {
     id: 'block', discipline: 'boxing', phase: 1,
@@ -193,7 +179,6 @@ export const TECHNIQUES = [
       { name: 'Block and return', how: 'Block left, block right, then 1-2. 3 x 2 min.' },
     ]},
     callout: { en: 'block' },
-    anim: [[{}, 300], [{ lh: [112, 46], le: [118, 72], rh: [104, 44], re: [100, 74], neck: [100, 66] }, 200], [{ lh: [112, 46], le: [118, 72], rh: [104, 44], re: [100, 74], neck: [100, 66] }, 300], [{}, 300]],
   },
   {
     id: 'teep', discipline: 'muaythai', phase: 1,
@@ -215,7 +200,6 @@ export const TECHNIQUES = [
       { name: 'Jab-teep', how: 'Jab then teep. 3 x 2 min.' },
     ]},
     callout: { en: 'teep' },
-    anim: [[{}, 250], [{ lk: [126, 126], lf: [124, 166], neck: [97, 62] }, 180], [{ lk: [140, 124], lf: [172, 116], neck: [92, 62], pelvis: [94, 122] }, 180], [{ lk: [126, 126], lf: [124, 166] }, 150], [{}, 250]],
   },
   {
     id: 'roundhouse', discipline: 'muaythai', phase: 1,
@@ -239,13 +223,6 @@ export const TECHNIQUES = [
       { name: 'Kick and return', how: '3 x 2 min: kick, land back in stance, guard check, repeat.' },
     ]},
     callout: { en: 'kick' },
-    anim: [
-      [{}, 250],
-      [{ lf: [134, 200], pelvis: [100, 120], rk: [112, 140], rf: [98, 172] }, 160],
-      [{ pelvis: [102, 118], neck: [96, 64], rk: [140, 116], rf: [178, 108], re: [82, 88], rh: [70, 106] }, 200],
-      [{ lf: [134, 200], pelvis: [100, 120], rk: [112, 140], rf: [98, 172] }, 180],
-      [{}, 250],
-    ],
   },
   {
     id: 'check', discipline: 'muaythai', phase: 1,
@@ -265,7 +242,6 @@ export const TECHNIQUES = [
       { name: 'Check and counter', how: 'Check, then 1-2 or rear kick. 3 x 2 min.' },
     ]},
     callout: { en: 'check' },
-    anim: [[{}, 300], [{ lk: [128, 124], lf: [132, 160], le: [118, 84] }, 200], [{ lk: [128, 124], lf: [132, 160], le: [118, 84] }, 300], [{}, 300]],
   },
   {
     id: 'switchstance', discipline: 'mma', phase: 1,
@@ -284,7 +260,6 @@ export const TECHNIQUES = [
       { name: 'Switch on the bell', how: '3 x 1 min: switch every time you hear "switch".' },
     ]},
     callout: { en: 'switch' },
-    anim: [[{}, 300], [{ pelvis: [96, 130], neck: [102, 70], lk: [124, 166], rk: [80, 168], lf: [134, 200], rf: [64, 200] }, 300], [{ pelvis: [96, 130], neck: [102, 70], lk: [124, 166], rk: [80, 168], lf: [134, 200], rf: [64, 200] }, 300], [{}, 300]],
   },
   {
     id: 'sprawl', discipline: 'mma', phase: 1,
@@ -305,12 +280,6 @@ export const TECHNIQUES = [
       { name: 'Sprawl on the bell', how: '3 x 1 min: shadowbox and sprawl on each call, then return to striking.' },
     ]},
     callout: { en: 'sprawl' },
-    anim: [
-      [{}, 300],
-      [{ neck: [120, 150], pelvis: [80, 176], le: [126, 172], lh: [130, 196], re: [118, 174], rh: [122, 196], lk: [54, 188], lf: [30, 198], rk: [50, 190], rf: [24, 200] }, 220],
-      [{ neck: [120, 150], pelvis: [80, 176], le: [126, 172], lh: [130, 196], re: [118, 174], rh: [122, 196], lk: [54, 188], lf: [30, 198], rk: [50, 190], rf: [24, 200] }, 300],
-      [{}, 400],
-    ],
   },
 
   // ---------------- PHASE 2: COMBINATIONS ----------------
@@ -334,7 +303,6 @@ export const TECHNIQUES = [
       { name: 'Hook from guard', how: '3 x 10 slow hooks per side, freezing at the end to check the elbow height.' },
     ]},
     callout: { en: 'three' },
-    anim: [[{}, 250], [{ le: [130, 60], lh: [146, 54], neck: [104, 63], pelvis: [99, 122], lf: [126, 198] }, 180], [{}, 280]],
   },
   {
     id: 'rearhook', discipline: 'boxing', phase: 2,
@@ -353,7 +321,6 @@ export const TECHNIQUES = [
       { name: '3-4', how: 'Lead hook, rear hook. 3 x 2 min.' },
     ]},
     callout: { en: 'four' },
-    anim: [[{}, 250], [{ re: [128, 56], rh: [142, 54], neck: [107, 62], pelvis: [100, 122], rf: [74, 196] }, 180], [{}, 280]],
   },
   {
     id: 'leaduppercut', discipline: 'boxing', phase: 2,
@@ -372,7 +339,6 @@ export const TECHNIQUES = [
       { name: '5-2', how: 'Lead uppercut, cross. 3 x 2 min.' },
     ]},
     callout: { en: 'five' },
-    anim: [[{}, 200], [{ pelvis: [97, 128], neck: [102, 68], lk: [120, 166], rk: [83, 166], lh: [124, 74], le: [116, 96] }, 160], [{ lh: [130, 40], le: [124, 70], neck: [104, 60] }, 160], [{}, 260]],
   },
   {
     id: 'rearuppercut', discipline: 'boxing', phase: 2,
@@ -390,7 +356,6 @@ export const TECHNIQUES = [
       { name: '6-3-2', how: 'Rear uppercut, lead hook, cross. 3 x 2 min.' },
     ]},
     callout: { en: 'six' },
-    anim: [[{}, 200], [{ pelvis: [97, 127], neck: [102, 68], rh: [110, 78], re: [102, 98] }, 160], [{ rh: [126, 40], re: [118, 72], neck: [106, 60], rf: [74, 196] }, 160], [{}, 260]],
   },
   {
     id: 'roll', discipline: 'boxing', phase: 2,
@@ -411,7 +376,6 @@ export const TECHNIQUES = [
       { name: '1-2-roll-2', how: 'Jab, cross, roll, cross. 3 x 2 min.' },
     ]},
     callout: { en: 'roll' },
-    anim: [[{}, 200], [{ neck: [96, 78], pelvis: [94, 134], lk: [120, 168], rk: [80, 170], lh: [120, 72], rh: [108, 70] }, 200], [{ neck: [106, 78], pelvis: [98, 134], lk: [122, 168], rk: [82, 170], lh: [130, 72], rh: [118, 70] }, 200], [{}, 220]],
   },
   {
     id: 'leadkick', discipline: 'muaythai', phase: 2,
@@ -430,12 +394,6 @@ export const TECHNIQUES = [
       { name: '1-switch kick', how: 'Jab, then switch kick. 3 x 2 min.' },
     ]},
     callout: { en: 'switch kick' },
-    anim: [
-      [{}, 250],
-      [{ lf: [108, 200], lk: [112, 162], rf: [92, 200], rk: [92, 162] }, 160],
-      [{ lk: [138, 116], lf: [176, 106], pelvis: [100, 120], neck: [96, 64], le: [104, 92], lh: [90, 110] }, 200],
-      [{}, 300],
-    ],
   },
   {
     id: 'knee', discipline: 'muaythai', phase: 2,
@@ -454,7 +412,6 @@ export const TECHNIQUES = [
       { name: 'Knees on the bell', how: '3 x 1 min alternating knees, switching stance between reps.' },
     ]},
     callout: { en: 'knee' },
-    anim: [[{}, 250], [{ lh: [140, 62], le: [128, 72], rh: [134, 64], re: [118, 78], pelvis: [104, 120], neck: [96, 62], rk: [130, 104], rf: [114, 148], lf: [128, 198] }, 200], [{}, 300]],
   },
   {
     id: 'levelchange', discipline: 'mma', phase: 2,
@@ -472,7 +429,6 @@ export const TECHNIQUES = [
       { name: '1-2-level change', how: '3 x 2 min.' },
     ]},
     callout: { en: 'level change' },
-    anim: [[{}, 300], [{ pelvis: [96, 146], neck: [106, 90], lk: [130, 170], rk: [78, 176], lh: [130, 98], le: [120, 116], rh: [124, 100], re: [108, 118] }, 250], [{ pelvis: [96, 146], neck: [106, 90], lk: [130, 170], rk: [78, 176], lh: [130, 98], le: [120, 116], rh: [124, 100], re: [108, 118] }, 250], [{}, 300]],
   },
   {
     id: 'standup', discipline: 'mma', phase: 2,
@@ -491,12 +447,6 @@ export const TECHNIQUES = [
       { name: 'Stand-ups', how: '3 x 6 each side, alternating.' },
     ]},
     callout: { en: 'stand up' },
-    anim: [
-      [{ neck: [92, 150], pelvis: [92, 190], rh: [66, 198], re: [76, 178], lh: [112, 140], le: [106, 160], lk: [118, 168], lf: [134, 200], rk: [118, 186], rf: [138, 196] }, 500],
-      [{ neck: [92, 140], pelvis: [94, 172], rh: [66, 198], re: [76, 176], lh: [112, 132], le: [106, 152], lk: [118, 166], lf: [134, 200], rk: [80, 184], rf: [62, 198] }, 300],
-      [{ neck: [98, 100], pelvis: [94, 150], lk: [122, 172], rk: [76, 180], rf: [62, 200] }, 300],
-      [{}, 500],
-    ],
   },
 
   // ---------------- PHASE 3: COUNTERS & RANGE ----------------
@@ -534,7 +484,6 @@ export const TECHNIQUES = [
       { name: 'Pull-2', how: '3 x 2 min.' },
     ]},
     callout: { en: 'pull two' },
-    anim: [[{}, 250], [{ neck: [88, 64], pelvis: [90, 124], rk: [78, 164], lh: [116, 56], rh: [102, 54], le: [108, 92], re: [92, 92] }, 220], [{ re: [138, 60], rh: [168, 58], neck: [108, 62], pelvis: [100, 122], rf: [74, 196] }, 180], [{}, 300]],
   },
   {
     id: 'angleout', discipline: 'footwork', phase: 3,
@@ -570,7 +519,6 @@ export const TECHNIQUES = [
       { name: '3-elbow', how: 'Lead hook then rear elbow. 3 x 2 min.' },
     ]},
     callout: { en: 'elbow' },
-    anim: [[{}, 250], [{ re: [130, 52], rh: [110, 48], neck: [106, 62], pelvis: [100, 122], rf: [74, 196] }, 180], [{}, 280]],
   },
   {
     id: 'catchkick', discipline: 'muaythai', phase: 3,
@@ -588,7 +536,6 @@ export const TECHNIQUES = [
       { name: 'Solo catch and return', how: 'Picture the kick, catch, step back, cross. 3 x 2 min.' },
     ]},
     callout: { en: 'catch' },
-    anim: [[{}, 250], [{ lh: [110, 98], le: [118, 100], neck: [98, 66] }, 220], [{ lh: [106, 100], le: [114, 102], re: [138, 60], rh: [168, 58], neck: [106, 62], rf: [74, 196] }, 200], [{}, 300]],
   },
   {
     id: 'clinch', discipline: 'muaythai', phase: 3,
@@ -607,7 +554,6 @@ export const TECHNIQUES = [
       { name: 'Clinch knees (solo)', how: 'Arms in clinch position, alternating knees. 3 x 1 min.' },
     ]},
     callout: { en: 'clinch knee' },
-    anim: [[{ lh: [140, 50], le: [130, 64], rh: [136, 48], re: [122, 64] }, 250], [{ lh: [140, 62], le: [130, 72], rh: [136, 60], re: [122, 72], pelvis: [104, 120], neck: [96, 62], rk: [130, 104], rf: [114, 148] }, 220], [{ lh: [140, 50], le: [130, 64], rh: [136, 48], re: [122, 64] }, 300]],
   },
   {
     id: 'doubleleg', discipline: 'mma', phase: 3,
@@ -626,13 +572,6 @@ export const TECHNIQUES = [
       { name: 'Penetration steps', how: '3 x 8 each side across the garage. Use a mat or carpet for the knee.' },
     ]},
     callout: { en: 'shoot' },
-    anim: [
-      [{}, 250],
-      [{ pelvis: [96, 146], neck: [106, 90], lk: [130, 170], rk: [78, 176], lh: [130, 98], le: [120, 116], rh: [124, 100], re: [108, 118] }, 200],
-      [{ pelvis: [110, 152], neck: [140, 116], lk: [154, 172], lf: [154, 200], rk: [96, 198], rf: [70, 200], lh: [172, 150], le: [160, 136], rh: [168, 158], re: [152, 144] }, 250],
-      [{ pelvis: [110, 152], neck: [140, 116], lk: [154, 172], lf: [154, 200], rk: [96, 198], rf: [70, 200], lh: [172, 150], le: [160, 136], rh: [168, 158], re: [152, 144] }, 250],
-      [{}, 400],
-    ],
   },
   {
     id: 'sprawlstrike', discipline: 'mma', phase: 3,

@@ -41,6 +41,12 @@ function focusTechs(n) {
 
 function statusBadge(st) { return `<span class="badge st-${st}">${t(st)}</span>`; }
 
+function backupDue() {
+  const s = store.get();
+  if (s.log.length < 2) return false;
+  return !s.lastExport || (Date.now() - new Date(s.lastExport)) / 864e5 > 14;
+}
+
 // ---------- views ----------
 function Today() {
   const d = WEEK[todayIdx()];
@@ -49,9 +55,10 @@ function Today() {
   const el = h(`<section>
     <h1>${L(DAY_NAMES)[d.day]} <small>· week ${weekNumber()}${isDeload() ? ' (deload)' : ''}</small></h1>
     ${isDeload() ? `<p class="note">${t('deloadNote')}</p>` : ''}
+    ${backupDue() ? `<p class="note">Your progress is saved only on this phone. <a href="#/settings">Back it up</a> (takes 2 seconds).</p>` : ''}
     <div class="day-grid">
       <div class="card k-run"><h3>${t('run')}</h3><p>${d.run ? esc(L(d.run)) : t('rest')}</p></div>
-      <div class="card k-strength"><h3>${t('strength')}</h3><p>${d.strength ? esc(L(STRENGTH[d.strength].name)) : t('rest')}</p></div>
+      <div class="card k-strength"><h3>${t('strength')}${d.combat && d.strength ? ' · after combat' : ''}</h3>${d.strength ? `<details><summary>${esc(L(STRENGTH[d.strength].name))}</summary><ul class="slist">${STRENGTH[d.strength].items.map(([n, r]) => `<li>${esc(n)} <em>${esc(r)}</em></li>`).join('')}</ul></details>` : `<p>${t('rest')}</p>`}</div>
     </div>
     <div class="card k-combat big">
       <h3>${t('combat')}</h3>
@@ -149,10 +156,15 @@ function Tech(id) {
     <p class="muted">${t('phase')} ${x.phase} · ${esc(L(DISCIPLINES[x.discipline]))} · ${statusBadge(st)}</p>
     <p class="purpose">${esc(L(x.purpose))}</p>
     <div class="fig-big"></div>
+    <div class="figcap" aria-live="polite"></div>
     <div class="figctl">
-      <button class="pill" data-speed="0.35">${t('slow')}</button>
-      <button class="pill on" data-speed="1">${t('normal')}</button>
-      <span class="muted small">Orthodox stance, facing right. Blue = lead side.</span>
+      <div class="seg" data-g="view">
+        <button class="pill" data-view="side">Side</button><button class="pill on" data-view="three">3/4</button><button class="pill" data-view="front">Front</button>
+      </div>
+      <div class="seg" data-g="mode">
+        <button class="pill" data-mode="step">Step by step</button><button class="pill" data-mode="slow">Slow</button><button class="pill on" data-mode="normal">${t('normal')}</button>
+      </div>
+      <p class="muted small">Orthodox stance (left side leads). Blue = lead side, grey = rear side. "Front" is what your opponent sees.</p>
     </div>
     <h2>${t('keyPoints')}</h2>
     <ol>${L(x.keyPoints).map(k => `<li>${esc(k)}</li>`).join('')}</ol>
@@ -171,12 +183,14 @@ function Tech(id) {
     </div>
   </section>`);
   view.replaceChildren(el);
-  const fig = createFigure($('.fig-big', el), id);
+  const cap = $('.figcap', el);
+  const fig = createFigure($('.fig-big', el), id, { onLabel: (txt, i, n) => { cap.textContent = `${i}/${n} · ${txt}`; } });
   cleanup.push(() => fig.destroy());
   $('.figctl', el).addEventListener('click', e => {
-    const sp = e.target.dataset.speed; if (!sp) return;
-    el.querySelectorAll('.figctl .pill').forEach(b => b.classList.toggle('on', b === e.target));
-    fig.setSpeed(+sp);
+    const b = e.target.closest('.pill'); if (!b) return;
+    b.parentElement.querySelectorAll('.pill').forEach(x => x.classList.toggle('on', x === b));
+    if (b.dataset.view) fig.setView(b.dataset.view);
+    if (b.dataset.mode) { fig.setStep(b.dataset.mode === 'step'); fig.setSpeed(b.dataset.mode === 'normal' ? 1 : 0.4); }
   });
   $('.notes', el).addEventListener('change', e => store.update(st => { st.notes[id] = e.target.value; }));
   $('.actions', el).addEventListener('click', e => {
@@ -233,7 +247,7 @@ function Session(kind, techCsv) {
     if (tech !== figTech) {
       figTech = tech; fig?.destroy(); fig = null;
       if (tech) {
-        fig = createFigure($('.fig-big', el), tech, { speed: s.slow ? 0.4 : 1 });
+        fig = createFigure($('.fig-big', el), tech, { speed: s.slow ? 0.4 : 1, step: !!s.slow });
         $('.cues', el).innerHTML = `<ul>${L(techById[tech].keyPoints).slice(0, 3).map(k => `<li>${esc(k)}</li>`).join('')}</ul><p class="muted">Watch for: ${esc(L(techById[tech].mistakes)[0].m)}</p>`;
       } else { $('.fig-big', el).replaceChildren(); $('.cues', el).innerHTML = ''; }
     }
@@ -308,6 +322,7 @@ function Settings() {
       const a = document.createElement('a');
       a.href = URL.createObjectURL(new Blob([store.export()], { type: 'application/json' }));
       a.download = `combat-coach-${isoDate()}.json`; a.click();
+      store.set({ lastExport: isoDate() });
     }
     if (e.target.dataset.a === 'reset' && e.target.textContent !== 'Tap again to confirm') {
       e.target.textContent = 'Tap again to confirm'; return;
@@ -335,6 +350,7 @@ function seed() {
 }
 
 seed();
+try { navigator.storage?.persist?.(); } catch { /* not supported */ }
 window.addEventListener('hashchange', render);
 render();
 
