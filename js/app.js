@@ -1,6 +1,19 @@
 import { TECHNIQUES, techById, DISCIPLINES } from './data/techniques.js';
 import { PHASES, SESSION_TYPES, WEEK, DAY_NAMES, STRENGTH, RULES } from './data/plan.js';
 import { createFigure } from './figure.js';
+import { MOCAP, createMocap, webglOK } from './mocap.js';
+
+// Motion-capture player where a clip exists, else the IK figure (also the fallback if 3D fails).
+function createViewer(el, id, opts = {}) {
+  if (!MOCAP.has(id) || !webglOK()) return createFigure(el, id, opts);
+  let cur, state = { ...opts };
+  const swap = () => { cur.destroy(); cur = createFigure(el, id, state); };
+  cur = createMocap(el, id, { ...opts, onFail: swap });
+  return {
+    setView: v => { state.view = v; cur.setView(v); }, setSpeed: s => { state.speed = s; cur.setSpeed(s); },
+    setStep: b => { state.step = b; cur.setStep(b); }, pause: () => cur.pause(), play: () => cur.play(), destroy: () => cur.destroy(),
+  };
+}
 import { Player, availableCombos } from './session.js';
 import { store } from './store.js';
 import { t, L, LANGS } from './i18n.js';
@@ -172,7 +185,7 @@ function Tech(id) {
       <div class="seg" data-g="mode">
         <button class="pill" data-mode="step">Step by step</button><button class="pill" data-mode="slow">Slow</button><button class="pill on" data-mode="normal">${t('normal')}</button>
       </div>
-      <p class="muted small">Orthodox stance (left side leads). Blue = lead side, grey = rear side. "Front" is what your opponent sees.</p>
+      <p class="muted small">${MOCAP.has(id) ? 'Motion capture of a real fighter. Drag to turn the view, pinch to zoom. "Front" is what your opponent sees.' : 'Orthodox stance (left side leads). Blue = lead side, grey = rear side. "Front" is what your opponent sees.'}</p>
     </div>
     <h2>${t('keyPoints')}</h2>
     <ol>${L(x.keyPoints).map(k => `<li>${esc(k)}</li>`).join('')}</ol>
@@ -192,7 +205,7 @@ function Tech(id) {
   </section>`);
   view.replaceChildren(el);
   const cap = $('.figcap', el);
-  const fig = createFigure($('.fig-big', el), id, { onLabel: (txt, i, n) => { cap.textContent = `${i}/${n} · ${txt}`; } });
+  const fig = createViewer($('.fig-big', el), id, { onLabel: (txt, i, n) => { cap.textContent = n > 1 ? `${i}/${n} · ${txt}` : txt; } });
   cleanup.push(() => fig.destroy());
   $('.figctl', el).addEventListener('click', e => {
     const b = e.target.closest('.pill'); if (!b) return;
@@ -256,7 +269,7 @@ function Session(kind, techCsv) {
     if (tech !== figTech) {
       figTech = tech; fig?.destroy(); fig = null;
       if (tech) {
-        fig = createFigure($('.fig-big', el), tech, { speed: s.slow ? 0.4 : 1, step: !!s.slow });
+        fig = createViewer($('.fig-big', el), tech, { speed: s.slow ? 0.4 : 1, step: !!s.slow && !MOCAP.has(tech) });
         $('.cues', el).innerHTML = `<ul>${L(techById[tech].keyPoints).slice(0, 3).map(k => `<li>${esc(k)}</li>`).join('')}</ul><p class="muted">Watch for: ${esc(L(techById[tech].mistakes)[0].m)}</p>`;
       } else { $('.fig-big', el).replaceChildren(); $('.cues', el).innerHTML = ''; }
     }

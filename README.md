@@ -34,3 +34,6 @@ Settings → Pages → Source: "Deploy from a branch", Branch: `main`, folder `/
 Every text field is `{ en: '...' }`. Georgian is added by putting a `ka` value next to each `en` and enabling `ka` in `LANGS`. Anything not yet translated falls back to English.
 
 After changing files, bump `VERSION` in `sw.js` so installed copies update.
+
+## 3D motion capture
+`assets/fighter.glb` holds one character and 14 motion-capture clips from Adobe Mixamo (free, royalty-free for use in projects), converted with three.js and compressed with gltf-transform (meshopt, WebP textures). `vendor/three` is three.js r170 (MIT). Techniques without a clip use the built-in 3D stick figure.
