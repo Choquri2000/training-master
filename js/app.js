@@ -112,18 +112,19 @@ function Pathway() {
       <p class="muted">${doneN} / ${techs.length} ${t('done').toLowerCase()}</p>
       <ul class="techlist">${techs.map(x => `<li><a href="#/tech/${x.id}">${esc(L(x.name))}</a> <span class="disc">${esc(L(DISCIPLINES[x.discipline]))}</span> ${statusBadge(statusOf(x.id))}</li>`).join('')}</ul>
       <div class="checkpoint"><strong>${t('checkpoint')}:</strong> ${esc(L(p.checkpoint))}
-        ${s.checkpoints[p.phase] ? `<p class="ok">✓ ${s.checkpoints[p.phase]}</p>`
+        ${s.checkpoints[p.phase] ? `<p class="ok">✓ Passed ${s.checkpoints[p.phase]} <button class="btn ghost small" data-unpass="${p.phase}">Undo</button></p>`
           : locked ? '' : `<button class="btn" data-pass="${p.phase}">${t('passCheckpoint')}</button>`}
       </div>
     </div>`;
   }).join('')}</section>`);
   el.addEventListener('click', e => {
-    const ph = e.target.dataset.pass;
-    if (!ph) return;
+    const { pass, unpass } = e.target.dataset;
+    if (!pass && !unpass) return;
     store.update(st => {
-      st.checkpoints[ph] = isoDate();
-      st.phaseUnlocked = Math.max(st.phaseUnlocked, Math.min(3, +ph + 1));
-    });
+      if (pass) st.checkpoints[pass] = isoDate(); else delete st.checkpoints[unpass];
+      let n = 1; while (st.checkpoints[n] && n < 3) n++; // phases open in order
+      st.phaseUnlocked = n;
+    }, pass ? `Phase ${pass} checkpoint passed` : `Phase ${unpass} checkpoint removed`);
     Pathway();
   });
   view.replaceChildren(el);
@@ -202,7 +203,8 @@ function Tech(id) {
   $('.notes', el).addEventListener('change', e => store.update(st => { st.notes[id] = e.target.value; }));
   $('.actions', el).addEventListener('click', e => {
     if (!('st' in e.target.dataset)) return;
-    store.update(st => { if (e.target.dataset.st) st.status[id] = e.target.dataset.st; else delete st.status[id]; });
+    store.update(st => { if (e.target.dataset.st) st.status[id] = e.target.dataset.st; else delete st.status[id]; },
+      { learning: 'Marked as learning', done: 'Marked as solid', '': 'Status reset' }[e.target.dataset.st]);
     Tech(id);
   });
 }
@@ -276,7 +278,7 @@ function Session(kind, techCsv) {
     if (a === 'finish') { player.stop(); player.done = true; render(player); }
     if (a === 'save') {
       const minutes = Math.max(1, Math.round((Date.now() - startedAt) / 60000));
-      store.update(st => st.log.push({ date: isoDate(), at: new Date().toISOString().slice(11, 19), type: kind, minutes, rpe: +$('.rpe', el).value, techs: focus }));
+      store.update(st => st.log.push({ date: isoDate(), at: new Date().toISOString().slice(11, 19), type: kind, minutes, rpe: +$('.rpe', el).value, techs: focus }), 'Session saved');
       location.hash = '#/log';
     }
   });
@@ -394,6 +396,17 @@ function authError(e) {
   if (c.includes('network')) return 'No internet. Try again when you are online.';
   return e.message;
 }
+
+// Undo toast: every user action can be taken back for 8 seconds.
+let toastTimer = 0;
+store.onAction(label => {
+  let tEl = document.getElementById('toast');
+  if (!tEl) { tEl = document.createElement('div'); tEl.id = 'toast'; tEl.setAttribute('role', 'status'); document.body.append(tEl); }
+  tEl.innerHTML = `<span>${esc(label)}</span><button type="button">Undo</button>`;
+  tEl.className = 'show';
+  tEl.querySelector('button').onclick = () => { store.undo(); tEl.className = ''; render(); };
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => { tEl.className = ''; }, 8000);
+});
 
 // ---------- router ----------
 const routes = { today: Today, week: Week, pathway: Pathway, library: Library, tech: Tech, session: Session, log: Log, settings: Settings };

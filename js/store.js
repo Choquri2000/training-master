@@ -19,6 +19,13 @@ function load() {
   return state;
 }
 const listeners = new Set();
+const actionListeners = new Set();
+const undoStack = [];
+function snapshot(label) {
+  undoStack.push(JSON.stringify(store.get()));
+  if (undoStack.length > 30) undoStack.shift();
+  if (label) actionListeners.forEach(f => f(label));
+}
 function save(fromRemote = false) {
   if (!fromRemote) state.updatedAt = Date.now();
   try { localStorage.setItem(KEY, JSON.stringify(state)); } catch { /* private mode: keep in memory */ }
@@ -28,10 +35,16 @@ function save(fromRemote = false) {
 export const store = {
   get: () => state || load(),
   set(patch) { Object.assign(store.get(), patch); save(); },
-  update(fn) { fn(store.get()); save(); },
+  // Pass a label for user actions: it shows an Undo toast.
+  update(fn, label) { snapshot(label); fn(store.get()); save(); },
+  undo() {
+    const prev = undoStack.pop(); if (!prev) return false;
+    state = JSON.parse(prev); save(); return true;
+  },
+  onAction(f) { actionListeners.add(f); },
   export: () => JSON.stringify(store.get(), null, 2),
-  import(json) { state = { ...DEFAULTS, ...JSON.parse(json) }; save(); },
-  reset() { state = { ...DEFAULTS }; save(); },
+  import(json) { const next = JSON.parse(json); snapshot('Data imported'); state = { ...DEFAULTS, ...next }; save(); },
+  reset() { snapshot('Everything was reset'); state = { ...DEFAULTS }; save(); },
   onChange(f) { listeners.add(f); },
   // Replace local state with merged cloud data without triggering another upload.
   replace(next) { state = { ...DEFAULTS, ...next }; save(true); },
