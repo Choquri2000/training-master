@@ -6,13 +6,11 @@ Running is tracked in a separate app. This app shows the full weekly plan (run, 
 
 ## What it does
 
-- **Today:** what's planned for today, with the combat session ready to start.
-- **Week:** the whole week across running, strength and combat.
-- **Pathway:** a 12-week, 3-phase learning path. Each phase ends with a video checkpoint that unlocks the next one.
-- **Library:** each technique has an animated stick figure, key points, common mistakes with fixes, drills and your own notes.
-- **Session player:** a round timer with bells, a 10-second warning, and spoken combo callouts that only use techniques you've unlocked.
-- **Log:** sessions, minutes and load (minutes x RPE).
-- **Settings:** voice on/off, plan start date (every 4th week is a deload), export/import of your data.
+- **Today:** today's session, ready to start, with a coach's note. Also a round timer for bag, pads or sparring.
+- **Plan:** your profile-based plan (days, length, level, goal, limits, stance), in two stages: learn your skills, then long-term fighter training. Can be built around a fighting style.
+- **Learn:** every technique and 21 combinations with motion-capture animation and step-by-step coaching captions; fighting styles (13, with comparison, a style quiz and matchup game plans); Fight IQ lessons; your own combinations.
+- **Progress:** sessions, minutes, skill ratings and monthly skill tests.
+- **Settings** (gear icon): profile, cloud save, language (English/Georgian), export/import.
 
 ## Run locally
 
