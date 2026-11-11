@@ -32,8 +32,8 @@ export const legsDay = () => (profile().other ? 2 : -1);
 
 // ---------- what to leave out ----------
 const AVOID = {
-  knees: ['sprawl', 'sprawlstrike', 'doubleleg', 'levelchange'],
-  back: ['sprawl', 'sprawlstrike', 'doubleleg', 'levelchange', 'roll'],
+  knees: ['sprawl', 'sprawlstrike', 'doubleleg', 'levelchange', 'flyingknee', 'superman', 'siggsp', 'fshot'],
+  back: ['sprawl', 'sprawlstrike', 'doubleleg', 'levelchange', 'roll', 'flyingknee', 'spinbackkick', 'spinbackfist', 'siggsp', 'fshot'],
   shoulder: [],
 };
 export function avoided() {
@@ -128,6 +128,7 @@ export function coachNote({ key, bw, fighter, deload }) {
 
 // Safety note for a technique, by what it involves.
 export function safetyNote(t) {
+  if (t.safety) return t.safety;
   const u = new Set([t.id, ...(t.uses || [])]);
   const has = (...ids) => ids.some(i => u.has(i));
   if (has('doubleleg', 'sprawl', 'sprawlstrike', 'levelchange')) return { en: 'Use a mat or carpet for anything that touches the floor. Warm up the hips and knees first; stop if a knee hurts.', ka: 'იატაკთან შეხებისთვის გამოიყენე მატი ან ხალიჩა. ჯერ გაახურე თეძოები და მუხლები; შეჩერდი, თუ მუხლი გტკივა.' };
@@ -138,4 +139,4 @@ export function safetyNote(t) {
 }
 
 // Level by phase, shown on every skill.
-export const LEVELS = { 1: { en: 'Beginner', ka: 'დამწყები' }, 2: { en: 'Intermediate', ka: 'საშუალო' }, 3: { en: 'Advanced', ka: 'მოწინავე' } };
+export const LEVELS = { 1: { en: 'Beginner', ka: 'დამწყები' }, 2: { en: 'Intermediate', ka: 'საშუალო' }, 3: { en: 'Advanced', ka: 'მოწინავე' }, 4: { en: 'Expert', ka: 'ექსპერტი' } };

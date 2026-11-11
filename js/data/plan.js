@@ -20,6 +20,12 @@ export const PHASES = [
     goal: { en: 'Counter-punching, angles, elbows, the clinch, catching kicks and takedown entries.' },
     checkpoint: { en: 'Film 3 rounds mixing ranges, where every combo ends with defense or an angle.' },
   },
+  {
+    phase: 4, weeks: '13+',
+    name: { en: 'Advanced weapons' },
+    goal: { en: 'Calf kicks, liver shots, the superman punch, spinning strikes, the flying knee and the question mark kick, once the basics are solid.' },
+    checkpoint: { en: 'Film 3 rounds where each advanced strike appears at least twice, set up by a basic one, and you land balanced every time.' },
+  },
 ];
 
 // Session templates. Durations in seconds.
@@ -171,6 +177,7 @@ const KA_PHASES = [
   ['საფუძვლები', 'დგომა, ფეხის მოძრაობა, ორი პირდაპირი დარტყმა, საბაზისო დაცვა, თიპი და ტანის წიხლი.', 'გადაიღე 3 რაუნდი ჩრდილთან ბრძოლა: დაცვა მაღლაა, ფეხები არ ჯვარედინდება და არ ერთდება, ყოველი დარტყმა სახეს უბრუნდება.'],
   ['კომბინაციები', 'ჰუკები, აპერკოტები, როლი, წიხლი ფეხის შეცვლით და მუხლები, ასევე დონის შეცვლა და წამოდგომა.', 'გადაიღე 1-2-3 + წიხლი სრული სიჩქარით: უკანა ხელი ნიკაპს არ შორდება და დგომაში წონასწორულად ეშვები.'],
   ['კონტრები და მანძილი', 'კონტრ-დარტყმები, კუთხეები, იდაყვები, კლინჩი, წიხლის დაჭერა და ჩამოგდების შესვლები.', 'გადაიღე 3 რაუნდი სხვადასხვა მანძილზე, სადაც ყოველი კომბინაცია დაცვით ან კუთხით მთავრდება.'],
+  ['მოწინავე იარაღი', 'წვივის წიხლი, ღვიძლზე დარტყმა, სუპერმენ-დარტყმა, მბრუნავი დარტყმები, მფრინავი მუხლი და „კითხვის ნიშანი“ წიხლი, როცა საფუძვლები მყარია.', 'გადაიღე 3 რაუნდი, სადაც ყოველი მოწინავე დარტყმა მინიმუმ ორჯერ ჩნდება, საბაზისო დარტყმით მომზადებული, და ყოველ ჯერზე წონასწორულად დგები.'],
 ];
 PHASES.forEach((p, i) => { [p.name.ka, p.goal.ka, p.checkpoint.ka] = KA_PHASES[i]; });
 const KA_RUN = ['მსუბუქი 5 კმ (6:30-7:14 /კმ)', 'ინტერვალები: 3 x 1000 მ (5:13-5:26 /კმ)', 'მსუბუქი 6 კმ + 5 x 20 წმ აჩქარება',

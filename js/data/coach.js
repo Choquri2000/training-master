@@ -10,7 +10,7 @@ const CAT = {
   takedown: ['doubleleg'],
   move: ['stepback', 'sidestep', 'pivot'],
 };
-const catOf = Object.fromEntries(Object.entries(CAT).flatMap(([c, ids]) => ids.map(id => [id, c])));
+export const catOf = Object.fromEntries(Object.entries(CAT).flatMap(([c, ids]) => ids.map(id => [id, c])));
 
 // [name, explanation] per phase: 1 start, 2 drive, 3 impact, 4 return, 5 back in guard.
 const TEXT = {
