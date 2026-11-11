@@ -1,7 +1,7 @@
 import { TECHNIQUES, techById, DISCIPLINES } from './data/techniques.js';
 import { PHASES, SESSION_TYPES, WEEK, DAY_NAMES, STRENGTH, RULES } from './data/plan.js';
 import { createFigure } from './figure.js';
-import { MOCAP, createMocap, webglOK, registerSeq } from './mocap.js';
+import { MOCAP, createMocap, webglOK, registerSeq, createOpponent, OPP_CALLS, oppSlow } from './mocap.js';
 import { STEPS, stepsSeq, stepsSay } from './data/combos.js';
 import { LESSONS, lessonById } from './data/iq.js';
 import { STYLES, styleById, STYLE_DISC, DIMS } from './data/styles.js';
@@ -459,21 +459,29 @@ function Session(kind, techCsv) {
       ${focus.length ? `<h2>${t('howFelt')}</h2><div class="rates">${focus.map(id => `<div class="rate" data-id="${id}"><span>${esc(L(techById[id].name))}</span>
         <div class="seg">${[[1, 'feltEasy'], [2, 'feltOk'], [3, 'feltOff']].map(([v, k]) => `<button class="pill${v === 2 ? ' on' : ''}" data-r="${v}">${t(k)}</button>`).join('')}</div></div>`).join('')}</div>
         <p class="muted small">${t('rateHint')}</p>` : ''}
-      ${kind === 'spar' ? `<h2>${tr('How did you handle your partner?')}</h2><div class="sparbox"><div class="seg sparrate">${[[1, 'I got caught a lot'], [2, 'About right'], [3, 'I handled everything']].map(([v, n]) => `<button class="pill${v === 2 ? ' on' : ''}" data-r="${v}">${tr(n)}</button>`).join('')}</div></div>` : ''}
+      ${kind.startsWith('spar') ? `<h2>${tr('How did you handle your partner?')}</h2><div class="sparbox"><div class="seg sparrate">${[[1, 'I got caught a lot'], [2, 'About right'], [3, 'I handled everything']].map(([v, n]) => `<button class="pill${v === 2 ? ' on' : ''}" data-r="${v}">${tr(n)}</button>`).join('')}</div></div>` : ''}
       <button class="btn primary" data-a="save">${t('save')}</button>
     </div>
   </section>`);
   view.replaceChildren(el);
 
   let fig = null, figTech = null;
+  let opp = null, oppSeen = 0, oppAt = 0, oppDur = 0;
+  if (kind === 'spar3d' && webglOK()) { const box = $('.fig-big', el); box.classList.add('opp3d'); opp = createOpponent(box); cleanup.push(() => opp.destroy()); }
   const render = p => {
     const s = p.seg || segs[segs.length - 1];
     $('.seg-label', el).textContent = p.done ? tr('Done!') : `${L(s.label)}${s.tech ? ': ' + L(techById[s.tech].name) : ''}`;
     $('.clock', el).textContent = fmt(Math.max(0, Math.ceil(p.left)));
-    el.className = `session kind-${p.done ? 'done' : s.kind}`;
+    el.className = `session kind-${p.done ? 'done' : s.kind}${opp ? ' opp-on' : ''}`;
     const co = $('.callout', el); co.textContent = p.lastCall || '';
+    if (opp) { // 3D opponent: you see the attack; the name and the answer appear just after it lands
+      if (p.calls !== oppSeen) { oppSeen = p.calls; oppAt = Date.now(); oppDur = p.lastCall ? opp.attack(p.lastCall, oppSlow(sparLevel())) * 1000 : 0; }
+      const late = Date.now() - oppAt > oppDur + 350;
+      co.textContent = p.lastCall === 'now' ? 'NOW' : late && s.opp ? p.lastCall || '' : '';
+      co.classList.toggle('late', late);
+    }
     co.classList.toggle('cue', !!s.silent); co.style.color = (s.colors && COLORS[p.lastCall]) || '';
-    $('.hint', el).textContent = (p.lastCall && s.hints?.[p.lastCall]) || '';
+    $('.hint', el).textContent = (p.lastCall && (!opp || Date.now() - oppAt > oppDur + 350) && s.hints?.[p.lastCall]) || '';
     $('[data-a=toggle]', el).textContent = p.running ? t('pause') : (p.elapsed ? t('resume') : t('start'));
     el.querySelectorAll('.seglist li').forEach(li => li.classList.toggle('cur', +li.dataset.i === p.i));
     const tech = s.tech || null;
@@ -511,12 +519,12 @@ function Session(kind, techCsv) {
         st.log.push({ date: isoDate(), at: new Date().toISOString().slice(11, 19), type: kind, minutes, rpe: +$('.rpe', el).value, techs: focus, ratings });
         st.feel = { ...(st.feel || {}) };
         Object.entries(ratings).forEach(([id, v]) => { st.feel[id] = { r: v, date: isoDate() }; });
-        if (kind === 'spar') { // the partner adapts: handled everything -> faster, caught a lot -> slower
+        if (kind.startsWith('spar')) { // the partner adapts: handled everything -> faster, caught a lot -> slower
           const r = +$('.sparrate .pill.on', el).dataset.r, sp = st.spar || { level: 3 };
           st.spar = { ...sp, level: Math.max(1, Math.min(10, sp.level + (r === 3 ? 1 : r === 1 ? -1 : 0))), last: { date: isoDate(), opp: techCsv, r } };
         }
       }, tr('Session saved'));
-      location.hash = kind === 'formtest' ? '#/tests/form' : kind === 'spar' ? '#/spar' : '#/log';
+      location.hash = kind === 'formtest' ? '#/tests/form' : kind.startsWith('spar') ? '#/spar' : '#/log';
     }
   });
   $('.rpe', el).addEventListener('input', e => { e.target.nextElementSibling.textContent = e.target.value; });
@@ -711,6 +719,7 @@ function extraSession(kind, arg) {
     return [{ ...warm, secs: 180 }, ...rounds(4, 180, 60, { pool: st.calls, pace: 'medium' }), { label: R1(['Cool-down', 'გაგრილება']), kind: 'cool', secs: 120 }];
   }
   if (kind === 'spar') return sparSegs(arg);
+  if (kind === 'spar3d') return sparSegs(arg, true);
   if (kind === 'x') { const d = drillById[arg]; if (!d) return null; return [{ ...warm, secs: 120 }, ...d.build({ short: false, p: profile() }), { label: R1(['Cool-down and stretch', 'გაგრილება და გაჭიმვა']), kind: 'cool', secs: 90 }]; }
   if (kind === 'vs') {
     const [a, b] = (arg || '').split(',').map(x => styleById[x]); if (!a || !b) return null;
@@ -1128,19 +1137,20 @@ function Matchup(pair) {
 
 // ----- Virtual sparring partner -----
 const sparLevel = () => store.get().spar?.level || 3;
-function sparSegs(opp) {
+function sparSegs(opp, see = false) {
   const st = styleById[opp], L0 = sparLevel(), ka = store.get().lang === 'ka';
   const allow = new Set(st ? { boxing: ['p', 'o'], muaythai: ['p', 'k', 'o'], mma: ['p', 'k', 's', 'o'] }[st.disc] : ['p', 'k', 'o']);
   if (profile().limits.some(l => l === 'knees' || l === 'back')) allow.delete('s');
   const w = STYLE_W[opp] || {};
   const pool = ATTACKS.filter(a => allow.has(a.t)).flatMap(a => Array(Math.max(0, 1 + (w[a.say] || 0))).fill(a.say));
-  if (L0 >= 6) pool.push('jab, hook', 'one two, kick', 'hook, body'); // doubles at higher levels
+  if (L0 >= 6) pool.push('jab, hook', see ? 'one two, hook' : 'hook, body', ...(allow.has('k') ? ['one two, kick'] : [])); // doubles at higher levels
+  if (see) pool.splice(0, pool.length, ...pool.filter(c => OPP_CALLS[c])); // 3D: only attacks with a real capture
   const hints = Object.fromEntries(ATTACKS.map(a => [a.say, ka ? a.ka : a.en]));
-  Object.assign(hints, { 'jab, hook': ka ? 'პარირება, როლი, კონტრი' : 'Parry, roll, counter', 'one two, kick': ka ? 'ბლოკი, ბლოკი, ჩეკი, შემდეგ კონტრი' : 'Block, block, check, then counter', 'hook, body': ka ? 'როლი, იდაყვი დაბლა, შემდეგ 3-2' : 'Roll, elbow down, then 3-2' });
+  Object.assign(hints, { 'jab, hook': ka ? 'პარირება, როლი, კონტრი' : 'Parry, roll, counter', 'one two, kick': ka ? 'ბლოკი, ბლოკი, ჩეკი, შემდეგ კონტრი' : 'Block, block, check, then counter', 'hook, body': ka ? 'როლი, იდაყვი დაბლა, შემდეგ 3-2' : 'Roll, elbow down, then 3-2', 'one two, hook': ka ? 'ბლოკი, ბლოკი, როლი, შემდეგ 3-2' : 'Block, block, roll, then 3-2' });
   const gap = Math.max(1300, 4300 - 330 * (L0 - 1)), secs = L0 >= 6 ? 180 : 120;
   return [{ label: R1(['Get ready: bounce, hands up, eyes forward', 'მომზადება: ხტუნვა, ხელები ზევით, თვალი წინ']), kind: 'warm', secs: 60 },
     ...Array.from({ length: 3 }, (_, i) => [
-      { label: R1([`Sparring round ${i + 1} of 3: defend, then counter`, `სპარინგის რაუნდი ${i + 1} / 3: დაიცავი, შემდეგ კონტრი`]), kind: 'work', secs, pool, hints, gap: gap - i * 150 },
+      { label: R1([`Sparring round ${i + 1} of 3: defend, then counter`, `სპარინგის რაუნდი ${i + 1} / 3: დაიცავი, შემდეგ კონტრი`]), kind: 'work', secs, pool, hints, gap: see ? Math.max(1900, gap + 500 - i * 150) : gap - i * 150, ...(see ? { silent: true, opp: true } : {}) },
       ...(i < 2 ? [{ label: R1(['Rest', 'დასვენება']), kind: 'rest', secs: 60 }] : []),
     ]).flat()];
 }
@@ -1154,12 +1164,15 @@ function Spar() {
       <div class="progress"><div style="width:${L0 * 10}%"></div></div>
       <p class="muted small">${tr('Higher level: faster attacks, doubles, longer rounds.')}</p></div>
     ${mine && mine !== 'mixed' ? `<p class="small"><a href="#/styles/vs/${mine},">${tr('Matchup game plan')}</a></p>` : ''}
+    ${webglOK() ? `<h2>${tr('How your partner attacks')}</h2><div class="seg pmode">${[['voice', 'Calls it out loud'], ['3d', '3D opponent on screen']].map(([v, n]) => `<button type="button" class="pill${(sp.mode || 'voice') === v ? ' on' : ''}" data-m="${v}">${tr(n)}</button>`).join('')}</div>
+      <p class="muted small">${tr('3D opponent: a motion-captured fighter throws real attacks at you. React to what you see; the answer shows after each attack. Speeds are set from real fight timing and scale with your partner level.')}</p>` : ''}
     <div class="savebar"><span class="muted small">3 × ${L0 >= 6 ? '3' : '2'} min</span><button class="btn primary" data-go>${t('start')}</button></div>
   </section>`);
+  el.querySelector('.pmode')?.addEventListener('click', e => { const b = e.target.closest('[data-m]'); if (b) el.querySelectorAll('.pmode .pill').forEach(x => x.classList.toggle('on', x === b)); });
   $('[data-go]', el).onclick = () => {
-    const o = $('.opp', el).value;
-    store.set({ spar: { ...(store.get().spar || { level: 3 }), lastOpp: o } });
-    location.hash = `#/session/spar/${o}`;
+    const o = $('.opp', el).value, mode = $('.pmode .pill.on', el)?.dataset.m || 'voice';
+    store.set({ spar: { ...(store.get().spar || { level: 3 }), lastOpp: o, mode } });
+    location.hash = `#/session/${mode === '3d' ? 'spar3d' : 'spar'}/${o}`;
   };
   view.replaceChildren(el);
 }

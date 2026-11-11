@@ -279,3 +279,8 @@ details { margin: 10px 0; } details > summary { cursor: pointer; font-weight: 60
 
 .callout.cue { font-size: 4.5rem; min-height: 5rem; line-height: 1.1; }
 .cues .legend { text-align: center; font-weight: 600; color: var(--muted); }
+.fig-big.opp3d { aspect-ratio: 3 / 4; max-height: 62vh; }
+.session.opp-on .seg-label { font-size: .85rem; }
+.session.opp-on .clock { font-size: 2rem; margin: 0; }
+.session.opp-on .callout { font-size: 1.3rem; min-height: 1.7rem; }
+.session.opp-on .fig-big { margin-top: 2px; }

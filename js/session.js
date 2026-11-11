@@ -99,7 +99,7 @@ export class Player {
       if (s.pool) pool.push(...s.pool);
       if (s.footwork) pool.push(...FOOTWORK_CALLS);
       if (!pool.length) pool.push(...availableCombos().map(c => c.say));
-      this.lastCall = pool[Math.floor(Math.random() * pool.length)];
+      this.lastCall = pool[Math.floor(Math.random() * pool.length)]; this.calls = (this.calls || 0) + 1;
       if (!s.silent) say(this.lastCall); // silent: the cue is only on screen
       const base = s.gap || PACE[s.pace || 'medium']; // gap: sparring partner speed (ms)
       this.nextCall = Date.now() + base * (0.8 + Math.random() * 0.4);

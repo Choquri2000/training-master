@@ -264,3 +264,104 @@ export function createMocap(container, techId, { speed = 1, view = 'three', step
     destroy: () => { dead = true; cancelAnimationFrame(raf); api.cleanup?.(); container.replaceChildren(); container.classList.remove('mocap', 'loading'); },
   };
 }
+
+// ---------- 3D opponent: the captured fighter faces you and attacks ----------
+// Timings measured from the captures (seconds into each clip): [clip, start, onset, peak, end].
+// Each strike is played so that onset -> peak takes `pro` seconds at full speed (typical times for
+// trained fighters), then slowed by the partner level. Wind-up and recovery run at the same rate.
+const STRIKE = {
+  jab: ['jab', 0.03, 0.13, 0.43, 1.1, 0.22],
+  cross: ['cross', 0.28, 0.38, 1.13, 1.45, 0.28],
+  hook: ['leadhook', 0.13, 0.23, 0.73, 1.25, 0.3],
+  uppercut: ['leaduppercut', 0.07, 0.17, 0.58, 1.13, 0.28],
+  kick: ['roundhouse', 0.28, 0.38, 0.75, 1.4, 0.42],
+  teep: ['teep', 0.67, 0.77, 1.17, 1.5, 0.4],
+  knee: ['knee', 0.28, 0.38, 0.9, 1.4, 0.4],
+  clinch: ['clinchknee', 0.2, 0.55, 1.0, 1.8, 0.45],
+  shot: ['doubleleg', 0.3, 0.4, 0.95, 1.05, 0.45, true], // level change and penetration step, then backs out (no lift)
+};
+export const OPP_CALLS = {
+  jab: ['jab'], 'double jab': ['jab', 'jab'], 'one two': ['jab', 'cross'], hook: ['hook'], uppercut: ['uppercut'],
+  kick: ['kick'], teep: ['teep'], knee: ['knee'], clinch: ['clinch'], shot: ['shot'], now: [],
+  'jab, hook': ['jab', 'hook'], 'one two, kick': ['jab', 'cross', 'kick'], 'one two, hook': ['jab', 'cross', 'hook'],
+};
+// Partner level 1..10 -> how much slower than a trained fighter (1.6x at level 1, real speed at 10).
+export const oppSlow = level => 1.6 - (0.6 * (Math.min(10, Math.max(1, level)) - 1)) / 9;
+
+export function createOpponent(container, { onFail } = {}) {
+  let dead = false, raf = 0, api = {};
+  container.classList.add('mocap', 'loading');
+  (async () => {
+    const L = await loadLibs();
+    const gltf = await load(L, 'fighter');
+    if (dead) return;
+    const { THREE } = L;
+    container.classList.remove('loading');
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.shadowMap.enabled = true;
+    container.replaceChildren(renderer.domElement);
+    const scene = new THREE.Scene();
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x8a8f99, 1.6));
+    const sun = new THREE.DirectionalLight(0xffffff, 2.2);
+    sun.position.set(-120, 300, 220); sun.castShadow = true;
+    Object.assign(sun.shadow.camera, { left: -200, right: 200, top: 200, bottom: -200, near: 10, far: 900 });
+    sun.shadow.mapSize.set(1024, 1024); scene.add(sun);
+    const floor = new THREE.Mesh(new THREE.CircleGeometry(260, 48), new THREE.ShadowMaterial({ opacity: 0.25 }));
+    floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+    const fighter = L.clone(gltf.scene);
+    fighter.traverse(o => { if (o.isMesh) { o.castShadow = true; o.frustumCulled = false; } });
+    scene.add(fighter);
+    const mixer = new THREE.AnimationMixer(fighter);
+    const action = name => { const a = mixer.clipAction(gltf.animations.find(c => c.name === name).clone()); a.play(); a.paused = true; a.setEffectiveWeight(0); return a; };
+    const idle = action('stance'); idle.setEffectiveWeight(1);
+    const acts = {};
+    const get = clip => (acts[clip] ||= action(clip));
+
+    // Your eye view: standing at punching range, looking at the opponent's chest and head.
+    const camera = new THREE.PerspectiveCamera(36, 1, 10, 3000);
+    camera.position.set(0, 160, 360); camera.lookAt(0, 100, 0);
+    const size = () => { const w = container.clientWidth, h = container.clientHeight || w; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); };
+    const ro = new ResizeObserver(size); ro.observe(container); size();
+
+    // An attack is a list of pieces: [action, from, to, rate]. Combinations cut each strike
+    // early in its recovery and flow into the next one, as fighters do.
+    let seq = null, t = 0, fade = 0; const BL = 0.07, OUT = 0.3;
+    const build = (names, slow) => names.flatMap((n, i) => {
+      const [clip, s, on, pk, end, pro, back] = STRIKE[n], a = get(clip), r = (pk - on) / pro / slow;
+      const last = i === names.length - 1, stop = last ? end : pk + (end - pk) * 0.35;
+      return [...(i === 0 ? [[a, s, on, 1 / slow]] : []), [a, on, pk, r], back ? [a, pk, s, 1.6 / slow] : [a, pk, stop, Math.max(r * 0.8, 1 / slow)]];
+    }).map(([a, from, to, rate]) => ({ a, from, to, dur: Math.abs(to - from) / rate }));
+    const pose = dt => {
+      Object.values(acts).forEach(a => a.setEffectiveWeight(0));
+      if (!seq) { fade = Math.max(0, fade - dt); idle.setEffectiveWeight(1); if (fade > 0 && api.lastPiece) { const w = fade / OUT; api.lastPiece.a.setEffectiveWeight(w); idle.setEffectiveWeight(1 - w); } return; }
+      t += dt;
+      let i = 0, s = 0; while (i < seq.length && t >= s + seq[i].dur) s += seq[i++].dur;
+      if (i >= seq.length) { api.lastPiece = seq[seq.length - 1]; api.lastPiece.a.time = api.lastPiece.to; seq = null; fade = OUT; return pose(0); }
+      const p = seq[i], u = t - s; p.a.time = p.from + (p.to - p.from) * (u / p.dur);
+      const prev = i > 0 ? seq[i - 1] : null, w = Math.min(1, u / BL);
+      if (!prev) { p.a.setEffectiveWeight(Math.min(1, t / 0.08)); idle.setEffectiveWeight(1 - Math.min(1, t / 0.08)); }
+      else if (prev.a !== p.a && w < 1) { prev.a.time = prev.to; prev.a.setEffectiveWeight(1 - w); p.a.setEffectiveWeight(w); idle.setEffectiveWeight(0); }
+      else { p.a.setEffectiveWeight(1); idle.setEffectiveWeight(0); }
+    };
+    const clock = new THREE.Clock();
+    const tick = () => {
+      raf = requestAnimationFrame(tick);
+      const dt = Math.min(clock.getDelta(), 0.1);
+      idle.time = (idle.time + dt * 0.9) % idle.getClip().duration; // guard bounce keeps going underneath
+      pose(dt); mixer.update(0);
+      renderer.render(scene, camera);
+    };
+    tick();
+    Object.assign(api, {
+      attack: (call, slow = 1) => { const names = OPP_CALLS[call]; if (!names?.length) return 0; seq = build(names, slow); t = 0; return seq.reduce((a, p) => a + p.dur, 0); },
+      cleanup: () => { ro.disconnect(); mixer.stopAllAction(); renderer.dispose(); renderer.forceContextLoss?.(); },
+    });
+  })().catch(err => { console.error(err); if (!dead) { container.classList.remove('loading'); onFail?.(err); } });
+  return {
+    attack: (call, slow) => api.attack?.(call, slow) || 0,
+    destroy: () => { dead = true; cancelAnimationFrame(raf); api.cleanup?.(); container.replaceChildren(); container.classList.remove('mocap', 'loading'); },
+  };
+}
