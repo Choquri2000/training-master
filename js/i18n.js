@@ -4,7 +4,7 @@ import { store } from './store.js';
 const STRINGS = {
   en: {
     appName: 'Combat Coach',
-    today: 'Today', week: 'Week', pathway: 'Pathway', library: 'Library', log: 'Log', settings: 'Settings',
+    today: 'Today', week: 'Week', pathway: 'Pathway', library: 'Library', log: 'Progress', settings: 'Settings',
     run: 'Run', strength: 'Strength', combat: 'Combat',
     rest: 'Rest', start: 'Start session', noCombatToday: 'No combat session today. Rest the skills, or do 10 min of easy shadowboxing if you feel fresh.',
     focusToday: 'Today\'s focus techniques', keyPoints: 'Key points', mistakes: 'Common mistakes and fixes',
@@ -19,6 +19,11 @@ const STRINGS = {
     weekRules: 'How the week fits together', viewTech: 'Open', notes: 'My notes',
     deloadNote: 'Deload week: technique only, no hard rounds.',
     filterAll: 'All',
+    howFelt: 'How did each skill feel?', feltEasy: 'Easy', feltOk: 'OK', feltOff: 'Felt off', rateHint: '"Felt off" skills come back sooner in your plan.',
+    streak: 'Streak', weeks: 'weeks', skillsSolid: 'Skills solid', minutesPerWeek: 'Combat minutes per week',
+    needsWork: 'Needs work', needsWorkHint: 'You rated these "felt off". Your plan brings them back sooner.',
+    feelsEasy: 'Feels easy', feelsEasyHint: 'Ready to mark as solid? Open one and tap "Mark as solid".',
+    history: 'History', date: 'Date', session: 'Session', techniques: 'Skills',
   },
 };
 

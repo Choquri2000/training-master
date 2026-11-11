@@ -64,7 +64,13 @@ export function programFocus(day, week) {
   const take = (list, m, off) => (list.length ? Array.from({ length: Math.min(m, list.length) }, (_, i) => list[(off + i) % list.length]) : []);
   const nTheme = rest.length ? n - 1 : n;
   const out = [...take(theme, nTheme, k * nTheme), ...take(rest, n - Math.min(nTheme, theme.length), k)];
-  return [...new Set(out)].slice(0, n).length ? [...new Set(out)].slice(0, n) : take(p, n, k);
+  let res = [...new Set(out)].slice(0, n);
+  if (!res.length) res = take(p, n, k);
+  // Skills you rated "felt off" come back sooner: the oldest one takes the last slot.
+  const feel = store.get().feel || {};
+  const off = p.filter(id => feel[id]?.r === 3 && okDay(id) && !res.includes(id)).sort((x, y) => feel[x].date.localeCompare(feel[y].date));
+  if (off.length && res.length) res[res.length - 1] = off[0];
+  return res;
 }
 
 // Combos the timer calls: only ones built from what you picked (plus stance/step).

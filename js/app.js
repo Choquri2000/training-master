@@ -327,6 +327,9 @@ function Session(kind, techCsv) {
     <div class="logform" hidden>
       <h2>${t('howHard')}</h2>
       <input type="range" min="1" max="10" value="5" class="rpe"><output>5</output>
+      ${focus.length ? `<h2>${t('howFelt')}</h2><div class="rates">${focus.map(id => `<div class="rate" data-id="${id}"><span>${esc(L(techById[id].name))}</span>
+        <div class="seg">${[[1, 'feltEasy'], [2, 'feltOk'], [3, 'feltOff']].map(([v, k]) => `<button class="pill${v === 2 ? ' on' : ''}" data-r="${v}">${t(k)}</button>`).join('')}</div></div>`).join('')}</div>
+        <p class="muted small">${t('rateHint')}</p>` : ''}
       <button class="btn primary" data-a="save">${t('save')}</button>
     </div>
   </section>`);
@@ -361,13 +364,21 @@ function Session(kind, techCsv) {
   cleanup.push(() => lock?.release?.());
 
   el.addEventListener('click', e => {
+    const r = e.target.closest('[data-r]');
+    if (r) { r.parentElement.querySelectorAll('.pill').forEach(x => x.classList.toggle('on', x === r)); return; }
     const a = e.target.dataset.a;
     if (a === 'toggle') { player.toggle(); if (player.running) wake(); }
     if (a === 'skip') player.next();
     if (a === 'finish') { player.stop(); player.done = true; render(player); }
     if (a === 'save') {
       const minutes = Math.max(1, Math.round((Date.now() - startedAt) / 60000));
-      store.update(st => st.log.push({ date: isoDate(), at: new Date().toISOString().slice(11, 19), type: kind, minutes, rpe: +$('.rpe', el).value, techs: focus }), 'Session saved');
+      const ratings = {};
+      el.querySelectorAll('.rate').forEach(d => { ratings[d.dataset.id] = +$('.pill.on', d).dataset.r; });
+      store.update(st => {
+        st.log.push({ date: isoDate(), at: new Date().toISOString().slice(11, 19), type: kind, minutes, rpe: +$('.rpe', el).value, techs: focus, ratings });
+        st.feel = { ...(st.feel || {}) };
+        Object.entries(ratings).forEach(([id, v]) => { st.feel[id] = { r: v, date: isoDate() }; });
+      }, 'Session saved');
       location.hash = '#/log';
     }
   });
@@ -376,17 +387,37 @@ function Session(kind, techCsv) {
 
 function Log() {
   const s = store.get();
-  const monday = new Date(); monday.setDate(monday.getDate() - todayIdx());
-  const wk = s.log.filter(e => e.date >= isoDate(monday));
-  const load = wk.reduce((a, e) => a + e.minutes * e.rpe, 0);
+  const mon = d => { const x = new Date(d + 'T00:00:00'); x.setDate(x.getDate() - (x.getDay() + 6) % 7); return isoDate(x); };
+  const thisMon = mon(isoDate());
+  const weeks = Array.from({ length: 8 }, (_, i) => { const d = new Date(thisMon + 'T00:00:00'); d.setDate(d.getDate() - 7 * (7 - i)); return isoDate(d); });
+  const byWeek = {}; s.log.forEach(e => { const w = mon(e.date); (byWeek[w] ||= []).push(e); });
+  const mins = w => (byWeek[w] || []).reduce((a, e) => a + e.minutes, 0);
+  const max = Math.max(60, ...weeks.map(mins));
+  let streak = 0; // weeks in a row with 2+ sessions (this week counts once it reaches 2)
+  for (let i = weeks.length - 1; i >= 0; i--) {
+    const n = (byWeek[weeks[i]] || []).length;
+    if (n >= 2) streak++; else if (i !== weeks.length - 1) break;
+  }
+  const wk = byWeek[thisMon] || [];
+  const ids = picks().length ? picks() : TECHNIQUES.map(x => x.id);
+  const solid = ids.filter(id => s.status[id] === 'done').length, learning = ids.filter(id => s.status[id] === 'learning').length;
+  const feel = s.feel || {};
+  const off = ids.filter(id => feel[id]?.r === 3), easy = ids.filter(id => feel[id]?.r === 1 && s.status[id] !== 'done');
+  const chip = id => `<li><a href="#/tech/${id}">${esc(L(techById[id].name))}</a></li>`;
   const el = h(`<section><h1>${t('log')}</h1>
-    <div class="day-grid">
-      <div class="card"><h3>${t('thisWeek')}</h3><p class="stat">${wk.length} <small>${t('sessions')}</small></p></div>
-      <div class="card"><h3>Minutes</h3><p class="stat">${wk.reduce((a, e) => a + e.minutes, 0)}</p></div>
-      <div class="card"><h3>Load (min x RPE)</h3><p class="stat">${load}</p></div>
+    <div class="stats">
+      <div class="card"><h3>${t('thisWeek')}</h3><p class="stat">${wk.length}</p><small>${t('sessions')}</small></div>
+      <div class="card"><h3>${t('streak')}</h3><p class="stat">${streak}</p><small>${t('weeks')}</small></div>
+      <div class="card"><h3>${t('skillsSolid')}</h3><p class="stat">${solid}<small> / ${ids.length}</small></p><small>${learning} ${t('learning').toLowerCase()}</small></div>
     </div>
-    ${s.log.length ? `<table class="logtable"><thead><tr><th>Date</th><th>Session</th><th>${t('minutes')}</th><th>RPE</th><th>Techniques</th></tr></thead><tbody>
-      ${s.log.slice().reverse().map(e => `<tr><td>${e.date}</td><td>${esc(e.type)}</td><td>${e.minutes}</td><td>${e.rpe}</td><td>${(e.techs || []).map(id => esc(L(techById[id]?.name))).join(', ')}</td></tr>`).join('')}
+    <h2>${t('minutesPerWeek')}</h2>
+    <div class="bars">${weeks.map(w => `<div class="bar ${w === thisMon ? 'now' : ''}"><span style="height:${(mins(w) / max) * 100}%"></span><b>${mins(w) || ''}</b><i>${w.slice(8)}.${w.slice(5, 7)}</i></div>`).join('')}</div>
+    <div class="progress"><div style="width:${(solid / ids.length) * 100}%"></div></div>
+    ${off.length ? `<h2>${t('needsWork')}</h2><p class="muted small">${t('needsWorkHint')}</p><ul class="chips">${off.map(chip).join('')}</ul>` : ''}
+    ${easy.length ? `<h2>${t('feelsEasy')}</h2><p class="muted small">${t('feelsEasyHint')}</p><ul class="chips">${easy.map(chip).join('')}</ul>` : ''}
+    <h2>${t('history')}</h2>
+    ${s.log.length ? `<table class="logtable"><thead><tr><th>${t('date')}</th><th>${t('session')}</th><th>${t('minutes')}</th><th>RPE</th><th>${t('techniques')}</th></tr></thead><tbody>
+      ${s.log.slice(-30).reverse().map(e => `<tr><td>${e.date.slice(5)}</td><td>${esc(e.type)}</td><td>${e.minutes}</td><td>${e.rpe}</td><td>${(e.techs || []).map(id => esc(L(techById[id]?.name)) + (e.ratings?.[id] === 3 ? ' ✗' : e.ratings?.[id] === 1 ? ' ✓' : '')).join(', ')}</td></tr>`).join('')}
     </tbody></table>` : `<p class="muted">${t('noLog')}</p>`}
   </section>`);
   view.replaceChildren(el);
