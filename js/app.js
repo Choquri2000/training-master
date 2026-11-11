@@ -10,6 +10,7 @@ import { DRILLS, drillById, drillOfDay, withDrill, COLORS } from './data/drills.
 import { addCorner } from './data/corner.js';
 import { voiceCtlOK, listen } from './voicectl.js';
 import { CAMP, MIN_CAMP, careerOf, tierOf, rankOf, record, campDone, nextOpponent, decide, applyResult, HOW } from './data/career.js';
+import { TARGETS, targetById, createTargetFigure } from './targets.js';
 
 // Motion-capture player where a clip exists, else the IK figure (also the fallback if 3D fails).
 function createViewer(el, id, opts = {}) {
@@ -325,7 +326,7 @@ function Pathway() {
     if (!pass && !unpass) return;
     store.update(st => {
       if (pass) st.checkpoints[pass] = isoDate(); else delete st.checkpoints[unpass];
-      let n = 1; while (st.checkpoints[n] && n < 3) n++; // phases open in order
+      let n = 1; while (st.checkpoints[n] && n < PHASES.length) n++; // phases open in order
       st.phaseUnlocked = n;
     }, pass ? tr('Phase {n} checkpoint passed', { n: pass }) : tr('Phase {n} checkpoint removed', { n: unpass }));
     Pathway();
@@ -372,6 +373,7 @@ function Tech(id) {
     ${x.uses ? `<p class="muted small">${tr('Built from')}: ${x.uses.map(u => `<a href="#/tech/${u}">${esc(L(techById[u].name))}</a>`).join(', ')}</p>` : ''}
     <div class="fig-big"></div>
     <div class="figcap" aria-live="polite"></div>
+    ${x.animNote ? `<p class="muted small"><strong>${tr('Animation note')}:</strong> ${esc(L(x.animNote))}</p>` : ''}
     <div class="figctl">
       <div class="seg" data-g="view">
         <button class="pill" data-view="side">${tr('Side')}</button><button class="pill on" data-view="three">3/4</button><button class="pill" data-view="front">${tr('Front')}</button>
@@ -715,6 +717,7 @@ store.onAction(label => {
 const toolsRow = () => `<div class="tools">
   <a class="tool wide" href="#/drills"><b>${tr('Practical drills')}</b><span>${tr('Footwork box, bands, light dumbbells, reaction cues, balance, conditioning, strong finishes')}</span></a>
   <a class="tool wide" href="#/styles"><b>${tr('Fighting styles')}</b><span>${tr('Peek-a-boo, Soviet school, Muay Khao, Dutch, wrestle-boxing and more, compared')}</span></a>
+  <a class="tool wide" href="#/targets"><b>${tr('Targets on the body')}</b><span>${tr('Where each strike should land and why it works, on a 3D figure')}</span></a>
   <a class="tool" href="#/iq"><b>${tr('Fight IQ')}</b><span>${tr('Strategy, with drills')}</span></a>
   <a class="tool" href="#/combos"><b>${tr('My combos')}</b><span>${tr('Build your own, animated')}</span></a>
 </div>`;
@@ -964,6 +967,32 @@ function Drills(id) {
     <ol class="iqlist">${DRILLS.map(x => `<li><a href="#/drills/${x.id}">${esc(L(x.name))}</a><br><span class="muted small">${esc(L(x.why).split('. ')[0])}.</span></li>`).join('')}</ol>
   </section>`);
   view.replaceChildren(el);
+}
+
+// ----- Targets on the body -----
+function Targets(id) {
+  const ka = store.get().lang === 'ka', T = x => (ka ? x.ka : x.en);
+  let sel = targetById[id] ? id : 'chin';
+  const el = h(`<section><a href="#/library" class="back">← ${t('library')}</a><h1>${tr('Targets on the body')}</h1>
+    <p class="muted">${tr('Tap a target on the figure or below. Drag the figure to turn it.')}</p>
+    <div class="fig-big targets-fig"></div>
+    <div class="filters tpills">${TARGETS.map(x => `<button class="pill" data-tg="${x.id}">${esc(T(x)[0])}</button>`).join('')}</div>
+    <div class="card tinfo"></div></section>`);
+  const info = $('.tinfo', el);
+  const show = () => {
+    const x = targetById[sel], [name, why, how] = T(x);
+    el.querySelectorAll('.tpills .pill').forEach(b => b.classList.toggle('on', b.dataset.tg === sel));
+    info.innerHTML = `<h2>${esc(name)}</h2><p>${esc(why)}</p><h3>${tr('How to reach it')}</h3><p>${esc(how)}</p>
+      <h3>${tr('Strikes that land here')}</h3><div class="filters">${x.strikes.filter(s => techById[s]).map(s => `<a class="pill" href="#/tech/${s}">${esc(L(techById[s].name))}</a>`).join('')}</div>
+      <p class="muted small">${tr('Train these on a bag, pads or in the air. With a partner, touch the targets lightly; never hit the head, throat or joints hard in practice.')}</p>`;
+    history.replaceState(null, '', '#/targets/' + sel);
+  };
+  view.replaceChildren(el);
+  const fig = webglOK() ? createTargetFigure($('.targets-fig', el), { selected: sel, onPick: v => { sel = v; show(); }, onFail: () => $('.targets-fig', el).remove() }) : null;
+  if (!fig) $('.targets-fig', el).remove();
+  cleanup.push(() => fig?.destroy());
+  $('.tpills', el).addEventListener('click', e => { const b = e.target.closest("[data-tg]"); if (!b) return; sel = b.dataset.tg; fig?.select(sel); show(); });
+  show();
 }
 
 // ----- Fight IQ -----
@@ -1279,7 +1308,7 @@ function eventClick(e, root) {
 }
 
 // ---------- router ----------
-const routes = { career: Career, drills: Drills, spar: Spar, styles: Styles, combos: MyCombos, timer: Timer, tests: Tests, iq: IQ, profile: () => Profile(false), today: Today, week: () => Plan(), plan: Plan, pathway: Pathway, library: Library, tech: Tech, session: Session, log: Log, settings: Settings };
+const routes = { targets: Targets, career: Career, drills: Drills, spar: Spar, styles: Styles, combos: MyCombos, timer: Timer, tests: Tests, iq: IQ, profile: () => Profile(false), today: Today, week: () => Plan(), plan: Plan, pathway: Pathway, library: Library, tech: Tech, session: Session, log: Log, settings: Settings };
 
 const NAVMAP = { career: 'log', drills: 'library', week: 'plan', pathway: 'plan', profile: 'settings', tech: 'library', styles: 'library', iq: 'library', combos: 'library', tests: 'log', timer: 'today', spar: 'today', session: 'today' };
 function render() {

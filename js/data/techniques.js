@@ -3,6 +3,8 @@
 // Orthodox stance: left foot and left hand lead. Southpaws mirror everything.
 
 import { COMBO_TECHS } from './combos.js';
+import { ADV_TECHS, ADV_DISCIPLINES, ADV_KA_UI } from './advanced.js';
+import { KA } from './ka-ui.js';
 
 export const DISCIPLINES = {
   boxing: { en: 'Boxing' },
@@ -11,7 +13,9 @@ export const DISCIPLINES = {
   footwork: { en: 'Stance & footwork' },
   combos: { en: 'Attacking combinations', ka: 'შეტევითი კომბინაციები' },
   counters: { en: 'Defend and counter', ka: 'დაცვა და კონტრი' },
+  ...ADV_DISCIPLINES,
 };
+Object.assign(KA, ADV_KA_UI);
 
 // Each technique:
 //  id, discipline, phase (1-3), name, purpose, keyPoints[], mistakes[{m, fix}],
@@ -597,6 +601,7 @@ export const TECHNIQUES = [
 ];
 
 TECHNIQUES.push(...COMBO_TECHS); // the important combinations (combos.js)
+TECHNIQUES.push(...ADV_TECHS); // advanced strikes, setups, signature moves, self-defence (advanced.js)
 export const techById = Object.fromEntries(TECHNIQUES.map(t => [t.id, t]));
 
 // Combos used by the timer's callouts, grouped by phase.
@@ -641,6 +646,7 @@ export const COMBOS = [
 
 // Every combination item can also be called by the timer.
 COMBO_TECHS.forEach(c => { if (!COMBOS.some(x => x.say === c.callout.en)) COMBOS.push({ say: c.callout.en, uses: c.uses }); });
+ADV_TECHS.forEach(c => { if (c.callout && !COMBOS.some(x => x.say === c.callout.en)) COMBOS.push({ say: c.callout.en, uses: [c.id] }); });
 
 export const FOOTWORK_CALLS = ['step forward', 'step back', 'step left', 'step right', 'pivot', 'in and out'];
 

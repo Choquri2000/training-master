@@ -6,8 +6,9 @@
 // [clip, from, to, opts] - from/to are fractions of the clip; to < from plays backwards.
 // opts: hold (seconds, freeze at `from`), mirror (southpaw version), add (procedural layer).
 import { tr } from './i18n.js';
-import { COMBO_SEQ } from './data/combos.js';
-import { coachPhase, techCat } from './data/coach.js';
+import { COMBO_SEQ, WIN, PEAK } from './data/combos.js';
+import { coachPhase, techCat, catOf } from './data/coach.js';
+import { ADV_SEQ, ADV_ADD, ADV_WIN, ADV_PEAK, ADV_CAT } from './data/advanced.js';
 
 const SEQ = {
   stance: [['stance', 0, 1]],
@@ -26,7 +27,8 @@ const SEQ = {
 const DIRECT = ['jab', 'cross', 'onetwo', 'leadhook', 'leaduppercut', 'block', 'slip', 'pullcounter', 'teep', 'roundhouse',
   'knee', 'elbow', 'doubleleg', 'step', 'pivot', 'parry', 'rearhook', 'rearuppercut', 'leadkick'];
 DIRECT.forEach(k => { SEQ[k] = [[k, 0, 1]]; });
-Object.assign(SEQ, COMBO_SEQ); // combinations: chained captures, each piece captioned (opts.lab)
+Object.assign(SEQ, COMBO_SEQ, ADV_SEQ); // combinations and advanced skills: chained captures, each piece captioned (opts.lab)
+Object.assign(WIN, ADV_WIN); Object.assign(PEAK, ADV_PEAK); Object.assign(catOf, ADV_CAT);
 export const MOCAP = new Set(Object.keys(SEQ));
 // Your own combinations (built in the app) are registered at run time.
 export function registerSeq(id, seq) { SEQ[id] = seq; MOCAP.add(id); }
@@ -44,11 +46,13 @@ const ADD = {
   },
 };
 
+Object.assign(ADD, ADV_ADD);
+
 const VIEW_AZ = { front: 0, three: 40, side: 90 }; // camera angle; 0 = the opponent's view
 const BLEND = 0.22, REST = 0.9; // seconds: blend between pieces, guard pause before repeating
 let libs; const models = {};
 
-async function loadLibs() {
+export async function loadLibs() {
   if (libs) return libs;
   const [THREE, { GLTFLoader }, { MeshoptDecoder }, { OrbitControls }, { clone }] = await Promise.all([
     import('three'),
@@ -59,7 +63,7 @@ async function loadLibs() {
   ]);
   return (libs = { THREE, GLTFLoader, MeshoptDecoder, OrbitControls, clone });
 }
-function load(L, name) {
+export function load(L, name) {
   if (!models[name]) {
     const loader = new L.GLTFLoader().setMeshoptDecoder(L.MeshoptDecoder);
     models[name] = loader.loadAsync(new URL(`../assets/${name}.glb`, import.meta.url).href).catch(e => { delete models[name]; throw e; });
@@ -166,6 +170,7 @@ export function createMocap(container, techId, { speed = 1, view = 'three', step
     const byName = n => gltf.animations.find(c => c.name === n);
     const hipsScale = hips ? 1 / hips.getWorldScale(new THREE.Vector3()).y : 1;
     const piece = ([name, from, to, o = {}]) => {
+      if (!byName(name) && o.alt) return piece(o.alt); // capture not in this build: closest one
       let clip = byName(name).clone();
       if (o.mirror) clip = mirrorClip(THREE, clip);
       const a = mixer.clipAction(clip); a.play(); a.paused = true; a.setEffectiveWeight(0);

@@ -288,3 +288,7 @@ details { margin: 10px 0; } details > summary { cursor: pointer; font-weight: 60
 .card.result.win { border-color: var(--ok); } .card.result.loss { border-color: var(--combat); }
 .mylist .bad { color: var(--combat); }
 .mic { margin: 6px 0; }
+/* Targets on the body */
+.targets-fig { aspect-ratio: 4/5; }
+.tinfo h3 { margin: 12px 0 4px; font-size: .95rem; }
+.tinfo .filters a.pill { text-decoration: none; }
