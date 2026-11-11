@@ -1,9 +1,9 @@
 // Offline cache. Bump VERSION whenever files change so phones pick up the update.
-const VERSION = 'cc-v10';
+const VERSION = 'cc-v11';
 const FILES = [
   './', 'index.html', 'css/style.css', 'manifest.webmanifest', 'icons/icon.svg', 'icons/icon-192.png',
   'js/app.js', 'js/figure.js', 'js/session.js', 'js/store.js', 'js/i18n.js',
-  'js/data/techniques.js', 'js/data/plan.js', 'js/data/poses.js', 'js/sync.js', 'js/firebase-config.js', 'js/mocap.js', 'assets/fighter.glb', 'assets/mannequin.glb',
+  'js/data/techniques.js', 'js/data/plan.js', 'js/data/poses.js', 'js/sync.js', 'js/firebase-config.js', 'js/mocap.js', 'js/program.js', 'assets/fighter.glb', 'assets/mannequin.glb',
   'vendor/three/build/three.module.min.js', 'vendor/three/examples/jsm/loaders/GLTFLoader.js', 'vendor/three/examples/jsm/utils/BufferGeometryUtils.js',
   'vendor/three/examples/jsm/utils/SkeletonUtils.js', 'vendor/three/examples/jsm/libs/meshopt_decoder.module.js', 'vendor/three/examples/jsm/controls/OrbitControls.js',
 ];

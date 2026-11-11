@@ -16,6 +16,7 @@ function createViewer(el, id, opts = {}) {
 }
 import { Player, availableCombos } from './session.js';
 import { store } from './store.js';
+import { PRESETS, picks, programFocus, volume, blockWeek, themeOf } from './program.js';
 import { t, L, LANGS } from './i18n.js';
 import { initSync, onSync, signIn, signInGoogle, signOut, resetPassword, syncAvailable } from './sync.js';
 
@@ -70,7 +71,8 @@ function backupDue() {
 function Today() {
   const d = WEEK[todayIdx()];
   const sessionKey = d.combat && isDeload() && d.combat === 'main' ? 'technique' : d.combat;
-  const focus = sessionKey ? focusTechs(sessionKey === 'main' ? 3 : 2) : [];
+  const mine = picks().length > 0;
+  const focus = sessionKey ? (mine && programFocus(d.day, weekNumber()).length ? programFocus(d.day, weekNumber()) : focusTechs(sessionKey === 'main' ? 3 : 2)) : [];
   const el = h(`<section>
     <h1>${L(DAY_NAMES)[d.day]} <small>· week ${weekNumber()}${isDeload() ? ' (deload)' : ''}</small></h1>
     ${isDeload() ? `<p class="note">${t('deloadNote')}</p>` : ''}
@@ -84,6 +86,7 @@ function Today() {
       <h3>${t('combat')}</h3>
       ${sessionKey ? `
         <p><strong>${esc(L(SESSION_TYPES[sessionKey].name))}</strong><br>${esc(L(SESSION_TYPES[sessionKey].blurb))}</p>
+        ${mine ? `<p class="muted small">From <a href="#/plan">your plan</a>: ${esc(volume(weekNumber()).label)}</p>` : `<p class="muted small"><a href="#/plan">Pick your skills</a> to get a full weekly plan.</p>`}
         ${focus.length ? `<p class="muted">${t('focusToday')}:</p><ul class="chips">${focus.map(id => `<li><a href="#/tech/${id}">${esc(L(techById[id].name))}</a></li>`).join('')}</ul>` : ''}
         <a class="btn primary" href="#/session/${sessionKey}/${focus.join(',')}">${t('start')}</a>
       ` : `<p>${t('noCombatToday')}</p>
@@ -95,8 +98,10 @@ function Today() {
 
 function Week() {
   const ti = todayIdx();
+  const wk = weekNumber();
   const el = h(`<section>
     <h1>${t('week')}</h1>
+    ${planCard(wk, true)}
     <div class="week">
       ${WEEK.map(d => `
         <div class="wday ${d.day === ti ? 'today' : ''} type-${d.type}">
@@ -110,6 +115,74 @@ function Week() {
     <ul>${L(RULES).map(r => `<li>${esc(r)}</li>`).join('')}</ul>
   </section>`);
   view.replaceChildren(el);
+}
+
+// One week of the skills plan: what each garage day trains and how much.
+function sessionSummary(day, v) {
+  if (day === 4 && v.rounds) return `${v.rounds} x ${fmt(v.roundSecs)} rounds on call, after 2 min per skill`;
+  return `${v.techSets} x 2 min per skill (first set slow), then light shadowboxing`;
+}
+function planCard(week, compact) {
+  if (!picks().length) return compact ? `<div class="card plan"><h3>My skills plan</h3><p>Pick the skills you want to learn and the app builds your Mon / Wed / Fri combat plan.</p><a class="btn primary" href="#/plan/edit">Pick skills</a></div>` : '';
+  const v = volume(week), ti = todayIdx();
+  return `<div class="card plan ${compact ? '' : 'wk'} ${week === weekNumber() ? 'now' : ''}">
+    <h3>Week ${week} · ${esc(v.label)}${themeOf(week) ? ` · focus: ${esc(themeOf(week).name)}` : ''}</h3>
+    ${[0, 2, 4].map(day => {
+      const f = programFocus(day, week), key = day === 4 && v.rounds ? 'main' : 'technique';
+      const isToday = week === weekNumber() && day === ti;
+      return `<div class="pday ${isToday ? 'today' : ''}"><strong>${L(DAY_NAMES)[day].slice(0, 3)}</strong>
+        <ul class="chips">${f.map(id => `<li><a href="#/tech/${id}">${esc(L(techById[id].name))}</a></li>`).join('')}</ul>
+        <span class="muted small">${esc(sessionSummary(day, v))}${day === 2 ? '. No hard kicks (legs day).' : ''}</span>
+        ${isToday ? `<a class="btn primary small" href="#/session/${key}/${f.join(',')}">${t('start')}</a>` : ''}</div>`;
+    }).join('')}
+    ${compact ? `<a class="small" href="#/plan">Full 4-week plan and your skills →</a>` : ''}
+  </div>`;
+}
+
+function Plan(mode) {
+  const mine = picks();
+  if (mode === 'edit' || !mine.length) return PlanEdit(mine);
+  const wk = weekNumber(), first = wk - blockWeek(wk) + 1;
+  const el = h(`<section>
+    <h1>My skills plan</h1>
+    <p>Your ongoing combat plan: it never runs out. Every 4 weeks is one block: 3 weeks building up, then an easy deload week. Each block puts most of the time on one theme (hands, then kicks, then MMA, then defence), while every week still revisits your other skills. Later blocks use longer rounds.</p>
+    <div class="week">${[0, 1, 2, 3].map(i => planCard(first + i, false)).join('')}</div>
+    <h2>Your skills</h2>
+    <ul class="chips">${mine.map(id => `<li><a href="#/tech/${id}">${esc(L(techById[id].name))}</a></li>`).join('')}</ul>
+    <a class="btn" href="#/plan/edit">Change skills</a>
+  </section>`);
+  view.replaceChildren(el);
+}
+
+function PlanEdit(mine) {
+  const sel = new Set(mine);
+  const el = h(`<section>
+    <h1>Pick your skills</h1>
+    <p class="muted">Tap the skills you want to train. Start with a ready set if you like, then add or remove.</p>
+    <div class="filters">${Object.entries(PRESETS).map(([k, p]) => `<button class="pill" data-preset="${k}">${esc(p.name)}</button>`).join('')}</div>
+    ${Object.entries(DISCIPLINES).map(([k, d]) => `<h2>${esc(L(d))}</h2><div class="pickgrid">${TECHNIQUES.filter(x => x.discipline === k).map(x => `<button class="pick" data-id="${x.id}" aria-pressed="false">${esc(L(x.name))}</button>`).join('')}</div>`).join('')}
+    <div class="savebar"><span class="count"></span><button class="btn primary" data-save>Build my plan</button></div>
+  </section>`);
+  const sync = () => {
+    el.querySelectorAll('.pick').forEach(b => b.setAttribute('aria-pressed', sel.has(b.dataset.id)));
+    $('.count', el).textContent = `${sel.size} picked`;
+    $('[data-save]', el).disabled = sel.size < 2;
+  };
+  el.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.preset) { sel.clear(); PRESETS[b.dataset.preset].ids.forEach(id => sel.add(id)); }
+    if (b.dataset.id) sel.has(b.dataset.id) ? sel.delete(b.dataset.id) : sel.add(b.dataset.id);
+    if ('save' in b.dataset) {
+      const ids = TECHNIQUES.map(x => x.id).filter(id => sel.has(id));
+      store.update(st => {
+        st.program = { picks: ids, since: isoDate() };
+        ids.forEach(id => { if (!st.status[id]) st.status[id] = 'learning'; });
+      }, 'Plan saved');
+      location.hash = '#/plan'; return;
+    }
+    sync();
+  });
+  view.replaceChildren(el); sync();
 }
 
 function Pathway() {
@@ -236,7 +309,7 @@ function Session(kind, techCsv) {
   } else {
     const type = SESSION_TYPES[kind] || SESSION_TYPES.technique;
     if (!focus.length && kind !== 'footwork') focus = focusTechs(kind === 'main' ? 3 : 2);
-    segs = type.build({ focus });
+    segs = type.build({ focus, v: picks().length ? volume(weekNumber()) : undefined });
   }
   const startedAt = Date.now();
   const el = h(`<section class="session">
@@ -425,13 +498,13 @@ store.onAction(label => {
 });
 
 // ---------- router ----------
-const routes = { today: Today, week: Week, pathway: Pathway, library: Library, tech: Tech, session: Session, log: Log, settings: Settings };
+const routes = { today: Today, week: Week, plan: Plan, pathway: Pathway, library: Library, tech: Tech, session: Session, log: Log, settings: Settings };
 
 function render() {
   cleanup.forEach(f => f()); cleanup = [];
   const [name = 'today', ...args] = location.hash.replace(/^#\/?/, '').split('/');
   (routes[name] || Today)(...args);
-  document.querySelectorAll('nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === `#/${name}` || (name === 'tech' && a.getAttribute('href') === '#/library')));
+  document.querySelectorAll('nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === `#/${name}` || (name === 'tech' && a.getAttribute('href') === '#/library') || (name === 'plan' && a.getAttribute('href') === '#/week')));
   document.querySelectorAll('[data-t]').forEach(n => { n.textContent = t(n.dataset.t); });
   window.scrollTo(0, 0);
 }

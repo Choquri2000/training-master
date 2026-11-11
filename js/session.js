@@ -1,6 +1,7 @@
 // Session player: runs a list of segments with a countdown, bell sounds and spoken callouts.
 import { COMBOS, FOOTWORK_CALLS, techById } from './data/techniques.js';
 import { store } from './store.js';
+import { programCombos } from './program.js';
 
 let audio;
 function ctx() {
@@ -49,6 +50,7 @@ export function isAvailable(t) {
   return t.phase < s.phaseUnlocked || !!s.status[t.id];
 }
 export function availableCombos() {
+  const mine = programCombos(); if (mine) return mine;
   const list = COMBOS.filter(c => c.uses.every(id => isAvailable(techById[id])));
   return list.length ? list : COMBOS.slice(0, 3);
 }

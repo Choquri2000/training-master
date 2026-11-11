@@ -27,14 +27,12 @@ export const SESSION_TYPES = {
   technique: {
     name: { en: 'Technique session' },
     blurb: { en: '30 min, RPE 4 to 5. Learn and polish 2 to 3 techniques, then lift.' },
-    build: ({ focus }) => [
+    build: ({ focus, v = {} }) => [
       { label: { en: 'Warm-up: light bounce, arm circles, shadowbox easy' }, kind: 'warm', secs: 300 },
-      ...focus.flatMap(id => [
-        { label: { en: 'Technique' }, kind: 'work', secs: 120, tech: id, slow: true },
+      ...focus.flatMap(id => Array.from({ length: v.techSets || 2 }, (_, k) => [
+        { label: { en: `Technique, set ${k + 1}${k === 0 ? ' (slow)' : ''}` }, kind: 'work', secs: 120, tech: id, slow: k === 0 },
         { label: { en: 'Rest' }, kind: 'rest', secs: 45 },
-        { label: { en: 'Technique' }, kind: 'work', secs: 120, tech: id },
-        { label: { en: 'Rest' }, kind: 'rest', secs: 45 },
-      ]),
+      ]).flat()),
       { label: { en: 'Shadowbox: mix what you practised, light' }, kind: 'work', secs: 180, callouts: true, pace: 'easy' },
       { label: { en: 'Cool-down: hips, shoulders, calves' }, kind: 'cool', secs: 240 },
     ],
@@ -42,15 +40,15 @@ export const SESSION_TYPES = {
   main: {
     name: { en: 'Main session (Friday)' },
     blurb: { en: '50 to 60 min. Technique first, then rounds at RPE 6 to 7. Strength C afterwards.' },
-    build: ({ focus }) => [
+    build: ({ focus, v = {} }) => [
       { label: { en: 'Warm-up: skipping in place, mobility, easy shadowbox' }, kind: 'warm', secs: 480 },
       ...focus.flatMap(id => [
         { label: { en: 'Technique' }, kind: 'work', secs: 120, tech: id },
         { label: { en: 'Rest' }, kind: 'rest', secs: 45 },
       ]),
-      ...Array.from({ length: 5 }, (_, i) => [
-        { label: { en: `Round ${i + 1} of 5: combos on call` }, kind: 'work', secs: 180, callouts: true, pace: i < 2 ? 'medium' : 'fast' },
-        { label: { en: 'Rest' }, kind: 'rest', secs: 60 },
+      ...Array.from({ length: v.rounds ?? 5 }, (_, i) => [
+        { label: { en: `Round ${i + 1} of ${v.rounds ?? 5}: combos on call` }, kind: 'work', secs: v.roundSecs || 180, callouts: true, pace: v.pace && i >= 2 ? v.pace : (i < 2 ? 'medium' : 'fast') },
+        { label: { en: 'Rest' }, kind: 'rest', secs: v.rest || 60 },
       ]).flat(),
       { label: { en: 'Core: dead bug, side plank, sprawls' }, kind: 'work', secs: 240 },
       { label: { en: 'Cool-down and stretch' }, kind: 'cool', secs: 300 },
