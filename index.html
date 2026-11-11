@@ -14,16 +14,14 @@
 <body>
   <header class="top">
     <a href="#/today" class="brand"><img src="icons/icon.svg" alt="" width="26" height="26"> <span data-t="appName">Combat Coach</span></a>
-    <a href="#/settings" id="syncdot" class="syncdot" hidden></a>
+    <span class="topr"><a href="#/settings" id="syncdot" class="syncdot" hidden></a><a href="#/settings" class="gear" aria-label="Settings" title="Settings">⚙</a></span>
   </header>
   <main id="view" aria-live="polite"></main>
   <nav class="tabs">
     <a href="#/today" data-t="today">Today</a>
-    <a href="#/week" data-t="week">Week</a>
-    <a href="#/pathway" data-t="pathway">Pathway</a>
-    <a href="#/library" data-t="library">Library</a>
-    <a href="#/log" data-t="log">Log</a>
-    <a href="#/settings" data-t="settings">Settings</a>
+    <a href="#/plan" data-t="plan">Plan</a>
+    <a href="#/library" data-t="learn">Learn</a>
+    <a href="#/log" data-t="log">Progress</a>
   </nav>
   <script type="importmap">{"imports":{"three":"./vendor/three/build/three.module.min.js"}}</script>
   <script type="module" src="js/app.js"></script>

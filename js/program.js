@@ -3,6 +3,9 @@
 import { TECHNIQUES, techById, COMBOS } from './data/techniques.js';
 import { store } from './store.js';
 import { stepsKick, stepsDefFirst } from './data/combos.js';
+import { styleById } from './data/styles.js';
+// Your chosen fighting style (profile): its skills get a slot most days and its combinations are called.
+const myStyle = () => styleById[profile().style] || null;
 import { weekDays, dayPlan, legsDay, suitable, tune, profile } from './profile.js';
 
 // Kicks, knees and level changes stay off the legs day (only when the running/strength plan is shown).
@@ -75,6 +78,11 @@ export function programFocus(day, week) {
   let res = [...new Set(out)].slice(0, n);
   if (!res.length) res = take(p, n, k);
   // Skills you rated "felt off" come back sooner: the oldest one takes the last slot.
+  const sty = myStyle();
+  if (sty) { // one slot per day goes to your style, rotating through its skills
+    const ss = sty.skills.filter(id => p.includes(id) && okDay(id));
+    if (ss.length && !res.some(id => ss.includes(id))) { const pick = ss[k % ss.length]; if (res.length >= n) res[res.length - 1] = pick; else res.push(pick); }
+  }
   const feel = store.get().feel || {};
   const off = p.filter(id => feel[id]?.r === 3 && okDay(id) && !res.includes(id)).sort((x, y) => feel[x].date.localeCompare(feel[y].date));
   if (off.length && res.length) res[res.length - 1] = off[0];
@@ -86,7 +94,7 @@ export function programFocus(day, week) {
 export const myCombos = () => (store.get().myCombos || []).filter(c => c.steps?.length).map(c => ({ say: c.say, uses: [], kick: stepsKick(c.steps), def: stepsDefFirst(c.steps), mine: true }));
 export function programCombos() {
   const p = known();
-  const list = [...COMBOS.filter(c => c.uses.every(id => p.has(id))), ...myCombos()];
+  const list = [...COMBOS.filter(c => c.uses.every(id => p.has(id))), ...myCombos(), ...(myStyle()?.calls || []).map(say => ({ say, uses: [] }))];
   return list.length >= 2 ? list : null;
 }
 
@@ -136,6 +144,14 @@ export const offenceCombos = noKicks => usable([...COMBOS, ...myCombos().filter(
 // Two "combos of the week" to drill on combination day, rotating through everything you know.
 export function weekCombos(week) {
   // The combinations you picked come first: two of them each week, in turn.
+  const sty = myStyle();
+  if (sty) { // one combination of the week comes from your style
+    const sc = sty.calls[week % sty.calls.length], rest = weekCombos0(week).filter(c => c.say !== sc);
+    return [{ say: sc, uses: [] }, ...rest.slice(0, 1)];
+  }
+  return weekCombos0(week);
+}
+function weekCombos0(week) {
   const mine = [...ATTACK.filter(id => picks().includes(id)).map(id => ({ say: techById[id].callout.en, uses: techById[id].uses })), ...myCombos().filter(c => !c.def)];
   if (mine.length >= 2) { const a = (week * 2) % mine.length, b = (week * 2 + 1) % mine.length; return [...new Set([mine[a], mine[b]])]; }
   const DEF = new Set(['slip', 'parry', 'block', 'roll', 'check', 'catchkick', 'sprawl', 'sprawlstrike', 'pullcounter', 'slipcounter']);
@@ -150,5 +166,8 @@ export function sharpenSkills(day, week) {
   const p = picks().filter(id => id !== 'stance' && (day !== legsDay() || !leggy(id)));
   if (!p.length) return [];
   const k = ((week - 1) * weekDays(true).length + (dayPlan(day, true)?.slot ?? 0)) * 2;
-  return [...new Set([p[k % p.length], p[(k + 1) % p.length]])];
+  const out = [...new Set([p[k % p.length], p[(k + 1) % p.length]])];
+  const ss = (myStyle()?.skills || []).filter(id => p.includes(id));
+  if (ss.length && !out.some(id => ss.includes(id))) out[out.length - 1] = ss[(week + (dayPlan(day, true)?.slot ?? 0)) % ss.length];
+  return out;
 }

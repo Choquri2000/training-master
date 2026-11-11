@@ -4,7 +4,7 @@ import { store } from './store.js';
 const STRINGS = {
   en: {
     appName: 'Combat Coach',
-    today: 'Today', week: 'Week', pathway: 'Pathway', library: 'Library', log: 'Progress', settings: 'Settings',
+    today: 'Today', week: 'Week', pathway: 'Pathway', library: 'Learn', learn: 'Learn', plan: 'Plan', log: 'Progress', settings: 'Settings',
     run: 'Run', strength: 'Strength', combat: 'Combat',
     rest: 'Rest', start: 'Start session', noCombatToday: 'No combat session today. Rest the skills, or do 10 min of easy shadowboxing if you feel fresh.',
     focusToday: 'Today\'s focus techniques', keyPoints: 'Key points', mistakes: 'Common mistakes and fixes',
@@ -27,7 +27,7 @@ const STRINGS = {
   },
   ka: {
     appName: 'Combat Coach',
-    today: 'დღეს', week: 'კვირა', pathway: 'გზა', library: 'ტექნიკა', log: 'შედეგი', settings: 'ოფციები',
+    today: 'დღეს', week: 'კვირა', pathway: 'გზა', library: 'სწავლა', learn: 'სწავლა', plan: 'გეგმა', log: 'პროგრესი', settings: 'ოფციები',
     run: 'სირბილი', strength: 'ძალა', combat: 'ორთაბრძოლა',
     rest: 'დასვენება', start: 'დაწყება', noCombatToday: 'დღეს ორთაბრძოლის ვარჯიში არ არის. დაასვენე უნარები, ან თუ თავს კარგად გრძნობ, 10 წთ მსუბუქი ჩრდილთან ბრძოლა გააკეთე.',
     focusToday: 'დღევანდელი ფოკუს-ტექნიკები', keyPoints: 'მთავარი პუნქტები', mistakes: 'ხშირი შეცდომები და გამოსწორება',

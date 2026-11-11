@@ -88,10 +88,6 @@ function Today() {
     ${syncAvailable() && !cloudOn ? `<p class="note"><strong>${tr("Your progress isn't backed up yet.")}</strong> <a href="#/settings">${tr('Sign in once')}</a> ${tr('to save it to the cloud automatically.')}</p>` : ''}
     ${testsDue() ? `<p class="note">${tr('Your monthly tests are due.')} <a href="#/tests">${tr('Skill tests')}</a></p>` : ''}
     ${backupDue() ? `<p class="note">${tr('Your progress is saved only on this phone.')} <a href="#/settings">${tr('Back it up')}</a> ${tr('(takes 2 seconds).')}</p>` : ''}
-    ${other ? `<div class="day-grid">
-      <div class="card k-run"><h3>${t('run')}</h3><p>${d.run ? esc(L(d.run)) : t('rest')}</p></div>
-      <div class="card k-strength"><h3>${t('strength')}${d.combat && d.strength ? ' · ' + tr('after combat') : ''}</h3>${d.strength ? `<details><summary>${esc(L(STRENGTH[d.strength].name))}</summary><ul class="slist">${STRENGTH[d.strength].items.map(([n, r]) => `<li>${esc(tr(n))} <em>${esc(tr(r))}</em></li>`).join('')}</ul></details>` : `<p>${t('rest')}</p>`}</div>
-    </div>` : ''}
     <div class="card k-combat big">
       <h3>${t('combat')}</h3>
       ${sessionKey ? `
@@ -104,30 +100,29 @@ function Today() {
       ` : `<p>${t('noCombatToday')}</p>
         <a class="btn" href="#/session/footwork/">${tr('10-15 min footwork (optional)')}</a>`}
     </div>
-    ${toolsRow()}
+    ${other ? `<div class="card also"><h3>${tr('Also today')}</h3>
+      <p><span class="dot k-run"></span>${t('run')}: ${d.run ? esc(L(d.run)) : t('rest')}</p>
+      ${d.strength ? `<details><summary><span class="dot k-strength"></span>${esc(L(STRENGTH[d.strength].name))}${d.combat ? ' · ' + tr('after combat') : ''}</summary><ul class="slist">${STRENGTH[d.strength].items.map(([n, r]) => `<li>${esc(tr(n))} <em>${esc(tr(r))}</em></li>`).join('')}</ul></details>` : ''}
+    </div>` : ''}
+    <p class="center"><a class="btn ghost" href="#/timer">⏱ ${tr('Round timer')}</a></p>
   </section>`);
   view.replaceChildren(el);
 }
 
-function Week() {
-  const ti = todayIdx(), other = profile().other;
-  const wk = weekNumber();
-  const el = h(`<section>
-    <h1>${t('week')}</h1>
-    ${planCard(wk, true)}
-    <div class="week">
+// The whole week with running and strength (only for people who show their other training).
+function fullWeek() {
+  const ti = todayIdx();
+  return `<div class="week">
       ${WEEK.map(d => `
         <div class="wday ${d.day === ti ? 'today' : ''} type-${d.type}">
           <div class="wname">${L(DAY_NAMES)[d.day].slice(0, 3)}</div>
-          ${other ? `<div class="wrow k-run"><span>${t('run')}</span>${d.run ? esc(L(d.run)) : '—'}</div>
-          <div class="wrow k-strength"><span>${t('strength')}</span>${d.strength ? `<details><summary>${esc(L(STRENGTH[d.strength].name))}</summary><ul>${STRENGTH[d.strength].items.map(([n, r]) => `<li>${esc(tr(n))} <em>${esc(tr(r))}</em></li>`).join('')}</ul></details>` : '—'}</div>` : ''}
+          <div class="wrow k-run"><span>${t('run')}</span>${d.run ? esc(L(d.run)) : '—'}</div>
+          <div class="wrow k-strength"><span>${t('strength')}</span>${d.strength ? `<details><summary>${esc(L(STRENGTH[d.strength].name))}</summary><ul>${STRENGTH[d.strength].items.map(([n, r]) => `<li>${esc(tr(n))} <em>${esc(tr(r))}</em></li>`).join('')}</ul></details>` : '—'}</div>
           <div class="wrow k-combat"><span>${t('combat')}</span>${(() => { const k = dayPlan(d.day, stage() === 'fighter')?.key; return k ? `<a href="#/session/${k}/">${esc(L(SESSION_TYPES[k].name))}</a>` : '—'; })()}</div>
         </div>`).join('')}
     </div>
-    ${other ? `<h2>${t('weekRules')}</h2>
-    <ul>${L(RULES).map(r => `<li>${esc(r)}</li>`).join('')}</ul>` : ''}
-  </section>`);
-  view.replaceChildren(el);
+    <h3>${t('weekRules')}</h3>
+    <ul>${L(RULES).map(r => `<li>${esc(r)}</li>`).join('')}</ul>`;
 }
 
 // One week of the skills plan: what each training day trains and how much.
@@ -175,9 +170,9 @@ function Plan(mode) {
   const mine = picks();
   if (mode === 'edit' || !mine.length) return PlanEdit(mine);
   const wk = weekNumber(), first = wk - blockWeek(wk) + 1;
-  const fighter = stage() === 'fighter', n = learnedCount();
+  const fighter = stage() === 'fighter', n = learnedCount(), sty = styleById[profile().style];
   const el = h(`<section>
-    <h1>${tr('My skills plan')}</h1>
+    <h1>${tr('Plan')}</h1>
     <div class="stages">
       <div class="stage ${fighter ? 'past' : 'cur'}"><strong>1 · ${tr('Learn the skills')}</strong>
         <span class="muted small">${tr('{n} of {m} marked solid', { n, m: mine.length })}</span>
@@ -185,12 +180,17 @@ function Plan(mode) {
       <div class="stage ${fighter ? 'cur' : ''}"><strong>2 · ${tr('Fighter training')}</strong>
         <span class="muted small">${tr('The routine you keep for years')}</span></div>
     </div>
-    <p>${tr(fighter ? 'FIGHTER_INTRO' : 'LEARN_INTRO')}</p>
-    ${fighter ? `<button class="btn ghost" data-stage="learn">${tr('Back to learning (add new skills)')}</button>` : `<button class="btn" data-stage="fighter">${tr("I've learned them: start fighter training")}</button>`}
-    <div class="week">${[0, 1, 2, 3].map(i => planCard(first + i, false)).join('')}</div>
-    <h2>${tr('Your skills')}</h2>
-    <ul class="chips">${mine.map(id => `<li><a href="#/tech/${id}">${esc(L(techById[id].name))}</a></li>`).join('')}</ul>
-    <a class="btn" href="#/plan/edit">${tr('Change skills')}</a>
+    <div class="card stylecard">${sty ? `<span>${tr('Your style')}: <a href="#/styles/${sty.id}"><strong>${esc(SL(sty).name)}</strong></a></span> <a class="small" href="#/styles/quiz">${tr('Change')}</a>`
+      : `<span>${tr('Train towards a fighting style?')}</span> <a class="btn small" href="#/styles/quiz">${tr('Find my style')}</a>`}</div>
+    ${planCard(wk, false)}
+    ${wk < first + 3 ? `<details><summary>${tr('Next weeks')}</summary><div class="week">${[1, 2, 3].map(i => first + blockWeek(wk) - 1 + i).filter(w => w <= first + 3).map(w => planCard(w, false)).join('')}</div></details>` : ''}
+    ${profile().other ? `<details><summary>${tr('Running and strength this week')}</summary>${fullWeek()}</details>` : ''}
+    <details><summary>${tr('How the plan works')}</summary><p>${tr(fighter ? 'FIGHTER_INTRO' : 'LEARN_INTRO')}</p>
+      ${fighter ? `<button class="btn ghost" data-stage="learn">${tr('Back to learning (add new skills)')}</button>` : `<button class="btn" data-stage="fighter">${tr("I've learned them: start fighter training")}</button>`}
+      <p class="small"><a href="#/pathway">${tr('Phases and checkpoints')}</a></p></details>
+    <details><summary>${tr('Your skills')} (${mine.length})</summary>
+      <ul class="chips">${mine.map(id => `<li><a href="#/tech/${id}">${esc(L(techById[id].name))}</a></li>`).join('')}</ul></details>
+    <div class="actions"><a class="btn" href="#/plan/edit">${tr('Change skills')}</a> <a class="btn ghost" href="#/profile">${tr('Change profile')}</a></div>
   </section>`);
   el.addEventListener('click', e => {
     const to = e.target.dataset.stage; if (!to) return;
@@ -325,8 +325,9 @@ function Pathway() {
 function Library() {
   const filter = sessionStorage.getItem('libFilter') || 'all';
   const list = TECHNIQUES.filter(x => filter === 'all' || x.discipline === filter);
-  const el = h(`<section><h1>${t('library')}</h1>
+  const el = h(`<section><h1>${t('learn')}</h1>
     ${toolsRow()}
+    <h2>${tr('Techniques')}</h2>
     <div class="filters">${['all', ...Object.keys(DISCIPLINES)].map(k => `<button class="pill ${k === filter ? 'on' : ''}" data-f="${k}">${k === 'all' ? t('filterAll') : esc(L(DISCIPLINES[k]))}</button>`).join('')}</div>
     <div class="libgrid">${list.map(x => `<a class="libcard" href="#/tech/${x.id}">
       <div class="fig-slot" data-tech="${x.id}"></div>
@@ -525,6 +526,7 @@ function Log() {
   const off = ids.filter(id => feel[id]?.r === 3), easy = ids.filter(id => feel[id]?.r === 1 && s.status[id] !== 'done');
   const chip = id => `<li><a href="#/tech/${id}">${esc(L(techById[id].name))}</a></li>`;
   const el = h(`<section><h1>${t('log')}</h1>
+    <a class="tool testscard" href="#/tests"><b>${tr('Skill tests')}</b><span>${testsDue() ? tr('Your monthly tests are due.') : tr('{n} results', { n: (s.tests || []).length })}</span></a>
     <div class="stats">
       <div class="card"><h3>${t('thisWeek')}</h3><p class="stat">${wk.length}</p><small>${t('sessions')}</small></div>
       <div class="card"><h3>${t('streak')}</h3><p class="stat">${streak}</p><small>${t('weeks')}</small></div>
@@ -535,7 +537,6 @@ function Log() {
     <div class="progress"><div style="width:${(solid / ids.length) * 100}%"></div></div>
     ${off.length ? `<h2>${t('needsWork')}</h2><p class="muted small">${t('needsWorkHint')}</p><ul class="chips">${off.map(chip).join('')}</ul>` : ''}
     ${easy.length ? `<h2>${t('feelsEasy')}</h2><p class="muted small">${t('feelsEasyHint')}</p><ul class="chips">${easy.map(chip).join('')}</ul>` : ''}
-    ${(s.tests || []).length ? `<h2>${tr('Skill tests')}</h2><p><a href="#/tests">${tr('{n} results', { n: s.tests.length })} →</a></p>` : ''}
     <h2>${t('history')}</h2>
     ${s.log.length ? `<table class="logtable"><thead><tr><th>${t('date')}</th><th>${t('session')}</th><th>${t('minutes')}</th><th>RPE</th><th>${t('techniques')}</th></tr></thead><tbody>
       ${s.log.slice(-30).reverse().map(e => `<tr><td>${e.date.slice(5)}</td><td>${esc(tr(e.type))}</td><td>${e.minutes}</td><td>${e.rpe}</td><td>${(e.techs || []).map(id => esc(L(techById[id]?.name)) + (e.ratings?.[id] === 3 ? ' ✗' : e.ratings?.[id] === 1 ? ' ✓' : '')).join(', ')}</td></tr>`).join('')}
@@ -659,11 +660,9 @@ store.onAction(label => {
 
 // ---------- tools: my combos, quick timer, skill tests, fight IQ ----------
 const toolsRow = () => `<div class="tools">
-  <a class="tool" href="#/combos"><b>${tr('My combos')}</b><span>${tr('Build your own, animated')}</span></a>
-  <a class="tool" href="#/timer"><b>${tr('Round timer')}</b><span>${tr('Bag, pads, sparring')}</span></a>
-  <a class="tool" href="#/tests"><b>${tr('Skill tests')}</b><span>${tr('Measure progress monthly')}</span></a>
-  <a class="tool" href="#/iq"><b>${tr('Fight IQ')}</b><span>${tr('Strategy, with drills')}</span></a>
   <a class="tool wide" href="#/styles"><b>${tr('Fighting styles')}</b><span>${tr('Peek-a-boo, Soviet school, Muay Khao, Dutch, wrestle-boxing and more, compared')}</span></a>
+  <a class="tool" href="#/iq"><b>${tr('Fight IQ')}</b><span>${tr('Strategy, with drills')}</span></a>
+  <a class="tool" href="#/combos"><b>${tr('My combos')}</b><span>${tr('Build your own, animated')}</span></a>
 </div>`;
 
 const R1 = s => ({ en: s[0], ka: s[1] });
@@ -691,6 +690,11 @@ function extraSession(kind, arg) {
   if (kind === 'style') {
     const st = styleById[arg]; if (!st) return null;
     return [{ ...warm, secs: 180 }, ...rounds(4, 180, 60, { pool: st.calls, pace: 'medium' }), { label: R1(['Cool-down', 'გაგრილება']), kind: 'cool', secs: 120 }];
+  }
+  if (kind === 'vs') {
+    const [a, b] = (arg || '').split(',').map(x => styleById[x]); if (!a || !b) return null;
+    const extra = [...(b.rate.p >= 4 ? ['pivot', 'move', 'one, move'] : []), ...(b.rate.r >= 4 ? ['step, one two', 'slip, two three'] : []), ...(b.rate.w >= 4 ? ['block, three two', 'roll, three two'] : [])];
+    return [{ ...warm, secs: 180 }, ...rounds(4, 180, 60, { pool: [...a.calls, ...extra], pace: 'medium' }), { label: R1(['Cool-down', 'გაგრილება']), kind: 'cool', secs: 120 }];
   }
   if (kind === 'formtest') return [{ ...warm, secs: 60 }, ...rounds(3, 120, 60, { callouts: true, pace: 'medium' })];
   return null;
@@ -770,7 +774,7 @@ function Timer() {
   };
   const NAMES = { rounds: 'Rounds', secs: 'Round length', rest: 'Rest', calls: 'Calls', pace: 'Call pace' };
   const total = () => { const x = timerOpts(); return Math.round((x.rounds * x.secs + (x.rounds - 1) * x.rest + 10) / 60); };
-  const el = h(`<section class="profile"><a href="#/library" class="back">← ${t('library')}</a><h1>${tr('Round timer')}</h1>
+  const el = h(`<section class="profile"><a href="#/today" class="back">← ${t('today')}</a><h1>${tr('Round timer')}</h1>
     <p class="muted">${tr('For the bag, pads, sparring or a class. Bell at the start and end of each round, a click 10 seconds before the end.')}</p>
     ${Object.entries(G).map(([k, opts]) => `<h2>${tr(NAMES[k])}</h2><div class="pgroup" data-k="${k}">${opts.map(([v, n]) => `<button type="button" class="pill${o[k] === v ? ' on' : ''}" data-v="${v}">${esc(tr(n))}</button>`).join('')}</div>`).join('')}
     <div class="savebar"><span class="count"></span><a class="btn primary" href="#/session/timer/">${t('start')}</a></div>
@@ -808,7 +812,7 @@ function Tests(k) {
     return `<a class="libcard test" href="#/tests/${x.k}"><div><strong>${tr(x.name)}</strong><br>
       ${last ? `<span class="stat">${last.v}</span> <small>${tr(x.unit)}</small> ${prev && d ? `<span class="${good ? 'ok' : 'err'}">${d > 0 ? '▲' : '▼'} ${Math.abs(d)}</span>` : ''}<br><span class="muted small">${tr('Last')}: ${last.date} · ${tr('Best')}: ${best}</span>` : `<span class="muted small">${tr('Not done yet')}</span>`}</div></a>`;
   }).join('');
-  const el = h(`<section><a href="#/library" class="back">← ${t('library')}</a><h1>${tr('Skill tests')}</h1>
+  const el = h(`<section><a href="#/log" class="back">← ${t('log')}</a><h1>${tr('Skill tests')}</h1>
     <p class="muted">${tr('Do all four once a month, on a fresh day, after a warm-up. Same conditions each time, so the numbers are comparable.')}</p>
     ${testsDue() ? `<p class="note">${tr('Your monthly tests are due.')}</p>` : ''}
     <div class="libgrid">${rows}</div></section>`);
@@ -910,10 +914,14 @@ const rateBars = (st, other) => `<div class="rbars">${DIMS.map(([k, en, ka]) => 
   <i><b style="width:${st.rate[k] * 20}%"></b></i>${other ? `<i class="b2"><b style="width:${other.rate[k] * 20}%"></b></i>` : ''}</div>`).join('')}</div>`;
 function Styles(id, arg) {
   if (id === 'cmp') return StyleCompare(...(arg || '').split(','));
+  if (id === 'quiz') return StyleQuiz();
+  if (id === 'vs') return Matchup(arg);
   if (id && styleById[id]) return StyleDetail(styleById[id]);
   const filter = sessionStorage.getItem('styleFilter') || 'boxing';
   const el = h(`<section><a href="#/library" class="back">← ${t('library')}</a><h1>${tr('Fighting styles')}</h1>
     <p class="muted">${tr('How the great styles fight, what they are built on, where they are strong and where they can be beaten. Compare any two side by side.')}</p>
+    <div class="tools"><a class="tool" href="#/styles/quiz"><b>${tr('Which style suits you?')}</b><span>${profile().style ? tr('Your style') + ': ' + esc(SL(styleById[profile().style]).name) : tr('8 quick questions')}</span></a>
+      <a class="tool" href="#/styles/vs/"><b>${tr('Matchup game plan')}</b><span>${tr('Your style against theirs')}</span></a></div>
     <div class="filters">${Object.entries(STYLE_DISC).map(([k, d]) => `<button class="pill ${k === filter ? 'on' : ''}" data-f="${k}">${esc(L(d))}</button>`).join('')}</div>
     <div class="libgrid">${STYLES.filter(s => s.disc === filter).map(s => `<a class="libcard style" href="#/styles/${s.id}"><div><strong>${esc(SL(s).name)}</strong>
       <p class="muted small">${esc(SL(s).suits)}</p>${rateBars(s)}</div></a>`).join('')}</div>
@@ -935,9 +943,12 @@ function StyleDetail(s) {
     ${list(tr('Weaknesses'), x.cons, 'cons')}
     ${list(tr('How to beat it'), x.beat, '')}
     <h2>${tr('Suits you if')}</h2><p>${esc(x.suits)}</p>
-    <div class="actions"><a class="btn primary" href="#/session/style/${s.id}">${tr('Train like this (4 rounds)')}</a></div>
+    <div class="actions"><a class="btn primary" href="#/session/style/${s.id}">${tr('Train like this (4 rounds)')}</a>
+      ${profile().style === s.id ? `<span class="ok">✓ ${tr('Your style')}</span>` : `<button class="btn" data-mine="${s.id}">${tr('Make it my style')}</button>`}
+      <a class="btn ghost" href="#/styles/vs/${profile().style && profile().style !== s.id ? profile().style : ''},${s.id}">${tr('Plan a matchup against it')}</a></div>
     <label class="row">${tr('Compare with')} <select class="cmp"><option value="">…</option>${STYLES.filter(o => o.id !== s.id).map(o => `<option value="${o.id}">${esc(SL(o).name)}</option>`).join('')}</select></label>
   </section>`);
+  el.querySelector('[data-mine]')?.addEventListener('click', e => setStyle(e.target.dataset.mine));
   $('.cmp', el).onchange = e => { if (e.target.value) location.hash = `#/styles/cmp/${s.id},${e.target.value}`; };
   view.replaceChildren(el);
 }
@@ -962,15 +973,125 @@ function StyleCompare(a, b) {
   view.replaceChildren(el);
 }
 
-// ---------- router ----------
-const routes = { styles: Styles, combos: MyCombos, timer: Timer, tests: Tests, iq: IQ, profile: () => Profile(false), today: Today, week: Week, plan: Plan, pathway: Pathway, library: Library, tech: Tech, session: Session, log: Log, settings: Settings };
+// ----- "Which style suits you?" quiz -----
+// Each answer gives points to styles. [en, ka, {styleId: points}]
+const QUIZ = [
+  [['Compared with most people, you are…', 'სხვებთან შედარებით შენ ხარ…'], [
+    [['Shorter', 'დაბალი'], { peekaboo: 2, swarmer: 2, mat: 1, wrestleboxer: 1, khao: -1, tae: -1 }],
+    [['About average', 'საშუალო'], { soviet: 1, dutch: 1, sprawlbrawl: 1, femur: 1 }],
+    [['Taller', 'მაღალი'], { outboxer: 2, tae: 2, khao: 2, karate: 2, soviet: 1, femur: 1, peekaboo: -1 }]]],
+  [['What do you enjoy most?', 'რა მოგწონს ყველაზე მეტად?'], [
+    [['Punching', 'ხელებით დარტყმა'], { peekaboo: 2, soviet: 2, philly: 2, outboxer: 2, swarmer: 2, mat: 2, dutch: 1 }],
+    [['Kicking', 'წიხლები'], { tae: 3, femur: 2, karate: 2, dutch: 1 }],
+    [['Clinch and knees', 'კლინჩი და მუხლები'], { khao: 3, wrestleboxer: 1 }],
+    [['Takedowns and wrestling', 'ჩაგდებები და ჭიდაობა'], { wrestleboxer: 3, sprawlbrawl: 1 }]]],
+  [['When the fight starts, you want to…', 'ბრძოლის დაწყებისას გინდა…'], [
+    [['Walk forward and pressure', 'წინ წახვიდე და მიაწვე'], { swarmer: 2, peekaboo: 2, khao: 2, mat: 2, dutch: 2, wrestleboxer: 2 }],
+    [['Control the distance and pick my shots', 'მანძილი აკონტროლო და დარტყმები შეარჩიო'], { outboxer: 2, soviet: 2, tae: 2, karate: 2, femur: 1 }],
+    [['Wait, make them miss and counter', 'დაელოდო, აცდენინო და კონტრი დაარტყა'], { philly: 3, femur: 2, karate: 1, sprawlbrawl: 1 }]]],
+  [['Your stamina is…', 'შენი გამძლეობა არის…'], [
+    [['Huge: I can go all day', 'დიდი: მთელი დღე შემიძლია'], { swarmer: 2, khao: 2, wrestleboxer: 2, peekaboo: 1, dutch: 1 }],
+    [['Average', 'საშუალო'], { soviet: 1, femur: 1, sprawlbrawl: 1, outboxer: 1 }],
+    [['Best in short explosive bursts', 'საუკეთესო მოკლე ფეთქებად მონაკვეთებში'], { karate: 2, philly: 1, mat: 1, sprawlbrawl: 1 }]]],
+  [['Your power is mostly…', 'შენი ძალა ძირითადად…'], [
+    [['Heavy hands', 'მძიმე ხელები'], { mat: 2, peekaboo: 2, sprawlbrawl: 2, swarmer: 1 }],
+    [['Speed and accuracy', 'სისწრაფე და სიზუსტე'], { soviet: 2, outboxer: 1, philly: 1, karate: 1 }],
+    [['My kicks hit harder than my punches', 'წიხლები ხელებზე ძლიერია'], { tae: 2, dutch: 1, femur: 1 }]]],
+  [['About getting hit…', 'დარტყმის მიღებაზე…'], [
+    [['I can take it and keep coming', 'ავიტან და გავაგრძელებ'], { swarmer: 2, mat: 2, khao: 1, dutch: 1, peekaboo: 1 }],
+    [['I would rather not be hit at all', 'ჯობს საერთოდ არ მომხვდეს'], { outboxer: 2, philly: 2, karate: 2, femur: 2, soviet: 1 }]]],
+  [['Footwork feels…', 'ფეხის მოძრაობა…'], [
+    [['Natural: I love moving', 'ბუნებრივია: მიყვარს მოძრაობა'], { outboxer: 2, soviet: 2, karate: 2, tae: 1 }],
+    [['Fine', 'ნორმალურია'], {}],
+    [['I prefer to stand my ground', 'მირჩევნია ადგილზე დავდგე'], { mat: 2, khao: 1, swarmer: 1, philly: 1 }]]],
+  [['Which rules interest you most?', 'რომელი წესები გაინტერესებს ყველაზე მეტად?'], [
+    [['Boxing', 'კრივი'], { peekaboo: 3, soviet: 3, philly: 3, outboxer: 3, swarmer: 3 }],
+    [['Muay Thai or kickboxing', 'მუაი თაი ან კიკბოქსინგი'], { femur: 3, khao: 3, mat: 3, tae: 3, dutch: 3 }],
+    [['MMA', 'MMA'], { wrestleboxer: 3, sprawlbrawl: 3, karate: 3 }],
+    [['Not sure yet', 'ჯერ არ ვიცი'], {}]]],
+];
+function StyleQuiz() {
+  const ka = store.get().lang === 'ka', ans = [];
+  const el = h(`<section class="profile"><a href="#/styles" class="back">← ${tr('Fighting styles')}</a><h1>${tr('Which style suits you?')}</h1>
+    <p class="muted">${tr('Eight quick questions. Answer for how you are now, not how you want to be.')}</p>
+    ${QUIZ.map(([q, opts], i) => `<h2>${i + 1}. ${esc(q[ka ? 1 : 0])}</h2><div class="pgroup" data-q="${i}">${opts.map(([o], j) => `<button type="button" class="pill" data-a="${j}">${esc(o[ka ? 1 : 0])}</button>`).join('')}</div>`).join('')}
+    <div class="savebar"><span class="count"></span><button class="btn primary" data-go disabled>${tr('Show my style')}</button></div>
+    <div class="qres"></div>
+  </section>`);
+  const upd = () => { const n = ans.filter(x => x != null).length; $('.count', el).textContent = `${n} / ${QUIZ.length}`; $('[data-go]', el).disabled = n < QUIZ.length; };
+  el.addEventListener('click', e => {
+    const b = e.target.closest('.pill[data-a]');
+    if (b) { const q = +b.parentElement.dataset.q; ans[q] = +b.dataset.a; b.parentElement.querySelectorAll('.pill').forEach(x => x.classList.toggle('on', x === b)); upd(); return; }
+    if ('go' in (e.target.dataset || {})) showResult();
+    const m = e.target.closest('[data-mine]');
+    if (m) setStyle(m.dataset.mine);
+  });
+  const showResult = () => {
+    const score = Object.fromEntries(STYLES.map(s => [s.id, 0])), why = {};
+    ans.forEach((a, q) => Object.entries(QUIZ[q][1][a][1]).forEach(([id, pts]) => { score[id] += pts; if (pts >= 2) (why[id] ||= []).push(QUIZ[q][1][a][0][ka ? 1 : 0]); }));
+    if (profile().limits.some(l => l === 'knees' || l === 'back')) { score.wrestleboxer -= 3; score.sprawlbrawl -= 2; }
+    const top = Object.entries(score).sort((a, b) => b[1] - a[1]).slice(0, 3), max = top[0][1] || 1;
+    const [best] = top, s = styleById[best[0]];
+    $('.qres', el).innerHTML = `<div class="card result"><h2>${tr('Your style')}: ${esc(SL(s).name)}</h2>
+      <p>${esc(SL(s).look)}</p>
+      ${why[s.id] ? `<p class="muted small">${tr('Because you said')}: ${why[s.id].slice(0, 3).map(esc).join(' · ')}</p>` : ''}
+      <div class="actions"><button class="btn primary" data-mine="${s.id}">${tr('Make it my style')}</button> <a class="btn ghost" href="#/styles/${s.id}">${tr('Read about it')}</a></div>
+      <h3>${tr('Also a good fit')}</h3>
+      <ul>${top.slice(1).map(([id, sc]) => `<li><a href="#/styles/${id}">${esc(SL(styleById[id]).name)}</a> · ${Math.max(0, Math.round((sc / max) * 100))}% · <button class="btn small ghost" data-mine="${id}">${tr('Choose')}</button></li>`).join('')}</ul></div>`;
+    $('.qres', el).scrollIntoView({ behavior: 'smooth' });
+  };
+  view.replaceChildren(el); upd();
+}
+// Choosing a style: saved in the profile, and its skills join your plan.
+function setStyle(id) {
+  const s = styleById[id]; if (!s) return;
+  store.update(st => {
+    st.profile = { ...profile(), style: id };
+    const add = s.skills.filter(x => techById[x] && suitable(x));
+    if (st.program?.picks) st.program = { ...st.program, picks: [...new Set([...st.program.picks, ...add])] };
+    add.forEach(x => { if (!st.status[x]) st.status[x] = 'learning'; });
+  }, tr('Style chosen'));
+  location.hash = '#/plan';
+}
 
+// ----- Matchup game plan -----
+function Matchup(pair) {
+  const [a0, b0] = (pair || '').split(',');
+  const a = styleById[a0] || styleById[profile().style] || STYLES[0], b = styleById[b0] || STYLES.find(s => s.id !== a.id);
+  const xa = SL(a), xb = SL(b), r = a.rate, o = b.rate;
+  const T = (en, k) => (store.get().lang === 'ka' ? k : en);
+  const range = r.r > o.r + 1 ? T('Fight long: keep them at the end of your jab and kicks, and leave on an angle every time they step in.', 'იბრძოლე შორიდან: დაიჭირე ჯების და წიხლების ბოლოზე და ყოველ შემოსვლაზე კუთხით გადი.')
+    : r.r < o.r - 1 ? T('Fight close: take their range away, get inside behind a tight guard and stay there.', 'იბრძოლე ახლოს: წაართვი მანძილი, მჭიდრო დაცვით შედი შიგნით და იქ დარჩი.')
+      : T('Win the middle: take the centre of the ring and be first to land.', 'მოიგე ცენტრი: დაიკავე რინგის შუა და პირველმა მოარტყი.');
+  const pace = r.p >= o.p ? T('Set the pace: make them work backwards and tire.', 'დააწესე ტემპი: აიძულე უკან იმუშაონ და დაიღალონ.')
+    : T('Let them come: make them miss, then counter and move.', 'მოდიან? აცდენინე, შემდეგ კონტრი და მოძრაობა.');
+  const opt = sel => STYLES.map(s => `<option value="${s.id}"${s.id === sel ? ' selected' : ''}>${esc(SL(s).name)}</option>`).join('');
+  const el = h(`<section><a href="#/styles" class="back">← ${tr('Fighting styles')}</a><h1>${tr('Matchup game plan')}</h1>
+    <label class="row">${tr('You fight like')} <select class="ma">${opt(a.id)}</select></label>
+    <label class="row">${tr('Opponent fights like')} <select class="mb">${opt(b.id)}</select></label>
+    <p class="legend"><span class="k1"></span> ${esc(xa.name)} &nbsp; <span class="k2"></span> ${esc(xb.name)}</p>
+    ${rateBars(a, b)}
+    <h2>${tr('Your game plan')}</h2>
+    <ol><li>${esc(range)}</li><li>${esc(pace)}</li>${xb.beat.map(x => `<li>${esc(x)}</li>`).join('')}</ol>
+    <h2>${tr('Watch out for')}</h2><ul class="cons">${xb.pros.map(x => `<li>${esc(x)}</li>`).join('')}</ul>
+    <h2>${tr('What they will try against you')}</h2><ul>${xa.beat.map(x => `<li>${esc(x)}</li>`).join('')}</ul>
+    <div class="actions"><a class="btn primary" href="#/session/vs/${a.id},${b.id}">${tr('Prepare: 4 rounds')}</a></div>
+  </section>`);
+  const go = () => { location.hash = `#/styles/vs/${$('.ma', el).value},${$('.mb', el).value}`; };
+  $('.ma', el).onchange = go; $('.mb', el).onchange = go;
+  view.replaceChildren(el);
+}
+
+// ---------- router ----------
+const routes = { styles: Styles, combos: MyCombos, timer: Timer, tests: Tests, iq: IQ, profile: () => Profile(false), today: Today, week: () => Plan(), plan: Plan, pathway: Pathway, library: Library, tech: Tech, session: Session, log: Log, settings: Settings };
+
+const NAVMAP = { week: 'plan', pathway: 'plan', profile: 'settings', tech: 'library', styles: 'library', iq: 'library', combos: 'library', tests: 'log', timer: 'today', session: 'today' };
 function render() {
   cleanup.forEach(f => f()); cleanup = [];
   document.documentElement.lang = store.get().lang || 'en';
   const [name = 'today', ...args] = location.hash.replace(/^#\/?/, '').split('/');
   (routes[name] || Today)(...args);
-  document.querySelectorAll('nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === `#/${name}` || (name === 'tech' && a.getAttribute('href') === '#/library') || (name === 'plan' && a.getAttribute('href') === '#/week')));
+  document.querySelectorAll('nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === `#/${name}` || (NAVMAP[name] || name) === a.getAttribute('href').slice(2)));
   document.querySelectorAll('[data-t]').forEach(n => { n.textContent = t(n.dataset.t); });
   window.scrollTo(0, 0);
 }

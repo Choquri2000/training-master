@@ -258,3 +258,17 @@ select, input[type=date] { font: inherit; padding: 6px; border-radius: 8px; bord
 .cmpcol h3 { margin: 0 0 6px; font-size: .95rem; } .cmpcol h4 { margin: 10px 0 4px; font-size: .8rem; color: var(--muted); }
 .cmpcol ul { padding-left: 16px; margin: 0; }
 @media (max-width: 380px) { .cmpgrid { grid-template-columns: 1fr; } }
+
+/* simpler layout */
+.topr { display: inline-flex; align-items: center; gap: 8px; }
+.gear { font-size: 1.35rem; text-decoration: none; color: var(--muted); padding: 2px 4px; line-height: 1; }
+.tabs a { font-size: .85rem; }
+.center { text-align: center; }
+.stylecard { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin: 10px 0; }
+.testscard { margin: 0 0 12px; }
+details { margin: 10px 0; } details > summary { cursor: pointer; font-weight: 600; padding: 8px 0; }
+.card.also { margin-top: 12px; } .card.also p { margin: 4px 0; }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; border: 0; vertical-align: middle; }
+.dot.k-run { background: var(--run); } .dot.k-strength { background: var(--strength); }
+.brand span { white-space: nowrap; }
+@media (max-width: 360px) { .brand span { font-size: .95rem; } .syncdot { font-size: .7rem; padding: 2px 8px; } }

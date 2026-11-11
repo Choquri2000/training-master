@@ -168,8 +168,20 @@ export const KA = {
   'How to beat it': 'როგორ დაამარცხო', 'Suits you if': 'შენთვისაა, თუ', 'Train like this (4 rounds)': 'ივარჯიშე ასე (4 რაუნდი)', 'Compare with': 'შეადარე',
   'Compare styles': 'სტილების შედარება', 'Skills both use': 'ორივეს საერთო უნარები', 'When they meet': 'როცა ხვდებიან ერთმანეთს', '{a} against {b}': '{a} {b}-ის წინააღმდეგ',
   Pressure: 'ზეწოლა', Footwork: 'ფეხის მოძრაობა', Power: 'ძალა', Range: 'მანძილი', style: 'სტილის დრილი',
+  // simpler layout + style plan
+  'Also today': 'ასევე დღეს',
+  Plan: 'გეგმა', 'Your style': 'შენი სტილი', Change: 'შეცვლა', 'Train towards a fighting style?': 'გინდა კონკრეტული სტილით ივარჯიშო?', 'Find my style': 'იპოვე ჩემი სტილი',
+  'Next weeks': 'შემდეგი კვირები', 'Running and strength this week': 'სირბილი და ძალა ამ კვირაში', 'How the plan works': 'როგორ მუშაობს გეგმა',
+  'Phases and checkpoints': 'ფაზები და საკონტროლო წერტილები', Techniques: 'ტექნიკები',
+  'Which style suits you?': 'რომელი სტილი გიხდება?', '8 quick questions': '8 სწრაფი კითხვა', 'Matchup game plan': 'ბრძოლის გეგმა მეტოქის მიხედვით',
+  'Your style against theirs': 'შენი სტილი მისის წინააღმდეგ', 'Eight quick questions. Answer for how you are now, not how you want to be.': 'რვა სწრაფი კითხვა. უპასუხე ისე, როგორიც ახლა ხარ და არა როგორიც გინდა იყო.',
+  'Show my style': 'მაჩვენე ჩემი სტილი', 'Because you said': 'რადგან თქვი', 'Make it my style': 'გახადე ჩემი სტილი', 'Read about it': 'წაიკითხე მეტი',
+  'Also a good fit': 'ასევე კარგად გერგება', Choose: 'არჩევა', 'Style chosen': 'სტილი არჩეულია', 'Plan a matchup against it': 'დაგეგმე ბრძოლა მის წინააღმდეგ',
+  'You fight like': 'შენ იბრძვი როგორც', 'Opponent fights like': 'მეტოქე იბრძვის როგორც', 'Your game plan': 'შენი ბრძოლის გეგმა',
+  'Watch out for': 'ფრთხილად იყავი', 'What they will try against you': 'რას შეეცდებიან შენს წინააღმდეგ', 'Prepare: 4 rounds': 'მომზადება: 4 რაუნდი', vs: 'მატჩის მომზადება',
 };
 export const EN_LONG = {
+  vs: 'Matchup prep',
   style: 'Style drill',
   timer: 'Round timer', my: 'My combo', iq: 'Fight IQ drill', formtest: 'Form test',
   MOCAP_HINT: 'Motion capture of a real fighter. Drag to turn the view, pinch to zoom. "Front" is what your opponent sees.',
