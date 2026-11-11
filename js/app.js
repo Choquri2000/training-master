@@ -214,7 +214,7 @@ function PlanEdit(mine) {
     if ('save' in b.dataset) {
       const ids = TECHNIQUES.map(x => x.id).filter(id => sel.has(id));
       store.update(st => {
-        st.program = { picks: ids, since: isoDate() };
+        st.program = { picks: ids, since: isoDate(), combosAdded: true };
         ids.forEach(id => { if (!st.status[id]) st.status[id] = 'learning'; });
       }, tr('Plan saved'));
       location.hash = '#/plan'; return;
@@ -588,8 +588,17 @@ function seed() {
   if (!Object.keys(s.status).length && !s.log.length) store.update(st => { ['stance', 'step', 'jab', 'cross'].forEach(id => { st.status[id] = 'learning'; }); });
 }
 
-seed();
-initSync(() => render());
+// One-time: plans saved before the combinations existed get all 21 of them (Beka asked, 2026-11-11).
+function addCombos() {
+  const p = store.get().program;
+  if (!p?.picks?.length || p.combosAdded) return;
+  store.update(st => {
+    const ids = TECHNIQUES.filter(x => x.discipline === 'combos' || x.discipline === 'counters').map(x => x.id);
+    st.program.picks = [...new Set([...st.program.picks, ...ids])]; st.program.combosAdded = true;
+  });
+}
+seed(); addCombos();
+initSync(() => { addCombos(); render(); });
 try { navigator.storage?.persist?.(); } catch { /* not supported */ }
 window.addEventListener('hashchange', render);
 onSync(st => {
