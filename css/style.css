@@ -203,3 +203,9 @@ select, input[type=date] { font: inherit; padding: 6px; border-radius: 8px; bord
 .stats .card { padding: 10px; }
 .stats .stat { font-size: 1.5rem; }
 .stats small { font-size: .75rem; font-weight: 400; }
+.tabs a { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+:lang(ka) .tabs a { font-size: .7rem; }
+.syncdot { white-space: nowrap; }
+:lang(ka) .tabs a { font-size: .66rem; padding: 8px 0; letter-spacing: -.01em; }
+:lang(ka) .pday.today strong::after { content: ' · დღეს'; }
+:lang(ka) .wday.type-garage .wname::after { content: ' · ავტოფარეხის დღე'; }

@@ -635,3 +635,16 @@ export const COMBOS = [
 ];
 
 export const FOOTWORK_CALLS = ['step forward', 'step back', 'step left', 'step right', 'pivot', 'in and out'];
+
+// Georgian: attach `ka` to every text field (see ka-tech.js).
+import { TECH_KA } from './ka-tech.js';
+TECHNIQUES.forEach(x => {
+  const k = TECH_KA[x.id]; if (!k) return;
+  x.name.ka = k[0]; x.purpose.ka = k[1]; x.keyPoints.ka = k[2];
+  x.mistakes.ka = k[3].map(([m, fix]) => ({ m, fix }));
+  x.drills.ka = k[4].map(([name, how]) => ({ name, how }));
+});
+Object.assign(DISCIPLINES.boxing, { ka: 'კრივი' });
+Object.assign(DISCIPLINES.muaythai, { ka: 'მუაი თაი / კიკბოქსინგი' });
+Object.assign(DISCIPLINES.mma, { ka: 'MMA საფუძვლები' });
+Object.assign(DISCIPLINES.footwork, { ka: 'დგომა და ფეხის მოძრაობა' });

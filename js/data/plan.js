@@ -25,46 +25,46 @@ export const PHASES = [
 // Session templates. Durations in seconds.
 export const SESSION_TYPES = {
   technique: {
-    name: { en: 'Technique session' },
-    blurb: { en: '30 min, RPE 4 to 5. Learn and polish 2 to 3 techniques, then lift.' },
+    name: { en: 'Technique session', ka: 'ტექნიკის ვარჯიში' },
+    blurb: { en: '30 min, RPE 4 to 5. Learn and polish 2 to 3 techniques, then lift.', ka: '30 წთ, RPE 4-5. ისწავლე და დახვეწე 2-3 ტექნიკა, შემდეგ ძალის ვარჯიში.' },
     build: ({ focus, v = {} }) => [
-      { label: { en: 'Warm-up: light bounce, arm circles, shadowbox easy' }, kind: 'warm', secs: 300 },
+      { label: { en: 'Warm-up: light bounce, arm circles, shadowbox easy', ka: 'გახურება: მსუბუქი ხტუნვა, ხელების ბრუნვა, მსუბუქი ჩრდილთან ბრძოლა' }, kind: 'warm', secs: 300 },
       ...focus.flatMap(id => Array.from({ length: v.techSets || 2 }, (_, k) => [
-        { label: { en: `Technique, set ${k + 1}${k === 0 ? ' (slow)' : ''}` }, kind: 'work', secs: 120, tech: id, slow: k === 0 },
-        { label: { en: 'Rest' }, kind: 'rest', secs: 45 },
+        { label: { en: `Technique, set ${k + 1}${k === 0 ? ' (slow)' : ''}`, ka: `ტექნიკა, სეტი ${k + 1}${k === 0 ? ' (ნელა)' : ''}` }, kind: 'work', secs: 120, tech: id, slow: k === 0 },
+        { label: { en: 'Rest', ka: 'დასვენება' }, kind: 'rest', secs: 45 },
       ]).flat()),
-      { label: { en: 'Shadowbox: mix what you practised, light' }, kind: 'work', secs: 180, callouts: true, pace: 'easy' },
-      { label: { en: 'Cool-down: hips, shoulders, calves' }, kind: 'cool', secs: 240 },
+      { label: { en: 'Shadowbox: mix what you practised, light', ka: 'ჩრდილთან ბრძოლა: შეურიე ნავარჯიშები, მსუბუქად' }, kind: 'work', secs: 180, callouts: true, pace: 'easy' },
+      { label: { en: 'Cool-down: hips, shoulders, calves', ka: 'გაგრილება: თეძოები, მხრები, წვივები' }, kind: 'cool', secs: 240 },
     ],
   },
   main: {
-    name: { en: 'Main session (Friday)' },
-    blurb: { en: '50 to 60 min. Technique first, then rounds at RPE 6 to 7. Strength C afterwards.' },
+    name: { en: 'Main session (Friday)', ka: 'მთავარი ვარჯიში (პარასკევი)' },
+    blurb: { en: '50 to 60 min. Technique first, then rounds at RPE 6 to 7. Strength C afterwards.', ka: '50-60 წთ. ჯერ ტექნიკა, შემდეგ რაუნდები RPE 6-7-ზე. ბოლოს ძალა C.' },
     build: ({ focus, v = {} }) => [
-      { label: { en: 'Warm-up: skipping in place, mobility, easy shadowbox' }, kind: 'warm', secs: 480 },
+      { label: { en: 'Warm-up: skipping in place, mobility, easy shadowbox', ka: 'გახურება: ადგილზე ხტუნვა, მოქნილობა, მსუბუქი ჩრდილთან ბრძოლა' }, kind: 'warm', secs: 480 },
       ...focus.flatMap(id => [
-        { label: { en: 'Technique' }, kind: 'work', secs: 120, tech: id },
-        { label: { en: 'Rest' }, kind: 'rest', secs: 45 },
+        { label: { en: 'Technique', ka: 'ტექნიკა' }, kind: 'work', secs: 120, tech: id },
+        { label: { en: 'Rest', ka: 'დასვენება' }, kind: 'rest', secs: 45 },
       ]),
       ...Array.from({ length: v.rounds ?? 5 }, (_, i) => [
-        { label: { en: `Round ${i + 1} of ${v.rounds ?? 5}: combos on call` }, kind: 'work', secs: v.roundSecs || 180, callouts: true, pace: v.pace && i >= 2 ? v.pace : (i < 2 ? 'medium' : 'fast') },
-        { label: { en: 'Rest' }, kind: 'rest', secs: v.rest || 60 },
+        { label: { en: `Round ${i + 1} of ${v.rounds ?? 5}: combos on call`, ka: `რაუნდი ${i + 1} / ${v.rounds ?? 5}: კომბინაციები ბრძანებით` }, kind: 'work', secs: v.roundSecs || 180, callouts: true, pace: v.pace && i >= 2 ? v.pace : (i < 2 ? 'medium' : 'fast') },
+        { label: { en: 'Rest', ka: 'დასვენება' }, kind: 'rest', secs: v.rest || 60 },
       ]).flat(),
-      { label: { en: 'Core: dead bug, side plank, sprawls' }, kind: 'work', secs: 240 },
-      { label: { en: 'Cool-down and stretch' }, kind: 'cool', secs: 300 },
+      { label: { en: 'Core: dead bug, side plank, sprawls', ka: 'კორი: dead bug, გვერდითი პლანკი, სპრაულები' }, kind: 'work', secs: 240 },
+      { label: { en: 'Cool-down and stretch', ka: 'გაგრილება და გაჭიმვა' }, kind: 'cool', secs: 300 },
     ],
   },
   footwork: {
-    name: { en: 'Footwork (Saturday, optional)' },
-    blurb: { en: '15 min, easy. Movement only, no hard punching.' },
+    name: { en: 'Footwork (Saturday, optional)', ka: 'ფეხის მოძრაობა (შაბათი, არასავალდებულო)' },
+    blurb: { en: '15 min, easy. Movement only, no hard punching.', ka: '15 წთ, მსუბუქად. მხოლოდ მოძრაობა, ძლიერი დარტყმების გარეშე.' },
     build: () => [
-      { label: { en: 'Warm-up bounce' }, kind: 'warm', secs: 120 },
-      { label: { en: 'Footwork on call' }, kind: 'work', secs: 180, footwork: true },
-      { label: { en: 'Rest' }, kind: 'rest', secs: 45 },
-      { label: { en: 'Footwork + jab on call' }, kind: 'work', secs: 180, footwork: true, callouts: true, pace: 'easy' },
-      { label: { en: 'Rest' }, kind: 'rest', secs: 45 },
-      { label: { en: 'Footwork on call' }, kind: 'work', secs: 180, footwork: true },
-      { label: { en: 'Cool-down' }, kind: 'cool', secs: 120 },
+      { label: { en: 'Warm-up bounce', ka: 'გახურება: ხტუნვა' }, kind: 'warm', secs: 120 },
+      { label: { en: 'Footwork on call', ka: 'ფეხის მოძრაობა ბრძანებით' }, kind: 'work', secs: 180, footwork: true },
+      { label: { en: 'Rest', ka: 'დასვენება' }, kind: 'rest', secs: 45 },
+      { label: { en: 'Footwork + jab on call', ka: 'ფეხის მოძრაობა + ჯები ბრძანებით' }, kind: 'work', secs: 180, footwork: true, callouts: true, pace: 'easy' },
+      { label: { en: 'Rest', ka: 'დასვენება' }, kind: 'rest', secs: 45 },
+      { label: { en: 'Footwork on call', ka: 'ფეხის მოძრაობა ბრძანებით' }, kind: 'work', secs: 180, footwork: true },
+      { label: { en: 'Cool-down', ka: 'გაგრილება' }, kind: 'cool', secs: 120 },
     ],
   },
 };
@@ -127,3 +127,27 @@ export const RULES = { en: [
   'Tuesday, Thursday and Sunday are run-only days, so the key runs stay fresh. Saturday footwork is optional.',
   'Every 4th week is a deload: technique only, no hard rounds, half the strength sets.',
 ] };
+
+// ---------- Georgian ----------
+const KA_PHASES = [
+  ['საფუძვლები', 'დგომა, ფეხის მოძრაობა, ორი პირდაპირი დარტყმა, საბაზისო დაცვა, თიპი და ტანის წიხლი.', 'გადაიღე 3 რაუნდი ჩრდილთან ბრძოლა: დაცვა მაღლაა, ფეხები არ ჯვარედინდება და არ ერთდება, ყოველი დარტყმა სახეს უბრუნდება.'],
+  ['კომბინაციები', 'ჰუკები, აპერკოტები, როლი, წიხლი ფეხის შეცვლით და მუხლები, ასევე დონის შეცვლა და წამოდგომა.', 'გადაიღე 1-2-3 + წიხლი სრული სიჩქარით: უკანა ხელი ნიკაპს არ შორდება და დგომაში წონასწორულად ეშვები.'],
+  ['კონტრები და მანძილი', 'კონტრ-დარტყმები, კუთხეები, იდაყვები, კლინჩი, წიხლის დაჭერა და ჩამოგდების შესვლები.', 'გადაიღე 3 რაუნდი სხვადასხვა მანძილზე, სადაც ყოველი კომბინაცია დაცვით ან კუთხით მთავრდება.'],
+];
+PHASES.forEach((p, i) => { [p.name.ka, p.goal.ka, p.checkpoint.ka] = KA_PHASES[i]; });
+const KA_RUN = ['მსუბუქი 5 კმ (6:30-7:14 /კმ)', 'ინტერვალები: 3 x 1000 მ (5:13-5:26 /კმ)', 'მსუბუქი 6 კმ + 5 x 20 წმ აჩქარება',
+  'ზღვრული 2 x 11 წთ, ან ტემპი 3.5 კმ მონაცვლე კვირებში', null, 'მსუბუქი 5-6 კმ', 'გრძელი სირბილი 12 კმ'];
+WEEK.forEach((d, i) => { if (d.run) d.run.ka = KA_RUN[i]; });
+DAY_NAMES.ka = ['ორშაბათი', 'სამშაბათი', 'ოთხშაბათი', 'ხუთშაბათი', 'პარასკევი', 'შაბათი', 'კვირა'];
+STRENGTH.A.name.ka = 'ძალა A: ზედა ტანი';
+STRENGTH.B.name.ka = 'ძალა B: ფეხები და კორი';
+STRENGTH.C.name.ka = 'ძალა C: ზედა ტანი და კორი (პარასკევის ორთაბრძოლის შემდეგ)';
+RULES.ka = [
+  'ავტოფარეხის დღეებია ორშაბათი, ოთხშაბათი და პარასკევი: ორთაბრძოლა და ძალა ერთ ვიზიტში.',
+  'ჯერ ორთაბრძოლა, შემდეგ ძალა. უნარს ახალი სხეული სჭირდება; დაღლილმა აწიო უფრო უსაფრთხოა, ვიდრე დაღლილმა ისწავლო.',
+  'ორშაბათი და ოთხშაბათი: დილით სირბილი (მსუბუქი), ავტოფარეხი დღის ბოლოს.',
+  'ოთხშაბათი ფეხების დღეა, ამიტომ იმ დღის ორთაბრძოლა მხოლოდ ტექნიკა და ფეხის მოძრაობაა, ძლიერი წიხლების გარეშე.',
+  'მძიმე რაუნდები მხოლოდ პარასკევს, სირბილის გარეშე დღეს. მის შემდეგ ძალა C მხოლოდ ზედა ტანი და კორია.',
+  'სამშაბათი, ხუთშაბათი და კვირა მხოლოდ სირბილის დღეებია, რომ მთავარი სირბილები ახალი ძალით გაიარო. შაბათის ფეხის მოძრაობა არასავალდებულოა.',
+  'ყოველი მე-4 კვირა განტვირთვაა: მხოლოდ ტექნიკა, მძიმე რაუნდების გარეშე, ძალის სეტების ნახევარი.',
+];

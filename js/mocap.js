@@ -5,6 +5,8 @@
 
 // [clip, from, to, opts] - from/to are fractions of the clip; to < from plays backwards.
 // opts: hold (seconds, freeze at `from`), mirror (southpaw version), add (procedural layer).
+import { tr } from './i18n.js';
+
 const SEQ = {
   stance: [['stance', 0, 1]],
   check: [['knee', 0, 0.36], ['knee', 0.36, 0.36, { hold: 0.6 }], ['knee', 0.36, 0]],
@@ -119,7 +121,7 @@ export function createMocap(container, techId, { speed = 1, view = 'three', step
   container.classList.add('mocap', 'loading');
   const bar = document.createElement('input');
   Object.assign(bar, { type: 'range', min: 0, max: 1000, value: 0, className: 'scrub', hidden: !step });
-  bar.setAttribute('aria-label', 'Move through the technique');
+  bar.setAttribute('aria-label', tr('Move through the technique'));
 
   (async () => {
     const L = await loadLibs();
@@ -203,7 +205,7 @@ export function createMocap(container, techId, { speed = 1, view = 'three', step
     setView(st.view);
     const hp = new THREE.Vector3(), shift = new THREE.Vector3();
 
-    const label = () => onLabel?.(st.step ? 'Drag the slider, or drag the figure to turn it' : (T < total || isStance ? 'Technique' : 'Back to guard'), 1, 1);
+    const label = () => onLabel?.(tr(st.step ? 'Drag the slider, or drag the figure to turn it' : (T < total || isStance ? 'Technique' : 'Back to guard')), 1, 1);
     let lastLabel = '';
     const size = () => {
       const w = container.clientWidth, h = container.clientHeight || w * 0.86;

@@ -25,6 +25,29 @@ const STRINGS = {
     feelsEasy: 'Feels easy', feelsEasyHint: 'Ready to mark as solid? Open one and tap "Mark as solid".',
     history: 'History', date: 'Date', session: 'Session', techniques: 'Skills',
   },
+  ka: {
+    appName: 'Combat Coach',
+    today: 'დღეს', week: 'კვირა', pathway: 'გზა', library: 'ტექნიკა', log: 'შედეგი', settings: 'ოფციები',
+    run: 'სირბილი', strength: 'ძალა', combat: 'ორთაბრძოლა',
+    rest: 'დასვენება', start: 'დაწყება', noCombatToday: 'დღეს ორთაბრძოლის ვარჯიში არ არის. დაასვენე უნარები, ან თუ თავს კარგად გრძნობ, 10 წთ მსუბუქი ჩრდილთან ბრძოლა გააკეთე.',
+    focusToday: 'დღევანდელი ფოკუს-ტექნიკები', keyPoints: 'მთავარი პუნქტები', mistakes: 'ხშირი შეცდომები და გამოსწორება',
+    drills: 'დრილები', phase: 'ფაზა', locked: 'დაბლოკილი', learning: 'სწავლობ', done: 'ათვისებული', notStarted: 'დასაწყები',
+    markLearning: 'სწავლის დაწყება', markDone: 'ათვისებულად მონიშვნა', markReset: 'გადატვირთვა',
+    checkpoint: 'საკონტროლო', passCheckpoint: 'ეს საკონტროლო ვიდეოზე გავიარე', unlockNext: 'შემდეგი ფაზა გაიხსნა',
+    pause: 'პაუზა', resume: 'გაგრძელება', skip: 'გამოტოვება', stop: 'შეჩერება', finish: 'დასრულება',
+    howHard: 'რამდენად რთული იყო? (RPE 1-10)', save: 'შენახვა', saved: 'შენახულია',
+    minutes: 'წთ', sessions: 'ვარჯიში', thisWeek: 'ეს კვირა', noLog: 'ჯერ ვარჯიში არ ჩაწერილა.',
+    voice: 'ხმოვანი ბრძანებები', language: 'ენა', exportData: 'მონაცემების ექსპორტი', importData: 'მონაცემების იმპორტი', resetData: 'ყველაფრის წაშლა',
+    speed: 'სიჩქარე', slow: 'ნელა', normal: 'ნორმალური',
+    weekRules: 'როგორ ეწყობა კვირა', viewTech: 'გახსნა', notes: 'ჩემი ჩანაწერები',
+    deloadNote: 'განტვირთვის კვირა: მხოლოდ ტექნიკა, მძიმე რაუნდების გარეშე.',
+    filterAll: 'ყველა',
+    howFelt: 'როგორ იყო თითოეული უნარი?', feltEasy: 'ადვილი', feltOk: 'კარგი', feltOff: 'ვერ გამოვიდა', rateHint: '„ვერ გამოვიდა“ უნარები გეგმაში უფრო მალე დაბრუნდება.',
+    streak: 'სერია', weeks: 'კვირა', skillsSolid: 'ათვისებული', minutesPerWeek: 'ორთაბრძოლის წუთები კვირაში',
+    needsWork: 'სამუშაოა', needsWorkHint: 'ეს შეაფასე როგორც „ვერ გამოვიდა“. გეგმა მათ უფრო მალე დააბრუნებს.',
+    feelsEasy: 'ადვილად გამოდის', feelsEasyHint: 'მზად ხარ ათვისებულად მოსანიშნად? გახსენი და დააჭირე „ათვისებულად მონიშვნა“.',
+    history: 'ისტორია', date: 'თარიღი', session: 'ვარჯიში', techniques: 'უნარები',
+  },
 };
 
 export function t(key) {
@@ -41,5 +64,13 @@ export function L(obj) {
 
 export const LANGS = [
   { code: 'en', label: 'English' },
-  // { code: 'ka', label: 'ქართული' },  // coming later
+  { code: 'ka', label: 'ქართული' },
 ];
+
+// Phrase translation for UI text written inline in the code: tr('English', {vars}).
+import { KA } from './data/ka-ui.js';
+export function tr(en, vars) {
+  let out = (store.get().lang === 'ka' && KA[en]) || en;
+  if (vars) out = out.replace(/\{(\w+)\}/g, (_, k) => vars[k] ?? '');
+  return out;
+}

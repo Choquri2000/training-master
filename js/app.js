@@ -17,7 +17,7 @@ function createViewer(el, id, opts = {}) {
 import { Player, availableCombos } from './session.js';
 import { store } from './store.js';
 import { PRESETS, picks, programFocus, volume, blockWeek, themeOf } from './program.js';
-import { t, L, LANGS } from './i18n.js';
+import { t, L, LANGS, tr } from './i18n.js';
 import { initSync, onSync, signIn, signInGoogle, signOut, resetPassword, syncAvailable } from './sync.js';
 
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -74,23 +74,23 @@ function Today() {
   const mine = picks().length > 0;
   const focus = sessionKey ? (mine && programFocus(d.day, weekNumber()).length ? programFocus(d.day, weekNumber()) : focusTechs(sessionKey === 'main' ? 3 : 2)) : [];
   const el = h(`<section>
-    <h1>${L(DAY_NAMES)[d.day]} <small>· week ${weekNumber()}${isDeload() ? ' (deload)' : ''}</small></h1>
+    <h1>${L(DAY_NAMES)[d.day]} <small>· ${tr('week')} ${weekNumber()}${isDeload() ? ' (' + tr('deload') + ')' : ''}</small></h1>
     ${isDeload() ? `<p class="note">${t('deloadNote')}</p>` : ''}
-    ${syncAvailable() && !cloudOn ? `<p class="note"><strong>Your progress isn't backed up yet.</strong> <a href="#/settings">Sign in once</a> to save it to the cloud automatically.</p>` : ''}
-    ${backupDue() ? `<p class="note">Your progress is saved only on this phone. <a href="#/settings">Back it up</a> (takes 2 seconds).</p>` : ''}
+    ${syncAvailable() && !cloudOn ? `<p class="note"><strong>${tr("Your progress isn't backed up yet.")}</strong> <a href="#/settings">${tr('Sign in once')}</a> ${tr('to save it to the cloud automatically.')}</p>` : ''}
+    ${backupDue() ? `<p class="note">${tr('Your progress is saved only on this phone.')} <a href="#/settings">${tr('Back it up')}</a> ${tr('(takes 2 seconds).')}</p>` : ''}
     <div class="day-grid">
       <div class="card k-run"><h3>${t('run')}</h3><p>${d.run ? esc(L(d.run)) : t('rest')}</p></div>
-      <div class="card k-strength"><h3>${t('strength')}${d.combat && d.strength ? ' · after combat' : ''}</h3>${d.strength ? `<details><summary>${esc(L(STRENGTH[d.strength].name))}</summary><ul class="slist">${STRENGTH[d.strength].items.map(([n, r]) => `<li>${esc(n)} <em>${esc(r)}</em></li>`).join('')}</ul></details>` : `<p>${t('rest')}</p>`}</div>
+      <div class="card k-strength"><h3>${t('strength')}${d.combat && d.strength ? ' · ' + tr('after combat') : ''}</h3>${d.strength ? `<details><summary>${esc(L(STRENGTH[d.strength].name))}</summary><ul class="slist">${STRENGTH[d.strength].items.map(([n, r]) => `<li>${esc(tr(n))} <em>${esc(tr(r))}</em></li>`).join('')}</ul></details>` : `<p>${t('rest')}</p>`}</div>
     </div>
     <div class="card k-combat big">
       <h3>${t('combat')}</h3>
       ${sessionKey ? `
         <p><strong>${esc(L(SESSION_TYPES[sessionKey].name))}</strong><br>${esc(L(SESSION_TYPES[sessionKey].blurb))}</p>
-        ${mine ? `<p class="muted small">From <a href="#/plan">your plan</a>: ${esc(volume(weekNumber()).label)}</p>` : `<p class="muted small"><a href="#/plan">Pick your skills</a> to get a full weekly plan.</p>`}
+        ${mine ? `<p class="muted small">${tr('From')} <a href="#/plan">${tr('your plan')}</a>: ${esc(tr(volume(weekNumber()).label))}</p>` : `<p class="muted small"><a href="#/plan">${tr('Pick your skills')}</a> ${tr('to get a full weekly plan.')}</p>`}
         ${focus.length ? `<p class="muted">${t('focusToday')}:</p><ul class="chips">${focus.map(id => `<li><a href="#/tech/${id}">${esc(L(techById[id].name))}</a></li>`).join('')}</ul>` : ''}
         <a class="btn primary" href="#/session/${sessionKey}/${focus.join(',')}">${t('start')}</a>
       ` : `<p>${t('noCombatToday')}</p>
-        <a class="btn" href="#/session/footwork/">10-15 min footwork (optional)</a>`}
+        <a class="btn" href="#/session/footwork/">${tr('10-15 min footwork (optional)')}</a>`}
     </div>
   </section>`);
   view.replaceChildren(el);
@@ -107,7 +107,7 @@ function Week() {
         <div class="wday ${d.day === ti ? 'today' : ''} type-${d.type}">
           <div class="wname">${L(DAY_NAMES)[d.day].slice(0, 3)}</div>
           <div class="wrow k-run"><span>${t('run')}</span>${d.run ? esc(L(d.run)) : '—'}</div>
-          <div class="wrow k-strength"><span>${t('strength')}</span>${d.strength ? `<details><summary>${esc(L(STRENGTH[d.strength].name))}</summary><ul>${STRENGTH[d.strength].items.map(([n, r]) => `<li>${esc(n)} <em>${esc(r)}</em></li>`).join('')}</ul></details>` : '—'}</div>
+          <div class="wrow k-strength"><span>${t('strength')}</span>${d.strength ? `<details><summary>${esc(L(STRENGTH[d.strength].name))}</summary><ul>${STRENGTH[d.strength].items.map(([n, r]) => `<li>${esc(tr(n))} <em>${esc(tr(r))}</em></li>`).join('')}</ul></details>` : '—'}</div>
           <div class="wrow k-combat"><span>${t('combat')}</span>${d.combat ? `<a href="#/session/${d.combat}/">${esc(L(SESSION_TYPES[d.combat].name))}</a>` : '—'}</div>
         </div>`).join('')}
     </div>
@@ -119,23 +119,23 @@ function Week() {
 
 // One week of the skills plan: what each garage day trains and how much.
 function sessionSummary(day, v) {
-  if (day === 4 && v.rounds) return `${v.rounds} x ${fmt(v.roundSecs)} rounds on call, after 2 min per skill`;
-  return `${v.techSets} x 2 min per skill (first set slow), then light shadowboxing`;
+  if (day === 4 && v.rounds) return tr('{n} x {t} rounds on call, after 2 min per skill', { n: v.rounds, t: fmt(v.roundSecs) });
+  return tr('{n} x 2 min per skill (first set slow), then light shadowboxing', { n: v.techSets });
 }
 function planCard(week, compact) {
-  if (!picks().length) return compact ? `<div class="card plan"><h3>My skills plan</h3><p>Pick the skills you want to learn and the app builds your Mon / Wed / Fri combat plan.</p><a class="btn primary" href="#/plan/edit">Pick skills</a></div>` : '';
+  if (!picks().length) return compact ? `<div class="card plan"><h3>${tr('My skills plan')}</h3><p>${tr('Pick the skills you want to learn and the app builds your Mon / Wed / Fri combat plan.')}</p><a class="btn primary" href="#/plan/edit">${tr('Pick skills')}</a></div>` : '';
   const v = volume(week), ti = todayIdx();
   return `<div class="card plan ${compact ? '' : 'wk'} ${week === weekNumber() ? 'now' : ''}">
-    <h3>Week ${week} · ${esc(v.label)}${themeOf(week) ? ` · focus: ${esc(themeOf(week).name)}` : ''}</h3>
+    <h3>${tr('Week')} ${week} · ${esc(tr(v.label))}${themeOf(week) ? ` · ${tr('focus')}: ${esc(tr(themeOf(week).name))}` : ''}</h3>
     ${[0, 2, 4].map(day => {
       const f = programFocus(day, week), key = day === 4 && v.rounds ? 'main' : 'technique';
       const isToday = week === weekNumber() && day === ti;
       return `<div class="pday ${isToday ? 'today' : ''}"><strong>${L(DAY_NAMES)[day].slice(0, 3)}</strong>
         <ul class="chips">${f.map(id => `<li><a href="#/tech/${id}">${esc(L(techById[id].name))}</a></li>`).join('')}</ul>
-        <span class="muted small">${esc(sessionSummary(day, v))}${day === 2 ? '. No hard kicks (legs day).' : ''}</span>
+        <span class="muted small">${esc(sessionSummary(day, v))}${day === 2 ? '. ' + tr('No hard kicks (legs day).') : ''}</span>
         ${isToday ? `<a class="btn primary small" href="#/session/${key}/${f.join(',')}">${t('start')}</a>` : ''}</div>`;
     }).join('')}
-    ${compact ? `<a class="small" href="#/plan">Full 4-week plan and your skills →</a>` : ''}
+    ${compact ? `<a class="small" href="#/plan">${tr('Full 4-week plan and your skills')} →</a>` : ''}
   </div>`;
 }
 
@@ -144,12 +144,12 @@ function Plan(mode) {
   if (mode === 'edit' || !mine.length) return PlanEdit(mine);
   const wk = weekNumber(), first = wk - blockWeek(wk) + 1;
   const el = h(`<section>
-    <h1>My skills plan</h1>
-    <p>Your ongoing combat plan: it never runs out. Every 4 weeks is one block: 3 weeks building up, then an easy deload week. Each block puts most of the time on one theme (hands, then kicks, then MMA, then defence), while every week still revisits your other skills. Later blocks use longer rounds.</p>
+    <h1>${tr('My skills plan')}</h1>
+    <p>${tr('PLAN_INTRO')}</p>
     <div class="week">${[0, 1, 2, 3].map(i => planCard(first + i, false)).join('')}</div>
-    <h2>Your skills</h2>
+    <h2>${tr('Your skills')}</h2>
     <ul class="chips">${mine.map(id => `<li><a href="#/tech/${id}">${esc(L(techById[id].name))}</a></li>`).join('')}</ul>
-    <a class="btn" href="#/plan/edit">Change skills</a>
+    <a class="btn" href="#/plan/edit">${tr('Change skills')}</a>
   </section>`);
   view.replaceChildren(el);
 }
@@ -157,15 +157,15 @@ function Plan(mode) {
 function PlanEdit(mine) {
   const sel = new Set(mine);
   const el = h(`<section>
-    <h1>Pick your skills</h1>
-    <p class="muted">Tap the skills you want to train. Start with a ready set if you like, then add or remove.</p>
-    <div class="filters">${Object.entries(PRESETS).map(([k, p]) => `<button class="pill" data-preset="${k}">${esc(p.name)}</button>`).join('')}</div>
+    <h1>${tr('Pick your skills')}</h1>
+    <p class="muted">${tr('Tap the skills you want to train. Start with a ready set if you like, then add or remove.')}</p>
+    <div class="filters">${Object.entries(PRESETS).map(([k, p]) => `<button class="pill" data-preset="${k}">${esc(tr(p.name))}</button>`).join('')}</div>
     ${Object.entries(DISCIPLINES).map(([k, d]) => `<h2>${esc(L(d))}</h2><div class="pickgrid">${TECHNIQUES.filter(x => x.discipline === k).map(x => `<button class="pick" data-id="${x.id}" aria-pressed="false">${esc(L(x.name))}</button>`).join('')}</div>`).join('')}
-    <div class="savebar"><span class="count"></span><button class="btn primary" data-save>Build my plan</button></div>
+    <div class="savebar"><span class="count"></span><button class="btn primary" data-save>${tr('Build my plan')}</button></div>
   </section>`);
   const sync = () => {
     el.querySelectorAll('.pick').forEach(b => b.setAttribute('aria-pressed', sel.has(b.dataset.id)));
-    $('.count', el).textContent = `${sel.size} picked`;
+    $('.count', el).textContent = tr('{n} picked', { n: sel.size });
     $('[data-save]', el).disabled = sel.size < 2;
   };
   el.addEventListener('click', e => {
@@ -177,7 +177,7 @@ function PlanEdit(mine) {
       store.update(st => {
         st.program = { picks: ids, since: isoDate() };
         ids.forEach(id => { if (!st.status[id]) st.status[id] = 'learning'; });
-      }, 'Plan saved');
+      }, tr('Plan saved'));
       location.hash = '#/plan'; return;
     }
     sync();
@@ -192,13 +192,13 @@ function Pathway() {
     const doneN = techs.filter(x => s.status[x.id] === 'done').length;
     const locked = p.phase > s.phaseUnlocked;
     return `<div class="phase ${locked ? 'locked' : ''}">
-      <h2>${t('phase')} ${p.phase}: ${esc(L(p.name))} <small>weeks ${p.weeks}</small></h2>
+      <h2>${t('phase')} ${p.phase}: ${esc(L(p.name))} <small>${tr('weeks')} ${p.weeks}</small></h2>
       <p>${esc(L(p.goal))}</p>
       <div class="progress"><div style="width:${(doneN / techs.length) * 100}%"></div></div>
       <p class="muted">${doneN} / ${techs.length} ${t('done').toLowerCase()}</p>
       <ul class="techlist">${techs.map(x => `<li><a href="#/tech/${x.id}">${esc(L(x.name))}</a> <span class="disc">${esc(L(DISCIPLINES[x.discipline]))}</span> ${statusBadge(statusOf(x.id))}</li>`).join('')}</ul>
       <div class="checkpoint"><strong>${t('checkpoint')}:</strong> ${esc(L(p.checkpoint))}
-        ${s.checkpoints[p.phase] ? `<p class="ok">✓ Passed ${s.checkpoints[p.phase]} <button class="btn ghost small" data-unpass="${p.phase}">Undo</button></p>`
+        ${s.checkpoints[p.phase] ? `<p class="ok">✓ ${tr('Passed')} ${s.checkpoints[p.phase]} <button class="btn ghost small" data-unpass="${p.phase}">${tr('Undo')}</button></p>`
           : locked ? '' : `<button class="btn" data-pass="${p.phase}">${t('passCheckpoint')}</button>`}
       </div>
     </div>`;
@@ -210,7 +210,7 @@ function Pathway() {
       if (pass) st.checkpoints[pass] = isoDate(); else delete st.checkpoints[unpass];
       let n = 1; while (st.checkpoints[n] && n < 3) n++; // phases open in order
       st.phaseUnlocked = n;
-    }, pass ? `Phase ${pass} checkpoint passed` : `Phase ${unpass} checkpoint removed`);
+    }, pass ? tr('Phase {n} checkpoint passed', { n: pass }) : tr('Phase {n} checkpoint removed', { n: unpass }));
     Pathway();
   });
   view.replaceChildren(el);
@@ -253,13 +253,13 @@ function Tech(id) {
     <div class="figcap" aria-live="polite"></div>
     <div class="figctl">
       <div class="seg" data-g="view">
-        <button class="pill" data-view="side">Side</button><button class="pill on" data-view="three">3/4</button><button class="pill" data-view="front">Front</button>
+        <button class="pill" data-view="side">${tr('Side')}</button><button class="pill on" data-view="three">3/4</button><button class="pill" data-view="front">${tr('Front')}</button>
       </div>
       <div class="seg" data-g="mode">
-        <button class="pill" data-mode="step">Step by step</button><button class="pill" data-mode="slow">Slow</button><button class="pill on" data-mode="normal">${t('normal')}</button>
+        <button class="pill" data-mode="step">${tr('Step by step')}</button><button class="pill" data-mode="slow">${t('slow')}</button><button class="pill on" data-mode="normal">${t('normal')}</button>
       </div>
-      ${MOCAP.has(id) ? `<div class="seg" data-g="model"><button class="pill${(s.model || 'fighter') === 'fighter' ? ' on' : ''}" data-model="fighter">Fighter</button><button class="pill${s.model === 'mannequin' ? ' on' : ''}" data-model="mannequin">Mannequin (lead side blue)</button></div>` : ''}
-      <p class="muted small">${MOCAP.has(id) ? 'Motion capture of a real fighter. Drag to turn the view, pinch to zoom. "Front" is what your opponent sees.' : 'Orthodox stance (left side leads). Blue = lead side, grey = rear side. "Front" is what your opponent sees.'}</p>
+      ${MOCAP.has(id) ? `<div class="seg" data-g="model"><button class="pill${(s.model || 'fighter') === 'fighter' ? ' on' : ''}" data-model="fighter">${tr('Fighter')}</button><button class="pill${s.model === 'mannequin' ? ' on' : ''}" data-model="mannequin">${tr('Mannequin (lead side blue)')}</button></div>` : ''}
+      <p class="muted small">${MOCAP.has(id) ? tr('MOCAP_HINT') : tr('FIGURE_HINT')}</p>
     </div>
     <h2>${t('keyPoints')}</h2>
     <ol>${L(x.keyPoints).map(k => `<li>${esc(k)}</li>`).join('')}</ol>
@@ -268,13 +268,13 @@ function Tech(id) {
     <h2>${t('drills')}</h2>
     <ul>${L(x.drills).map(d => `<li><strong>${esc(d.name)}:</strong> ${esc(d.how)}</li>`).join('')}</ul>
     <h2>${t('notes')}</h2>
-    <textarea class="notes" rows="3" placeholder="What felt off? What did the video show?">${esc(s.notes[id] || '')}</textarea>
+    <textarea class="notes" rows="3" placeholder="${tr('What felt off? What did the video show?')}">${esc(s.notes[id] || '')}</textarea>
     <div class="actions">
-      ${st === 'locked' ? `<p class="muted">${t('locked')}: pass the phase ${x.phase - 1} checkpoint first.</p>` : `
+      ${st === 'locked' ? `<p class="muted">${t('locked')}: ${tr('pass the phase {n} checkpoint first.', { n: x.phase - 1 })}</p>` : `
         ${st !== 'learning' ? `<button class="btn" data-st="learning">${t('markLearning')}</button>` : ''}
         ${st !== 'done' ? `<button class="btn primary" data-st="done">${t('markDone')}</button>` : ''}
         ${st === 'learning' || st === 'done' ? `<button class="btn ghost" data-st="">${t('markReset')}</button>` : ''}
-        <a class="btn" href="#/session/drill/${id}">Drill this (3 x 2 min)</a>`}
+        <a class="btn" href="#/session/drill/${id}">${tr('Drill this (3 x 2 min)')}</a>`}
     </div>
   </section>`);
   const rerender = () => { cleanup.forEach(f => f()); cleanup = []; Tech(id); };
@@ -293,7 +293,7 @@ function Tech(id) {
   $('.actions', el).addEventListener('click', e => {
     if (!('st' in e.target.dataset)) return;
     store.update(st => { if (e.target.dataset.st) st.status[id] = e.target.dataset.st; else delete st.status[id]; },
-      { learning: 'Marked as learning', done: 'Marked as solid', '': 'Status reset' }[e.target.dataset.st]);
+      tr({ learning: 'Marked as learning', done: 'Marked as solid', '': 'Status reset' }[e.target.dataset.st]));
     rerender();
   });
 }
@@ -303,8 +303,8 @@ function Session(kind, techCsv) {
   let segs;
   if (kind === 'drill') {
     segs = [
-      { label: { en: 'Warm-up: shadowbox easy' }, kind: 'warm', secs: 120 },
-      ...[1, 2, 3].flatMap(n => [{ label: { en: `Round ${n} of 3` }, kind: 'work', secs: 120, tech: focus[0], slow: n === 1 }, { label: { en: 'Rest' }, kind: 'rest', secs: 45 }]),
+      { label: { en: 'Warm-up: shadowbox easy', ka: 'გახურება: მსუბუქი ჩრდილთან ბრძოლა' }, kind: 'warm', secs: 120 },
+      ...[1, 2, 3].flatMap(n => [{ label: { en: `Round ${n} of 3`, ka: `რაუნდი ${n} / 3` }, kind: 'work', secs: 120, tech: focus[0], slow: n === 1 }, { label: { en: 'Rest' }, kind: 'rest', secs: 45 }]),
     ];
   } else {
     const type = SESSION_TYPES[kind] || SESSION_TYPES.technique;
@@ -338,7 +338,7 @@ function Session(kind, techCsv) {
   let fig = null, figTech = null;
   const render = p => {
     const s = p.seg || segs[segs.length - 1];
-    $('.seg-label', el).textContent = p.done ? 'Done!' : `${L(s.label)}${s.tech ? ': ' + L(techById[s.tech].name) : ''}`;
+    $('.seg-label', el).textContent = p.done ? tr('Done!') : `${L(s.label)}${s.tech ? ': ' + L(techById[s.tech].name) : ''}`;
     $('.clock', el).textContent = fmt(Math.max(0, Math.ceil(p.left)));
     el.className = `session kind-${p.done ? 'done' : s.kind}`;
     $('.callout', el).textContent = p.lastCall || '';
@@ -349,7 +349,7 @@ function Session(kind, techCsv) {
       figTech = tech; fig?.destroy(); fig = null;
       if (tech) {
         fig = createViewer($('.fig-big', el), tech, { speed: s.slow ? 0.4 : 1, step: !!s.slow && !MOCAP.has(tech) });
-        $('.cues', el).innerHTML = `<ul>${L(techById[tech].keyPoints).slice(0, 3).map(k => `<li>${esc(k)}</li>`).join('')}</ul><p class="muted">Watch for: ${esc(L(techById[tech].mistakes)[0].m)}</p>`;
+        $('.cues', el).innerHTML = `<ul>${L(techById[tech].keyPoints).slice(0, 3).map(k => `<li>${esc(k)}</li>`).join('')}</ul><p class="muted">${tr('Watch for')}: ${esc(L(techById[tech].mistakes)[0].m)}</p>`;
       } else { $('.fig-big', el).replaceChildren(); $('.cues', el).innerHTML = ''; }
     }
     if (p.done) $('.logform', el).hidden = false;
@@ -378,7 +378,7 @@ function Session(kind, techCsv) {
         st.log.push({ date: isoDate(), at: new Date().toISOString().slice(11, 19), type: kind, minutes, rpe: +$('.rpe', el).value, techs: focus, ratings });
         st.feel = { ...(st.feel || {}) };
         Object.entries(ratings).forEach(([id, v]) => { st.feel[id] = { r: v, date: isoDate() }; });
-      }, 'Session saved');
+      }, tr('Session saved'));
       location.hash = '#/log';
     }
   });
@@ -417,7 +417,7 @@ function Log() {
     ${easy.length ? `<h2>${t('feelsEasy')}</h2><p class="muted small">${t('feelsEasyHint')}</p><ul class="chips">${easy.map(chip).join('')}</ul>` : ''}
     <h2>${t('history')}</h2>
     ${s.log.length ? `<table class="logtable"><thead><tr><th>${t('date')}</th><th>${t('session')}</th><th>${t('minutes')}</th><th>RPE</th><th>${t('techniques')}</th></tr></thead><tbody>
-      ${s.log.slice(-30).reverse().map(e => `<tr><td>${e.date.slice(5)}</td><td>${esc(e.type)}</td><td>${e.minutes}</td><td>${e.rpe}</td><td>${(e.techs || []).map(id => esc(L(techById[id]?.name)) + (e.ratings?.[id] === 3 ? ' ✗' : e.ratings?.[id] === 1 ? ' ✓' : '')).join(', ')}</td></tr>`).join('')}
+      ${s.log.slice(-30).reverse().map(e => `<tr><td>${e.date.slice(5)}</td><td>${esc(tr(e.type))}</td><td>${e.minutes}</td><td>${e.rpe}</td><td>${(e.techs || []).map(id => esc(L(techById[id]?.name)) + (e.ratings?.[id] === 3 ? ' ✗' : e.ratings?.[id] === 1 ? ' ✓' : '')).join(', ')}</td></tr>`).join('')}
     </tbody></table>` : `<p class="muted">${t('noLog')}</p>`}
   </section>`);
   view.replaceChildren(el);
@@ -427,34 +427,34 @@ function Settings() {
   const s = store.get();
   const el = h(`<section><h1>${t('settings')}</h1>
     ${syncAvailable() ? `<div class="card cloud">
-      <h3>Cloud save</h3>
+      <h3>${tr('Cloud save')}</h3>
       <div class="cloud-in" hidden>
         <p class="cloud-status"></p>
-        <button class="btn ghost" data-a="signout">Sign out</button>
+        <button class="btn ghost" data-a="signout">${tr('Sign out')}</button>
       </div>
       <form class="cloud-out" hidden>
-        <p class="small">Sign in once and everything you do is saved to your account automatically, on every phone you use.</p>
-        <button class="btn primary" type="button" data-a="google">Continue with Google</button>
-        <p class="small muted">Or use email (works best if the app is installed on your home screen):</p>
+        <p class="small">${tr('Sign in once and everything you do is saved to your account automatically, on every phone you use.')}</p>
+        <button class="btn primary" type="button" data-a="google">${tr('Continue with Google')}</button>
+        <p class="small muted">${tr('Or use email (works best if the app is installed on your home screen):')}</p>
         <input type="email" name="email" placeholder="Email" autocomplete="email" required>
-        <input type="password" name="pw" placeholder="Password (6+ characters)" autocomplete="current-password" minlength="6" required>
-        <button class="btn" type="submit">Sign in</button>
-        <button class="btn" type="button" data-a="create">Create account</button>
-        <button class="btn ghost" type="button" data-a="forgot">Forgot password</button>
+        <input type="password" name="pw" placeholder="${tr('Password (6+ characters)')}" autocomplete="current-password" minlength="6" required>
+        <button class="btn" type="submit">${tr('Sign in')}</button>
+        <button class="btn" type="button" data-a="create">${tr('Create account')}</button>
+        <button class="btn ghost" type="button" data-a="forgot">${tr('Forgot password')}</button>
         <p class="cloud-msg small"></p>
       </form>
     </div>` : ''}
     <label class="row"><input type="checkbox" class="voice" ${s.voice ? 'checked' : ''}> ${t('voice')}</label>
-    <label class="row">${t('language')} <select class="lang">${LANGS.map(l => `<option value="${l.code}" ${l.code === s.lang ? 'selected' : ''}>${l.label}</option>`).join('')}</select> <span class="muted small">Georgian coming next.</span></label>
-    <label class="row">Plan start (Monday of week 1) <input type="date" class="start" value="${s.startDate || '2026-11-16'}"></label>
-    <p class="muted small">Every 4th week from this date is a deload week.</p>
+    <label class="row">${t('language')} <select class="lang">${LANGS.map(l => `<option value="${l.code}" ${l.code === s.lang ? 'selected' : ''}>${l.label}</option>`).join('')}</select></label>
+    <label class="row">${tr('Plan start (Monday of week 1)')} <input type="date" class="start" value="${s.startDate || '2026-11-16'}"></label>
+    <p class="muted small">${tr('Every 4th week from this date is a deload week.')}</p>
     <div class="actions">
       <button class="btn" data-a="export">${t('exportData')}</button>
       <label class="btn">${t('importData')}<input type="file" accept="application/json" class="imp" hidden></label>
       <button class="btn ghost" data-a="reset">${t('resetData')}</button>
     </div>
-    <p class="muted small">Your data stays on this device (browser storage). Export it now and then as a backup.</p>
-    <p class="muted small">Combos the timer can call right now: ${availableCombos().map(c => esc(c.say)).join(' · ')}</p>
+    <p class="muted small">${tr('Your data stays on this device (browser storage). Export it now and then as a backup.')}</p>
+    <p class="muted small">${tr('Combos the timer can call right now:')} ${availableCombos().map(c => esc(c.say)).join(' · ')}</p>
   </section>`);
   view.replaceChildren(el);
   if (syncAvailable()) {
@@ -466,7 +466,7 @@ function Settings() {
     });
     const go = async create => {
       if (!form.reportValidity()) return;
-      msg.textContent = create ? 'Creating account...' : 'Signing in...';
+      msg.textContent = tr(create ? 'Creating account...' : 'Signing in...');
       try { await signIn(form.email.value.trim(), form.pw.value, create); msg.textContent = ''; }
       catch (e) { msg.textContent = authError(e); }
     };
@@ -475,8 +475,8 @@ function Settings() {
       if (e.target.dataset.a === 'create') go(true);
       if (e.target.dataset.a === 'google') { try { msg.textContent = ''; await signInGoogle(); } catch (err) { msg.textContent = authError(err); } }
       if (e.target.dataset.a === 'forgot') {
-        if (!form.email.value) { msg.textContent = 'Type your email first.'; return; }
-        try { await resetPassword(form.email.value.trim()); msg.textContent = 'Reset email sent.'; } catch (err) { msg.textContent = authError(err); }
+        if (!form.email.value) { msg.textContent = tr('Type your email first.'); return; }
+        try { await resetPassword(form.email.value.trim()); msg.textContent = tr('Reset email sent.'); } catch (err) { msg.textContent = authError(err); }
       }
     });
     $('[data-a=signout]', el).onclick = () => signOut();
@@ -486,7 +486,7 @@ function Settings() {
   $('.start', el).onchange = e => store.set({ startDate: e.target.value });
   $('.imp', el).onchange = async e => {
     const f = e.target.files[0]; if (!f) return;
-    try { store.import(await f.text()); Settings(); } catch { e.target.value = ''; $('.actions', el).insertAdjacentHTML('afterend', '<p class="err">That file could not be read.</p>'); }
+    try { store.import(await f.text()); Settings(); } catch { e.target.value = ''; $('.actions', el).insertAdjacentHTML('afterend', `<p class="err">${tr('That file could not be read.')}</p>`); }
   };
   el.addEventListener('click', e => {
     if (e.target.dataset.a === 'export') {
@@ -495,8 +495,8 @@ function Settings() {
       a.download = `combat-coach-${isoDate()}.json`; a.click();
       store.set({ lastExport: isoDate() });
     }
-    if (e.target.dataset.a === 'reset' && e.target.textContent !== 'Tap again to confirm') {
-      e.target.textContent = 'Tap again to confirm'; return;
+    if (e.target.dataset.a === 'reset' && e.target.textContent !== tr('Tap again to confirm')) {
+      e.target.textContent = tr('Tap again to confirm'); return;
     }
     if (e.target.dataset.a === 'reset') { store.reset(); seed(); Settings(); }
   });
@@ -504,16 +504,16 @@ function Settings() {
 
 function syncText(st) {
   if (st.state === 'saving') return `Saving... (${st.email})`;
-  if (st.state === 'error') return `Not saved yet, will retry: ${st.error}`;
-  if (st.state === 'saved') return `✓ Saved to the cloud at ${new Date(st.at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} (${st.email})`;
-  return `Signed in as ${st.email}`;
+  if (st.state === 'error') return `${tr('Not saved yet, will retry')}: ${st.error}`;
+  if (st.state === 'saved') return `✓ ${tr('Saved to the cloud at')} ${new Date(st.at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} (${st.email})`;
+  return `${tr('Signed in as')} ${st.email}`;
 }
 function authError(e) {
   const c = e.code || '';
-  if (c.includes('invalid-credential') || c.includes('wrong-password') || c.includes('user-not-found')) return 'Email or password is wrong.';
-  if (c.includes('email-already-in-use')) return 'That email already has an account. Tap Sign in.';
-  if (c.includes('popup')) return 'Google sign-in was blocked or closed. Try again, or use email and password.';
-  if (c.includes('network')) return 'No internet. Try again when you are online.';
+  if (c.includes('invalid-credential') || c.includes('wrong-password') || c.includes('user-not-found')) return tr('Email or password is wrong.');
+  if (c.includes('email-already-in-use')) return tr('That email already has an account. Tap Sign in.');
+  if (c.includes('popup')) return tr('Google sign-in was blocked or closed. Try again, or use email and password.');
+  if (c.includes('network')) return tr('No internet. Try again when you are online.');
   return e.message;
 }
 
@@ -522,7 +522,7 @@ let toastTimer = 0;
 store.onAction(label => {
   let tEl = document.getElementById('toast');
   if (!tEl) { tEl = document.createElement('div'); tEl.id = 'toast'; tEl.setAttribute('role', 'status'); document.body.append(tEl); }
-  tEl.innerHTML = `<span>${esc(label)}</span><button type="button">Undo</button>`;
+  tEl.innerHTML = `<span>${esc(tr(label))}</span><button type="button">${tr('Undo')}</button>`;
   tEl.className = 'show';
   tEl.querySelector('button').onclick = () => { store.undo(); tEl.className = ''; render(); };
   clearTimeout(toastTimer); toastTimer = setTimeout(() => { tEl.className = ''; }, 8000);
@@ -533,6 +533,7 @@ const routes = { today: Today, week: Week, plan: Plan, pathway: Pathway, library
 
 function render() {
   cleanup.forEach(f => f()); cleanup = [];
+  document.documentElement.lang = store.get().lang || 'en';
   const [name = 'today', ...args] = location.hash.replace(/^#\/?/, '').split('/');
   (routes[name] || Today)(...args);
   document.querySelectorAll('nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === `#/${name}` || (name === 'tech' && a.getAttribute('href') === '#/library') || (name === 'plan' && a.getAttribute('href') === '#/week')));
@@ -554,8 +555,8 @@ onSync(st => {
   const dot = document.getElementById('syncdot'); if (!dot) return;
   dot.hidden = st.state === 'off';
   dot.className = 'syncdot s-' + st.state;
-  dot.title = st.email ? syncText(st) : 'Not signed in: data is only on this phone';
-  dot.textContent = st.state === 'saved' ? '✓ Saved' : st.state === 'saving' ? 'Saving' : st.state === 'error' ? 'Offline' : 'Not backed up';
+  dot.title = st.email ? syncText(st) : tr('Not signed in: data is only on this phone');
+  dot.textContent = tr(st.state === 'saved' ? '✓ Saved' : st.state === 'saving' ? 'Saving' : st.state === 'error' ? 'Offline' : 'Not backed up');
 });
 render();
 
