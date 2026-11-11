@@ -272,3 +272,7 @@ details { margin: 10px 0; } details > summary { cursor: pointer; font-weight: 60
 .dot.k-run { background: var(--run); } .dot.k-strength { background: var(--strength); }
 .brand span { white-space: nowrap; }
 @media (max-width: 360px) { .brand span { font-size: .95rem; } .syncdot { font-size: .7rem; padding: 2px 8px; } }
+.hint { text-align: center; color: var(--muted); font-size: 1rem; min-height: 1.3em; margin-top: -4px; }
+.evbadge { display: inline-block; background: color-mix(in srgb, var(--combat) 12%, transparent); padding: 4px 10px; border-radius: 999px; font-size: .88rem; margin: 0 0 8px; }
+.evrow { display: flex; gap: 6px; margin: 6px 0; } .evrow input { flex: 1; min-width: 0; font: inherit; padding: 6px 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--text); }
+.card.event, .card.fix { margin: 10px 0; }

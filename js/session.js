@@ -100,7 +100,7 @@ export class Player {
       if (!pool.length) pool.push(...availableCombos().map(c => c.say));
       this.lastCall = pool[Math.floor(Math.random() * pool.length)];
       say(this.lastCall);
-      const base = PACE[s.pace || 'medium'];
+      const base = s.gap || PACE[s.pace || 'medium']; // gap: sparring partner speed (ms)
       this.nextCall = Date.now() + base * (0.8 + Math.random() * 0.4);
     }
     if (s && s.kind === 'work' && Math.abs(this.left - 10) < 0.01) clack();

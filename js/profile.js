@@ -109,7 +109,8 @@ function fitTime(segs, budget) {
 export function coachNote({ key, bw, fighter, deload }) {
   const p = profile();
   const parts = [];
-  if (deload) parts.push(['Deload week: lighter on purpose. Your body absorbs the last three weeks now; keep it crisp, not hard.', 'განტვირთვის კვირა: მიზანმიმართულად მსუბუქი. სხეული ახლა ბოლო სამი კვირის შედეგს ითვისებს; იმუშავე სუფთად, არა მძიმედ.']);
+  if (bw === 5) parts.push(['Taper week: less volume, full speed. Arrive at your date fresh and sharp; nothing new now.', 'შემცირების კვირა: ნაკლები მოცულობა, სრული სისწრაფე. მიდი შენს თარიღზე დასვენებული და მკვეთრი; ახალს ახლა არაფერს.']);
+  else if (deload) parts.push(['Deload week: lighter on purpose. Your body absorbs the last three weeks now; keep it crisp, not hard.', 'განტვირთვის კვირა: მიზანმიმართულად მსუბუქი. სხეული ახლა ბოლო სამი კვირის შედეგს ითვისებს; იმუშავე სუფთად, არა მძიმედ.']);
   else if (bw === 1) parts.push(['New block: start slow and exact. Speed comes from clean repetitions.', 'ახალი ბლოკი: დაიწყე ნელა და ზუსტად. სისწრაფე სუფთა გამეორებებიდან მოდის.']);
   else if (bw === 2) parts.push(['Build week: same skills, a bit more speed and volume.', 'ზრდის კვირა: იგივე უნარები, ცოტა მეტი სისწრაფე და მოცულობა.']);
   else if (bw === 3) parts.push(['Peak week: the hardest of the block. Push the pace but keep your form; next week is lighter.', 'პიკის კვირა: ბლოკის ყველაზე რთული. მოუმატე ტემპს, მაგრამ შეინარჩუნე ტექნიკა; შემდეგი კვირა მსუბუქია.']);

@@ -179,8 +179,22 @@ export const KA = {
   'Also a good fit': 'ასევე კარგად გერგება', Choose: 'არჩევა', 'Style chosen': 'სტილი არჩეულია', 'Plan a matchup against it': 'დაგეგმე ბრძოლა მის წინააღმდეგ',
   'You fight like': 'შენ იბრძვი როგორც', 'Opponent fights like': 'მეტოქე იბრძვის როგორც', 'Your game plan': 'შენი ბრძოლის გეგმა',
   'Watch out for': 'ფრთხილად იყავი', 'What they will try against you': 'რას შეეცდებიან შენს წინააღმდეგ', 'Prepare: 4 rounds': 'მომზადება: 4 რაუნდი', vs: 'მატჩის მომზადება',
+  // sparring, fix-it, date
+  'Sparring partner': 'სპარინგ-პარტნიორი', 'Mixed (all-rounder)': 'შერეული (უნივერსალი)', 'Your partner fights like': 'შენი პარტნიორი იბრძვის როგორც',
+  'Your partner calls its attacks out loud. Defend each one and counter straight away; the answer is shown on screen. "Now" means an opening: attack. After the rounds, say how it went and your partner adapts.': 'პარტნიორი თავის შეტევებს ხმამაღლა ამბობს. დაიცავი თითოეული და მაშინვე კონტრი; პასუხი ეკრანზე ჩანს. „Now“ ნიშნავს გახსნას: შეუტიე. რაუნდების შემდეგ თქვი როგორ წავიდა და პარტნიორი მოგერგება.',
+  'Partner level': 'პარტნიორის დონე', 'Higher level: faster attacks, doubles, longer rounds.': 'მაღალი დონე: სწრაფი შეტევები, ორმაგები, გრძელი რაუნდები.',
+  'How did you handle your partner?': 'როგორ გაუმკლავდი პარტნიორს?', 'I got caught a lot': 'ბევრი მომხვდა', 'About right': 'ნორმალურად', 'I handled everything': 'ყველაფერს გავუმკლავდი',
+  'Fix-it block': 'გამოსწორების ბლოკი', 'day {n} of 14': 'დღე {n} / 14', 'Every session starts with one of these': 'ყოველი ვარჯიში ერთ-ერთით იწყება',
+  'End it early': 'ადრე დასრულება', 'Last block ended. Re-test and rate those skills to see what changed.': 'ბოლო ბლოკი დასრულდა. გაიმეორე ტესტები და შეაფასე ეს უნარები, რომ ნახო რა შეიცვალა.',
+  'Rate skills after sessions or do the skill tests, and the app finds what to fix.': 'შეაფასე უნარები ვარჯიშის შემდეგ ან გააკეთე ტესტები, და აპი იპოვის რა გამოასწოროს.',
+  'What to fix': 'რა გამოვასწოროთ', 'Start a 2-week fix-it block': 'დაიწყე 2-კვირიანი გამოსწორების ბლოკი', 'Fix-it block started': 'გამოსწორების ბლოკი დაიწყო', 'Fix-it block ended': 'გამოსწორების ბლოკი დასრულდა',
+  'Fight or test date': 'ბრძოლის ან ტესტის თარიღი', 'Your date': 'შენი თარიღი', 'today!': 'დღესაა!', '{n} days to go': 'დარჩა {n} დღე',
+  'The last three weeks before it build up, peak, then taper so you arrive fresh.': 'ბოლო სამი კვირა იზრდება, პიკს აღწევს და შემდეგ მსუბუქდება, რომ დასვენებული მიხვიდე.',
+  'Set a fight, grading or sparring day and the plan peaks for it.': 'მიუთითე ბრძოლის, ატესტაციის ან სპარინგის დღე და გეგმა მისთვის პიკს მიაღწევს.',
+  'Remove date': 'თარიღის წაშლა', 'Date saved': 'თარიღი შენახულია', 'Date removed': 'თარიღი წაიშალა', 'Taper: sharp and fresh': 'შემცირება: მკვეთრად და დასვენებულად', spar: 'სპარინგ-პარტნიორი',
 };
 export const EN_LONG = {
+  spar: 'Sparring partner',
   vs: 'Matchup prep',
   style: 'Style drill',
   timer: 'Round timer', my: 'My combo', iq: 'Fight IQ drill', formtest: 'Form test',

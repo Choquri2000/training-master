@@ -5,6 +5,7 @@ import { MOCAP, createMocap, webglOK, registerSeq } from './mocap.js';
 import { STEPS, stepsSeq, stepsSay } from './data/combos.js';
 import { LESSONS, lessonById } from './data/iq.js';
 import { STYLES, styleById, STYLE_DISC, DIMS } from './data/styles.js';
+import { ATTACKS, STYLE_W } from './data/spar.js';
 
 // Motion-capture player where a clip exists, else the IK figure (also the fallback if 3D fails).
 function createViewer(el, id, opts = {}) {
@@ -20,7 +21,7 @@ function createViewer(el, id, opts = {}) {
 }
 import { Player, availableCombos, say, bell } from './session.js';
 import { store } from './store.js';
-import { PRESETS, picks, programFocus, volume, blockWeek, themeOf, stage, learnedCount, fighterVolume, weekCombos, sharpenSkills, myCombos } from './program.js';
+import { PRESETS, picks, programFocus, volume, blockWeek, themeOf, stage, learnedCount, fighterVolume, weekCombos, sharpenSkills, myCombos, fixActive, findWeak, eventInfo, phaseWeek } from './program.js';
 import { profile, hasProfile, DEFAULT_PROFILE, CHOICES, weekDays, dayPlan, legsDay, suitable, adaptSession, coachNote, safetyNote, LEVELS } from './profile.js';
 import { t, L, LANGS, tr } from './i18n.js';
 import { initSync, onSync, signIn, signInGoogle, signOut, resetPassword, syncAvailable } from './sync.js';
@@ -41,7 +42,7 @@ function weekNumber() {
   const n = Math.floor((Date.now() - start) / 864e5 / 7) + 1;
   return Math.max(1, n);
 }
-const isDeload = () => weekNumber() % 4 === 0;
+const isDeload = () => phaseWeek(weekNumber()) === 4;
 
 function statusOf(id) {
   const tech = techById[id], s = store.get();
@@ -81,9 +82,11 @@ function Today() {
   const sessionKey = !fighter && dk === 'main' && isDeload() ? 'technique' : dk;
   const mine = picks().length > 0;
   const focus = fighter ? (sessionKey === 'ffight' || sessionKey === 'footwork' ? [] : sharpenSkills(d.day, weekNumber())) : sessionKey && sessionKey !== 'footwork' ? (mine && programFocus(d.day, weekNumber()).length ? programFocus(d.day, weekNumber()) : focusTechs(sessionKey === 'main' ? 3 : 2)) : [];
-  const note = sessionKey ? coachNote({ key: sessionKey, bw: blockWeek(weekNumber()), fighter, deload: isDeload() }) : '';
+  const note = sessionKey ? coachNote({ key: sessionKey, bw: phaseWeek(weekNumber()), fighter, deload: isDeload() }) : '';
   const el = h(`<section>
     <h1>${L(DAY_NAMES)[d.day]} <small>· ${tr('week')} ${weekNumber()}${isDeload() ? ' (' + tr('deload') + ')' : ''}</small></h1>
+    ${eventInfo() ? `<p class="evbadge">🥊 ${esc(eventInfo().name || tr('Your date'))}: ${eventInfo().days === 0 ? tr('today!') : tr('{n} days to go', { n: eventInfo().days })}</p>` : ''}
+    ${fixActive() ? `<p class="note">${tr('Fix-it block')} · ${tr('day {n} of 14', { n: fixActive().day })}</p>` : ''}
     ${isDeload() ? `<p class="note">${t('deloadNote')}</p>` : ''}
     ${syncAvailable() && !cloudOn ? `<p class="note"><strong>${tr("Your progress isn't backed up yet.")}</strong> <a href="#/settings">${tr('Sign in once')}</a> ${tr('to save it to the cloud automatically.')}</p>` : ''}
     ${testsDue() ? `<p class="note">${tr('Your monthly tests are due.')} <a href="#/tests">${tr('Skill tests')}</a></p>` : ''}
@@ -104,7 +107,7 @@ function Today() {
       <p><span class="dot k-run"></span>${t('run')}: ${d.run ? esc(L(d.run)) : t('rest')}</p>
       ${d.strength ? `<details><summary><span class="dot k-strength"></span>${esc(L(STRENGTH[d.strength].name))}${d.combat ? ' · ' + tr('after combat') : ''}</summary><ul class="slist">${STRENGTH[d.strength].items.map(([n, r]) => `<li>${esc(tr(n))} <em>${esc(tr(r))}</em></li>`).join('')}</ul></details>` : ''}
     </div>` : ''}
-    <p class="center"><a class="btn ghost" href="#/timer">⏱ ${tr('Round timer')}</a></p>
+    <p class="center"><a class="btn ghost" href="#/spar">🥊 ${tr('Sparring partner')}</a> <a class="btn ghost" href="#/timer">⏱ ${tr('Round timer')}</a></p>
   </section>`);
   view.replaceChildren(el);
 }
@@ -183,6 +186,7 @@ function Plan(mode) {
     <div class="card stylecard">${sty ? `<span>${tr('Your style')}: <a href="#/styles/${sty.id}"><strong>${esc(SL(sty).name)}</strong></a></span> <a class="small" href="#/styles/quiz">${tr('Change')}</a>`
       : `<span>${tr('Train towards a fighting style?')}</span> <a class="btn small" href="#/styles/quiz">${tr('Find my style')}</a>`}</div>
     ${planCard(wk, false)}
+    ${eventCard()}
     ${wk < first + 3 ? `<details><summary>${tr('Next weeks')}</summary><div class="week">${[1, 2, 3].map(i => first + blockWeek(wk) - 1 + i).filter(w => w <= first + 3).map(w => planCard(w, false)).join('')}</div></details>` : ''}
     ${profile().other ? `<details><summary>${tr('Running and strength this week')}</summary>${fullWeek()}</details>` : ''}
     <details><summary>${tr('How the plan works')}</summary><p>${tr(fighter ? 'FIGHTER_INTRO' : 'LEARN_INTRO')}</p>
@@ -193,6 +197,7 @@ function Plan(mode) {
     <div class="actions"><a class="btn" href="#/plan/edit">${tr('Change skills')}</a> <a class="btn ghost" href="#/profile">${tr('Change profile')}</a></div>
   </section>`);
   el.addEventListener('click', e => {
+    if (eventClick(e, el)) return Plan();
     const to = e.target.dataset.stage; if (!to) return;
     store.update(st => {
       st.program = { ...st.program, fighter: to === 'fighter' };
@@ -437,6 +442,7 @@ function Session(kind, techCsv) {
     <div class="seg-label"></div>
     <div class="clock">0:00</div>
     <div class="callout"></div>
+    <div class="hint"></div>
     <div class="fig-big"></div>
     <div class="cues"></div>
     <div class="ctl">
@@ -451,6 +457,7 @@ function Session(kind, techCsv) {
       ${focus.length ? `<h2>${t('howFelt')}</h2><div class="rates">${focus.map(id => `<div class="rate" data-id="${id}"><span>${esc(L(techById[id].name))}</span>
         <div class="seg">${[[1, 'feltEasy'], [2, 'feltOk'], [3, 'feltOff']].map(([v, k]) => `<button class="pill${v === 2 ? ' on' : ''}" data-r="${v}">${t(k)}</button>`).join('')}</div></div>`).join('')}</div>
         <p class="muted small">${t('rateHint')}</p>` : ''}
+      ${kind === 'spar' ? `<h2>${tr('How did you handle your partner?')}</h2><div class="sparbox"><div class="seg sparrate">${[[1, 'I got caught a lot'], [2, 'About right'], [3, 'I handled everything']].map(([v, n]) => `<button class="pill${v === 2 ? ' on' : ''}" data-r="${v}">${tr(n)}</button>`).join('')}</div></div>` : ''}
       <button class="btn primary" data-a="save">${t('save')}</button>
     </div>
   </section>`);
@@ -463,6 +470,7 @@ function Session(kind, techCsv) {
     $('.clock', el).textContent = fmt(Math.max(0, Math.ceil(p.left)));
     el.className = `session kind-${p.done ? 'done' : s.kind}`;
     $('.callout', el).textContent = p.lastCall || '';
+    $('.hint', el).textContent = (p.lastCall && s.hints?.[p.lastCall]) || '';
     $('[data-a=toggle]', el).textContent = p.running ? t('pause') : (p.elapsed ? t('resume') : t('start'));
     el.querySelectorAll('.seglist li').forEach(li => li.classList.toggle('cur', +li.dataset.i === p.i));
     const tech = s.tech || null;
@@ -499,8 +507,12 @@ function Session(kind, techCsv) {
         st.log.push({ date: isoDate(), at: new Date().toISOString().slice(11, 19), type: kind, minutes, rpe: +$('.rpe', el).value, techs: focus, ratings });
         st.feel = { ...(st.feel || {}) };
         Object.entries(ratings).forEach(([id, v]) => { st.feel[id] = { r: v, date: isoDate() }; });
+        if (kind === 'spar') { // the partner adapts: handled everything -> faster, caught a lot -> slower
+          const r = +$('.sparrate .pill.on', el).dataset.r, sp = st.spar || { level: 3 };
+          st.spar = { ...sp, level: Math.max(1, Math.min(10, sp.level + (r === 3 ? 1 : r === 1 ? -1 : 0))), last: { date: isoDate(), opp: techCsv, r } };
+        }
       }, tr('Session saved'));
-      location.hash = kind === 'formtest' ? '#/tests/form' : '#/log';
+      location.hash = kind === 'formtest' ? '#/tests/form' : kind === 'spar' ? '#/spar' : '#/log';
     }
   });
   $('.rpe', el).addEventListener('input', e => { e.target.nextElementSibling.textContent = e.target.value; });
@@ -527,6 +539,7 @@ function Log() {
   const chip = id => `<li><a href="#/tech/${id}">${esc(L(techById[id].name))}</a></li>`;
   const el = h(`<section><h1>${t('log')}</h1>
     <a class="tool testscard" href="#/tests"><b>${tr('Skill tests')}</b><span>${testsDue() ? tr('Your monthly tests are due.') : tr('{n} results', { n: (s.tests || []).length })}</span></a>
+    ${fixCard()}
     <div class="stats">
       <div class="card"><h3>${t('thisWeek')}</h3><p class="stat">${wk.length}</p><small>${t('sessions')}</small></div>
       <div class="card"><h3>${t('streak')}</h3><p class="stat">${streak}</p><small>${t('weeks')}</small></div>
@@ -542,6 +555,7 @@ function Log() {
       ${s.log.slice(-30).reverse().map(e => `<tr><td>${e.date.slice(5)}</td><td>${esc(tr(e.type))}</td><td>${e.minutes}</td><td>${e.rpe}</td><td>${(e.techs || []).map(id => esc(L(techById[id]?.name)) + (e.ratings?.[id] === 3 ? ' ✗' : e.ratings?.[id] === 1 ? ' ✓' : '')).join(', ')}</td></tr>`).join('')}
     </tbody></table>` : `<p class="muted">${t('noLog')}</p>`}
   </section>`);
+  el.addEventListener('click', e => { if (fixClick(e)) Log(); });
   view.replaceChildren(el);
 }
 
@@ -691,6 +705,7 @@ function extraSession(kind, arg) {
     const st = styleById[arg]; if (!st) return null;
     return [{ ...warm, secs: 180 }, ...rounds(4, 180, 60, { pool: st.calls, pace: 'medium' }), { label: R1(['Cool-down', 'გაგრილება']), kind: 'cool', secs: 120 }];
   }
+  if (kind === 'spar') return sparSegs(arg);
   if (kind === 'vs') {
     const [a, b] = (arg || '').split(',').map(x => styleById[x]); if (!a || !b) return null;
     const extra = [...(b.rate.p >= 4 ? ['pivot', 'move', 'one, move'] : []), ...(b.rate.r >= 4 ? ['step, one two', 'slip, two three'] : []), ...(b.rate.w >= 4 ? ['block, three two', 'roll, three two'] : [])];
@@ -1082,10 +1097,87 @@ function Matchup(pair) {
   view.replaceChildren(el);
 }
 
-// ---------- router ----------
-const routes = { styles: Styles, combos: MyCombos, timer: Timer, tests: Tests, iq: IQ, profile: () => Profile(false), today: Today, week: () => Plan(), plan: Plan, pathway: Pathway, library: Library, tech: Tech, session: Session, log: Log, settings: Settings };
+// ----- Virtual sparring partner -----
+const sparLevel = () => store.get().spar?.level || 3;
+function sparSegs(opp) {
+  const st = styleById[opp], L0 = sparLevel(), ka = store.get().lang === 'ka';
+  const allow = new Set(st ? { boxing: ['p', 'o'], muaythai: ['p', 'k', 'o'], mma: ['p', 'k', 's', 'o'] }[st.disc] : ['p', 'k', 'o']);
+  if (profile().limits.some(l => l === 'knees' || l === 'back')) allow.delete('s');
+  const w = STYLE_W[opp] || {};
+  const pool = ATTACKS.filter(a => allow.has(a.t)).flatMap(a => Array(Math.max(0, 1 + (w[a.say] || 0))).fill(a.say));
+  if (L0 >= 6) pool.push('jab, hook', 'one two, kick', 'hook, body'); // doubles at higher levels
+  const hints = Object.fromEntries(ATTACKS.map(a => [a.say, ka ? a.ka : a.en]));
+  Object.assign(hints, { 'jab, hook': ka ? 'პარირება, როლი, კონტრი' : 'Parry, roll, counter', 'one two, kick': ka ? 'ბლოკი, ბლოკი, ჩეკი, შემდეგ კონტრი' : 'Block, block, check, then counter', 'hook, body': ka ? 'როლი, იდაყვი დაბლა, შემდეგ 3-2' : 'Roll, elbow down, then 3-2' });
+  const gap = Math.max(1300, 4300 - 330 * (L0 - 1)), secs = L0 >= 6 ? 180 : 120;
+  return [{ label: R1(['Get ready: bounce, hands up, eyes forward', 'მომზადება: ხტუნვა, ხელები ზევით, თვალი წინ']), kind: 'warm', secs: 60 },
+    ...Array.from({ length: 3 }, (_, i) => [
+      { label: R1([`Sparring round ${i + 1} of 3: defend, then counter`, `სპარინგის რაუნდი ${i + 1} / 3: დაიცავი, შემდეგ კონტრი`]), kind: 'work', secs, pool, hints, gap: gap - i * 150 },
+      ...(i < 2 ? [{ label: R1(['Rest', 'დასვენება']), kind: 'rest', secs: 60 }] : []),
+    ]).flat()];
+}
+function Spar() {
+  const sp = store.get().spar || {}, L0 = sparLevel(), mine = profile().style;
+  const opts = `<option value="mixed">${tr('Mixed (all-rounder)')}</option>${Object.entries(STYLE_DISC).map(([k, d]) => `<optgroup label="${esc(L(d))}">${STYLES.filter(s => s.disc === k).map(s => `<option value="${s.id}"${sp.lastOpp === s.id ? ' selected' : ''}>${esc(SL(s).name)}</option>`).join('')}</optgroup>`).join('')}`;
+  const el = h(`<section class="profile"><a href="#/today" class="back">← ${t('today')}</a><h1>${tr('Sparring partner')}</h1>
+    <p class="muted">${tr('Your partner calls its attacks out loud. Defend each one and counter straight away; the answer is shown on screen. "Now" means an opening: attack. After the rounds, say how it went and your partner adapts.')}</p>
+    <label class="row">${tr('Your partner fights like')} <select class="opp">${opts}</select></label>
+    <div class="card"><h3>${tr('Partner level')}</h3><p class="stat">${L0} <small>/ 10</small></p>
+      <div class="progress"><div style="width:${L0 * 10}%"></div></div>
+      <p class="muted small">${tr('Higher level: faster attacks, doubles, longer rounds.')}</p></div>
+    ${mine && mine !== 'mixed' ? `<p class="small"><a href="#/styles/vs/${mine},">${tr('Matchup game plan')}</a></p>` : ''}
+    <div class="savebar"><span class="muted small">3 × ${L0 >= 6 ? '3' : '2'} min</span><button class="btn primary" data-go>${t('start')}</button></div>
+  </section>`);
+  $('[data-go]', el).onclick = () => {
+    const o = $('.opp', el).value;
+    store.set({ spar: { ...(store.get().spar || { level: 3 }), lastOpp: o } });
+    location.hash = `#/session/spar/${o}`;
+  };
+  view.replaceChildren(el);
+}
 
-const NAVMAP = { week: 'plan', pathway: 'plan', profile: 'settings', tech: 'library', styles: 'library', iq: 'library', combos: 'library', tests: 'log', timer: 'today', session: 'today' };
+// ----- Fix-it block (Progress) -----
+function fixCard() {
+  const fx = fixActive(), ka = store.get().lang === 'ka';
+  const names = ids => ids.map(id => `<a href="#/tech/${id}">${esc(L(techById[id].name))}</a>`).join(', ');
+  if (fx) return `<div class="card fix"><h3>${tr('Fix-it block')} · ${tr('day {n} of 14', { n: fx.day })}</h3>
+    <p>${tr('Every session starts with one of these')}: ${names(fx.skills)}</p>
+    <div class="progress"><div style="width:${(fx.day / 14) * 100}%"></div></div>
+    <button class="btn ghost small" data-fix="stop">${tr('End it early')}</button></div>`;
+  const w = findWeak(), past = store.get().fix;
+  const ended = past?.start && !fx ? `<p class="muted small">${tr('Last block ended. Re-test and rate those skills to see what changed.')} <a href="#/tests">${tr('Skill tests')}</a></p>` : '';
+  if (!w.skills.length) return `<div class="card fix"><h3>${tr('Fix-it block')}</h3><p class="muted small">${tr('Rate skills after sessions or do the skill tests, and the app finds what to fix.')}</p>${ended}</div>`;
+  return `<div class="card fix"><h3>${tr('Fix-it block')}</h3>
+    <p>${tr('What to fix')}: ${names(w.skills)}</p>
+    <ul class="small muted">${w.why.map(x => `<li>${esc(x[ka ? 1 : 0])}</li>`).join('')}</ul>
+    <button class="btn primary small" data-fix="start">${tr('Start a 2-week fix-it block')}</button>${ended}</div>`;
+}
+function fixClick(e) {
+  const a = e.target.dataset.fix; if (!a) return false;
+  if (a === 'start') { const w = findWeak(); store.update(st => { st.fix = { start: isoDate(), skills: w.skills }; }, tr('Fix-it block started')); }
+  if (a === 'stop') store.update(st => { st.fix = { ...st.fix, skills: [] }; }, tr('Fix-it block ended'));
+  return true;
+}
+
+// ----- Fight or test date (Plan) -----
+function eventCard() {
+  const e = eventInfo(), raw = store.get().event || {};
+  return `<div class="card event"><h3>${tr('Fight or test date')}</h3>
+    ${e ? `<p><strong>${esc(e.name || tr('Your date'))}</strong> · ${e.days === 0 ? tr('today!') : tr('{n} days to go', { n: e.days })}</p>
+      <p class="muted small">${tr('The last three weeks before it build up, peak, then taper so you arrive fresh.')}</p>` : `<p class="muted small">${tr('Set a fight, grading or sparring day and the plan peaks for it.')}</p>`}
+    <div class="evrow"><input class="evname" maxlength="40" placeholder="${tr('Name (optional)')}" value="${esc(raw.name || '')}"><input type="date" class="evdate" value="${esc(raw.date || '')}"></div>
+    <div><button class="btn small" data-ev="save">${t('save')}</button>${raw.date ? ` <button class="btn ghost small" data-ev="clear">${tr('Remove date')}</button>` : ''}</div></div>`;
+}
+function eventClick(e, root) {
+  const a = e.target.dataset.ev; if (!a) return false;
+  if (a === 'save') { const d = $('.evdate', root).value; if (!d) return true; store.update(st => { st.event = { date: d, name: $('.evname', root).value.trim() }; }, tr('Date saved')); }
+  if (a === 'clear') store.update(st => { delete st.event; }, tr('Date removed'));
+  return true;
+}
+
+// ---------- router ----------
+const routes = { spar: Spar, styles: Styles, combos: MyCombos, timer: Timer, tests: Tests, iq: IQ, profile: () => Profile(false), today: Today, week: () => Plan(), plan: Plan, pathway: Pathway, library: Library, tech: Tech, session: Session, log: Log, settings: Settings };
+
+const NAVMAP = { week: 'plan', pathway: 'plan', profile: 'settings', tech: 'library', styles: 'library', iq: 'library', combos: 'library', tests: 'log', timer: 'today', spar: 'today', session: 'today' };
 function render() {
   cleanup.forEach(f => f()); cleanup = [];
   document.documentElement.lang = store.get().lang || 'en';

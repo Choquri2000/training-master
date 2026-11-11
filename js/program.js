@@ -33,12 +33,46 @@ const VOLUME = [
   { label: 'Deload: technique only', techSets: 2, rounds: 0, roundSecs: 0, rest: 60, pace: 'easy' },
 ];
 export const blockWeek = week => ((week - 1) % 4) + 1;
+// ---------- Fight or test date ----------
+// With a date set, the last three weeks before it become build -> peak -> taper.
+const DAY = 864e5;
+const d0 = iso => new Date(iso + 'T00:00:00');
+function weekStart(week) { const s = d0(store.get().startDate || '2026-11-16'); s.setDate(s.getDate() + (week - 1) * 7); return s; }
+export function eventInfo() {
+  const e = store.get().event; if (!e?.date) return null;
+  const now = new Date(); now.setHours(0, 0, 0, 0);
+  const days = Math.round((d0(e.date) - now) / DAY);
+  return days >= 0 ? { ...e, days } : null;
+}
+// The block week that sets the volume: 1-4 as usual, or 5 = taper week before the date.
+export function phaseWeek(week) {
+  const e = eventInfo();
+  if (e) {
+    const left = Math.floor((d0(e.date) - weekStart(week)) / DAY / 7);
+    if (left === 0) return 5;
+    if (left === 1) return 3;
+    if (left === 2) return 2;
+  }
+  return blockWeek(week);
+}
+const TAPER = { label: 'Taper: sharp and fresh', techSets: 2, rounds: 2, roundSecs: 120, rest: 60, pace: 'medium' };
+const FTAPER = { label: 'Taper: sharp and fresh', rounds: 3, roundSecs: 120, rest: 60, pace: 'fast', burst: 0 };
+
 export function volume(week) {
-  const v = { ...VOLUME[blockWeek(week) - 1] };
+  const pw = phaseWeek(week);
+  const v = { ...(pw === 5 ? TAPER : VOLUME[pw - 1]) };
   if (week > 4 && v.rounds) v.roundSecs = Math.min(180, v.roundSecs + 30); // later blocks: longer rounds
   return tune(v, false);
 }
 
+// ---------- Fix-it block ----------
+// Two weeks where your weakest skills get a slot in every session (see Progress).
+export function fixActive() {
+  const f = store.get().fix; if (!f?.skills?.length) return null;
+  const now = new Date(); now.setHours(0, 0, 0, 0);
+  const day = Math.floor((now - d0(f.start)) / DAY) + 1;
+  return day >= 1 && day <= 14 ? { ...f, day } : null;
+}
 export const picks = () => (store.get().program?.picks || []).filter(suitable); // minus what your limits rule out
 
 // The plan never ends: each 4-week block has a theme that gets most of the time,
@@ -78,6 +112,11 @@ export function programFocus(day, week) {
   let res = [...new Set(out)].slice(0, n);
   if (!res.length) res = take(p, n, k);
   // Skills you rated "felt off" come back sooner: the oldest one takes the last slot.
+  const fx = fixActive();
+  if (fx) { // fix-it block: one of your weak skills leads every session
+    const fs = fx.skills.filter(id => techById[id] && suitable(id) && okDay(id));
+    if (fs.length && !res.some(id => fs.includes(id))) res[0] = fs[k % fs.length];
+  }
   const sty = myStyle();
   if (sty) { // one slot per day goes to your style, rotating through its skills
     const ss = sty.skills.filter(id => p.includes(id) && okDay(id));
@@ -118,7 +157,7 @@ const FVOL = [
   { label: 'Peak: fight pace', rounds: 6, roundSecs: 180, rest: 60, pace: 'fast', burst: 8 },
   { label: 'Deload: light and technical', rounds: 3, roundSecs: 120, rest: 60, pace: 'easy', burst: 0 },
 ];
-export const fighterVolume = week => tune({ ...FVOL[blockWeek(week) - 1] }, true);
+export const fighterVolume = week => { const pw = phaseWeek(week); return tune({ ...(pw === 5 ? FTAPER : FVOL[pw - 1]) }, true); };
 
 // Defence calls: you react with the defence, then the counter.
 export const DEFENCE_CALLS = [
@@ -167,7 +206,27 @@ export function sharpenSkills(day, week) {
   if (!p.length) return [];
   const k = ((week - 1) * weekDays(true).length + (dayPlan(day, true)?.slot ?? 0)) * 2;
   const out = [...new Set([p[k % p.length], p[(k + 1) % p.length]])];
+  const fx = fixActive()?.skills.filter(id => techById[id] && suitable(id));
+  if (fx?.length && !out.some(id => fx.includes(id))) out[0] = fx[(week + (dayPlan(day, true)?.slot ?? 0)) % fx.length];
   const ss = (myStyle()?.skills || []).filter(id => p.includes(id));
   if (ss.length && !out.some(id => ss.includes(id))) out[out.length - 1] = ss[(week + (dayPlan(day, true)?.slot ?? 0)) % ss.length];
   return out;
+}
+
+// What to fix: skills you rated "felt off" (most recent first), plus areas your monthly
+// tests point to. Returns { skills: [ids], why: [[en, ka]] }.
+export function findWeak() {
+  const s = store.get(), feel = s.feel || {}, why = [];
+  const off = Object.keys(feel).filter(id => feel[id].r === 3 && techById[id] && suitable(id)).sort((a, b) => feel[b].date.localeCompare(feel[a].date));
+  if (off.length) why.push(['Skills you rated "felt off"', 'უნარები, რომლებიც შეაფასე „არ გამოდის“']);
+  const tests = s.tests || [], last = k => tests.filter(x => x.k === k).slice(-2);
+  const worse = (k, up) => { const [a, b] = last(k); return a && b && (up ? b.v < a.v : b.v > a.v); };
+  const add = [];
+  const react = last('react').pop();
+  if (react && (react.v >= 450 || worse('react', false))) { add.push('slip', 'parry', 'block'); why.push(['Reaction time: defend sooner', 'რეაქციის დრო: უფრო ადრე დაცვა']); }
+  const form = last('form').pop();
+  if (form && (form.v < 16 || worse('form', true))) { add.push('stance', 'step', 'jab'); why.push(['Form under fatigue: back to fundamentals', 'ტექნიკა დაღლილობისას: საფუძვლებთან დაბრუნება']); }
+  if (worse('punch', true)) { add.push('jab', 'cross'); why.push(['Punch output dropped: speed work', 'დარტყმების რაოდენობა დაეცა: სისწრაფეზე მუშაობა']); }
+  const skills = [...new Set([...off, ...add])].filter(id => techById[id] && suitable(id)).slice(0, 3);
+  return { skills, why };
 }
