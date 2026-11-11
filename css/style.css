@@ -284,3 +284,7 @@ details { margin: 10px 0; } details > summary { cursor: pointer; font-weight: 60
 .session.opp-on .clock { font-size: 2rem; margin: 0; }
 .session.opp-on .callout { font-size: 1.3rem; min-height: 1.7rem; }
 .session.opp-on .fig-big { margin-top: 2px; }
+.card.career { display: block; color: inherit; text-decoration: none; }
+.card.result.win { border-color: var(--ok); } .card.result.loss { border-color: var(--combat); }
+.mylist .bad { color: var(--combat); }
+.mic { margin: 6px 0; }

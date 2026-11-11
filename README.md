@@ -8,6 +8,7 @@ Running is tracked in a separate app. This app shows the full weekly plan (run, 
 
 - **Today:** today's session, ready to start, with a coach's note. Also a round timer for bag, pads or sparring.
 - **Practical drills:** footwork box, band shadowboxing, light dumbbell rounds, reaction cues, balance and kicking base, a fight conditioning circuit and "last 30 seconds" finishes. The plan adds one to each session as the drill of the day.
+- **Sparring partner, corner coach, voice control and career:** a 3D motion-captured opponent can attack you on screen (speeds set from real fight timing, scaled by partner level). A corner coach speaks one tip in each rest. Say "pause", "go", "next" or "again" to control a session hands-free. Fighter career mode turns training into fight camps and fight nights on a ranked ladder.
 - **Plan:** your profile-based plan (days, length, level, goal, limits, stance), in two stages: learn your skills, then long-term fighter training. Can be built around a fighting style.
 - **Learn:** every technique and 21 combinations with motion-capture animation and step-by-step coaching captions; fighting styles (13, with comparison, a style quiz and matchup game plans); Fight IQ lessons; your own combinations.
 - **Progress:** sessions, minutes, skill ratings and monthly skill tests.

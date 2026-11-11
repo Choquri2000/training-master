@@ -7,6 +7,9 @@ import { LESSONS, lessonById } from './data/iq.js';
 import { STYLES, styleById, STYLE_DISC, DIMS } from './data/styles.js';
 import { ATTACKS, STYLE_W } from './data/spar.js';
 import { DRILLS, drillById, drillOfDay, withDrill, COLORS } from './data/drills.js';
+import { addCorner } from './data/corner.js';
+import { voiceCtlOK, listen } from './voicectl.js';
+import { CAMP, MIN_CAMP, careerOf, tierOf, rankOf, record, campDone, nextOpponent, decide, applyResult, HOW } from './data/career.js';
 
 // Motion-capture player where a clip exists, else the IK figure (also the fallback if 3D fails).
 function createViewer(el, id, opts = {}) {
@@ -109,6 +112,7 @@ function Today() {
       <p><span class="dot k-run"></span>${t('run')}: ${d.run ? esc(L(d.run)) : t('rest')}</p>
       ${d.strength ? `<details><summary><span class="dot k-strength"></span>${esc(L(STRENGTH[d.strength].name))}${d.combat ? ' · ' + tr('after combat') : ''}</summary><ul class="slist">${STRENGTH[d.strength].items.map(([n, r]) => `<li>${esc(tr(n))} <em>${esc(tr(r))}</em></li>`).join('')}</ul></details>` : ''}
     </div>` : ''}
+    ${(() => { const c = careerOf(store.get()), d = campDone(store.get(), c); return !c.fights.length || d >= MIN_CAMP ? `<p class="note">🥊 ${tr('Fight night is ready')}: <a href="#/career">${esc(nextOpponent(c, careerStyles()).name)}</a></p>` : ''; })()}
     <p class="center"><a class="btn ghost" href="#/spar">🥊 ${tr('Sparring partner')}</a> <a class="btn ghost" href="#/timer">⏱ ${tr('Round timer')}</a></p>
   </section>`);
   view.replaceChildren(el);
@@ -439,6 +443,11 @@ function Session(kind, techCsv) {
     if (!focus.length && !['footwork', 'ffight', 'fcombo', 'fdefence'].includes(kind)) focus = focusTechs(kind === 'main' ? 3 : 2);
     segs = buildSession(kind, focus);
   }
+  { // corner coach in the rests; weaves in the skills you are working on
+    const ids = [...new Set([...focus, ...(fixActive()?.skills || [])])].filter(id => techById[id]).slice(0, 4);
+    const cue = id => { const x = techById[id], k = x.keyPoints; return { en: `${x.name.en}: ${(k.en || k)[0]}`, ka: `${L(x.name)}: ${L(k)[0]}` }; };
+    segs = addCorner(segs, { fight: /spar|fight|vs|style|timer|career/.test(kind), focus: ids.map(cue) });
+  }
   const startedAt = Date.now();
   const el = h(`<section class="session">
     <div class="seg-label"></div>
@@ -452,6 +461,7 @@ function Session(kind, techCsv) {
       <button class="btn" data-a="skip">${t('skip')}</button>
       <button class="btn ghost" data-a="finish">${t('finish')}</button>
     </div>
+    ${voiceCtlOK() ? `<p class="mic"><button type="button" class="pill${store.get().voiceCtl ? ' on' : ''}" data-a="mic">🎤 ${tr('Voice control')}</button> <span class="muted small micstat"></span></p>` : ''}
     <ol class="seglist">${segs.map((s, i) => `<li data-i="${i}" class="kind-${s.kind}">${esc(L(s.label))}${s.tech ? `: ${esc(L(techById[s.tech].name))}` : ''} <span>${fmt(s.secs)}</span></li>`).join('')}</ol>
     <div class="logform" hidden>
       <h2>${t('howHard')}</h2>
@@ -459,7 +469,7 @@ function Session(kind, techCsv) {
       ${focus.length ? `<h2>${t('howFelt')}</h2><div class="rates">${focus.map(id => `<div class="rate" data-id="${id}"><span>${esc(L(techById[id].name))}</span>
         <div class="seg">${[[1, 'feltEasy'], [2, 'feltOk'], [3, 'feltOff']].map(([v, k]) => `<button class="pill${v === 2 ? ' on' : ''}" data-r="${v}">${t(k)}</button>`).join('')}</div></div>`).join('')}</div>
         <p class="muted small">${t('rateHint')}</p>` : ''}
-      ${kind.startsWith('spar') ? `<h2>${tr('How did you handle your partner?')}</h2><div class="sparbox"><div class="seg sparrate">${[[1, 'I got caught a lot'], [2, 'About right'], [3, 'I handled everything']].map(([v, n]) => `<button class="pill${v === 2 ? ' on' : ''}" data-r="${v}">${tr(n)}</button>`).join('')}</div></div>` : ''}
+      ${kind.startsWith('spar') || kind === 'career' ? `<h2>${tr(kind === 'career' ? 'How did the fight go?' : 'How did you handle your partner?')}</h2><div class="sparbox"><div class="seg sparrate">${[[1, 'I got caught a lot'], [2, 'About right'], [3, 'I handled everything']].map(([v, n]) => `<button class="pill${v === 2 ? ' on' : ''}" data-r="${v}">${tr(n)}</button>`).join('')}</div></div>` : ''}
       <button class="btn primary" data-a="save">${t('save')}</button>
     </div>
   </section>`);
@@ -467,7 +477,7 @@ function Session(kind, techCsv) {
 
   let fig = null, figTech = null;
   let opp = null, oppSeen = 0, oppAt = 0, oppDur = 0;
-  if (kind === 'spar3d' && webglOK()) { const box = $('.fig-big', el); box.classList.add('opp3d'); opp = createOpponent(box); cleanup.push(() => opp.destroy()); }
+  if (segs.some(x => x.opp) && webglOK()) { const box = $('.fig-big', el); box.classList.add('opp3d'); opp = createOpponent(box); cleanup.push(() => opp.destroy()); }
   const render = p => {
     const s = p.seg || segs[segs.length - 1];
     $('.seg-label', el).textContent = p.done ? tr('Done!') : `${L(s.label)}${s.tech ? ': ' + L(techById[s.tech].name) : ''}`;
@@ -481,7 +491,7 @@ function Session(kind, techCsv) {
       co.classList.toggle('late', late);
     }
     co.classList.toggle('cue', !!s.silent); co.style.color = (s.colors && COLORS[p.lastCall]) || '';
-    $('.hint', el).textContent = (p.lastCall && (!opp || Date.now() - oppAt > oppDur + 350) && s.hints?.[p.lastCall]) || '';
+    if (s.corner && s.kind === 'rest') $('.hint', el).textContent = '🗣 ' + L(s.corner); else $('.hint', el).textContent = (p.lastCall && (!opp || Date.now() - oppAt > oppDur + 350) && s.hints?.[p.lastCall]) || '';
     $('[data-a=toggle]', el).textContent = p.running ? t('pause') : (p.elapsed ? t('resume') : t('start'));
     el.querySelectorAll('.seglist li').forEach(li => li.classList.toggle('cur', +li.dataset.i === p.i));
     const tech = s.tech || null;
@@ -499,6 +509,17 @@ function Session(kind, techCsv) {
   render(player);
   cleanup.push(() => { player.stop(); fig?.destroy(); });
 
+  // Hands-free: "pause", "go", "next", "again".
+  let unlisten = null;
+  const micState = (st, cmd) => { const m = $('.micstat', el); if (!m) return;
+    m.textContent = st === 'listening' ? tr('Say: pause, go, next, again') : st === 'heard' ? `✓ ${tr(cmd)}` : st === 'denied' ? tr('Microphone blocked. Allow it in the browser settings.') : ''; };
+  const micOn = () => { if (unlisten || !voiceCtlOK()) return; unlisten = listen(cmd => {
+    if (cmd === 'pause') player.pause(); if (cmd === 'go') { player.start(); wake(); } if (cmd === 'next') player.next();
+    if (cmd === 'again') { if (player.lastCall) say(player.lastCall); else { player.left = player.seg?.secs ?? 0; } player.onTick(player); }
+  }, { lang: store.get().lang === 'ka' ? 'ka-GE' : 'en-US', onState: micState }); };
+  const micOff = () => { unlisten?.(); unlisten = null; };
+  cleanup.push(micOff);
+
   // Keep the screen on during a session where supported.
   let lock = null;
   const wake = async () => { try { lock = await navigator.wakeLock?.request('screen'); } catch { /* ignore */ } };
@@ -508,7 +529,8 @@ function Session(kind, techCsv) {
     const r = e.target.closest('[data-r]');
     if (r) { r.parentElement.querySelectorAll('.pill').forEach(x => x.classList.toggle('on', x === r)); return; }
     const a = e.target.dataset.a;
-    if (a === 'toggle') { player.toggle(); if (player.running) wake(); }
+    if (a === 'toggle') { player.toggle(); if (player.running) { wake(); if (store.get().voiceCtl) micOn(); } }
+    if (a === 'mic') { const on = !store.get().voiceCtl; store.set({ voiceCtl: on }); e.target.classList.toggle('on', on); on ? micOn() : micOff(); }
     if (a === 'skip') player.next();
     if (a === 'finish') { player.stop(); player.done = true; render(player); }
     if (a === 'save') {
@@ -519,12 +541,16 @@ function Session(kind, techCsv) {
         st.log.push({ date: isoDate(), at: new Date().toISOString().slice(11, 19), type: kind, minutes, rpe: +$('.rpe', el).value, techs: focus, ratings });
         st.feel = { ...(st.feel || {}) };
         Object.entries(ratings).forEach(([id, v]) => { st.feel[id] = { r: v, date: isoDate() }; });
-        if (kind.startsWith('spar')) { // the partner adapts: handled everything -> faster, caught a lot -> slower
+        if (kind === 'career') { // fight night: how it went + the camp decide the result
+          const c = careerOf(st), r = +$('.sparrate .pill.on', el).dataset.r, op = nextOpponent(c, careerStyles());
+          st.career = { ...applyResult(c, decide(r, campDone(st, c) >= CAMP, op.n), op), logAt: st.log.length, seen: false };
+        }
+        if (kind.startsWith('spar') || kind === 'career') { // the partner adapts: handled everything -> faster, caught a lot -> slower
           const r = +$('.sparrate .pill.on', el).dataset.r, sp = st.spar || { level: 3 };
           st.spar = { ...sp, level: Math.max(1, Math.min(10, sp.level + (r === 3 ? 1 : r === 1 ? -1 : 0))), last: { date: isoDate(), opp: techCsv, r } };
         }
       }, tr('Session saved'));
-      location.hash = kind === 'formtest' ? '#/tests/form' : kind.startsWith('spar') ? '#/spar' : '#/log';
+      location.hash = kind === 'formtest' ? '#/tests/form' : kind === 'career' ? '#/career' : kind.startsWith('spar') ? '#/spar' : '#/log';
     }
   });
   $('.rpe', el).addEventListener('input', e => { e.target.nextElementSibling.textContent = e.target.value; });
@@ -551,6 +577,7 @@ function Log() {
   const chip = id => `<li><a href="#/tech/${id}">${esc(L(techById[id].name))}</a></li>`;
   const el = h(`<section><h1>${t('log')}</h1>
     <a class="tool testscard" href="#/tests"><b>${tr('Skill tests')}</b><span>${testsDue() ? tr('Your monthly tests are due.') : tr('{n} results', { n: (s.tests || []).length })}</span></a>
+    ${careerCard()}
     ${fixCard()}
     <div class="stats">
       <div class="card"><h3>${t('thisWeek')}</h3><p class="stat">${wk.length}</p><small>${t('sessions')}</small></div>
@@ -720,6 +747,8 @@ function extraSession(kind, arg) {
   }
   if (kind === 'spar') return sparSegs(arg);
   if (kind === 'spar3d') return sparSegs(arg, true);
+  if (kind === 'career') { const c = careerOf(store.get()), t = tierOf(c), op = nextOpponent(c, careerStyles());
+    return sparSegs(op.style, store.get().spar?.mode === '3d' && webglOK(), { fight: true, rounds: t.rounds, secs: t.secs, level: Math.min(10, sparLevel() + t.edge) }); }
   if (kind === 'x') { const d = drillById[arg]; if (!d) return null; return [{ ...warm, secs: 120 }, ...d.build({ short: false, p: profile() }), { label: R1(['Cool-down and stretch', 'გაგრილება და გაჭიმვა']), kind: 'cool', secs: 90 }]; }
   if (kind === 'vs') {
     const [a, b] = (arg || '').split(',').map(x => styleById[x]); if (!a || !b) return null;
@@ -1137,8 +1166,8 @@ function Matchup(pair) {
 
 // ----- Virtual sparring partner -----
 const sparLevel = () => store.get().spar?.level || 3;
-function sparSegs(opp, see = false) {
-  const st = styleById[opp], L0 = sparLevel(), ka = store.get().lang === 'ka';
+function sparSegs(opp, see = false, o = {}) {
+  const st = styleById[opp], L0 = o.level ?? sparLevel(), ka = store.get().lang === 'ka';
   const allow = new Set(st ? { boxing: ['p', 'o'], muaythai: ['p', 'k', 'o'], mma: ['p', 'k', 's', 'o'] }[st.disc] : ['p', 'k', 'o']);
   if (profile().limits.some(l => l === 'knees' || l === 'back')) allow.delete('s');
   const w = STYLE_W[opp] || {};
@@ -1147,11 +1176,11 @@ function sparSegs(opp, see = false) {
   if (see) pool.splice(0, pool.length, ...pool.filter(c => OPP_CALLS[c])); // 3D: only attacks with a real capture
   const hints = Object.fromEntries(ATTACKS.map(a => [a.say, ka ? a.ka : a.en]));
   Object.assign(hints, { 'jab, hook': ka ? 'პარირება, როლი, კონტრი' : 'Parry, roll, counter', 'one two, kick': ka ? 'ბლოკი, ბლოკი, ჩეკი, შემდეგ კონტრი' : 'Block, block, check, then counter', 'hook, body': ka ? 'როლი, იდაყვი დაბლა, შემდეგ 3-2' : 'Roll, elbow down, then 3-2', 'one two, hook': ka ? 'ბლოკი, ბლოკი, როლი, შემდეგ 3-2' : 'Block, block, roll, then 3-2' });
-  const gap = Math.max(1300, 4300 - 330 * (L0 - 1)), secs = L0 >= 6 ? 180 : 120;
+  const gap = Math.max(1300, 4300 - 330 * (L0 - 1)), secs = o.secs || (L0 >= 6 ? 180 : 120), n = o.rounds || 3;
   return [{ label: R1(['Get ready: bounce, hands up, eyes forward', 'მომზადება: ხტუნვა, ხელები ზევით, თვალი წინ']), kind: 'warm', secs: 60 },
-    ...Array.from({ length: 3 }, (_, i) => [
-      { label: R1([`Sparring round ${i + 1} of 3: defend, then counter`, `სპარინგის რაუნდი ${i + 1} / 3: დაიცავი, შემდეგ კონტრი`]), kind: 'work', secs, pool, hints, gap: see ? Math.max(1900, gap + 500 - i * 150) : gap - i * 150, ...(see ? { silent: true, opp: true } : {}) },
-      ...(i < 2 ? [{ label: R1(['Rest', 'დასვენება']), kind: 'rest', secs: 60 }] : []),
+    ...Array.from({ length: n }, (_, i) => [
+      { label: o.fight ? R1([`Round ${i + 1} of ${n}`, `რაუნდი ${i + 1} / ${n}`]) : R1([`Sparring round ${i + 1} of 3: defend, then counter`, `სპარინგის რაუნდი ${i + 1} / 3: დაიცავი, შემდეგ კონტრი`]), kind: 'work', secs, pool, hints, gap: Math.max(see ? 1900 : 1300, (see ? gap + 500 : gap) - Math.min(i, 3) * 150), ...(see ? { silent: true, opp: true } : {}) },
+      ...(i < n - 1 ? [{ label: R1(['Rest', 'დასვენება']), kind: 'rest', secs: 60 }] : []),
     ]).flat()];
 }
 function Spar() {
@@ -1174,6 +1203,39 @@ function Spar() {
     store.set({ spar: { ...(store.get().spar || { level: 3 }), lastOpp: o, mode } });
     location.hash = `#/session/${mode === '3d' ? 'spar3d' : 'spar'}/${o}`;
   };
+  view.replaceChildren(el);
+}
+
+// ----- Fighter career -----
+// Opponents come from your own sport when you picked a style (boxers meet boxers), else from all styles.
+const careerStyles = () => { const d = styleById[profile().style]?.disc; return d ? STYLES.filter(x => x.disc === d) : STYLES; };
+function careerCard() {
+  const c = careerOf(store.get()), rc = record(c), d = campDone(store.get(), c);
+  return `<a class="card career" href="#/career"><h3>${tr('Fighter career')}</h3>
+    <p><strong>${rc.w}-${rc.l}</strong> · ${esc(L(tierOf(c).name))} · ${esc(L(rankOf(c)))}</p>
+    <div class="progress"><div style="width:${Math.min(100, (d / CAMP) * 100)}%"></div></div>
+    <p class="muted small">${tr('Fight camp')}: ${Math.min(d, CAMP)}/${CAMP} ${tr('sessions')}</p></a>`;
+}
+function Career() {
+  const s = store.get(), c = careerOf(s), rc = record(c), tier = tierOf(c), d = campDone(s, c), op = nextOpponent(c, careerStyles()), ost = styleById[op.style];
+  const ready = !c.fights.length || d >= MIN_CAMP, last = c.fights[c.fights.length - 1];
+  const el = h(`<section><a href="#/log" class="back">← ${t('log')}</a><h1>${tr('Fighter career')}</h1>
+    ${last && c.seen === false ? `<div class="card result ${last.res === 'W' ? 'win' : 'loss'}"><h3>${last.res === 'W' ? tr('You won!') : tr('You lost')}</h3>
+      <p>${esc(tr(last.res === 'W' ? 'Win by {how} against {opp}.' : 'Loss by {how} against {opp}.', { how: L(HOW[last.how]), opp: last.opp }))}</p>
+      <p class="muted small">${last.res === 'W' ? tr('You climb the rankings.') : tr('Every champion has losses. Do a full camp and come back stronger.')}</p></div>` : ''}
+    <div class="card"><p class="stat">${rc.w}-${rc.l} <small>${rc.ko ? `(${rc.ko} KO)` : ''}</small></p>
+      <p><strong>${esc(L(tier.name))}</strong> · ${esc(L(rankOf(c)))}${c.champ && c.defences ? ` · ${tr('{n} title defences', { n: c.defences })}` : ''}</p></div>
+    <h2>${tr('Next fight')}</h2>
+    <div class="card"><p><strong>${esc(op.name)}</strong> · ${op.wins}-${op.losses}</p>
+      <p class="muted small">${tr('Fights like')}: <a href="#/styles/${ost.id}">${esc(SL(ost).name)}</a> · ${tier.rounds} × ${tier.secs / 60} min${tier.title ? ' · ' + tr('title on the line') : ''}</p>
+      <p>${tr('Fight camp')}: ${Math.min(d, CAMP)}/${CAMP} ${tr('sessions')}</p>
+      <div class="progress"><div style="width:${Math.min(100, (d / CAMP) * 100)}%"></div></div>
+      <p class="muted small">${d >= CAMP ? tr('Full camp: you go in with the edge.') : ready ? tr('You can fight now, but a full camp gives you the edge.') : tr('Train {n} more sessions to unlock the fight.', { n: MIN_CAMP - d })}</p>
+      ${ready ? `<a class="btn primary" href="#/session/career/${op.n}">🥊 ${tr('Fight night')}</a>` : ''}</div>
+    <p class="muted small">${tr('Every session you train is part of your camp. On fight night your sparring partner fights in this opponent\'s style; afterwards you say how it went, and that plus your camp decides the result.')}</p>
+    ${c.fights.length ? `<h2>${tr('Record')}</h2><ul class="mylist">${[...c.fights].reverse().map(f => `<li><span><strong class="${f.res === 'W' ? 'ok' : 'bad'}">${f.res}</strong> ${esc(f.opp)}<br><span class="muted small">${esc(L(HOW[f.how]))} · ${f.date}</span></span></li>`).join('')}</ul>` : ''}
+  </section>`);
+  if (c.seen === false) store.set({ career: { ...c, seen: true } });
   view.replaceChildren(el);
 }
 
@@ -1217,9 +1279,9 @@ function eventClick(e, root) {
 }
 
 // ---------- router ----------
-const routes = { drills: Drills, spar: Spar, styles: Styles, combos: MyCombos, timer: Timer, tests: Tests, iq: IQ, profile: () => Profile(false), today: Today, week: () => Plan(), plan: Plan, pathway: Pathway, library: Library, tech: Tech, session: Session, log: Log, settings: Settings };
+const routes = { career: Career, drills: Drills, spar: Spar, styles: Styles, combos: MyCombos, timer: Timer, tests: Tests, iq: IQ, profile: () => Profile(false), today: Today, week: () => Plan(), plan: Plan, pathway: Pathway, library: Library, tech: Tech, session: Session, log: Log, settings: Settings };
 
-const NAVMAP = { drills: 'library', week: 'plan', pathway: 'plan', profile: 'settings', tech: 'library', styles: 'library', iq: 'library', combos: 'library', tests: 'log', timer: 'today', spar: 'today', session: 'today' };
+const NAVMAP = { career: 'log', drills: 'library', week: 'plan', pathway: 'plan', profile: 'settings', tech: 'library', styles: 'library', iq: 'library', combos: 'library', tests: 'log', timer: 'today', spar: 'today', session: 'today' };
 function render() {
   cleanup.forEach(f => f()); cleanup = [];
   document.documentElement.lang = store.get().lang || 'en';

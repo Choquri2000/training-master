@@ -81,7 +81,7 @@ export class Player {
     const s = this.seg; if (!s) return;
     if (s.kind === 'work' && s.cont) { if (s.cont === 'next') clack(); else setTimeout(() => say(s.cont === 'switch' ? 'switch sides' : s.cont), 150); } // same round goes on: no bell
     else if (s.kind === 'work') bell(1);
-    if (s.kind === 'rest') bell(2);
+    if (s.kind === 'rest') { bell(2); if (s.corner) setTimeout(() => { if (this.seg === s && this.running) say(s.corner.en); }, 2600); } // corner coach
     if (s.tech) setTimeout(() => say(techById[s.tech].name.en), 900);
     this.nextCall = Date.now() + 3500;
   }
