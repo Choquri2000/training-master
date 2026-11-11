@@ -288,6 +288,7 @@ function Tech(id) {
     <h1>${esc(L(x.name))}</h1>
     <p class="muted">${t('phase')} ${x.phase} · ${esc(L(DISCIPLINES[x.discipline]))} · ${statusBadge(st)}</p>
     <p class="purpose">${esc(L(x.purpose))}</p>
+    ${x.uses ? `<p class="muted small">${tr('Built from')}: ${x.uses.map(u => `<a href="#/tech/${u}">${esc(L(techById[u].name))}</a>`).join(', ')}</p>` : ''}
     <div class="fig-big"></div>
     <div class="figcap" aria-live="polite"></div>
     <div class="figctl">

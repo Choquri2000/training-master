@@ -5,12 +5,17 @@ import { store } from './store.js';
 
 // Kicks, knees and level changes stay off Wednesday (legs day in the gym).
 const LEGGY = new Set(['teep', 'roundhouse', 'leadkick', 'knee', 'check', 'sprawl', 'sprawlstrike', 'doubleleg', 'levelchange', 'catchkick', 'clinch', 'standup']);
+const leggy = id => LEGGY.has(id) || !!techById[id]?.uses?.some(u => LEGGY.has(u)); // combinations with a kick or knee too
+const ofDisc = d => TECHNIQUES.filter(x => x.discipline === d).map(x => x.id);
+const ATTACK = ofDisc('combos'), COUNTER = ofDisc('counters');
+// The family a combination belongs to, for the themes: kicks/knees/elbows -> kicks, shots -> MMA, else hands.
+const family = t => (t.uses.includes('doubleleg') ? 'mma' : t.uses.some(u => techById[u].discipline === 'muaythai') ? 'muaythai' : 'boxing');
 
 export const PRESETS = {
-  allround: { name: 'All-round (recommended)', ids: ['stance', 'step', 'pivot', 'jab', 'cross', 'slip', 'parry', 'block', 'leadhook', 'rearhook', 'leaduppercut', 'rearuppercut', 'roll', 'slipcounter', 'pullcounter', 'angleout', 'teep', 'roundhouse', 'check', 'leadkick', 'knee', 'elbow', 'catchkick', 'clinch', 'sprawl', 'levelchange', 'doubleleg', 'sprawlstrike', 'standup'] },
-  boxing: { name: 'Boxing', ids: ['stance', 'step', 'pivot', 'jab', 'cross', 'slip', 'parry', 'block', 'leadhook', 'rearhook', 'leaduppercut', 'rearuppercut', 'roll', 'slipcounter', 'pullcounter', 'angleout'] },
-  muaythai: { name: 'Muay Thai / Kickboxing', ids: ['stance', 'step', 'jab', 'cross', 'block', 'teep', 'roundhouse', 'check', 'switchstance', 'leadhook', 'leadkick', 'knee', 'elbow', 'catchkick', 'clinch'] },
-  mma: { name: 'MMA', ids: ['stance', 'step', 'jab', 'cross', 'slip', 'teep', 'roundhouse', 'sprawl', 'levelchange', 'standup', 'doubleleg', 'sprawlstrike', 'leadhook', 'pullcounter'] },
+  allround: { name: 'All-round (recommended)', ids: ['stance', 'step', 'pivot', 'jab', 'cross', 'slip', 'parry', 'block', 'leadhook', 'rearhook', 'leaduppercut', 'rearuppercut', 'roll', 'slipcounter', 'pullcounter', 'angleout', 'teep', 'roundhouse', 'check', 'leadkick', 'knee', 'elbow', 'catchkick', 'clinch', 'sprawl', 'levelchange', 'doubleleg', 'sprawlstrike', 'standup', ...ATTACK, ...COUNTER] },
+  boxing: { name: 'Boxing', ids: ['stance', 'step', 'pivot', 'jab', 'cross', 'slip', 'parry', 'block', 'leadhook', 'rearhook', 'leaduppercut', 'rearuppercut', 'roll', 'slipcounter', 'pullcounter', 'angleout', 'c12', 'c112', 'c123', 'c1232', 'c232', 'c34', 'c52', 'c632', 'dslip23', 'droll32', 'dblock32', 'dparry12', 'dpull23'] },
+  muaythai: { name: 'Muay Thai / Kickboxing', ids: ['stance', 'step', 'jab', 'cross', 'block', 'teep', 'roundhouse', 'check', 'switchstance', 'leadhook', 'leadkick', 'knee', 'elbow', 'catchkick', 'clinch', 'c12', 'c123', 'c1teep', 'c1switch', 'cdutch', 'c12knee', 'c3elbow', 'dblock32', 'dcheckkick', 'dcatch2kick'] },
+  mma: { name: 'MMA', ids: ['stance', 'step', 'jab', 'cross', 'slip', 'teep', 'roundhouse', 'sprawl', 'levelchange', 'standup', 'doubleleg', 'sprawlstrike', 'leadhook', 'pullcounter', 'c12', 'c123', 'c12shoot', 'c1teep', 'dslip23', 'dparry12'] },
   all: { name: 'Everything', ids: TECHNIQUES.map(x => x.id) },
 };
 
@@ -35,10 +40,10 @@ export const picks = () => (store.get().program?.picks || []).filter(id => techB
 // still revisits the other skills, so all of them keep improving.
 const DEFENCE = new Set(['slip', 'parry', 'block', 'roll', 'check', 'catchkick', 'slipcounter', 'pullcounter', 'angleout', 'sprawl']);
 export const THEMES = [
-  { name: 'Hands', has: t => t.discipline === 'boxing' && !DEFENCE.has(t.id) },
-  { name: 'Kicks, knees and elbows', has: t => t.discipline === 'muaythai' && !DEFENCE.has(t.id) },
-  { name: 'MMA: level changes and the ground', has: t => t.discipline === 'mma' && !DEFENCE.has(t.id) },
-  { name: 'Defence and counters', has: t => DEFENCE.has(t.id) },
+  { name: 'Hands', has: t => (t.discipline === 'boxing' || (t.discipline === 'combos' && family(t) === 'boxing')) && !DEFENCE.has(t.id) },
+  { name: 'Kicks, knees and elbows', has: t => (t.discipline === 'muaythai' || (t.discipline === 'combos' && family(t) === 'muaythai')) && !DEFENCE.has(t.id) },
+  { name: 'MMA: level changes and the ground', has: t => (t.discipline === 'mma' || (t.discipline === 'combos' && family(t) === 'mma')) && !DEFENCE.has(t.id) },
+  { name: 'Defence and counters', has: t => DEFENCE.has(t.id) || t.discipline === 'counters' },
 ];
 export const blockNo = week => Math.floor((week - 1) / 4);
 export function themeOf(week) {
@@ -56,7 +61,7 @@ const SLOT = { 0: 0, 2: 1, 4: 2 }; // Mon, Wed, Fri
 export function programFocus(day, week) {
   const p = picks().filter(id => id !== 'stance');
   if (!p.length || !(day in SLOT)) return [];
-  const okDay = id => day !== 2 || !LEGGY.has(id);
+  const okDay = id => day !== 2 || !leggy(id);
   const th = themeOf(week);
   const theme = p.filter(id => th?.has(techById[id]) && okDay(id));
   const rest = p.filter(id => !theme.includes(id) && okDay(id));
@@ -75,7 +80,7 @@ export function programFocus(day, week) {
 
 // Combos the timer calls: only ones built from what you picked (plus stance/step).
 export function programCombos() {
-  const p = new Set([...picks(), 'stance', 'step']);
+  const p = known();
   const list = COMBOS.filter(c => c.uses.every(id => p.has(id)));
   return list.length >= 2 ? list : null;
 }
@@ -115,15 +120,21 @@ export const DEFENCE_CALLS = [
   { say: 'sprawl, one two', uses: ['sprawlstrike'], kick: true },
 ];
 const KICKY = new Set([...LEGGY]);
+const known = () => new Set([...picks(), ...picks().flatMap(id => techById[id].uses || []), 'stance', 'step']);
 const usable = (list, noKicks) => {
-  const p = new Set([...picks(), 'stance', 'step']);
+  const p = known();
   return list.filter(c => c.uses.every(id => p.has(id)) && !(noKicks && (c.kick || c.uses.some(id => KICKY.has(id)))));
 };
-export const defenceCalls = noKicks => usable(DEFENCE_CALLS, noKicks);
+// Picked defend-and-counter combinations are called in the defence rounds too.
+const counterCalls = () => COUNTER.filter(id => picks().includes(id)).map(id => ({ say: techById[id].callout.en, uses: techById[id].uses }));
+export const defenceCalls = noKicks => usable([...DEFENCE_CALLS, ...counterCalls().filter(c => !DEFENCE_CALLS.some(d => d.say === c.say))], noKicks);
 export const offenceCombos = noKicks => usable(COMBOS, noKicks);
 
 // Two "combos of the week" to drill on Monday, rotating through everything you know.
 export function weekCombos(week) {
+  // The combinations you picked come first: two of them each week, in turn.
+  const mine = ATTACK.filter(id => picks().includes(id)).map(id => ({ say: techById[id].callout.en, uses: techById[id].uses }));
+  if (mine.length >= 2) { const a = (week * 2) % mine.length, b = (week * 2 + 1) % mine.length; return [...new Set([mine[a], mine[b]])]; }
   const DEF = new Set(['slip', 'parry', 'block', 'roll', 'check', 'catchkick', 'sprawl', 'sprawlstrike', 'pullcounter', 'slipcounter']);
   let list = offenceCombos(false).filter(c => c.uses.length >= 2 && !c.uses.some(id => DEF.has(id)));
   if (!list.length) list = offenceCombos(false).filter(c => c.uses.length >= 2);
@@ -133,7 +144,7 @@ export function weekCombos(week) {
 }
 // Two learned skills to sharpen each fighter session, rotating.
 export function sharpenSkills(day, week) {
-  const p = picks().filter(id => id !== 'stance' && (day !== 2 || !LEGGY.has(id)));
+  const p = picks().filter(id => id !== 'stance' && (day !== 2 || !leggy(id)));
   if (!p.length) return [];
   const k = ((week - 1) * 3 + (SLOT[day] ?? 0)) * 2;
   return [...new Set([p[k % p.length], p[(k + 1) % p.length]])];

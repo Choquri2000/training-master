@@ -6,6 +6,7 @@
 // [clip, from, to, opts] - from/to are fractions of the clip; to < from plays backwards.
 // opts: hold (seconds, freeze at `from`), mirror (southpaw version), add (procedural layer).
 import { tr } from './i18n.js';
+import { COMBO_SEQ } from './data/combos.js';
 
 const SEQ = {
   stance: [['stance', 0, 1]],
@@ -24,6 +25,7 @@ const SEQ = {
 const DIRECT = ['jab', 'cross', 'onetwo', 'leadhook', 'leaduppercut', 'block', 'slip', 'pullcounter', 'teep', 'roundhouse',
   'knee', 'elbow', 'doubleleg', 'step', 'pivot', 'parry', 'rearhook', 'rearuppercut', 'leadkick'];
 DIRECT.forEach(k => { SEQ[k] = [[k, 0, 1]]; });
+Object.assign(SEQ, COMBO_SEQ); // combinations: chained captures, each piece captioned (opts.lab)
 export const MOCAP = new Set(Object.keys(SEQ));
 
 // Procedural layers (degrees / cm), keyed over 0..1 of the piece: [time, value].
@@ -166,9 +168,12 @@ export function createMocap(container, techId, { speed = 1, view = 'three', step
       const d = clip.duration, dur = o.hold || Math.abs(to - from) * d;
       let add = null;
       if (o.add) { add = mixer.clipAction(addClip(THREE, o.add, dur, hipsScale)); add.play(); add.paused = true; add.setEffectiveWeight(0); }
-      return { a, add, from: from * d, to: to * d, dur, hold: !!o.hold };
+      return { a, add, from: from * d, to: to * d, dur, hold: !!o.hold, lab: o.lab };
     };
     const pieces = SEQ[techId].map(piece);
+    // Combination captions: consecutive pieces with the same caption are one numbered step.
+    let nLab = 0; pieces.forEach((p, i) => { if (p.lab) p.no = p.lab === pieces[i - 1]?.lab ? pieces[i - 1].no : ++nLab; });
+    let cur = 0;
     const idle = piece(['stance', 0, 1]);
     const isStance = techId === 'stance';
     const total = pieces.reduce((s, p) => s + p.dur, 0);
@@ -184,7 +189,7 @@ export function createMocap(container, techId, { speed = 1, view = 'three', step
         set(last, last.dur, 1 - w); set(idle, u, w);
       } else {
         let i = 0, s = 0; while (i < pieces.length - 1 && t >= s + pieces[i].dur) s += pieces[i++].dur;
-        const u = t - s, w = Math.min(1, u / BLEND), p = pieces[i];
+        const u = t - s, w = Math.min(1, u / BLEND), p = pieces[i]; cur = i;
         const prev = i > 0 ? pieces[i - 1] : (isStance ? null : idle);
         const seamless = prev && prev.a.getClip() === p.a.getClip() && Math.abs(at(prev, prev.dur) - p.from) < 0.02;
         if (prev && w < 1 && !seamless) { set(prev, i > 0 ? prev.dur : REST, 1 - w); set(p, u, w); } else set(p, u, 1);
@@ -205,7 +210,7 @@ export function createMocap(container, techId, { speed = 1, view = 'three', step
     setView(st.view);
     const hp = new THREE.Vector3(), shift = new THREE.Vector3();
 
-    const label = () => onLabel?.(tr(st.step ? 'Drag the slider, or drag the figure to turn it' : (T < total || isStance ? 'Technique' : 'Back to guard')), 1, 1);
+    const label = () => (nLab && T < total ? onLabel?.(tr(pieces[cur].lab || 'Technique'), pieces[cur].no || 1, nLab) : onLabel?.(tr(st.step ? 'Drag the slider, or drag the figure to turn it' : (T < total || isStance ? 'Technique' : 'Back to guard')), 1, 1));
     let lastLabel = '';
     const size = () => {
       const w = container.clientWidth, h = container.clientHeight || w * 0.86;
@@ -219,7 +224,7 @@ export function createMocap(container, techId, { speed = 1, view = 'three', step
       raf = requestAnimationFrame(tick);
       const dt = Math.min(clock.getDelta(), 0.1);
       if (!st.paused && !st.step) { T = (T + dt * st.speed) % cycle; pose(T); }
-      const phase = T < total || isStance ? 'a' : 'b';
+      const phase = nLab && T < total ? 'p' + cur : T < total || isStance ? 'a' : 'b';
       if (phase !== lastLabel) { lastLabel = phase; label(); }
       if (hips) { // keep the fighter centred when a move travels (takedowns, steps)
         hips.getWorldPosition(hp);

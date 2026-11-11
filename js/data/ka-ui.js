@@ -105,6 +105,13 @@ export const KA = {
   '3 x 8-10 each': '3 x 8-10 თითოზე', '2 x 10 each leg': '2 x 10 თითო ფეხზე', '3 x 15 each': '3 x 15 თითოზე', '3 x 10 each side': '3 x 10 თითო მხარეს',
   '2 x close to failure': '2 x თითქმის ბოლომდე', '2 x 20 / 2 x 30 s each': '2 x 20 / 2 x 30 წმ თითოზე',
   // English long texts
+  // combination captions (combos.js LAB)
+  'Jab (1)': 'ჯები (1)', 'Cross (2)': 'კროსი (2)', 'Jab, cross (1-2)': 'ჯები, კროსი (1-2)', 'Lead hook (3)': 'წინა ჰუკი (3)',
+  'Rear hook (4)': 'უკანა ჰუკი (4)', 'Lead uppercut (5)': 'წინა აპერკოტი (5)', 'Rear uppercut (6)': 'უკანა აპერკოტი (6)',
+  Block: 'ბლოკი', Slip: 'სლიპი', Parry: 'პარირება', 'Pull back, cross (2)': 'უკან გადახრა, კროსი (2)', Teep: 'თიპი',
+  'Roundhouse kick': 'წრიული წიხლი', 'Switch kick': 'წიხლი ფეხის შეცვლით', Knee: 'მუხლი', Elbow: 'იდაყვი',
+  'Double-leg': 'ორ ფეხზე შეტევა', 'Roll under': 'როლი ქვემოდან', 'Check the kick': 'წიხლის ჩეკი', 'Catch the kick': 'წიხლის დაჭერა',
+  'Built from': 'შედგება',
 };
 export const EN_LONG = {
   fcombo: 'Combinations', fdefence: 'Defence', ffight: 'Fight rounds',

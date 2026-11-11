@@ -2,11 +2,15 @@
 // so Georgian can be added later without changing any code.
 // Orthodox stance: left foot and left hand lead. Southpaws mirror everything.
 
+import { COMBO_TECHS } from './combos.js';
+
 export const DISCIPLINES = {
   boxing: { en: 'Boxing' },
   muaythai: { en: 'Muay Thai / Kickboxing' },
   mma: { en: 'MMA fundamentals' },
   footwork: { en: 'Stance & footwork' },
+  combos: { en: 'Attacking combinations', ka: 'შეტევითი კომბინაციები' },
+  counters: { en: 'Defend and counter', ka: 'დაცვა და კონტრი' },
 };
 
 // Each technique:
@@ -592,6 +596,7 @@ export const TECHNIQUES = [
   },
 ];
 
+TECHNIQUES.push(...COMBO_TECHS); // the important combinations (combos.js)
 export const techById = Object.fromEntries(TECHNIQUES.map(t => [t.id, t]));
 
 // Combos used by the timer's callouts, grouped by phase.
@@ -633,6 +638,9 @@ export const COMBOS = [
   { say: 'sprawl, one two', uses: ['sprawlstrike'] },
   { say: 'one two three, move', uses: ['jab', 'cross', 'leadhook', 'angleout'] },
 ];
+
+// Every combination item can also be called by the timer.
+COMBO_TECHS.forEach(c => { if (!COMBOS.some(x => x.say === c.callout.en)) COMBOS.push({ say: c.callout.en, uses: c.uses }); });
 
 export const FOOTWORK_CALLS = ['step forward', 'step back', 'step left', 'step right', 'pivot', 'in and out'];
 
