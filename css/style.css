@@ -241,3 +241,20 @@ select, input[type=date] { font: inherit; padding: 6px; border-radius: 8px; bord
 .reactpad.done { background: color-mix(in srgb, var(--ok) 20%, var(--surface)); }
 .ok { color: var(--ok); } .test .stat { font-size: 1.5rem; font-weight: 700; }
 .iqlist li { margin-bottom: 12px; }
+
+/* styles */
+.tool.wide { grid-column: 1 / -1; }
+.rbars { display: grid; gap: 4px; margin: 8px 0; }
+.rb { display: grid; grid-template-columns: 7.5em 1fr; align-items: center; gap: 2px 8px; font-size: .78rem; color: var(--muted); }
+.rb i { grid-column: 2; height: 7px; border-radius: 4px; background: var(--line); overflow: hidden; display: block; }
+.rb i b { display: block; height: 100%; background: var(--accent); border-radius: 4px; }
+.rb i.b2 b { background: var(--combat); }
+.legend .k1, .legend .k2 { display: inline-block; width: 12px; height: 8px; border-radius: 3px; background: var(--accent); vertical-align: middle; }
+.legend .k2 { background: var(--combat); }
+.libcard.style > div { width: 100%; }
+.pros li::marker { content: '+ '; color: var(--ok); } .cons li::marker { content: '− '; color: var(--combat); }
+.cmpgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.cmpcol { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px; font-size: .88rem; }
+.cmpcol h3 { margin: 0 0 6px; font-size: .95rem; } .cmpcol h4 { margin: 10px 0 4px; font-size: .8rem; color: var(--muted); }
+.cmpcol ul { padding-left: 16px; margin: 0; }
+@media (max-width: 380px) { .cmpgrid { grid-template-columns: 1fr; } }

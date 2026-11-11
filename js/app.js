@@ -4,6 +4,7 @@ import { createFigure } from './figure.js';
 import { MOCAP, createMocap, webglOK, registerSeq } from './mocap.js';
 import { STEPS, stepsSeq, stepsSay } from './data/combos.js';
 import { LESSONS, lessonById } from './data/iq.js';
+import { STYLES, styleById, STYLE_DISC, DIMS } from './data/styles.js';
 
 // Motion-capture player where a clip exists, else the IK figure (also the fallback if 3D fails).
 function createViewer(el, id, opts = {}) {
@@ -662,6 +663,7 @@ const toolsRow = () => `<div class="tools">
   <a class="tool" href="#/timer"><b>${tr('Round timer')}</b><span>${tr('Bag, pads, sparring')}</span></a>
   <a class="tool" href="#/tests"><b>${tr('Skill tests')}</b><span>${tr('Measure progress monthly')}</span></a>
   <a class="tool" href="#/iq"><b>${tr('Fight IQ')}</b><span>${tr('Strategy, with drills')}</span></a>
+  <a class="tool wide" href="#/styles"><b>${tr('Fighting styles')}</b><span>${tr('Peek-a-boo, Soviet school, Muay Khao, Dutch, wrestle-boxing and more, compared')}</span></a>
 </div>`;
 
 const R1 = s => ({ en: s[0], ka: s[1] });
@@ -685,6 +687,10 @@ function extraSession(kind, arg) {
     const l = lessonById[arg]; if (!l) return null;
     const d = l.drill, calls = typeof d.calls === 'string' ? { calls: d.calls } : { pool: d.calls };
     return [{ ...warm, secs: 180 }, ...rounds(d.rounds, d.secs, d.rest, { ...calls, pace: 'medium' }), { label: R1(['Cool-down', 'გაგრილება']), kind: 'cool', secs: 120 }];
+  }
+  if (kind === 'style') {
+    const st = styleById[arg]; if (!st) return null;
+    return [{ ...warm, secs: 180 }, ...rounds(4, 180, 60, { pool: st.calls, pace: 'medium' }), { label: R1(['Cool-down', 'გაგრილება']), kind: 'cool', secs: 120 }];
   }
   if (kind === 'formtest') return [{ ...warm, secs: 60 }, ...rounds(3, 120, 60, { callouts: true, pace: 'medium' })];
   return null;
@@ -898,8 +904,66 @@ function IQ(id) {
   view.replaceChildren(el);
 }
 
+// ----- Fighting styles -----
+const SL = x => (store.get().lang === 'ka' ? x.ka : x.en);
+const rateBars = (st, other) => `<div class="rbars">${DIMS.map(([k, en, ka]) => `<div class="rb"><span>${esc(store.get().lang === 'ka' ? ka : tr(en))}</span>
+  <i><b style="width:${st.rate[k] * 20}%"></b></i>${other ? `<i class="b2"><b style="width:${other.rate[k] * 20}%"></b></i>` : ''}</div>`).join('')}</div>`;
+function Styles(id, arg) {
+  if (id === 'cmp') return StyleCompare(...(arg || '').split(','));
+  if (id && styleById[id]) return StyleDetail(styleById[id]);
+  const filter = sessionStorage.getItem('styleFilter') || 'boxing';
+  const el = h(`<section><a href="#/library" class="back">← ${t('library')}</a><h1>${tr('Fighting styles')}</h1>
+    <p class="muted">${tr('How the great styles fight, what they are built on, where they are strong and where they can be beaten. Compare any two side by side.')}</p>
+    <div class="filters">${Object.entries(STYLE_DISC).map(([k, d]) => `<button class="pill ${k === filter ? 'on' : ''}" data-f="${k}">${esc(L(d))}</button>`).join('')}</div>
+    <div class="libgrid">${STYLES.filter(s => s.disc === filter).map(s => `<a class="libcard style" href="#/styles/${s.id}"><div><strong>${esc(SL(s).name)}</strong>
+      <p class="muted small">${esc(SL(s).suits)}</p>${rateBars(s)}</div></a>`).join('')}</div>
+  </section>`);
+  el.querySelector('.filters').onclick = e => { if (e.target.dataset.f) { try { sessionStorage.setItem('styleFilter', e.target.dataset.f); } catch { /* ignore */ } Styles(); } };
+  view.replaceChildren(el);
+}
+function StyleDetail(s) {
+  const x = SL(s);
+  const list = (title, items, cls) => `<h2>${title}</h2><ul class="${cls}">${items.map(i => `<li>${esc(i)}</li>`).join('')}</ul>`;
+  const el = h(`<section><a href="#/styles" class="back">← ${tr('Fighting styles')}</a>
+    <h1>${esc(x.name)}</h1><p class="muted">${esc(L(STYLE_DISC[s.disc]))}</p>
+    <p class="purpose">${esc(x.known)}</p>
+    <h2>${tr('How it fights')}</h2><p>${esc(x.look)}</p>
+    ${rateBars(s)}
+    <h2>${tr('Skills it is built on')}</h2>
+    <ul class="chips">${s.skills.filter(id => techById[id]).map(id => `<li><a href="#/tech/${id}">${esc(L(techById[id].name))}</a></li>`).join('')}</ul>
+    ${list(tr('Strengths'), x.pros, 'pros')}
+    ${list(tr('Weaknesses'), x.cons, 'cons')}
+    ${list(tr('How to beat it'), x.beat, '')}
+    <h2>${tr('Suits you if')}</h2><p>${esc(x.suits)}</p>
+    <div class="actions"><a class="btn primary" href="#/session/style/${s.id}">${tr('Train like this (4 rounds)')}</a></div>
+    <label class="row">${tr('Compare with')} <select class="cmp"><option value="">…</option>${STYLES.filter(o => o.id !== s.id).map(o => `<option value="${o.id}">${esc(SL(o).name)}</option>`).join('')}</select></label>
+  </section>`);
+  $('.cmp', el).onchange = e => { if (e.target.value) location.hash = `#/styles/cmp/${s.id},${e.target.value}`; };
+  view.replaceChildren(el);
+}
+function StyleCompare(a, b) {
+  const A = styleById[a], B = styleById[b];
+  if (!A || !B) return Styles();
+  const xa = SL(A), xb = SL(B);
+  const col = (s, x) => `<div class="cmpcol"><h3><a href="#/styles/${s.id}">${esc(x.name)}</a></h3>
+    <h4>${tr('Strengths')}</h4><ul class="pros">${x.pros.map(i => `<li>${esc(i)}</li>`).join('')}</ul>
+    <h4>${tr('Weaknesses')}</h4><ul class="cons">${x.cons.map(i => `<li>${esc(i)}</li>`).join('')}</ul>
+    <h4>${tr('Suits you if')}</h4><p class="small">${esc(x.suits)}</p></div>`;
+  const shared = A.skills.filter(id => B.skills.includes(id));
+  const el = h(`<section><a href="#/styles/${A.id}" class="back">← ${esc(xa.name)}</a><h1>${tr('Compare styles')}</h1>
+    <p class="legend"><span class="k1"></span> ${esc(xa.name)} &nbsp; <span class="k2"></span> ${esc(xb.name)}</p>
+    ${rateBars(A, B)}
+    ${shared.length ? `<p class="muted small">${tr('Skills both use')}: ${shared.filter(id => techById[id]).map(id => esc(L(techById[id].name))).join(', ')}</p>` : ''}
+    <div class="cmpgrid">${col(A, xa)}${col(B, xb)}</div>
+    <h2>${tr('When they meet')}</h2>
+    <p><strong>${tr('{a} against {b}', { a: esc(xa.name), b: esc(xb.name) })}:</strong> ${esc(xb.beat.join(' '))}</p>
+    <p><strong>${tr('{a} against {b}', { a: esc(xb.name), b: esc(xa.name) })}:</strong> ${esc(xa.beat.join(' '))}</p>
+  </section>`);
+  view.replaceChildren(el);
+}
+
 // ---------- router ----------
-const routes = { combos: MyCombos, timer: Timer, tests: Tests, iq: IQ, profile: () => Profile(false), today: Today, week: Week, plan: Plan, pathway: Pathway, library: Library, tech: Tech, session: Session, log: Log, settings: Settings };
+const routes = { styles: Styles, combos: MyCombos, timer: Timer, tests: Tests, iq: IQ, profile: () => Profile(false), today: Today, week: Week, plan: Plan, pathway: Pathway, library: Library, tech: Tech, session: Session, log: Log, settings: Settings };
 
 function render() {
   cleanup.forEach(f => f()); cleanup = [];

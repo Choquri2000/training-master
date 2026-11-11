@@ -161,8 +161,16 @@ export const KA = {
   'Balance and footwork': 'წონასწორობა და ფეხის მოძრაობა', 'Relaxed, breathing out on strikes': 'მოდუნებული, დარტყმებზე ამოსუნთქვით',
   'Pull back': 'უკან გადახრა', 'Step back': 'ნაბიჯი უკან', 'Step out to the side': 'გვერდზე გასვლა', Pivot: 'მოტრიალება',
   timer: 'რაუნდების ტაიმერი', my: 'ჩემი კომბინაცია', iq: 'საბრძოლო აზროვნების დრილი', formtest: 'ტექნიკის ტესტი',
+  // styles
+  'Fighting styles': 'საბრძოლო სტილები', 'Peek-a-boo, Soviet school, Muay Khao, Dutch, wrestle-boxing and more, compared': 'პიკაბუ, საბჭოთა სკოლა, მუაი ხაო, ჰოლანდიური, მოჭიდავე-მოკრივე და სხვა, შედარებით',
+  'How the great styles fight, what they are built on, where they are strong and where they can be beaten. Compare any two side by side.': 'როგორ იბრძვიან დიდი სტილები, რაზეა აგებული, სადაა ძლიერი და სად შეიძლება დამარცხდნენ. შეადარე ნებისმიერი ორი ერთმანეთის გვერდით.',
+  'How it fights': 'როგორ იბრძვის', 'Skills it is built on': 'უნარები, რომლებზეც აგებულია', Strengths: 'ძლიერი მხარეები', Weaknesses: 'სუსტი მხარეები',
+  'How to beat it': 'როგორ დაამარცხო', 'Suits you if': 'შენთვისაა, თუ', 'Train like this (4 rounds)': 'ივარჯიშე ასე (4 რაუნდი)', 'Compare with': 'შეადარე',
+  'Compare styles': 'სტილების შედარება', 'Skills both use': 'ორივეს საერთო უნარები', 'When they meet': 'როცა ხვდებიან ერთმანეთს', '{a} against {b}': '{a} {b}-ის წინააღმდეგ',
+  Pressure: 'ზეწოლა', Footwork: 'ფეხის მოძრაობა', Power: 'ძალა', Range: 'მანძილი', style: 'სტილის დრილი',
 };
 export const EN_LONG = {
+  style: 'Style drill',
   timer: 'Round timer', my: 'My combo', iq: 'Fight IQ drill', formtest: 'Form test',
   MOCAP_HINT: 'Motion capture of a real fighter. Drag to turn the view, pinch to zoom. "Front" is what your opponent sees.',
   FIGURE_HINT: 'Blue = lead side, grey = rear side. "Front" is what your opponent sees.',
