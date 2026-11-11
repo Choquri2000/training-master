@@ -192,8 +192,10 @@ export const KA = {
   'The last three weeks before it build up, peak, then taper so you arrive fresh.': 'ბოლო სამი კვირა იზრდება, პიკს აღწევს და შემდეგ მსუბუქდება, რომ დასვენებული მიხვიდე.',
   'Set a fight, grading or sparring day and the plan peaks for it.': 'მიუთითე ბრძოლის, ატესტაციის ან სპარინგის დღე და გეგმა მისთვის პიკს მიაღწევს.',
   'Remove date': 'თარიღის წაშლა', 'Date saved': 'თარიღი შენახულია', 'Date removed': 'თარიღი წაიშალა', 'Taper: sharp and fresh': 'შემცირება: მკვეთრად და დასვენებულად', spar: 'სპარინგ-პარტნიორი',
+ "Drill of the day": "დღის დრილი", "Practical drills": "პრაქტიკული დრილები", "Footwork box, bands, light dumbbells, reaction cues, balance, conditioning, strong finishes": "ფეხის ყუთი, რეზინი, მსუბუქი ჰანტელები, რეაქცია, წონასწორობა, გამძლეობა, ძლიერი ფინიში", "You need": "დაგჭირდება", "How to do it": "როგორ შევასრულოთ", "Common mistakes": "ხშირი შეცდომები", "You noted shoulder trouble, so the plan leaves this drill out. Only do it if a coach or physio clears it.": "მხრის პრობლემა მიუთითე, ამიტომ გეგმა ამ დრილს არ იყენებს. გააკეთე მხოლოდ მწვრთნელის ან ფიზიოთერაპევტის თანხმობით.", "Solo drills for a small space. Your plan puts one into each session as the drill of the day; you can also run any of them on its own.": "ინდივიდუალური დრილები პატარა სივრცისთვის. გეგმა ყოველ ვარჯიშში ერთს დღის დრილად ამატებს; ნებისმიერი ცალკეც შეგიძლია ჩართო.", "x": "დრილი",
 };
 export const EN_LONG = {
+  x: 'Drill',
   spar: 'Sparring partner',
   vs: 'Matchup prep',
   style: 'Style drill',

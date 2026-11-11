@@ -6,6 +6,7 @@ import { STEPS, stepsSeq, stepsSay } from './data/combos.js';
 import { LESSONS, lessonById } from './data/iq.js';
 import { STYLES, styleById, STYLE_DISC, DIMS } from './data/styles.js';
 import { ATTACKS, STYLE_W } from './data/spar.js';
+import { DRILLS, drillById, drillOfDay, withDrill, COLORS } from './data/drills.js';
 
 // Motion-capture player where a clip exists, else the IK figure (also the fallback if 3D fails).
 function createViewer(el, id, opts = {}) {
@@ -98,6 +99,7 @@ function Today() {
         ${mine ? `<p class="muted small">${tr('From')} <a href="#/plan">${tr('your plan')}</a>: ${fighter ? tr('Fighter training') + ' · ' : ''}${esc(tr((fighter ? fighterVolume : volume)(weekNumber()).label))}</p>` : `<p class="muted small"><a href="#/plan">${tr('Pick your skills')}</a> ${tr('to get a full weekly plan.')}</p>`}
         ${note ? `<p class="coach"><strong>${tr("Coach's note")}:</strong> ${esc(note)}</p>` : ''}
         ${fighter && sessionKey === 'fcombo' ? `<p class="muted">${tr('Combos of the week')}: <strong>${weekCombos(weekNumber()).map(c => esc(c.say)).join(' · ')}</strong></p>` : ''}
+        ${(() => { const dd = drillOfDay(sessionKey, weekNumber(), profile()); return dd ? `<p class="muted">${tr('Drill of the day')}: <a href="#/drills/${dd.id}">${esc(L(dd.name))}</a></p>` : ''; })()}
         ${focus.length ? `<p class="muted">${fighter ? tr('Sharpen today') : t('focusToday')}:</p><ul class="chips">${focus.map(id => `<li><a href="#/tech/${id}">${esc(L(techById[id].name))}</a></li>`).join('')}</ul>` : ''}
         <a class="btn primary" href="#/session/${sessionKey}/${focus.join(',')}">${t('start')}</a>
       ` : `<p>${t('noCombatToday')}</p>
@@ -420,7 +422,7 @@ function Tech(id) {
 function buildSession(kind, focus) {
   const type = SESSION_TYPES[kind] || SESSION_TYPES.technique;
   const fk = kind.startsWith('f') && kind !== 'footwork';
-  return adaptSession(type.build({ focus, v: fk ? fighterVolume(weekNumber()) : picks().length ? volume(weekNumber()) : undefined, combos: weekCombos(weekNumber()) }));
+  return adaptSession(withDrill(type.build({ focus, v: fk ? fighterVolume(weekNumber()) : picks().length ? volume(weekNumber()) : undefined, combos: weekCombos(weekNumber()) }), kind, weekNumber(), profile()));
 }
 const sessionMinutes = (kind, focus) => Math.round(buildSession(kind, focus).reduce((a, x) => a + x.secs, 0) / 60);
 
@@ -469,7 +471,8 @@ function Session(kind, techCsv) {
     $('.seg-label', el).textContent = p.done ? tr('Done!') : `${L(s.label)}${s.tech ? ': ' + L(techById[s.tech].name) : ''}`;
     $('.clock', el).textContent = fmt(Math.max(0, Math.ceil(p.left)));
     el.className = `session kind-${p.done ? 'done' : s.kind}`;
-    $('.callout', el).textContent = p.lastCall || '';
+    const co = $('.callout', el); co.textContent = p.lastCall || '';
+    co.classList.toggle('cue', !!s.silent); co.style.color = (s.colors && COLORS[p.lastCall]) || '';
     $('.hint', el).textContent = (p.lastCall && s.hints?.[p.lastCall]) || '';
     $('[data-a=toggle]', el).textContent = p.running ? t('pause') : (p.elapsed ? t('resume') : t('start'));
     el.querySelectorAll('.seglist li').forEach(li => li.classList.toggle('cur', +li.dataset.i === p.i));
@@ -481,6 +484,7 @@ function Session(kind, techCsv) {
         $('.cues', el).innerHTML = `<ul>${L(techById[tech].keyPoints).slice(0, 3).map(k => `<li>${esc(k)}</li>`).join('')}</ul><p class="muted">${tr('Watch for')}: ${esc(L(techById[tech].mistakes)[0].m)}</p>`;
       } else { $('.fig-big', el).replaceChildren(); $('.cues', el).innerHTML = ''; }
     }
+    if (!tech) { const lg = s.legend ? `<p class="legend">${esc(L(s.legend))}</p>` : ''; if ($('.cues', el).innerHTML !== lg) $('.cues', el).innerHTML = lg; }
     if (p.done) $('.logform', el).hidden = false;
   };
   const player = new Player(segs, render);
@@ -674,6 +678,7 @@ store.onAction(label => {
 
 // ---------- tools: my combos, quick timer, skill tests, fight IQ ----------
 const toolsRow = () => `<div class="tools">
+  <a class="tool wide" href="#/drills"><b>${tr('Practical drills')}</b><span>${tr('Footwork box, bands, light dumbbells, reaction cues, balance, conditioning, strong finishes')}</span></a>
   <a class="tool wide" href="#/styles"><b>${tr('Fighting styles')}</b><span>${tr('Peek-a-boo, Soviet school, Muay Khao, Dutch, wrestle-boxing and more, compared')}</span></a>
   <a class="tool" href="#/iq"><b>${tr('Fight IQ')}</b><span>${tr('Strategy, with drills')}</span></a>
   <a class="tool" href="#/combos"><b>${tr('My combos')}</b><span>${tr('Build your own, animated')}</span></a>
@@ -706,6 +711,7 @@ function extraSession(kind, arg) {
     return [{ ...warm, secs: 180 }, ...rounds(4, 180, 60, { pool: st.calls, pace: 'medium' }), { label: R1(['Cool-down', 'გაგრილება']), kind: 'cool', secs: 120 }];
   }
   if (kind === 'spar') return sparSegs(arg);
+  if (kind === 'x') { const d = drillById[arg]; if (!d) return null; return [{ ...warm, secs: 120 }, ...d.build({ short: false, p: profile() }), { label: R1(['Cool-down and stretch', 'გაგრილება და გაჭიმვა']), kind: 'cool', secs: 90 }]; }
   if (kind === 'vs') {
     const [a, b] = (arg || '').split(',').map(x => styleById[x]); if (!a || !b) return null;
     const extra = [...(b.rate.p >= 4 ? ['pivot', 'move', 'one, move'] : []), ...(b.rate.r >= 4 ? ['step, one two', 'slip, two three'] : []), ...(b.rate.w >= 4 ? ['block, three two', 'roll, three two'] : [])];
@@ -897,6 +903,29 @@ function TestRun(x) {
     body.addEventListener('click', e => { const r = e.target.closest('[data-r]'); if (r) r.parentElement.querySelectorAll('.pill').forEach(b => b.classList.toggle('on', b === r)); });
     $('[data-s]', body).onclick = () => save([...body.querySelectorAll('.seg')].reduce((a, s) => a + +$('.pill.on', s).dataset.r, 0));
   }
+}
+
+// ----- Practical drills -----
+function Drills(id) {
+  const d = drillById[id];
+  if (d) {
+    const shoulder = d.noShoulder && profile().limits.includes('shoulder');
+    const secs = d.build({ short: false, p: profile() }).reduce((a, x) => a + x.secs, 0);
+    const el = h(`<section><a href="#/drills" class="back">← ${tr('Practical drills')}</a><h1>${esc(L(d.name))}</h1>
+      <p class="purpose">${esc(L(d.why))}</p>
+      <p class="muted small">${tr('You need')}: ${esc(L(d.kit))} · ${tr('about {n} min', { n: Math.round(secs / 60) + 4 })}</p>
+      ${shoulder ? `<p class="note">${tr('You noted shoulder trouble, so the plan leaves this drill out. Only do it if a coach or physio clears it.')}</p>` : ''}
+      <h2>${tr('How to do it')}</h2><ol>${d.how.map(x => `<li>${esc(L(x))}</li>`).join('')}</ol>
+      <h2>${tr('Common mistakes')}</h2><ul>${d.mistakes.map(x => `<li>${esc(L(x))}</li>`).join('')}</ul>
+      <div class="actions"><a class="btn primary" href="#/session/x/${d.id}">${tr('Start the drill')}</a></div>
+    </section>`);
+    return view.replaceChildren(el);
+  }
+  const el = h(`<section><a href="#/library" class="back">← ${t('library')}</a><h1>${tr('Practical drills')}</h1>
+    <p class="muted">${tr('Solo drills for a small space. Your plan puts one into each session as the drill of the day; you can also run any of them on its own.')}</p>
+    <ol class="iqlist">${DRILLS.map(x => `<li><a href="#/drills/${x.id}">${esc(L(x.name))}</a><br><span class="muted small">${esc(L(x.why).split('. ')[0])}.</span></li>`).join('')}</ol>
+  </section>`);
+  view.replaceChildren(el);
 }
 
 // ----- Fight IQ -----
@@ -1175,9 +1204,9 @@ function eventClick(e, root) {
 }
 
 // ---------- router ----------
-const routes = { spar: Spar, styles: Styles, combos: MyCombos, timer: Timer, tests: Tests, iq: IQ, profile: () => Profile(false), today: Today, week: () => Plan(), plan: Plan, pathway: Pathway, library: Library, tech: Tech, session: Session, log: Log, settings: Settings };
+const routes = { drills: Drills, spar: Spar, styles: Styles, combos: MyCombos, timer: Timer, tests: Tests, iq: IQ, profile: () => Profile(false), today: Today, week: () => Plan(), plan: Plan, pathway: Pathway, library: Library, tech: Tech, session: Session, log: Log, settings: Settings };
 
-const NAVMAP = { week: 'plan', pathway: 'plan', profile: 'settings', tech: 'library', styles: 'library', iq: 'library', combos: 'library', tests: 'log', timer: 'today', spar: 'today', session: 'today' };
+const NAVMAP = { drills: 'library', week: 'plan', pathway: 'plan', profile: 'settings', tech: 'library', styles: 'library', iq: 'library', combos: 'library', tests: 'log', timer: 'today', spar: 'today', session: 'today' };
 function render() {
   cleanup.forEach(f => f()); cleanup = [];
   document.documentElement.lang = store.get().lang || 'en';

@@ -79,7 +79,8 @@ export class Player {
   toggle() { this.running ? this.pause() : this.start(); }
   enter() {
     const s = this.seg; if (!s) return;
-    if (s.kind === 'work') bell(1);
+    if (s.kind === 'work' && s.cont) { if (s.cont === 'next') clack(); else setTimeout(() => say(s.cont === 'switch' ? 'switch sides' : s.cont), 150); } // same round goes on: no bell
+    else if (s.kind === 'work') bell(1);
     if (s.kind === 'rest') bell(2);
     if (s.tech) setTimeout(() => say(techById[s.tech].name.en), 900);
     this.nextCall = Date.now() + 3500;
@@ -99,7 +100,7 @@ export class Player {
       if (s.footwork) pool.push(...FOOTWORK_CALLS);
       if (!pool.length) pool.push(...availableCombos().map(c => c.say));
       this.lastCall = pool[Math.floor(Math.random() * pool.length)];
-      say(this.lastCall);
+      if (!s.silent) say(this.lastCall); // silent: the cue is only on screen
       const base = s.gap || PACE[s.pace || 'medium']; // gap: sparring partner speed (ms)
       this.nextCall = Date.now() + base * (0.8 + Math.random() * 0.4);
     }
