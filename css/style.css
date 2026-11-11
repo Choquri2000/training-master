@@ -213,3 +213,13 @@ select, input[type=date] { font: inherit; padding: 6px; border-radius: 8px; bord
 .stage { border: 1px solid var(--line); border-radius: var(--radius); padding: 10px; display: grid; gap: 4px; background: var(--surface); }
 .stage.cur { border-color: var(--accent); outline: 1px solid var(--accent); }
 .stage.past { opacity: .75; }
+
+/* profile */
+.pgroup { display: flex; flex-wrap: wrap; gap: 6px; }
+.pgroup .pill { margin: 0; text-align: left; padding: 8px 14px; }
+.pgroup .pill small { display: block; font-size: .72rem; opacity: .75; }
+.pgroup.days .pill { min-width: 44px; text-align: center; }
+.profile h2 { margin: 18px 0 8px; font-size: 1rem; }
+.err { color: var(--combat); }
+.coach { border-left: 3px solid var(--accent); padding: 4px 0 4px 10px; font-size: .9rem; }
+.safety { background: color-mix(in srgb, var(--ok) 10%, transparent); padding: 8px 12px; border-radius: 8px; }

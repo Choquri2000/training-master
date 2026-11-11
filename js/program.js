@@ -1,9 +1,10 @@
 // "My plan": the skills you picked, turned into a repeating 4-week combat program
-// for the garage days (Mon technique, Wed technique without hard kicks, Fri main session).
+// for your training days (see profile.js: which days, which session, what to avoid).
 import { TECHNIQUES, techById, COMBOS } from './data/techniques.js';
 import { store } from './store.js';
+import { weekDays, dayPlan, legsDay, suitable, tune, profile } from './profile.js';
 
-// Kicks, knees and level changes stay off Wednesday (legs day in the gym).
+// Kicks, knees and level changes stay off the legs day (only when the running/strength plan is shown).
 const LEGGY = new Set(['teep', 'roundhouse', 'leadkick', 'knee', 'check', 'sprawl', 'sprawlstrike', 'doubleleg', 'levelchange', 'catchkick', 'clinch', 'standup']);
 const leggy = id => LEGGY.has(id) || !!techById[id]?.uses?.some(u => LEGGY.has(u)); // combinations with a kick or knee too
 const ofDisc = d => TECHNIQUES.filter(x => x.discipline === d).map(x => x.id);
@@ -16,6 +17,7 @@ export const PRESETS = {
   boxing: { name: 'Boxing', ids: ['stance', 'step', 'pivot', 'jab', 'cross', 'slip', 'parry', 'block', 'leadhook', 'rearhook', 'leaduppercut', 'rearuppercut', 'roll', 'slipcounter', 'pullcounter', 'angleout', 'c12', 'c112', 'c123', 'c1232', 'c232', 'c34', 'c52', 'c632', 'dslip23', 'droll32', 'dblock32', 'dparry12', 'dpull23'] },
   muaythai: { name: 'Muay Thai / Kickboxing', ids: ['stance', 'step', 'jab', 'cross', 'block', 'teep', 'roundhouse', 'check', 'switchstance', 'leadhook', 'leadkick', 'knee', 'elbow', 'catchkick', 'clinch', 'c12', 'c123', 'c1teep', 'c1switch', 'cdutch', 'c12knee', 'c3elbow', 'dblock32', 'dcheckkick', 'dcatch2kick'] },
   mma: { name: 'MMA', ids: ['stance', 'step', 'jab', 'cross', 'slip', 'teep', 'roundhouse', 'sprawl', 'levelchange', 'standup', 'doubleleg', 'sprawlstrike', 'leadhook', 'pullcounter', 'c12', 'c123', 'c12shoot', 'c1teep', 'dslip23', 'dparry12'] },
+  basics: { name: 'Beginner basics', ids: [...TECHNIQUES.filter(x => x.phase === 1 && !x.uses).map(x => x.id), 'c12', 'c112'] },
   all: { name: 'Everything', ids: TECHNIQUES.map(x => x.id) },
 };
 
@@ -30,10 +32,10 @@ export const blockWeek = week => ((week - 1) % 4) + 1;
 export function volume(week) {
   const v = { ...VOLUME[blockWeek(week) - 1] };
   if (week > 4 && v.rounds) v.roundSecs = Math.min(180, v.roundSecs + 30); // later blocks: longer rounds
-  return v;
+  return tune(v, false);
 }
 
-export const picks = () => (store.get().program?.picks || []).filter(id => techById[id]);
+export const picks = () => (store.get().program?.picks || []).filter(suitable); // minus what your limits rule out
 
 // The plan never ends: each 4-week block has a theme that gets most of the time,
 // themes rotate (boxing -> kicks -> MMA -> defence and counters), and every block
@@ -49,7 +51,7 @@ export const blockNo = week => Math.floor((week - 1) / 4);
 export function themeOf(week) {
   const p = picks();
   for (let i = 0; i < THEMES.length; i++) { // skip themes you picked nothing for
-    const th = THEMES[(blockNo(week) + i) % THEMES.length];
+    const th = THEMES[(blockNo(week) + i + (profile().goal === 'selfdef' ? 3 : 0)) % THEMES.length]; // self-defence starts with defence
     if (p.some(id => th.has(techById[id]))) return th;
   }
   return null;
@@ -57,15 +59,15 @@ export function themeOf(week) {
 
 // Which picked skills each garage day works on: theme skills first, plus a rotating
 // "keep sharp" skill from the rest, so every pick comes up regularly.
-const SLOT = { 0: 0, 2: 1, 4: 2 }; // Mon, Wed, Fri
 export function programFocus(day, week) {
   const p = picks().filter(id => id !== 'stance');
-  if (!p.length || !(day in SLOT)) return [];
-  const okDay = id => day !== 2 || !leggy(id);
+  const dp = dayPlan(day, false);
+  if (!p.length || !dp || dp.key === 'footwork') return [];
+  const okDay = id => day !== legsDay() || !leggy(id);
   const th = themeOf(week);
   const theme = p.filter(id => th?.has(techById[id]) && okDay(id));
   const rest = p.filter(id => !theme.includes(id) && okDay(id));
-  const n = day === 4 ? 3 : 2, k = (week - 1) * 3 + SLOT[day];
+  const n = dp.key === 'main' ? 3 : 2, k = (week - 1) * weekDays(false).length + dp.slot;
   const take = (list, m, off) => (list.length ? Array.from({ length: Math.min(m, list.length) }, (_, i) => list[(off + i) % list.length]) : []);
   const nTheme = rest.length ? n - 1 : n;
   const out = [...take(theme, nTheme, k * nTheme), ...take(rest, n - Math.min(nTheme, theme.length), k)];
@@ -97,8 +99,6 @@ export function stage() {
 }
 export const learnedCount = () => picks().filter(id => store.get().status[id] === 'done').length;
 
-// Mon / Wed / Fri (+ optional Sat) session keys in plan.js SESSION_TYPES.
-export const FIGHTER_WEEK = { 0: 'fcombo', 2: 'fdefence', 4: 'ffight', 5: 'footwork' };
 
 // 4-week wave, repeated forever. Week 4 is the deload.
 const FVOL = [
@@ -107,7 +107,7 @@ const FVOL = [
   { label: 'Peak: fight pace', rounds: 6, roundSecs: 180, rest: 60, pace: 'fast', burst: 8 },
   { label: 'Deload: light and technical', rounds: 3, roundSecs: 120, rest: 60, pace: 'easy', burst: 0 },
 ];
-export const fighterVolume = week => ({ ...FVOL[blockWeek(week) - 1] });
+export const fighterVolume = week => tune({ ...FVOL[blockWeek(week) - 1] }, true);
 
 // Defence calls: you react with the defence, then the counter.
 export const DEFENCE_CALLS = [
@@ -130,7 +130,7 @@ const counterCalls = () => COUNTER.filter(id => picks().includes(id)).map(id => 
 export const defenceCalls = noKicks => usable([...DEFENCE_CALLS, ...counterCalls().filter(c => !DEFENCE_CALLS.some(d => d.say === c.say))], noKicks);
 export const offenceCombos = noKicks => usable(COMBOS, noKicks);
 
-// Two "combos of the week" to drill on Monday, rotating through everything you know.
+// Two "combos of the week" to drill on combination day, rotating through everything you know.
 export function weekCombos(week) {
   // The combinations you picked come first: two of them each week, in turn.
   const mine = ATTACK.filter(id => picks().includes(id)).map(id => ({ say: techById[id].callout.en, uses: techById[id].uses }));
@@ -144,8 +144,8 @@ export function weekCombos(week) {
 }
 // Two learned skills to sharpen each fighter session, rotating.
 export function sharpenSkills(day, week) {
-  const p = picks().filter(id => id !== 'stance' && (day !== 2 || !leggy(id)));
+  const p = picks().filter(id => id !== 'stance' && (day !== legsDay() || !leggy(id)));
   if (!p.length) return [];
-  const k = ((week - 1) * 3 + (SLOT[day] ?? 0)) * 2;
+  const k = ((week - 1) * weekDays(true).length + (dayPlan(day, true)?.slot ?? 0)) * 2;
   return [...new Set([p[k % p.length], p[(k + 1) % p.length]])];
 }

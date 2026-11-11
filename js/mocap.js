@@ -117,7 +117,7 @@ function tintMannequin(THREE, root) {
   });
 }
 
-export function createMocap(container, techId, { speed = 1, view = 'three', step = false, model = 'fighter', onLabel, onFail } = {}) {
+export function createMocap(container, techId, { speed = 1, view = 'three', step = false, model = 'fighter', mirror = false, onLabel, onFail } = {}) {
   let dead = false, raf = 0, api = {};
   const st = { speed, view, step, paused: false };
   container.classList.add('mocap', 'loading');
@@ -154,7 +154,8 @@ export function createMocap(container, techId, { speed = 1, view = 'three', step
     const fighter = L.clone((body || gltf).scene);
     if (body) tintMannequin(THREE, fighter);
     fighter.traverse(o => { if (o.isMesh) { o.castShadow = true; o.frustumCulled = false; } });
-    scene.add(fighter);
+    // Southpaw: show the whole body mirrored (right foot forward).
+    const holder = new THREE.Group(); if (mirror) holder.scale.x = -1; holder.add(fighter); scene.add(holder);
     let hips = null; fighter.traverse(o => { if (!hips && o.isBone && o.name === 'Hips') hips = o; });
 
     // Build the sequence: one action per piece (clips cloned so pieces never share state).

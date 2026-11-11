@@ -85,8 +85,9 @@ const PARTS = [
   ['lead', 'lsh', 'le', 11], ['lead', 'le', 'lh', 10],
 ];
 
-export function createFigure(container, techId, { speed = 1, view = 'three', step = false, onLabel } = {}) {
+export function createFigure(container, techId, { speed = 1, view = 'three', step = false, mirror = false, onLabel } = {}) {
   const svg = el('svg', { viewBox: '-125 -200 250 215', class: 'figure', role: 'img', 'aria-label': 'Animated technique demonstration' });
+  if (mirror) svg.style.transform = 'scaleX(-1)'; // southpaw
   svg.append(el('ellipse', { cx: 0, cy: 2, rx: 110, ry: 8, class: 'fig-ground' }));
   const layer = el('g');
   svg.append(layer);

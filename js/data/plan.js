@@ -26,7 +26,7 @@ export const PHASES = [
 export const SESSION_TYPES = {
   technique: {
     name: { en: 'Technique session', ka: 'ტექნიკის ვარჯიში' },
-    blurb: { en: '30 min, RPE 4 to 5. Learn and polish 2 to 3 techniques, then lift.', ka: '30 წთ, RPE 4-5. ისწავლე და დახვეწე 2-3 ტექნიკა, შემდეგ ძალის ვარჯიში.' },
+    blurb: { en: '30 min, RPE 4 to 5. Learn and polish 2 to 3 techniques.', ka: '30 წთ, RPE 4-5. ისწავლე და დახვეწე 2-3 ტექნიკა.' },
     build: ({ focus, v = {} }) => [
       { label: { en: 'Warm-up: light bounce, arm circles, shadowbox easy', ka: 'გახურება: მსუბუქი ხტუნვა, ხელების ბრუნვა, მსუბუქი ჩრდილთან ბრძოლა' }, kind: 'warm', secs: 300 },
       ...focus.flatMap(id => Array.from({ length: v.techSets || 2 }, (_, k) => [
@@ -38,8 +38,8 @@ export const SESSION_TYPES = {
     ],
   },
   main: {
-    name: { en: 'Main session (Friday)', ka: 'მთავარი ვარჯიში (პარასკევი)' },
-    blurb: { en: '50 to 60 min. Technique first, then rounds at RPE 6 to 7. Strength C afterwards.', ka: '50-60 წთ. ჯერ ტექნიკა, შემდეგ რაუნდები RPE 6-7-ზე. ბოლოს ძალა C.' },
+    name: { en: 'Main session', ka: 'მთავარი ვარჯიში' },
+    blurb: { en: '50 to 60 min. Technique first, then rounds at RPE 6 to 7.', ka: '50-60 წთ. ჯერ ტექნიკა, შემდეგ რაუნდები RPE 6-7-ზე.' },
     build: ({ focus, v = {} }) => [
       { label: { en: 'Warm-up: skipping in place, mobility, easy shadowbox', ka: 'გახურება: ადგილზე ხტუნვა, მოქნილობა, მსუბუქი ჩრდილთან ბრძოლა' }, kind: 'warm', secs: 480 },
       ...focus.flatMap(id => [
@@ -55,7 +55,7 @@ export const SESSION_TYPES = {
     ],
   },
   footwork: {
-    name: { en: 'Footwork (Saturday, optional)', ka: 'ფეხის მოძრაობა (შაბათი, არასავალდებულო)' },
+    name: { en: 'Footwork (optional)', ka: 'ფეხის მოძრაობა (არასავალდებულო)' },
     blurb: { en: '15 min, easy. Movement only, no hard punching.', ka: '15 წთ, მსუბუქად. მხოლოდ მოძრაობა, ძლიერი დარტყმების გარეშე.' },
     build: () => [
       { label: { en: 'Warm-up bounce', ka: 'გახურება: ხტუნვა' }, kind: 'warm', secs: 120 },
@@ -81,7 +81,7 @@ export const SESSION_TYPES = {
   },
   fdefence: {
     name: { en: 'Defence, footwork and counters', ka: 'დაცვა, ფეხის მოძრაობა და კონტრები' },
-    blurb: { en: 'Legs day: no hard kicks. Move, defend on call and counter straight away.', ka: 'ფეხების დღე: ძლიერი წიხლების გარეშე. იმოძრავე, დაიცავი ბრძანებით და მაშინვე კონტრი.' },
+    blurb: { en: 'Easy on the legs: no hard kicks. Move, defend on call and counter straight away.', ka: 'ფეხებისთვის მსუბუქი: ძლიერი წიხლების გარეშე. იმოძრავე, დაიცავი ბრძანებით და მაშინვე კონტრი.' },
     build: ({ focus, v = {} }) => [
       { label: { en: 'Warm-up: light bounce, arm circles, shadowbox easy', ka: 'გახურება: მსუბუქი ხტუნვა, ხელების ბრუნვა, მსუბუქი ჩრდილთან ბრძოლა' }, kind: 'warm', secs: 300 },
       { label: { en: 'Footwork on call', ka: 'ფეხის მოძრაობა ბრძანებით' }, kind: 'work', secs: 180, footwork: true },

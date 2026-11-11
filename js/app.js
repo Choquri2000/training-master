@@ -5,6 +5,7 @@ import { MOCAP, createMocap, webglOK } from './mocap.js';
 
 // Motion-capture player where a clip exists, else the IK figure (also the fallback if 3D fails).
 function createViewer(el, id, opts = {}) {
+  opts = { mirror: profile().stance === 'south', ...opts };
   if (!MOCAP.has(id) || !webglOK()) return createFigure(el, id, opts);
   let cur, state = { ...opts };
   const swap = () => { cur.destroy(); cur = createFigure(el, id, state); };
@@ -16,7 +17,8 @@ function createViewer(el, id, opts = {}) {
 }
 import { Player, availableCombos } from './session.js';
 import { store } from './store.js';
-import { PRESETS, picks, programFocus, volume, blockWeek, themeOf, stage, learnedCount, FIGHTER_WEEK, fighterVolume, weekCombos, sharpenSkills } from './program.js';
+import { PRESETS, picks, programFocus, volume, blockWeek, themeOf, stage, learnedCount, fighterVolume, weekCombos, sharpenSkills } from './program.js';
+import { profile, hasProfile, DEFAULT_PROFILE, CHOICES, weekDays, dayPlan, legsDay, suitable, adaptSession, coachNote, safetyNote, LEVELS } from './profile.js';
 import { t, L, LANGS, tr } from './i18n.js';
 import { initSync, onSync, signIn, signInGoogle, signOut, resetPassword, syncAvailable } from './sync.js';
 
@@ -69,25 +71,29 @@ function backupDue() {
 
 // ---------- views ----------
 function Today() {
-  const d = WEEK[todayIdx()];
+  if (!hasProfile()) return Profile(true);
+  const d = WEEK[todayIdx()], other = profile().other;
   const fighter = stage() === 'fighter';
-  const sessionKey = fighter ? FIGHTER_WEEK[d.day] : (d.combat && isDeload() && d.combat === 'main' ? 'technique' : d.combat);
+  const dk = dayPlan(d.day, fighter)?.key || null;
+  const sessionKey = !fighter && dk === 'main' && isDeload() ? 'technique' : dk;
   const mine = picks().length > 0;
-  const focus = fighter ? (sessionKey === 'ffight' || sessionKey === 'footwork' ? [] : sharpenSkills(d.day, weekNumber())) : sessionKey ? (mine && programFocus(d.day, weekNumber()).length ? programFocus(d.day, weekNumber()) : focusTechs(sessionKey === 'main' ? 3 : 2)) : [];
+  const focus = fighter ? (sessionKey === 'ffight' || sessionKey === 'footwork' ? [] : sharpenSkills(d.day, weekNumber())) : sessionKey && sessionKey !== 'footwork' ? (mine && programFocus(d.day, weekNumber()).length ? programFocus(d.day, weekNumber()) : focusTechs(sessionKey === 'main' ? 3 : 2)) : [];
+  const note = sessionKey ? coachNote({ key: sessionKey, bw: blockWeek(weekNumber()), fighter, deload: isDeload() }) : '';
   const el = h(`<section>
     <h1>${L(DAY_NAMES)[d.day]} <small>· ${tr('week')} ${weekNumber()}${isDeload() ? ' (' + tr('deload') + ')' : ''}</small></h1>
     ${isDeload() ? `<p class="note">${t('deloadNote')}</p>` : ''}
     ${syncAvailable() && !cloudOn ? `<p class="note"><strong>${tr("Your progress isn't backed up yet.")}</strong> <a href="#/settings">${tr('Sign in once')}</a> ${tr('to save it to the cloud automatically.')}</p>` : ''}
     ${backupDue() ? `<p class="note">${tr('Your progress is saved only on this phone.')} <a href="#/settings">${tr('Back it up')}</a> ${tr('(takes 2 seconds).')}</p>` : ''}
-    <div class="day-grid">
+    ${other ? `<div class="day-grid">
       <div class="card k-run"><h3>${t('run')}</h3><p>${d.run ? esc(L(d.run)) : t('rest')}</p></div>
       <div class="card k-strength"><h3>${t('strength')}${d.combat && d.strength ? ' · ' + tr('after combat') : ''}</h3>${d.strength ? `<details><summary>${esc(L(STRENGTH[d.strength].name))}</summary><ul class="slist">${STRENGTH[d.strength].items.map(([n, r]) => `<li>${esc(tr(n))} <em>${esc(tr(r))}</em></li>`).join('')}</ul></details>` : `<p>${t('rest')}</p>`}</div>
-    </div>
+    </div>` : ''}
     <div class="card k-combat big">
       <h3>${t('combat')}</h3>
       ${sessionKey ? `
-        <p><strong>${esc(L(SESSION_TYPES[sessionKey].name))}</strong><br>${esc(L(SESSION_TYPES[sessionKey].blurb))}</p>
+        <p><strong>${esc(L(SESSION_TYPES[sessionKey].name))}</strong> · ${tr('about {n} min', { n: sessionMinutes(sessionKey, focus) })}<br>${esc(L(SESSION_TYPES[sessionKey].blurb).replace(/^\d+(-\d+| to \d+)? (min|წთ)[.,]? /, ''))}</p>
         ${mine ? `<p class="muted small">${tr('From')} <a href="#/plan">${tr('your plan')}</a>: ${fighter ? tr('Fighter training') + ' · ' : ''}${esc(tr((fighter ? fighterVolume : volume)(weekNumber()).label))}</p>` : `<p class="muted small"><a href="#/plan">${tr('Pick your skills')}</a> ${tr('to get a full weekly plan.')}</p>`}
+        ${note ? `<p class="coach"><strong>${tr("Coach's note")}:</strong> ${esc(note)}</p>` : ''}
         ${fighter && sessionKey === 'fcombo' ? `<p class="muted">${tr('Combos of the week')}: <strong>${weekCombos(weekNumber()).map(c => esc(c.say)).join(' · ')}</strong></p>` : ''}
         ${focus.length ? `<p class="muted">${fighter ? tr('Sharpen today') : t('focusToday')}:</p><ul class="chips">${focus.map(id => `<li><a href="#/tech/${id}">${esc(L(techById[id].name))}</a></li>`).join('')}</ul>` : ''}
         <a class="btn primary" href="#/session/${sessionKey}/${focus.join(',')}">${t('start')}</a>
@@ -99,7 +105,7 @@ function Today() {
 }
 
 function Week() {
-  const ti = todayIdx();
+  const ti = todayIdx(), other = profile().other;
   const wk = weekNumber();
   const el = h(`<section>
     <h1>${t('week')}</h1>
@@ -108,34 +114,34 @@ function Week() {
       ${WEEK.map(d => `
         <div class="wday ${d.day === ti ? 'today' : ''} type-${d.type}">
           <div class="wname">${L(DAY_NAMES)[d.day].slice(0, 3)}</div>
-          <div class="wrow k-run"><span>${t('run')}</span>${d.run ? esc(L(d.run)) : '—'}</div>
-          <div class="wrow k-strength"><span>${t('strength')}</span>${d.strength ? `<details><summary>${esc(L(STRENGTH[d.strength].name))}</summary><ul>${STRENGTH[d.strength].items.map(([n, r]) => `<li>${esc(tr(n))} <em>${esc(tr(r))}</em></li>`).join('')}</ul></details>` : '—'}</div>
-          <div class="wrow k-combat"><span>${t('combat')}</span>${(() => { const k = stage() === 'fighter' ? FIGHTER_WEEK[d.day] : d.combat; return k ? `<a href="#/session/${k}/">${esc(L(SESSION_TYPES[k].name))}</a>` : '—'; })()}</div>
+          ${other ? `<div class="wrow k-run"><span>${t('run')}</span>${d.run ? esc(L(d.run)) : '—'}</div>
+          <div class="wrow k-strength"><span>${t('strength')}</span>${d.strength ? `<details><summary>${esc(L(STRENGTH[d.strength].name))}</summary><ul>${STRENGTH[d.strength].items.map(([n, r]) => `<li>${esc(tr(n))} <em>${esc(tr(r))}</em></li>`).join('')}</ul></details>` : '—'}</div>` : ''}
+          <div class="wrow k-combat"><span>${t('combat')}</span>${(() => { const k = dayPlan(d.day, stage() === 'fighter')?.key; return k ? `<a href="#/session/${k}/">${esc(L(SESSION_TYPES[k].name))}</a>` : '—'; })()}</div>
         </div>`).join('')}
     </div>
-    <h2>${t('weekRules')}</h2>
-    <ul>${L(RULES).map(r => `<li>${esc(r)}</li>`).join('')}</ul>
+    ${other ? `<h2>${t('weekRules')}</h2>
+    <ul>${L(RULES).map(r => `<li>${esc(r)}</li>`).join('')}</ul>` : ''}
   </section>`);
   view.replaceChildren(el);
 }
 
-// One week of the skills plan: what each garage day trains and how much.
-function sessionSummary(day, v) {
-  if (day === 4 && v.rounds) return tr('{n} x {t} rounds on call, after 2 min per skill', { n: v.rounds, t: fmt(v.roundSecs) });
+// One week of the skills plan: what each training day trains and how much.
+function sessionSummary(key, v) {
+  if (key === 'main' && v.rounds) return tr('{n} x {t} rounds on call, after 2 min per skill', { n: v.rounds, t: fmt(v.roundSecs) });
   return tr('{n} x 2 min per skill (first set slow), then light shadowboxing', { n: v.techSets });
 }
 function planCard(week, compact) {
-  if (!picks().length) return compact ? `<div class="card plan"><h3>${tr('My skills plan')}</h3><p>${tr('Pick the skills you want to learn and the app builds your Mon / Wed / Fri combat plan.')}</p><a class="btn primary" href="#/plan/edit">${tr('Pick skills')}</a></div>` : '';
+  if (!picks().length) return compact ? `<div class="card plan"><h3>${tr('My skills plan')}</h3><p>${tr('Pick the skills you want to learn and the app builds your weekly combat plan.')}</p><a class="btn primary" href="#/plan/edit">${tr('Pick skills')}</a></div>` : '';
   if (stage() === 'fighter') return fighterCard(week, compact);
   const v = volume(week), ti = todayIdx();
   return `<div class="card plan ${compact ? '' : 'wk'} ${week === weekNumber() ? 'now' : ''}">
     <h3>${tr('Week')} ${week} · ${esc(tr(v.label))}${themeOf(week) ? ` · ${tr('focus')}: ${esc(tr(themeOf(week).name))}` : ''}</h3>
-    ${[0, 2, 4].map(day => {
-      const f = programFocus(day, week), key = day === 4 && v.rounds ? 'main' : 'technique';
+    ${weekDays(false).filter(x => x.key !== 'footwork').map(({ day, key: k }) => {
+      const f = programFocus(day, week), key = k === 'main' && v.rounds ? 'main' : 'technique';
       const isToday = week === weekNumber() && day === ti;
       return `<div class="pday ${isToday ? 'today' : ''}"><strong>${L(DAY_NAMES)[day].slice(0, 3)}</strong>
         <ul class="chips">${f.map(id => `<li><a href="#/tech/${id}">${esc(L(techById[id].name))}</a></li>`).join('')}</ul>
-        <span class="muted small">${esc(sessionSummary(day, v))}${day === 2 ? '. ' + tr('No hard kicks (legs day).') : ''}</span>
+        <span class="muted small">${esc(sessionSummary(key, v))}${day === legsDay() ? '. ' + tr('No hard kicks (legs day).') : ''}</span>
         ${isToday ? `<a class="btn primary small" href="#/session/${key}/${f.join(',')}">${t('start')}</a>` : ''}</div>`;
     }).join('')}
     ${compact ? `<a class="small" href="#/plan">${tr('Full 4-week plan and your skills')} →</a>` : ''}
@@ -146,8 +152,8 @@ function fighterCard(week, compact) {
   const v = fighterVolume(week), ti = todayIdx(), now = week === weekNumber();
   return `<div class="card plan ${now ? 'now' : ''}">
     <h3>${tr('Week')} ${week} · ${tr('Fighter training')} · ${esc(tr(v.label))}</h3>
-    ${[0, 2, 4].map(day => {
-      const key = FIGHTER_WEEK[day], type = SESSION_TYPES[key], f = key === 'ffight' ? [] : sharpenSkills(day, week), isToday = now && day === ti;
+    ${weekDays(true).filter(x => x.key !== 'footwork').map(({ day, key }) => {
+      const type = SESSION_TYPES[key], f = key === 'ffight' ? [] : sharpenSkills(day, week), isToday = now && day === ti;
       const sum = key === 'fcombo' ? `${tr('Combos of the week')}: ${weekCombos(week).map(c => esc(c.say)).join(' · ')}`
         : key === 'ffight' ? tr('{n} x {t} fight rounds', { n: v.rounds, t: fmt(v.roundSecs) }) + (v.burst ? ' + ' + tr('{n} punch-outs, sprawls, core', { n: v.burst }) : '')
           : tr('Footwork, {n} defence rounds, hands-only combos', { n: Math.max(2, v.rounds - 1) });
@@ -224,6 +230,62 @@ function PlanEdit(mine) {
   view.replaceChildren(el); sync();
 }
 
+// ---------- profile ----------
+// Who you are as a fighter. First launch asks once; Settings can change it any time.
+function Profile(first) {
+  const p = profile(), ka = store.get().lang === 'ka';
+  const lab = c => (ka && c[2]) || tr(c[1]);
+  const group = (k, multi) => `<div class="pgroup" data-k="${k}"${multi ? ' data-multi' : ''}>${CHOICES[k].map(c => `<button type="button" class="pill${(multi ? p[k].includes(c[0]) : p[k] === c[0]) ? ' on' : ''}" data-v="${c[0]}">${esc(lab(c))}${c[3] ? `<small>${esc(tr(c[3]))}</small>` : ''}</button>`).join('')}</div>`;
+  const el = h(`<section class="profile">
+    <h1>${first ? tr('Welcome to Combat Coach') : tr('Your profile')}</h1>
+    <p class="muted">${tr('A few questions so the plan fits you. You can change any answer later in Settings.')}</p>
+    ${first && syncAvailable() ? `<p class="note">${tr('Used the app on another phone?')} <a href="#/settings">${tr('Sign in')}</a> ${tr('and your plan comes back.')}</p>` : ''}
+    <h2>${tr('Your experience')}</h2>${group('level')}
+    <h2>${tr('Your stance')}</h2>${group('stance')}
+    <h2>${tr('Training days')}</h2>
+    <div class="pgroup days" data-k="days" data-multi>${L(DAY_NAMES).map((n, i) => `<button type="button" class="pill${p.days.includes(i) ? ' on' : ''}" data-v="${i}">${esc(n.slice(0, 3))}</button>`).join('')}</div>
+    <p class="muted small daysmsg">${tr('Pick 2 to 6 days. Leave a day off between hard sessions if you can.')}</p>
+    <h2>${tr('Time per session')}</h2>${group('minutes')}
+    <h2>${tr('Your goal')}</h2>${group('goal')}
+    <h2>${tr('Equipment')}</h2>${group('kit')}
+    <h2>${tr('Anything to protect?')}</h2>${group('limits', true)}
+    <p class="muted small">${tr('Techniques that load these areas are left out, and exercises are swapped for safer ones. If something hurts, see a doctor or physio first.')}</p>
+    ${p.other ? `<label class="row"><input type="checkbox" class="other" checked> ${tr('Also show my running and strength plan')}</label>` : ''}
+    <div class="savebar"><button class="btn primary" data-save>${first ? tr('Build my plan') : t('save')}</button></div>
+  </section>`);
+  const val = { ...p, days: [...p.days], limits: [...p.limits] };
+  el.addEventListener('click', e => {
+    const b = e.target.closest('.pill');
+    if (b) {
+      const g = b.parentElement, k = g.dataset.k, raw = b.dataset.v, v = k === 'days' || k === 'minutes' ? +raw : raw;
+      if ('multi' in g.dataset) { const set = new Set(val[k]); set.has(v) ? set.delete(v) : set.add(v); val[k] = [...set]; b.classList.toggle('on'); }
+      else { val[k] = v; g.querySelectorAll('.pill').forEach(x => x.classList.toggle('on', x === b)); }
+      const n = val.days.length; $('[data-save]', el).disabled = n < 2 || n > 6;
+      $('.daysmsg', el).classList.toggle('err', n < 2 || n > 6);
+      return;
+    }
+    if (!('save' in (e.target.dataset || {}))) return;
+    if ($('.other', el)) val.other = $('.other', el).checked;
+    val.days.sort((a, b) => a - b);
+    store.update(st => {
+      st.profile = val;
+      if (!first) return;
+      const mon = new Date(); mon.setDate(mon.getDate() - (mon.getDay() + 6) % 7);
+      if (!st.startDate) st.startDate = isoDate(mon);
+      st.phaseUnlocked = Math.max(st.phaseUnlocked || 1, { new: 1, some: 2, exp: 3 }[val.level]);
+      if (!st.program?.picks?.length) {
+        const ids = PRESETS[val.level === 'new' ? 'basics' : 'allround'].ids;
+        st.program = { picks: ids, since: isoDate(), combosAdded: true };
+        const known = val.level === 'exp' ? TECHNIQUES.filter(x => x.phase === 1 && !x.uses).map(x => x.id) : val.level === 'some' ? ['stance', 'step', 'jab', 'cross'] : [];
+        ids.forEach(id => { st.status[id] = known.includes(id) ? 'done' : (st.status[id] || 'learning'); });
+      }
+    }, first ? tr('Plan built') : tr('Profile saved'));
+    location.hash = first ? '#/today' : '#/settings';
+    if (first) render();
+  });
+  view.replaceChildren(el);
+}
+
 function Pathway() {
   const s = store.get();
   const el = h(`<section><h1>${t('pathway')}</h1>${PHASES.map(p => {
@@ -262,7 +324,7 @@ function Library() {
     <div class="filters">${['all', ...Object.keys(DISCIPLINES)].map(k => `<button class="pill ${k === filter ? 'on' : ''}" data-f="${k}">${k === 'all' ? t('filterAll') : esc(L(DISCIPLINES[k]))}</button>`).join('')}</div>
     <div class="libgrid">${list.map(x => `<a class="libcard" href="#/tech/${x.id}">
       <div class="fig-slot" data-tech="${x.id}"></div>
-      <div><strong>${esc(L(x.name))}</strong><br><span class="muted">${t('phase')} ${x.phase} · ${esc(L(DISCIPLINES[x.discipline]))}</span><br>${statusBadge(statusOf(x.id))}</div>
+      <div><strong>${esc(L(x.name))}</strong><br><span class="muted">${esc(L(LEVELS[x.phase]))} · ${esc(L(DISCIPLINES[x.discipline]))}</span><br>${statusBadge(statusOf(x.id))}</div>
     </a>`).join('')}</div></section>`);
   el.querySelector('.filters').addEventListener('click', e => {
     if (e.target.dataset.f) { try { sessionStorage.setItem('libFilter', e.target.dataset.f); } catch { /* ignore */ } Library(); }
@@ -271,7 +333,7 @@ function Library() {
   // Animate thumbnails only while visible.
   const io = new IntersectionObserver(entries => entries.forEach(en => {
     const slot = en.target;
-    if (en.isIntersecting && !slot._fig) slot._fig = createFigure(slot, slot.dataset.tech, { speed: 0.6 });
+    if (en.isIntersecting && !slot._fig) slot._fig = createFigure(slot, slot.dataset.tech, { speed: 0.6, mirror: profile().stance === 'south' });
     else if (!en.isIntersecting && slot._fig) { slot._fig.destroy(); slot._fig = null; }
   }));
   el.querySelectorAll('.fig-slot').forEach(s => io.observe(s));
@@ -286,7 +348,8 @@ function Tech(id) {
   const el = h(`<section class="tech">
     <a href="#/library" class="back">← ${t('library')}</a>
     <h1>${esc(L(x.name))}</h1>
-    <p class="muted">${t('phase')} ${x.phase} · ${esc(L(DISCIPLINES[x.discipline]))} · ${statusBadge(st)}</p>
+    <p class="muted">${esc(L(LEVELS[x.phase]))} · ${esc(L(DISCIPLINES[x.discipline]))} · ${statusBadge(st)}</p>
+    ${suitable(id) ? '' : `<p class="note">${tr('Left out of your plan because of the limits in your profile.')} <a href="#/profile">${tr('Profile')}</a></p>`}
     <p class="purpose">${esc(L(x.purpose))}</p>
     ${x.uses ? `<p class="muted small">${tr('Built from')}: ${x.uses.map(u => `<a href="#/tech/${u}">${esc(L(techById[u].name))}</a>`).join(', ')}</p>` : ''}
     <div class="fig-big"></div>
@@ -307,6 +370,9 @@ function Tech(id) {
     <div class="mistakes">${L(x.mistakes).map(m => `<div class="mistake"><div class="m">✗ ${esc(m.m)}</div><div class="fix">✓ ${esc(m.fix)}</div></div>`).join('')}</div>
     <h2>${t('drills')}</h2>
     <ul>${L(x.drills).map(d => `<li><strong>${esc(d.name)}:</strong> ${esc(d.how)}</li>`).join('')}</ul>
+    <h2>${tr('Safety')}</h2>
+    <p class="safety">${esc(L(safetyNote(x)))}</p>
+    ${profile().stance === 'south' ? `<p class="muted small">${tr('Shown southpaw (mirrored) to match your stance. Lead means your right side.')}</p>` : ''}
     <h2>${t('notes')}</h2>
     <textarea class="notes" rows="3" placeholder="${tr('What felt off? What did the video show?')}">${esc(s.notes[id] || '')}</textarea>
     <div class="actions">
@@ -338,6 +404,14 @@ function Tech(id) {
   });
 }
 
+// A session as it will actually run for you (volume, profile, time limit).
+function buildSession(kind, focus) {
+  const type = SESSION_TYPES[kind] || SESSION_TYPES.technique;
+  const fk = kind.startsWith('f') && kind !== 'footwork';
+  return adaptSession(type.build({ focus, v: fk ? fighterVolume(weekNumber()) : picks().length ? volume(weekNumber()) : undefined, combos: weekCombos(weekNumber()) }));
+}
+const sessionMinutes = (kind, focus) => Math.round(buildSession(kind, focus).reduce((a, x) => a + x.secs, 0) / 60);
+
 function Session(kind, techCsv) {
   let focus = (techCsv || '').split(',').filter(id => techById[id]);
   let segs;
@@ -347,10 +421,8 @@ function Session(kind, techCsv) {
       ...[1, 2, 3].flatMap(n => [{ label: { en: `Round ${n} of 3`, ka: `რაუნდი ${n} / 3` }, kind: 'work', secs: 120, tech: focus[0], slow: n === 1 }, { label: { en: 'Rest' }, kind: 'rest', secs: 45 }]),
     ];
   } else {
-    const type = SESSION_TYPES[kind] || SESSION_TYPES.technique;
     if (!focus.length && !['footwork', 'ffight', 'fcombo', 'fdefence'].includes(kind)) focus = focusTechs(kind === 'main' ? 3 : 2);
-    const fk = kind.startsWith('f') && kind !== 'footwork';
-    segs = type.build({ focus, v: fk ? fighterVolume(weekNumber()) : picks().length ? volume(weekNumber()) : undefined, combos: weekCombos(weekNumber()) });
+    segs = buildSession(kind, focus);
   }
   const startedAt = Date.now();
   const el = h(`<section class="session">
@@ -485,6 +557,7 @@ function Settings() {
         <p class="cloud-msg small"></p>
       </form>
     </div>` : ''}
+    <div class="card"><h3>${tr('Your profile')}</h3><p class="small">${esc(profileSummary())}</p><a class="btn" href="#/profile">${tr('Change profile')}</a></div>
     <label class="row"><input type="checkbox" class="voice" ${s.voice ? 'checked' : ''}> ${t('voice')}</label>
     <label class="row">${t('language')} <select class="lang">${LANGS.map(l => `<option value="${l.code}" ${l.code === s.lang ? 'selected' : ''}>${l.label}</option>`).join('')}</select></label>
     <label class="row">${tr('Plan start (Monday of week 1)')} <input type="date" class="start" value="${s.startDate || '2026-11-16'}"></label>
@@ -543,6 +616,13 @@ function Settings() {
   });
 }
 
+function profileSummary() {
+  const p = profile(), ka = store.get().lang === 'ka';
+  const lab = (k, v) => { const c = CHOICES[k].find(x => x[0] === v); return c ? (ka && c[2]) || tr(c[1]) : ''; };
+  return [lab('level', p.level), lab('stance', p.stance).split(' (')[0], p.days.map(d => L(DAY_NAMES)[d].slice(0, 3)).join(' '), lab('minutes', p.minutes), lab('goal', p.goal), lab('kit', p.kit),
+    p.limits.length ? tr('protect') + ': ' + p.limits.map(l => lab('limits', l)).join(', ') : ''].filter(Boolean).join(' · ');
+}
+
 function syncText(st) {
   if (st.state === 'saving') return `Saving... (${st.email})`;
   if (st.state === 'error') return `${tr('Not saved yet, will retry')}: ${st.error}`;
@@ -570,7 +650,7 @@ store.onAction(label => {
 });
 
 // ---------- router ----------
-const routes = { today: Today, week: Week, plan: Plan, pathway: Pathway, library: Library, tech: Tech, session: Session, log: Log, settings: Settings };
+const routes = { profile: () => Profile(false), today: Today, week: Week, plan: Plan, pathway: Pathway, library: Library, tech: Tech, session: Session, log: Log, settings: Settings };
 
 function render() {
   cleanup.forEach(f => f()); cleanup = [];
@@ -597,8 +677,14 @@ function addCombos() {
     st.program.picks = [...new Set([...st.program.picks, ...ids])]; st.program.combosAdded = true;
   });
 }
-seed(); addCombos();
-initSync(() => { addCombos(); render(); });
+// People who used the app before profiles existed keep exactly their setup (Mon/Wed/Fri + Sat footwork, run and strength shown).
+function addProfile() {
+  const s = store.get();
+  if (s.profile || !(s.program?.picks?.length || s.log.length)) return;
+  store.set({ profile: { ...DEFAULT_PROFILE, days: [0, 2, 4, 5], other: true } });
+}
+seed(); addCombos(); addProfile();
+initSync(() => { addCombos(); addProfile(); render(); });
 try { navigator.storage?.persist?.(); } catch { /* not supported */ }
 window.addEventListener('hashchange', render);
 onSync(st => {
