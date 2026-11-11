@@ -79,3 +79,62 @@ export function programCombos() {
   const list = COMBOS.filter(c => c.uses.every(id => p.has(id)));
   return list.length >= 2 ? list : null;
 }
+
+// ---------- Stage 2: fighter training ----------
+// Once your skills are learned (all marked solid, or you start it yourself), the plan
+// stops teaching new skills and becomes the routine a fighter repeats for years:
+// combination work, defence and counters, fight rounds and conditioning.
+export function stage() {
+  const p = store.get().program;
+  if (!p?.picks?.length) return 'none';
+  if (p.fighter) return 'fighter';
+  return picks().every(id => store.get().status[id] === 'done') ? 'fighter' : 'learn';
+}
+export const learnedCount = () => picks().filter(id => store.get().status[id] === 'done').length;
+
+// Mon / Wed / Fri (+ optional Sat) session keys in plan.js SESSION_TYPES.
+export const FIGHTER_WEEK = { 0: 'fcombo', 2: 'fdefence', 4: 'ffight', 5: 'footwork' };
+
+// 4-week wave, repeated forever. Week 4 is the deload.
+const FVOL = [
+  { label: 'Base: clean and sharp', rounds: 4, roundSecs: 180, rest: 60, pace: 'medium', burst: 4 },
+  { label: 'Build: more rounds', rounds: 5, roundSecs: 180, rest: 60, pace: 'medium', burst: 6 },
+  { label: 'Peak: fight pace', rounds: 6, roundSecs: 180, rest: 60, pace: 'fast', burst: 8 },
+  { label: 'Deload: light and technical', rounds: 3, roundSecs: 120, rest: 60, pace: 'easy', burst: 0 },
+];
+export const fighterVolume = week => ({ ...FVOL[blockWeek(week) - 1] });
+
+// Defence calls: you react with the defence, then the counter.
+export const DEFENCE_CALLS = [
+  { say: 'slip', uses: ['slip'] }, { say: 'slip, two', uses: ['slip', 'cross'] },
+  { say: 'roll', uses: ['roll'] }, { say: 'roll, three', uses: ['roll', 'leadhook'] },
+  { say: 'block, one two', uses: ['block', 'jab', 'cross'] }, { say: 'parry, one', uses: ['parry', 'jab'] },
+  { say: 'pull, two', uses: ['pullcounter'] }, { say: 'slip two, move', uses: ['slipcounter', 'angleout'] },
+  { say: 'check', uses: ['check'], kick: true }, { say: 'check, kick', uses: ['check', 'roundhouse'], kick: true },
+  { say: 'catch, two', uses: ['catchkick'], kick: true }, { say: 'sprawl', uses: ['sprawl'], kick: true },
+  { say: 'sprawl, one two', uses: ['sprawlstrike'], kick: true },
+];
+const KICKY = new Set([...LEGGY]);
+const usable = (list, noKicks) => {
+  const p = new Set([...picks(), 'stance', 'step']);
+  return list.filter(c => c.uses.every(id => p.has(id)) && !(noKicks && (c.kick || c.uses.some(id => KICKY.has(id)))));
+};
+export const defenceCalls = noKicks => usable(DEFENCE_CALLS, noKicks);
+export const offenceCombos = noKicks => usable(COMBOS, noKicks);
+
+// Two "combos of the week" to drill on Monday, rotating through everything you know.
+export function weekCombos(week) {
+  const DEF = new Set(['slip', 'parry', 'block', 'roll', 'check', 'catchkick', 'sprawl', 'sprawlstrike', 'pullcounter', 'slipcounter']);
+  let list = offenceCombos(false).filter(c => c.uses.length >= 2 && !c.uses.some(id => DEF.has(id)));
+  if (!list.length) list = offenceCombos(false).filter(c => c.uses.length >= 2);
+  if (!list.length) return [];
+  const a = (week * 2) % list.length, b = (week * 2 + 1) % list.length;
+  return [...new Set([list[a], list[b]])];
+}
+// Two learned skills to sharpen each fighter session, rotating.
+export function sharpenSkills(day, week) {
+  const p = picks().filter(id => id !== 'stance' && (day !== 2 || !LEGGY.has(id)));
+  if (!p.length) return [];
+  const k = ((week - 1) * 3 + (SLOT[day] ?? 0)) * 2;
+  return [...new Set([p[k % p.length], p[(k + 1) % p.length]])];
+}

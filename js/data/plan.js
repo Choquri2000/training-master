@@ -67,6 +67,44 @@ export const SESSION_TYPES = {
       { label: { en: 'Cool-down', ka: 'გაგრილება' }, kind: 'cool', secs: 120 },
     ],
   },
+  // ---- Stage 2: fighter training (the long-term routine) ----
+  fcombo: {
+    name: { en: 'Combinations and technique', ka: 'კომბინაციები და ტექნიკა' },
+    blurb: { en: 'Shadowbox, drill the combos of the week until they are automatic, sharpen two skills.', ka: 'ჩრდილთან ბრძოლა, კვირის კომბინაციების დამუშავება ავტომატიზმამდე, ორი უნარის დახვეწა.' },
+    build: ({ focus, v = {}, combos = [] }) => [
+      { label: { en: 'Warm-up: skipping in place, mobility, easy shadowbox', ka: 'გახურება: ადგილზე ხტუნვა, მოქნილობა, მსუბუქი ჩრდილთან ბრძოლა' }, kind: 'warm', secs: 360 },
+      ...[1, 2].flatMap(n => [{ label: { en: `Shadowbox round ${n}: combos on call`, ka: `ჩრდილთან ბრძოლა, რაუნდი ${n}: კომბინაციები ბრძანებით` }, kind: 'work', secs: v.roundSecs || 180, calls: 'combos', pace: 'easy' }, { label: { en: 'Rest', ka: 'დასვენება' }, kind: 'rest', secs: v.rest || 60 }]),
+      ...combos.flatMap(c => [1, 2].flatMap(n => [{ label: { en: `Combo drill: "${c.say}". Every rep clean, reset to guard`, ka: `კომბინაციის დრილი: „${c.say}“. ყოველი გამეორება სუფთად, დაბრუნდი დაცვაში` }, kind: 'work', secs: v.roundSecs || 180, repeat: c.say, pace: n === 1 ? 'easy' : 'medium' }, { label: { en: 'Rest', ka: 'დასვენება' }, kind: 'rest', secs: v.rest || 60 }])),
+      ...focus.flatMap(id => [{ label: { en: 'Sharpen', ka: 'დახვეწა' }, kind: 'work', secs: 120, tech: id }, { label: { en: 'Rest', ka: 'დასვენება' }, kind: 'rest', secs: 30 }]),
+      { label: { en: 'Cool-down and stretch', ka: 'გაგრილება და გაჭიმვა' }, kind: 'cool', secs: 240 },
+    ],
+  },
+  fdefence: {
+    name: { en: 'Defence, footwork and counters', ka: 'დაცვა, ფეხის მოძრაობა და კონტრები' },
+    blurb: { en: 'Legs day: no hard kicks. Move, defend on call and counter straight away.', ka: 'ფეხების დღე: ძლიერი წიხლების გარეშე. იმოძრავე, დაიცავი ბრძანებით და მაშინვე კონტრი.' },
+    build: ({ focus, v = {} }) => [
+      { label: { en: 'Warm-up: light bounce, arm circles, shadowbox easy', ka: 'გახურება: მსუბუქი ხტუნვა, ხელების ბრუნვა, მსუბუქი ჩრდილთან ბრძოლა' }, kind: 'warm', secs: 300 },
+      { label: { en: 'Footwork on call', ka: 'ფეხის მოძრაობა ბრძანებით' }, kind: 'work', secs: 180, footwork: true },
+      { label: { en: 'Rest', ka: 'დასვენება' }, kind: 'rest', secs: 45 },
+      ...Array.from({ length: Math.max(2, (v.rounds || 4) - 1) }, (_, i) => [{ label: { en: `Defence round ${i + 1} of ${Math.max(2, (v.rounds || 4) - 1)}: defend, then counter`, ka: `დაცვის რაუნდი ${i + 1} / ${Math.max(2, (v.rounds || 4) - 1)}: დაიცავი, შემდეგ კონტრი` }, kind: 'work', secs: v.roundSecs || 180, calls: 'defence', noKicks: true, pace: v.pace }, { label: { en: 'Rest', ka: 'დასვენება' }, kind: 'rest', secs: v.rest || 60 }]).flat(),
+      { label: { en: 'Hands only: combos on call', ka: 'მხოლოდ ხელები: კომბინაციები ბრძანებით' }, kind: 'work', secs: v.roundSecs || 180, calls: 'combos', noKicks: true, pace: v.pace },
+      { label: { en: 'Rest', ka: 'დასვენება' }, kind: 'rest', secs: 45 },
+      ...focus.flatMap(id => [{ label: { en: 'Sharpen', ka: 'დახვეწა' }, kind: 'work', secs: 120, tech: id }, { label: { en: 'Rest', ka: 'დასვენება' }, kind: 'rest', secs: 30 }]),
+      { label: { en: 'Cool-down: hips, shoulders, calves', ka: 'გაგრილება: თეძოები, მხრები, წვივები' }, kind: 'cool', secs: 240 },
+    ],
+  },
+  ffight: {
+    name: { en: 'Fight rounds and conditioning', ka: 'საბრძოლო რაუნდები და გამძლეობა' },
+    blurb: { en: 'The hard day: full rounds mixing attack, defence and movement, then a conditioning finisher.', ka: 'რთული დღე: სრული რაუნდები შეტევით, დაცვით და მოძრაობით, ბოლოს გამძლეობის ფინიში.' },
+    build: ({ v = {} }) => [
+      { label: { en: 'Warm-up: skipping in place, mobility, easy shadowbox', ka: 'გახურება: ადგილზე ხტუნვა, მოქნილობა, მსუბუქი ჩრდილთან ბრძოლა' }, kind: 'warm', secs: 480 },
+      ...Array.from({ length: v.rounds || 4 }, (_, i) => [{ label: { en: `Fight round ${i + 1} of ${v.rounds || 4}: attack, defend, move`, ka: `საბრძოლო რაუნდი ${i + 1} / ${v.rounds || 4}: შეტევა, დაცვა, მოძრაობა` }, kind: 'work', secs: v.roundSecs || 180, calls: 'fight', pace: i === 0 ? 'medium' : (v.pace || 'medium') }, { label: { en: 'Rest', ka: 'დასვენება' }, kind: 'rest', secs: v.rest || 60 }]).flat(),
+      ...Array.from({ length: v.burst || 0 }, (_, i) => [{ label: { en: `Punch-out ${i + 1} of ${v.burst}: straight punches, all-out`, ka: `სწრაფი დარტყმები ${i + 1} / ${v.burst}: პირდაპირი დარტყმები, მაქსიმუმი` }, kind: 'work', secs: 20 }, { label: { en: 'Rest', ka: 'დასვენება' }, kind: 'rest', secs: 10 }]).flat(),
+      ...(v.burst ? [{ label: { en: 'Sprawls: 30 s, as many as you can with good form', ka: 'სპრაულები: 30 წმ, რაც შეიძლება მეტი, სწორი ტექნიკით' }, kind: 'work', secs: 30 }, { label: { en: 'Rest', ka: 'დასვენება' }, kind: 'rest', secs: 30 }] : []),
+      { label: { en: 'Core: dead bug, side plank, sprawls', ka: 'კორი: dead bug, გვერდითი პლანკი, სპრაულები' }, kind: 'work', secs: 240 },
+      { label: { en: 'Cool-down and stretch', ka: 'გაგრილება და გაჭიმვა' }, kind: 'cool', secs: 300 },
+    ],
+  },
 };
 
 // Weekly plan. day: 0 = Monday ... 6 = Sunday.

@@ -68,9 +68,9 @@ export const LANGS = [
 ];
 
 // Phrase translation for UI text written inline in the code: tr('English', {vars}).
-import { KA } from './data/ka-ui.js';
+import { KA, EN_LONG } from './data/ka-ui.js';
 export function tr(en, vars) {
-  let out = (store.get().lang === 'ka' && KA[en]) || en;
+  let out = (store.get().lang === 'ka' && KA[en]) || EN_LONG[en] || en;
   if (vars) out = out.replace(/\{(\w+)\}/g, (_, k) => vars[k] ?? '');
   return out;
 }

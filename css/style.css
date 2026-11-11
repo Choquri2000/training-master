@@ -209,3 +209,7 @@ select, input[type=date] { font: inherit; padding: 6px; border-radius: 8px; bord
 :lang(ka) .tabs a { font-size: .66rem; padding: 8px 0; letter-spacing: -.01em; }
 :lang(ka) .pday.today strong::after { content: ' · დღეს'; }
 :lang(ka) .wday.type-garage .wname::after { content: ' · ავტოფარეხის დღე'; }
+.stages { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 6px 0 10px; }
+.stage { border: 1px solid var(--line); border-radius: var(--radius); padding: 10px; display: grid; gap: 4px; background: var(--surface); }
+.stage.cur { border-color: var(--accent); outline: 1px solid var(--accent); }
+.stage.past { opacity: .75; }

@@ -85,6 +85,16 @@ export const KA = {
   'All-round (recommended)': 'უნივერსალური (რეკომენდებული)', Boxing: 'კრივი', 'Muay Thai / Kickboxing': 'მუაი თაი / კიკბოქსინგი', MMA: 'MMA', Everything: 'ყველაფერი',
   'Build: learn it slow': 'ზრდა: ნელა სწავლა', 'Build: add speed': 'ზრდა: სიჩქარის დამატება', 'Peak: pressure rounds': 'პიკი: წნევის რაუნდები', 'Deload: technique only': 'განტვირთვა: მხოლოდ ტექნიკა',
   Hands: 'ხელები', 'Kicks, knees and elbows': 'წიხლები, მუხლები და იდაყვები', 'MMA: level changes and the ground': 'MMA: დონის შეცვლა და პარტერი', 'Defence and counters': 'დაცვა და კონტრები',
+  'Fighter training': 'მებრძოლის ვარჯიში', 'Combos of the week': 'კვირის კომბინაციები', 'Sharpen today': 'დღეს დასახვეწი',
+  '{n} x {t} fight rounds': '{n} x {t} საბრძოლო რაუნდი', '{n} punch-outs, sprawls, core': '{n} სწრაფი დარტყმების სერია, სპრაულები, კორი',
+  'Footwork, {n} defence rounds, hands-only combos': 'ფეხის მოძრაობა, {n} დაცვის რაუნდი, კომბინაციები მხოლოდ ხელებით',
+  'Learn the skills': 'უნარების სწავლა', '{n} of {m} marked solid': '{n} / {m} ათვისებული', 'The routine you keep for years': 'რუტინა, რომელსაც წლების განმავლობაში იმეორებ',
+  'Back to learning (add new skills)': 'სწავლაზე დაბრუნება (ახალი უნარების დამატება)', "I've learned them: start fighter training": 'ვისწავლე: დავიწყოთ მებრძოლის ვარჯიში',
+  'Fighter training started': 'მებრძოლის ვარჯიში დაიწყო', 'Back to learning': 'სწავლაზე დაბრუნება',
+  'Base: clean and sharp': 'ბაზა: სუფთად და მკვეთრად', 'Build: more rounds': 'ზრდა: მეტი რაუნდი', 'Peak: fight pace': 'პიკი: საბრძოლო ტემპი', 'Deload: light and technical': 'განტვირთვა: მსუბუქად და ტექნიკურად',
+  fcombo: 'კომბინაციები', fdefence: 'დაცვა', ffight: 'საბრძოლო რაუნდები',
+  LEARN_INTRO: 'ეტაპი 1: სწავლობ შენს არჩეულ უნარებს. ყოველი 4 კვირა ერთი ბლოკია (3 კვირა ზრდა + მსუბუქი კვირა) და თითოეულ უნარს რიგრიგობით უბრუნდები. როცა უნარს კარგად აითვისებ, გახსენი და მონიშნე „ათვისებულად“. როცა ყველა ათვისებულია, აპი ავტომატურად გადადის მებრძოლის ვარჯიშზე (ან დააჭირე ღილაკს ქვემოთ, როცა მზად იქნები).',
+  FIGHTER_INTRO: 'ეტაპი 2: ახლა ვარჯიშობ როგორც მებრძოლი, ნასწავლი უნარებით. ეს რუტინა არ მთავრდება: ორშაბათს კომბინაციები (კვირის ორი კომბინაცია ავტომატიზმამდე), ოთხშაბათს დაცვა, ფეხის მოძრაობა და კონტრები (წიხლების გარეშე), პარასკევს საბრძოლო რაუნდები და გამძლეობა. ყოველი 4 კვირა: 3 კვირა რაუნდები და ტემპი იზრდება, მე-4 მსუბუქია. კომბინაციები და დასახვეწი უნარები ყოველ კვირას იცვლება, რომ ყველაფერი მკვეთრი დარჩეს.',
   // strength (dumbbells)
   'Dumbbell bench press (flat)': 'ჰანტელით წოლით წნეხი (ჰორიზონტალური)', 'Single-arm dumbbell row': 'ჰანტელის მიზიდვა ერთი ხელით',
   'Seated overhead press': 'ჯდომით წნეხი თავს ზემოთ', 'Bent-over reverse flys': 'დახრით ხელების გაშლა', 'Hammer curls': 'ჩაქუჩის მოხრა (ბიცეფსი)',
@@ -94,4 +104,10 @@ export const KA = {
   'Lateral raises': 'გვერდზე აწევა', 'Push-ups (deficit or diamond)': 'აზიდვები (ღრმა ან ბრილიანტი)', 'Russian twists + side plank': 'რუსული ტრიალი + გვერდითი პლანკი',
   '3 x 8-10 each': '3 x 8-10 თითოზე', '2 x 10 each leg': '2 x 10 თითო ფეხზე', '3 x 15 each': '3 x 15 თითოზე', '3 x 10 each side': '3 x 10 თითო მხარეს',
   '2 x close to failure': '2 x თითქმის ბოლომდე', '2 x 20 / 2 x 30 s each': '2 x 20 / 2 x 30 წმ თითოზე',
+  // English long texts
+};
+export const EN_LONG = {
+  fcombo: 'Combinations', fdefence: 'Defence', ffight: 'Fight rounds',
+  LEARN_INTRO: 'Stage 1: you are learning the skills you picked. Every 4 weeks is one block (3 weeks building up + an easy week), rotating through each skill. When a skill feels solid, open it and tap "Mark as solid". When all of them are solid, the app switches to fighter training on its own (or tap the button below when you feel ready).',
+  FIGHTER_INTRO: 'Stage 2: you now train like a fighter, using the skills you learned. This routine never ends: Monday is combinations (two combos of the week drilled until automatic), Wednesday is defence, footwork and counters (no kicks), Friday is fight rounds and conditioning. Every 4 weeks: 3 weeks where rounds and pace build, then an easy week. The combos and the skills to sharpen change every week, so everything stays sharp.',
 };
