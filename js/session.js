@@ -88,13 +88,14 @@ export class Player {
     this.elapsed += 0.25;
     this.left -= 0.25;
     const s = this.seg;
-    if (s && s.kind === 'work' && this.left > 3 && Date.now() >= this.nextCall && (s.callouts || s.footwork || s.calls || s.repeat)) {
+    if (s && s.kind === 'work' && this.left > 3 && Date.now() >= this.nextCall && (s.callouts || s.footwork || s.calls || s.repeat || s.pool)) {
       const pool = [];
       const off = () => (stage() === 'fighter' ? offenceCombos(s.noKicks) : availableCombos()).map(c => c.say);
       if (s.callouts || s.calls === 'combos') pool.push(...off());
       if (s.calls === 'defence') pool.push(...defenceCalls(s.noKicks).map(c => c.say));
       if (s.calls === 'fight') pool.push(...off(), ...defenceCalls(false).map(c => c.say), 'move', 'move');
       if (s.repeat) pool.push(s.repeat);
+      if (s.pool) pool.push(...s.pool);
       if (s.footwork) pool.push(...FOOTWORK_CALLS);
       if (!pool.length) pool.push(...availableCombos().map(c => c.say));
       this.lastCall = pool[Math.floor(Math.random() * pool.length)];

@@ -8,14 +8,22 @@ const W = {
   jab: [0.05, 0.9], cross: [0.2, 0.72], onetwo: [0.08, 0.77], leadhook: [0.12, 0.82], rearhook: [0.08, 0.75],
   leaduppercut: [0.07, 0.87], rearuppercut: [0.1, 0.88], block: [0.1, 0.6], slip: [0, 0.5], parry: [0.18, 0.77],
   pullcounter: [0.03, 0.97], teep: [0.33, 0.8], roundhouse: [0.13, 0.88], leadkick: [0.17, 0.67], knee: [0.12, 0.73],
-  elbow: [0.05, 0.93], doubleleg: [0.07, 0.88],
+  elbow: [0.05, 0.93], doubleleg: [0.07, 0.88], sidestep: [0.08, 0.92], stepback: [0.1, 0.9], pivot: [0.23, 1],
 };
+// Moment of impact (or deepest point of a defence), fraction of the clip. Used for coaching captions.
+export const PEAK = {
+  jab: 0.28, cross: 0.57, onetwo: 0.33, leadhook: 0.32, leaduppercut: 0.43, block: 0.25, slip: 0.4, pullcounter: 0.38, teep: 0.55,
+  roundhouse: 0.45, knee: 0.38, elbow: 0.27, doubleleg: 0.45, parry: 0.47, rearhook: 0.23, rearuppercut: 0.25, leadkick: 0.5,
+  bodyblock: 0.37, clinchknee: 0.38, stepback: 0.63, sidestep: 0.53, pivot: 0.63, dodge: 0.28,
+};
+export const WIN = W;
 // Caption shown under the animation while each piece plays.
 const LAB = {
   jab: 'Jab (1)', cross: 'Cross (2)', onetwo: 'Jab, cross (1-2)', leadhook: 'Lead hook (3)', rearhook: 'Rear hook (4)',
   leaduppercut: 'Lead uppercut (5)', rearuppercut: 'Rear uppercut (6)', block: 'Block', slip: 'Slip', parry: 'Parry',
   pullcounter: 'Pull back, cross (2)', teep: 'Teep', roundhouse: 'Roundhouse kick', leadkick: 'Switch kick', knee: 'Knee',
   elbow: 'Elbow', doubleleg: 'Double-leg', roll: 'Roll under', check: 'Check the kick', catch: 'Catch the kick',
+  pull: 'Pull back', stepback: 'Step back', sidestep: 'Step out to the side', pivot: 'Pivot',
 };
 export const COMBO_LABELS = Object.values(LAB);
 
@@ -238,3 +246,41 @@ export const COMBO_TECHS = LIST.map(c => ({
   callout: { en: c.say }, animOf: c.uses,
 }));
 export const COMBO_SEQ = Object.fromEntries(LIST.map(c => [c.id, c.seq]));
+
+// ---------- Your own combinations ----------
+// Building blocks for the combo builder: what the timer says, and the capture piece that shows it.
+export const STEPS = [
+  { id: 'jab', say: 'one', kind: 'attack' }, { id: 'cross', say: 'two', kind: 'attack' },
+  { id: 'leadhook', say: 'three', kind: 'attack' }, { id: 'rearhook', say: 'four', kind: 'attack' },
+  { id: 'leaduppercut', say: 'five', kind: 'attack' }, { id: 'rearuppercut', say: 'six', kind: 'attack' },
+  { id: 'elbow', say: 'elbow', kind: 'attack' }, { id: 'teep', say: 'teep', kind: 'attack', kick: true },
+  { id: 'roundhouse', say: 'kick', kind: 'attack', kick: true }, { id: 'leadkick', say: 'switch kick', kind: 'attack', kick: true },
+  { id: 'knee', say: 'knee', kind: 'attack', kick: true }, { id: 'doubleleg', say: 'shoot', kind: 'attack', kick: true },
+  { id: 'slip', say: 'slip', kind: 'defence' }, { id: 'roll', say: 'roll', kind: 'defence' },
+  { id: 'block', say: 'block', kind: 'defence' }, { id: 'parry', say: 'parry', kind: 'defence' },
+  { id: 'pull', say: 'pull', kind: 'defence' }, { id: 'check', say: 'check', kind: 'defence', kick: true },
+  { id: 'catch', say: 'catch', kind: 'defence', kick: true },
+  { id: 'stepback', say: 'step back', kind: 'move' }, { id: 'sidestep', say: 'move', kind: 'move' }, { id: 'pivot', say: 'pivot', kind: 'move' },
+].map(x => ({ ...x, label: LAB[x.id] }));
+const stepById = Object.fromEntries(STEPS.map(x => [x.id, x]));
+// Pieces for one building block. first/last: starts from guard / returns to guard.
+function stepPieces(id, first, last) {
+  if (id === 'roll') return [ROLL];
+  if (id === 'check') return CHECK;
+  if (id === 'catch') return CATCH;
+  if (id === 'pull') return [['pullcounter', 0, 0.38, { lab: LAB.pull }], ['pullcounter', 0.38, 0.38, { hold: 0.25, lab: LAB.pull }]];
+  const [s, e] = W[id];
+  return [[id, first ? 0 : s, last ? 1 : e, { lab: LAB[id] }]];
+}
+export const stepsSeq = steps => steps.flatMap((id, i) => stepPieces(id, i === 0, i === steps.length - 1));
+// "one two, slip, kick": numbers run together, words are separated by commas.
+export function stepsSay(steps) {
+  const out = [];
+  steps.forEach(id => {
+    const w = stepById[id].say, num = /^(one|two|three|four|five|six)$/.test(w);
+    if (num && out.length && out[out.length - 1].num) out[out.length - 1].t += ' ' + w; else out.push({ t: w, num });
+  });
+  return out.map(x => x.t).join(', ');
+}
+export const stepsKick = steps => steps.some(id => stepById[id].kick);
+export const stepsDefFirst = steps => stepById[steps[0]]?.kind === 'defence';

@@ -1,7 +1,9 @@
 import { TECHNIQUES, techById, DISCIPLINES } from './data/techniques.js';
 import { PHASES, SESSION_TYPES, WEEK, DAY_NAMES, STRENGTH, RULES } from './data/plan.js';
 import { createFigure } from './figure.js';
-import { MOCAP, createMocap, webglOK } from './mocap.js';
+import { MOCAP, createMocap, webglOK, registerSeq } from './mocap.js';
+import { STEPS, stepsSeq, stepsSay } from './data/combos.js';
+import { LESSONS, lessonById } from './data/iq.js';
 
 // Motion-capture player where a clip exists, else the IK figure (also the fallback if 3D fails).
 function createViewer(el, id, opts = {}) {
@@ -15,9 +17,9 @@ function createViewer(el, id, opts = {}) {
     setStep: b => { state.step = b; cur.setStep(b); }, pause: () => cur.pause(), play: () => cur.play(), destroy: () => cur.destroy(),
   };
 }
-import { Player, availableCombos } from './session.js';
+import { Player, availableCombos, say, bell } from './session.js';
 import { store } from './store.js';
-import { PRESETS, picks, programFocus, volume, blockWeek, themeOf, stage, learnedCount, fighterVolume, weekCombos, sharpenSkills } from './program.js';
+import { PRESETS, picks, programFocus, volume, blockWeek, themeOf, stage, learnedCount, fighterVolume, weekCombos, sharpenSkills, myCombos } from './program.js';
 import { profile, hasProfile, DEFAULT_PROFILE, CHOICES, weekDays, dayPlan, legsDay, suitable, adaptSession, coachNote, safetyNote, LEVELS } from './profile.js';
 import { t, L, LANGS, tr } from './i18n.js';
 import { initSync, onSync, signIn, signInGoogle, signOut, resetPassword, syncAvailable } from './sync.js';
@@ -83,6 +85,7 @@ function Today() {
     <h1>${L(DAY_NAMES)[d.day]} <small>· ${tr('week')} ${weekNumber()}${isDeload() ? ' (' + tr('deload') + ')' : ''}</small></h1>
     ${isDeload() ? `<p class="note">${t('deloadNote')}</p>` : ''}
     ${syncAvailable() && !cloudOn ? `<p class="note"><strong>${tr("Your progress isn't backed up yet.")}</strong> <a href="#/settings">${tr('Sign in once')}</a> ${tr('to save it to the cloud automatically.')}</p>` : ''}
+    ${testsDue() ? `<p class="note">${tr('Your monthly tests are due.')} <a href="#/tests">${tr('Skill tests')}</a></p>` : ''}
     ${backupDue() ? `<p class="note">${tr('Your progress is saved only on this phone.')} <a href="#/settings">${tr('Back it up')}</a> ${tr('(takes 2 seconds).')}</p>` : ''}
     ${other ? `<div class="day-grid">
       <div class="card k-run"><h3>${t('run')}</h3><p>${d.run ? esc(L(d.run)) : t('rest')}</p></div>
@@ -100,6 +103,7 @@ function Today() {
       ` : `<p>${t('noCombatToday')}</p>
         <a class="btn" href="#/session/footwork/">${tr('10-15 min footwork (optional)')}</a>`}
     </div>
+    ${toolsRow()}
   </section>`);
   view.replaceChildren(el);
 }
@@ -321,6 +325,7 @@ function Library() {
   const filter = sessionStorage.getItem('libFilter') || 'all';
   const list = TECHNIQUES.filter(x => filter === 'all' || x.discipline === filter);
   const el = h(`<section><h1>${t('library')}</h1>
+    ${toolsRow()}
     <div class="filters">${['all', ...Object.keys(DISCIPLINES)].map(k => `<button class="pill ${k === filter ? 'on' : ''}" data-f="${k}">${k === 'all' ? t('filterAll') : esc(L(DISCIPLINES[k]))}</button>`).join('')}</div>
     <div class="libgrid">${list.map(x => `<a class="libcard" href="#/tech/${x.id}">
       <div class="fig-slot" data-tech="${x.id}"></div>
@@ -414,8 +419,9 @@ const sessionMinutes = (kind, focus) => Math.round(buildSession(kind, focus).red
 
 function Session(kind, techCsv) {
   let focus = (techCsv || '').split(',').filter(id => techById[id]);
-  let segs;
-  if (kind === 'drill') {
+  let segs = extraSession(kind, techCsv);
+  if (segs) focus = [];
+  else if (kind === 'drill') {
     segs = [
       { label: { en: 'Warm-up: shadowbox easy', ka: 'გახურება: მსუბუქი ჩრდილთან ბრძოლა' }, kind: 'warm', secs: 120 },
       ...[1, 2, 3].flatMap(n => [{ label: { en: `Round ${n} of 3`, ka: `რაუნდი ${n} / 3` }, kind: 'work', secs: 120, tech: focus[0], slow: n === 1 }, { label: { en: 'Rest' }, kind: 'rest', secs: 45 }]),
@@ -492,7 +498,7 @@ function Session(kind, techCsv) {
         st.feel = { ...(st.feel || {}) };
         Object.entries(ratings).forEach(([id, v]) => { st.feel[id] = { r: v, date: isoDate() }; });
       }, tr('Session saved'));
-      location.hash = '#/log';
+      location.hash = kind === 'formtest' ? '#/tests/form' : '#/log';
     }
   });
   $('.rpe', el).addEventListener('input', e => { e.target.nextElementSibling.textContent = e.target.value; });
@@ -528,6 +534,7 @@ function Log() {
     <div class="progress"><div style="width:${(solid / ids.length) * 100}%"></div></div>
     ${off.length ? `<h2>${t('needsWork')}</h2><p class="muted small">${t('needsWorkHint')}</p><ul class="chips">${off.map(chip).join('')}</ul>` : ''}
     ${easy.length ? `<h2>${t('feelsEasy')}</h2><p class="muted small">${t('feelsEasyHint')}</p><ul class="chips">${easy.map(chip).join('')}</ul>` : ''}
+    ${(s.tests || []).length ? `<h2>${tr('Skill tests')}</h2><p><a href="#/tests">${tr('{n} results', { n: s.tests.length })} →</a></p>` : ''}
     <h2>${t('history')}</h2>
     ${s.log.length ? `<table class="logtable"><thead><tr><th>${t('date')}</th><th>${t('session')}</th><th>${t('minutes')}</th><th>RPE</th><th>${t('techniques')}</th></tr></thead><tbody>
       ${s.log.slice(-30).reverse().map(e => `<tr><td>${e.date.slice(5)}</td><td>${esc(tr(e.type))}</td><td>${e.minutes}</td><td>${e.rpe}</td><td>${(e.techs || []).map(id => esc(L(techById[id]?.name)) + (e.ratings?.[id] === 3 ? ' ✗' : e.ratings?.[id] === 1 ? ' ✓' : '')).join(', ')}</td></tr>`).join('')}
@@ -649,8 +656,250 @@ store.onAction(label => {
   clearTimeout(toastTimer); toastTimer = setTimeout(() => { tEl.className = ''; }, 8000);
 });
 
+// ---------- tools: my combos, quick timer, skill tests, fight IQ ----------
+const toolsRow = () => `<div class="tools">
+  <a class="tool" href="#/combos"><b>${tr('My combos')}</b><span>${tr('Build your own, animated')}</span></a>
+  <a class="tool" href="#/timer"><b>${tr('Round timer')}</b><span>${tr('Bag, pads, sparring')}</span></a>
+  <a class="tool" href="#/tests"><b>${tr('Skill tests')}</b><span>${tr('Measure progress monthly')}</span></a>
+  <a class="tool" href="#/iq"><b>${tr('Fight IQ')}</b><span>${tr('Strategy, with drills')}</span></a>
+</div>`;
+
+const R1 = s => ({ en: s[0], ka: s[1] });
+// Extra session kinds: your combo, the quick timer, a Fight IQ drill, the form test.
+function extraSession(kind, arg) {
+  const warm = { label: R1(['Get ready: bounce, loosen the shoulders', 'მომზადება: ხტუნვა, მხრების მოდუნება']), kind: 'warm' };
+  const rounds = (n, secs, rest, extra, name = ['Round', 'რაუნდი']) => Array.from({ length: n }, (_, i) => [
+    { label: R1([`${name[0]} ${i + 1} of ${n}`, `${name[1]} ${i + 1} / ${n}`]), kind: 'work', secs, ...extra },
+    ...(i < n - 1 ? [{ label: R1(['Rest', 'დასვენება']), kind: 'rest', secs: rest }] : []),
+  ]).flat();
+  if (kind === 'my') {
+    const c = (store.get().myCombos || []).find(x => x.id === arg); if (!c) return null;
+    return [{ ...warm, secs: 120 }, ...rounds(3, 120, 45, { repeat: c.say, pace: 'medium' }, ['Drill', 'დრილი'])];
+  }
+  if (kind === 'timer') {
+    const o = timerOpts();
+    const calls = { none: {}, hands: { calls: 'combos', noKicks: true }, thai: { calls: 'combos' }, defence: { calls: 'defence' }, fight: { calls: 'fight' }, mine: { pool: myCombos().map(c => c.say) } }[o.calls] || {};
+    return [{ ...warm, secs: 10 }, ...rounds(o.rounds, o.secs, o.rest, { ...calls, pace: o.pace })];
+  }
+  if (kind === 'iq') {
+    const l = lessonById[arg]; if (!l) return null;
+    const d = l.drill, calls = typeof d.calls === 'string' ? { calls: d.calls } : { pool: d.calls };
+    return [{ ...warm, secs: 180 }, ...rounds(d.rounds, d.secs, d.rest, { ...calls, pace: 'medium' }), { label: R1(['Cool-down', 'გაგრილება']), kind: 'cool', secs: 120 }];
+  }
+  if (kind === 'formtest') return [{ ...warm, secs: 60 }, ...rounds(3, 120, 60, { callouts: true, pace: 'medium' })];
+  return null;
+}
+
+// ----- My combos -----
+function MyCombos(id) {
+  const list = store.get().myCombos || [];
+  if (id) return ComboBuilder(id === 'new' ? null : list.find(x => x.id === id));
+  const el = h(`<section><a href="#/library" class="back">← ${t('library')}</a><h1>${tr('My combos')}</h1>
+    <p class="muted">${tr('Put strikes, defences and moves in order. The app animates the combination from real motion capture, and the timer calls it in your rounds.')}</p>
+    <a class="btn primary" href="#/combos/new">${tr('New combination')}</a>
+    ${list.length ? `<ul class="mylist">${list.map(c => `<li><a href="#/combos/${c.id}"><strong>${esc(c.name || c.say)}</strong><br><span class="muted small">"${esc(c.say)}"</span></a>
+      <a class="btn small" href="#/session/my/${c.id}">${tr('Drill')}</a></li>`).join('')}</ul>` : `<p class="muted">${tr('No combinations yet. Start with one you want to own, like 1-2, slip, 2.')}</p>`}
+  </section>`);
+  view.replaceChildren(el);
+}
+
+function ComboBuilder(c) {
+  let steps = c ? [...c.steps] : [];
+  const KIND = { attack: tr('Attack'), defence: tr('Defence'), move: tr('Move') };
+  const el = h(`<section class="builder"><a href="#/combos" class="back">← ${tr('My combos')}</a>
+    <h1>${c ? tr('Edit combination') : tr('New combination')}</h1>
+    <div class="seqbar"><ol class="seq"></ol><p class="say muted"></p></div>
+    <div class="fig-big"></div><div class="figcap" aria-live="polite"></div>
+    ${['attack', 'defence', 'move'].map(k => `<h2>${KIND[k]}</h2><div class="pgroup">${STEPS.filter(s => s.kind === k).map(s => `<button type="button" class="pill" data-add="${s.id}">${esc(tr(s.label))}</button>`).join('')}</div>`).join('')}
+    <p class="muted small">${tr('Tap to add (up to 8). Tap a step in the sequence to remove it.')}</p>
+    <label class="row">${tr('Name (optional)')} <input class="cname" maxlength="40" value="${esc(c?.name || '')}"></label>
+    <div class="savebar"><span class="count"></span><span>
+      ${c ? `<button class="btn ghost" data-del>${tr('Delete')}</button>` : ''}
+      <button class="btn primary" data-save>${t('save')}</button></span></div>
+  </section>`);
+  view.replaceChildren(el);
+  let fig = null, timer = 0;
+  const preview = () => {
+    fig?.destroy(); fig = null;
+    if (steps.length < 1) { $('.fig-big', el).innerHTML = `<p class="muted empty">${tr('Your combination will play here.')}</p>`; $('.figcap', el).textContent = ''; return; }
+    if (!webglOK()) { $('.fig-big', el).innerHTML = `<p class="muted empty">${tr('Your combination will play here.')}</p>`; return; }
+    registerSeq('preview', stepsSeq(steps));
+    fig = createViewer($('.fig-big', el), 'preview', { onLabel: (txt, i, n) => { $('.figcap', el).textContent = n > 1 ? `${i}/${n} · ${txt}` : txt; } });
+  };
+  const sync = () => {
+    $('.seq', el).innerHTML = steps.map((s, i) => `<li><button type="button" class="chip" data-rm="${i}">${esc(tr(STEPS.find(x => x.id === s).label))} ✕</button></li>`).join('');
+    $('.say', el).textContent = steps.length ? `${tr('The timer will say')}: "${stepsSay(steps)}"` : '';
+    $('[data-save]', el).disabled = steps.length < 2;
+    clearTimeout(timer); timer = setTimeout(preview, 350);
+  };
+  cleanup.push(() => { clearTimeout(timer); fig?.destroy(); });
+  el.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.add && steps.length < 8) { steps.push(b.dataset.add); sync(); }
+    if (b.dataset.rm) { steps.splice(+b.dataset.rm, 1); sync(); }
+    if ('save' in b.dataset) {
+      const item = { id: c?.id || 'u' + Date.now().toString(36), steps, say: stepsSay(steps), name: $('.cname', el).value.trim() };
+      store.update(st => { st.myCombos = [...(st.myCombos || []).filter(x => x.id !== item.id), item]; }, tr('Combination saved'));
+      location.hash = '#/combos';
+    }
+    if ('del' in b.dataset) {
+      store.update(st => { st.myCombos = (st.myCombos || []).filter(x => x.id !== c.id); }, tr('Combination deleted'));
+      location.hash = '#/combos';
+    }
+  });
+  sync();
+}
+
+// ----- Quick round timer -----
+const TIMER_DEF = { rounds: 3, secs: 180, rest: 60, calls: 'hands', pace: 'medium' };
+const timerOpts = () => ({ ...TIMER_DEF, ...(store.get().timer || {}) });
+function Timer() {
+  const o = timerOpts();
+  const G = {
+    rounds: [[3, '3'], [5, '5'], [6, '6'], [8, '8'], [10, '10'], [12, '12']],
+    secs: [[60, '1 min'], [120, '2 min'], [180, '3 min'], [300, '5 min']],
+    rest: [[30, '30 s'], [45, '45 s'], [60, '1 min'], [90, '90 s']],
+    calls: [['none', 'No calls (bell only)'], ['hands', 'Boxing: hands only'], ['thai', 'Muay Thai / kickboxing'], ['defence', 'Defence and counters'], ['fight', 'Fight mix'], ...(myCombos().length ? [['mine', 'My combos']] : [])],
+    pace: [['easy', 'Easy'], ['medium', 'Medium'], ['fast', 'Fast']],
+  };
+  const NAMES = { rounds: 'Rounds', secs: 'Round length', rest: 'Rest', calls: 'Calls', pace: 'Call pace' };
+  const total = () => { const x = timerOpts(); return Math.round((x.rounds * x.secs + (x.rounds - 1) * x.rest + 10) / 60); };
+  const el = h(`<section class="profile"><a href="#/library" class="back">← ${t('library')}</a><h1>${tr('Round timer')}</h1>
+    <p class="muted">${tr('For the bag, pads, sparring or a class. Bell at the start and end of each round, a click 10 seconds before the end.')}</p>
+    ${Object.entries(G).map(([k, opts]) => `<h2>${tr(NAMES[k])}</h2><div class="pgroup" data-k="${k}">${opts.map(([v, n]) => `<button type="button" class="pill${o[k] === v ? ' on' : ''}" data-v="${v}">${esc(tr(n))}</button>`).join('')}</div>`).join('')}
+    <div class="savebar"><span class="count"></span><a class="btn primary" href="#/session/timer/">${t('start')}</a></div>
+  </section>`);
+  const upd = () => { $('.count', el).textContent = tr('about {n} min', { n: total() }); };
+  el.addEventListener('click', e => {
+    const b = e.target.closest('.pill'); if (!b) return;
+    const k = b.parentElement.dataset.k, v = ['rounds', 'secs', 'rest'].includes(k) ? +b.dataset.v : b.dataset.v;
+    store.set({ timer: { ...timerOpts(), [k]: v } });
+    b.parentElement.querySelectorAll('.pill').forEach(x => x.classList.toggle('on', x === b)); upd();
+  });
+  view.replaceChildren(el); upd();
+}
+
+// ----- Monthly skill tests -----
+const TESTS = [
+  { k: 'punch', unit: 'punches', better: 'up', secs: 30, name: 'Punch output', how: 'Straight punches (jab, cross) for 30 seconds at full speed. Every punch must come back to guard. Count one hand and double it.' },
+  { k: 'react', unit: 'ms', better: 'down', name: 'Reaction time', how: 'Ten defence calls appear at random moments. Tap the big button the instant you see or hear one. Measures how fast you react.' },
+  { k: 'form', unit: '/ 25', better: 'up', name: 'Form under fatigue', how: 'Do 3 rounds of 2 minutes on call, then score yourself honestly from 1 to 5 on each point. Best checked in a mirror.' },
+  { k: 'engine', unit: 'reps', better: 'up', secs: 60, name: 'Work rate', how: 'Sprawls for 60 seconds, as many as you can with good form: hands down, feet back, hips to the floor, back up to stance.', alt: 'Straight punches for 60 seconds at full speed, staying in stance. Count one hand and double it.' },
+];
+const FORM_POINTS = ['Guard stays up', 'Chin down, eyes up', 'Every strike returns to guard', 'Balance and footwork', 'Relaxed, breathing out on strikes'];
+const testsDue = () => {
+  const s = store.get(), last = (s.tests || []).map(x => x.date).sort().pop();
+  if (!last) return s.log.length >= 3;
+  return (Date.now() - new Date(last)) / 864e5 >= 28;
+};
+function Tests(k) {
+  if (k) return TestRun(TESTS.find(x => x.k === k));
+  const res = store.get().tests || [];
+  const rows = TESTS.map(x => {
+    const r = res.filter(y => y.k === x.k), last = r[r.length - 1], prev = r[r.length - 2];
+    const best = r.length ? (x.better === 'up' ? Math.max(...r.map(y => y.v)) : Math.min(...r.map(y => y.v))) : null;
+    const d = last && prev ? last.v - prev.v : 0, good = x.better === 'up' ? d > 0 : d < 0;
+    return `<a class="libcard test" href="#/tests/${x.k}"><div><strong>${tr(x.name)}</strong><br>
+      ${last ? `<span class="stat">${last.v}</span> <small>${tr(x.unit)}</small> ${prev && d ? `<span class="${good ? 'ok' : 'err'}">${d > 0 ? '▲' : '▼'} ${Math.abs(d)}</span>` : ''}<br><span class="muted small">${tr('Last')}: ${last.date} · ${tr('Best')}: ${best}</span>` : `<span class="muted small">${tr('Not done yet')}</span>`}</div></a>`;
+  }).join('');
+  const el = h(`<section><a href="#/library" class="back">← ${t('library')}</a><h1>${tr('Skill tests')}</h1>
+    <p class="muted">${tr('Do all four once a month, on a fresh day, after a warm-up. Same conditions each time, so the numbers are comparable.')}</p>
+    ${testsDue() ? `<p class="note">${tr('Your monthly tests are due.')}</p>` : ''}
+    <div class="libgrid">${rows}</div></section>`);
+  view.replaceChildren(el);
+}
+function TestRun(x) {
+  if (!x) return Tests();
+  const noFloor = profile().limits.some(l => l === 'knees' || l === 'back');
+  const how = x.k === 'engine' && noFloor ? x.alt : x.how;
+  const el = h(`<section class="testrun"><a href="#/tests" class="back">← ${tr('Skill tests')}</a><h1>${tr(x.name)}</h1>
+    <p>${esc(tr(how))}</p><div class="tbody"></div></section>`);
+  view.replaceChildren(el);
+  const body = $('.tbody', el);
+  const save = v => {
+    store.update(st => { st.tests = [...(st.tests || []), { date: isoDate(), k: x.k, v }]; }, tr('Result saved'));
+    location.hash = '#/tests';
+  };
+  const countForm = () => {
+    body.innerHTML = `<label class="row">${tr('Your count')} <input type="number" inputmode="numeric" min="0" max="999" class="num"></label><button class="btn primary" data-s>${t('save')}</button>`;
+    $('[data-s]', body).onclick = () => { const v = +$('.num', body).value; if (v > 0) save(v); };
+  };
+  if (x.secs) {
+    body.innerHTML = `<div class="clock">${fmt(x.secs)}</div><button class="btn primary big" data-go>${t('start')}</button> <button class="btn ghost" data-skip>${tr('I timed it myself')}</button>`;
+    let iv = 0; cleanup.push(() => clearInterval(iv));
+    $('[data-skip]', body).onclick = countForm;
+    $('[data-go]', body).onclick = e => {
+      e.target.disabled = true; let left = 3; $('.clock', body).textContent = tr('Ready') + '… 3';
+      say('ready'); const t0 = Date.now() + 3000;
+      iv = setInterval(() => {
+        const ms = t0 - Date.now();
+        if (ms > 0) { $('.clock', body).textContent = tr('Ready') + '… ' + Math.ceil(ms / 1000); return; }
+        if (left === 3) { bell(1); left = 0; }
+        const rem = x.secs - (Date.now() - t0) / 1000;
+        $('.clock', body).textContent = fmt(Math.max(0, Math.ceil(rem)));
+        if (rem <= 0) { clearInterval(iv); bell(3); countForm(); }
+      }, 100);
+    };
+  } else if (x.k === 'react') {
+    const CALLS = ['SLIP', 'BLOCK', 'ROLL', 'PARRY', 'PULL'];
+    let n = 0, times = [], armed = 0, to = 0;
+    body.innerHTML = `<button class="reactpad" type="button">${tr('Tap to start')}</button><p class="muted small rmsg"></p>`;
+    const pad = $('.reactpad', body), msg = $('.rmsg', body);
+    cleanup.push(() => clearTimeout(to));
+    const arm = () => {
+      pad.textContent = tr('Wait…'); pad.className = 'reactpad wait'; armed = 0;
+      to = setTimeout(() => { const c = CALLS[Math.floor(Math.random() * CALLS.length)]; pad.textContent = c; pad.className = 'reactpad go'; say(c.toLowerCase()); armed = performance.now(); }, 1200 + Math.random() * 2600);
+    };
+    pad.onclick = () => {
+      if (pad.classList.contains('done')) return;
+      if (!pad.classList.contains('wait') && !armed) { arm(); return; }
+      if (!armed) { clearTimeout(to); msg.textContent = tr('Too early. Wait for the call.'); arm(); return; }
+      const ms = Math.round(performance.now() - armed); times.push(ms); n++; msg.textContent = `${n} / 10 · ${ms} ms`;
+      if (n < 10) arm();
+      else {
+        const sorted = [...times].sort((a, b) => a - b), med = Math.round((sorted[4] + sorted[5]) / 2);
+        pad.className = 'reactpad done'; pad.textContent = `${med} ms`;
+        msg.textContent = tr('Your typical reaction (median of 10).');
+        body.insertAdjacentHTML('beforeend', `<button class="btn primary" data-s>${t('save')}</button>`);
+        $('[data-s]', body).onclick = () => save(med);
+      }
+    };
+  } else if (x.k === 'form') {
+    body.innerHTML = `<a class="btn" href="#/session/formtest/">${tr('Run the 3 rounds')}</a>
+      <h2>${tr('Score each point 1 to 5')}</h2>
+      ${FORM_POINTS.map((p, i) => `<div class="rate"><span>${tr(p)}</span><div class="seg" data-i="${i}">${[1, 2, 3, 4, 5].map(v => `<button type="button" class="pill${v === 3 ? ' on' : ''}" data-r="${v}">${v}</button>`).join('')}</div></div>`).join('')}
+      <button class="btn primary" data-s>${t('save')}</button>`;
+    body.addEventListener('click', e => { const r = e.target.closest('[data-r]'); if (r) r.parentElement.querySelectorAll('.pill').forEach(b => b.classList.toggle('on', b === r)); });
+    $('[data-s]', body).onclick = () => save([...body.querySelectorAll('.seg')].reduce((a, s) => a + +$('.pill.on', s).dataset.r, 0));
+  }
+}
+
+// ----- Fight IQ -----
+function IQ(id) {
+  const ka = store.get().lang === 'ka', T = l => (ka ? l.ka : l.en);
+  const done = store.get().iqDone || {};
+  if (id && lessonById[id]) {
+    const l = lessonById[id], x = T(l);
+    const el = h(`<section><a href="#/iq" class="back">← ${tr('Fight IQ')}</a><h1>${esc(x.title)}</h1>
+      <p class="purpose">${esc(x.why)}</p>
+      <h2>${t('keyPoints')}</h2><ol>${x.points.map(p => `<li>${esc(p)}</li>`).join('')}</ol>
+      <h2>${tr('Drill')}: ${esc(x.drill[0])}</h2><p>${esc(x.drill[1])}</p>
+      <p class="muted small">${tr('{n} rounds of {t}, the timer calls it.', { n: l.drill.rounds, t: fmt(l.drill.secs) })}</p>
+      <div class="actions"><a class="btn primary" href="#/session/iq/${id}">${tr('Start the drill')}</a>
+      <button class="btn${done[id] ? ' ghost' : ''}" data-done>${done[id] ? '✓ ' + tr('Studied') : tr('Mark as studied')}</button></div>
+    </section>`);
+    el.querySelector('[data-done]').onclick = () => { store.update(st => { st.iqDone = { ...(st.iqDone || {}) }; if (st.iqDone[id]) delete st.iqDone[id]; else st.iqDone[id] = isoDate(); }, tr('Updated')); IQ(id); };
+    return view.replaceChildren(el);
+  }
+  const el = h(`<section><a href="#/library" class="back">← ${t('library')}</a><h1>${tr('Fight IQ')}</h1>
+    <p class="muted">${tr('Techniques win exchanges; understanding wins fights. Each lesson takes a few minutes to read and comes with a drill.')}</p>
+    <ol class="iqlist">${LESSONS.map(l => `<li><a href="#/iq/${l.id}">${esc(T(l).title)}</a>${done[l.id] ? ' <span class="ok">✓</span>' : ''}<br><span class="muted small">${esc(T(l).why.split('. ')[0])}.</span></li>`).join('')}</ol>
+  </section>`);
+  view.replaceChildren(el);
+}
+
 // ---------- router ----------
-const routes = { profile: () => Profile(false), today: Today, week: Week, plan: Plan, pathway: Pathway, library: Library, tech: Tech, session: Session, log: Log, settings: Settings };
+const routes = { combos: MyCombos, timer: Timer, tests: Tests, iq: IQ, profile: () => Profile(false), today: Today, week: Week, plan: Plan, pathway: Pathway, library: Library, tech: Tech, session: Session, log: Log, settings: Settings };
 
 function render() {
   cleanup.forEach(f => f()); cleanup = [];

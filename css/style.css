@@ -223,3 +223,21 @@ select, input[type=date] { font: inherit; padding: 6px; border-radius: 8px; bord
 .err { color: var(--combat); }
 .coach { border-left: 3px solid var(--accent); padding: 4px 0 4px 10px; font-size: .9rem; }
 .safety { background: color-mix(in srgb, var(--ok) 10%, transparent); padding: 8px 12px; border-radius: 8px; }
+
+/* tools */
+.tools { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 14px 0; }
+.tool { display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--text); border-top: 3px solid var(--accent); }
+.tool span { font-size: .78rem; color: var(--muted); }
+.mylist { list-style: none; padding: 0; } .mylist li { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.mylist a:first-child { text-decoration: none; color: var(--text); }
+.seqbar { position: sticky; top: 56px; z-index: 1; background: var(--bg); padding: 6px 0; }
+.seq { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 0; min-height: 34px; }
+.seq .chip { border: 0; border-radius: 999px; padding: 6px 10px; background: color-mix(in srgb, var(--combat) 15%, transparent); color: var(--text); font: inherit; font-size: .85rem; }
+.builder .fig-big .empty { padding: 40px 16px; text-align: center; }
+.testrun .clock { font-size: 3rem; font-variant-numeric: tabular-nums; margin: 10px 0; }
+.reactpad { width: 100%; height: 240px; border-radius: var(--radius); border: 0; font: 700 2rem/1 inherit; background: var(--surface); color: var(--text); border: 1px solid var(--line); touch-action: manipulation; }
+.reactpad.wait { background: color-mix(in srgb, var(--warn) 20%, var(--surface)); }
+.reactpad.go { background: var(--combat); color: #fff; }
+.reactpad.done { background: color-mix(in srgb, var(--ok) 20%, var(--surface)); }
+.ok { color: var(--ok); } .test .stat { font-size: 1.5rem; font-weight: 700; }
+.iqlist li { margin-bottom: 12px; }

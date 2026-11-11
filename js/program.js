@@ -2,6 +2,7 @@
 // for your training days (see profile.js: which days, which session, what to avoid).
 import { TECHNIQUES, techById, COMBOS } from './data/techniques.js';
 import { store } from './store.js';
+import { stepsKick, stepsDefFirst } from './data/combos.js';
 import { weekDays, dayPlan, legsDay, suitable, tune, profile } from './profile.js';
 
 // Kicks, knees and level changes stay off the legs day (only when the running/strength plan is shown).
@@ -81,9 +82,11 @@ export function programFocus(day, week) {
 }
 
 // Combos the timer calls: only ones built from what you picked (plus stance/step).
+// Combinations you built yourself (My combos): the timer calls them like any other.
+export const myCombos = () => (store.get().myCombos || []).filter(c => c.steps?.length).map(c => ({ say: c.say, uses: [], kick: stepsKick(c.steps), def: stepsDefFirst(c.steps), mine: true }));
 export function programCombos() {
   const p = known();
-  const list = COMBOS.filter(c => c.uses.every(id => p.has(id)));
+  const list = [...COMBOS.filter(c => c.uses.every(id => p.has(id))), ...myCombos()];
   return list.length >= 2 ? list : null;
 }
 
@@ -127,13 +130,13 @@ const usable = (list, noKicks) => {
 };
 // Picked defend-and-counter combinations are called in the defence rounds too.
 const counterCalls = () => COUNTER.filter(id => picks().includes(id)).map(id => ({ say: techById[id].callout.en, uses: techById[id].uses }));
-export const defenceCalls = noKicks => usable([...DEFENCE_CALLS, ...counterCalls().filter(c => !DEFENCE_CALLS.some(d => d.say === c.say))], noKicks);
-export const offenceCombos = noKicks => usable(COMBOS, noKicks);
+export const defenceCalls = noKicks => usable([...DEFENCE_CALLS, ...counterCalls().filter(c => !DEFENCE_CALLS.some(d => d.say === c.say)), ...myCombos().filter(c => c.def)], noKicks);
+export const offenceCombos = noKicks => usable([...COMBOS, ...myCombos().filter(c => !c.def)], noKicks);
 
 // Two "combos of the week" to drill on combination day, rotating through everything you know.
 export function weekCombos(week) {
   // The combinations you picked come first: two of them each week, in turn.
-  const mine = ATTACK.filter(id => picks().includes(id)).map(id => ({ say: techById[id].callout.en, uses: techById[id].uses }));
+  const mine = [...ATTACK.filter(id => picks().includes(id)).map(id => ({ say: techById[id].callout.en, uses: techById[id].uses })), ...myCombos().filter(c => !c.def)];
   if (mine.length >= 2) { const a = (week * 2) % mine.length, b = (week * 2 + 1) % mine.length; return [...new Set([mine[a], mine[b]])]; }
   const DEF = new Set(['slip', 'parry', 'block', 'roll', 'check', 'catchkick', 'sprawl', 'sprawlstrike', 'pullcounter', 'slipcounter']);
   let list = offenceCombos(false).filter(c => c.uses.length >= 2 && !c.uses.some(id => DEF.has(id)));
