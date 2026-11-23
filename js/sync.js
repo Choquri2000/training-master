@@ -3,6 +3,7 @@
 // Firestore keeps its own offline queue, so changes made without signal upload later.
 import { FIREBASE_CONFIG } from './firebase-config.js';
 import { store } from './store.js';
+import { initPro } from './pro.js';
 
 const V = '10.12.2';
 const CDN = `https://www.gstatic.com/firebasejs/${V}`;
@@ -61,6 +62,7 @@ export async function initSync(onDataChanged) {
     user = u;
     if (!u) { status.state = 'signed-out'; emit(); return; }
     docRef = f.doc(db, 'users', u.uid);
+    initPro(u.uid);
     try { await pull(); onDataChanged?.(); } catch (e) { status.state = 'error'; status.error = e.message; emit(); }
   });
   store.onChange(() => { clearTimeout(timer); timer = setTimeout(upload, 800); });

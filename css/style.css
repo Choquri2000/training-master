@@ -683,3 +683,7 @@ body.immersive #toast { bottom: auto; top: calc(12px + env(safe-area-inset-top))
 select { max-width: 100%; box-sizing: border-box; }
 section > select, section > label > select { width: 100%; }
 .legal { text-align: center; margin: 8px 0 24px; } .legal a { color: inherit; }
+.pro .perks { list-style: none; padding: 0; margin: 16px 0 24px; display: grid; gap: 10px; }
+.pro .perks li::before { content: '✓'; color: var(--brand); font-weight: 700; margin-right: 10px; }
+.pro .plans { display: grid; gap: 10px; margin-bottom: 12px; }
+.pro .btn.plan { width: 100%; justify-content: center; padding: 16px; }

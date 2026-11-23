@@ -30,6 +30,7 @@ import { store } from './store.js';
 import { PRESETS, picks, programFocus, volume, blockWeek, themeOf, stage, learnedCount, fighterVolume, weekCombos, sharpenSkills, myCombos, fixActive, findWeak, eventInfo, phaseWeek } from './program.js';
 import { profile, hasProfile, DEFAULT_PROFILE, CHOICES, weekDays, dayPlan, legsDay, suitable, adaptSession, coachNote, safetyNote, LEVELS } from './profile.js';
 import { t, L, LANGS, tr } from './i18n.js';
+import { initPro, isPro, onPro, proAvailable, plans, buy, restore } from './pro.js';
 import { initSync, onSync, signIn, signInGoogle, signOut, resetPassword, syncAvailable, deleteAccount } from './sync.js';
 
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -169,6 +170,7 @@ function Me() {
       ${row('#/career', icon('career'), tr('Fighter career'), fightReady ? tr('Fight night is ready') : '', fightReady)}
     </div>
     <div class="card list">
+      ${proAvailable() ? row('#/pro', icon('career'), 'Combat Coach Pro', isPro() ? tr('Active') : tr('Unlock everything')) : ''}
       ${row('#/profile', icon('profile'), tr('Your profile'), '')}
       ${row('#/settings', icon('settings'), t('settings'), cloudOn ? tr('Saved to the cloud') : '', unsafe)}
     </div>
@@ -717,6 +719,36 @@ function Log() {
   </section>`);
   el.addEventListener('click', e => { if (fixClick(e)) Log(); });
   view.replaceChildren(el);
+}
+
+function Pro() {
+  const perks = ['Every skill pathway and technique', 'Fighter routine, combinations and sparring partner', 'Fighter career and skill tests', 'Coach voice and cloud save on all your phones'];
+  const el = h(`<section class="pro"><h1>Combat Coach Pro</h1>
+    <ul class="perks">${perks.map(x => `<li>${tr(x)}</li>`).join('')}</ul>
+    <div class="plans"><p class="muted">${tr('Loading...')}</p></div>
+    <button class="btn ghost" data-a="restore">${tr('Restore purchases')}</button>
+    <p class="pro-msg small"></p>
+    <p class="small muted">${tr('Renews automatically until cancelled. Cancel any time in Google Play, at least 24 hours before renewal.')} <a href="terms.html">${tr('Terms of use')}</a> · <a href="privacy.html">${tr('Privacy policy')}</a></p>
+  </section>`);
+  view.replaceChildren(el);
+  const box = $('.plans', el), msg = $('.pro-msg', el);
+  const off = onPro(on => { if (!el.isConnected) return off?.(); if (on) box.innerHTML = `<p class="ok">✓ ${tr('Pro is active. Thank you!')}</p>`; });
+  if (isPro()) return;
+  plans().then(list => {
+    if (isPro()) return;
+    if (!list.length) { box.innerHTML = `<p class="muted">${tr('Plans are not available right now.')}</p>`; return; }
+    const yearly = list.find(x => x.type === 'ANNUAL');
+    box.innerHTML = list.map((x, i) => `<button class="btn plan ${x === yearly ? '' : 'ghost'}" data-i="${i}">
+      <b>${x.type === 'ANNUAL' ? tr('Yearly') : tr('Monthly')}</b> ${esc(x.price)}${x.trial ? ` · ${tr('free trial')}` : ''}</button>`).join('');
+    box.onclick = async e => {
+      const b = e.target.closest('[data-i]'); if (!b) return;
+      msg.textContent = '';
+      try { await buy(list[+b.dataset.i]); } catch (err) { if (!err?.userCancelled && !/cancel/i.test(err?.message || '')) msg.textContent = tr('Purchase did not go through. You were not charged.'); }
+    };
+  });
+  $('[data-a=restore]', el).onclick = async () => {
+    try { msg.textContent = (await restore()) ? '' : tr('No subscription found for this account.'); } catch { msg.textContent = tr('Could not reach the store. Try again.'); }
+  };
 }
 
 function Settings() {
@@ -1441,9 +1473,9 @@ function eventClick(e, root) {
 }
 
 // ---------- router ----------
-const routes = { me: Me, targets: Targets, career: Career, drills: Drills, spar: Spar, styles: Styles, combos: MyCombos, timer: Timer, tests: Tests, iq: IQ, profile: () => Profile(false), today: Today, week: () => Plan(), plan: Plan, pathway: Pathway, library: Library, tech: Tech, session: Session, log: Log, settings: Settings };
+const routes = { pro: Pro, me: Me, targets: Targets, career: Career, drills: Drills, spar: Spar, styles: Styles, combos: MyCombos, timer: Timer, tests: Tests, iq: IQ, profile: () => Profile(false), today: Today, week: () => Plan(), plan: Plan, pathway: Pathway, library: Library, tech: Tech, session: Session, log: Log, settings: Settings };
 
-const NAVMAP = { career: 'me', drills: 'library', week: 'me', plan: 'me', pathway: 'me', profile: 'me', settings: 'me', log: 'me', tech: 'library', styles: 'library', iq: 'library', combos: 'library', targets: 'library', tests: 'me', timer: 'today', spar: 'today', session: 'today' };
+const NAVMAP = { pro: 'me', career: 'me', drills: 'library', week: 'me', plan: 'me', pathway: 'me', profile: 'me', settings: 'me', log: 'me', tech: 'library', styles: 'library', iq: 'library', combos: 'library', targets: 'library', tests: 'me', timer: 'today', spar: 'today', session: 'today' };
 function render() {
   cleanup.forEach(f => f()); cleanup = [];
   document.documentElement.lang = store.get().lang || 'en';
@@ -1487,6 +1519,7 @@ function addProfile() {
   store.set({ profile: { ...DEFAULT_PROFILE, days: [0, 2, 4, 5], other: true } });
 }
 seed(); addCombos(); addProfile();
+initPro();
 initSync(() => { addCombos(); addProfile(); render(); });
 try { navigator.storage?.persist?.(); } catch { /* not supported */ }
 window.addEventListener('hashchange', render);
