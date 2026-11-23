@@ -2,5 +2,15 @@
   "appId": "app.combatcoach",
   "appName": "Combat Coach",
   "webDir": "www",
-  "android": { "backgroundColor": "#f4f4f2" }
+  "android": {
+    "backgroundColor": "#f4f4f2"
+  },
+  "plugins": {
+    "FirebaseAuthentication": {
+      "skipNativeAuth": true,
+      "providers": [
+        "google.com"
+      ]
+    }
+  }
 }

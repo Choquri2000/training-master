@@ -74,7 +74,11 @@ export async function signIn(email, password, create) {
   await fn(auth, email, password);
 }
 export async function signInGoogle() {
-  await fb.signInWithPopup(auth, new fb.GoogleAuthProvider());
+  const native = window.Capacitor?.isNativePlatform?.() && window.Capacitor.Plugins.FirebaseAuthentication;
+  if (!native) return fb.signInWithPopup(auth, new fb.GoogleAuthProvider());
+  // Inside the Android app Google blocks web pop-ups, so use the phone's own Google account picker.
+  const r = await native.signInWithGoogle();
+  await fb.signInWithCredential(auth, fb.GoogleAuthProvider.credential(r.credential?.idToken));
 }
 export const signOut = () => fb.signOut(auth);
 // Permanently delete the cloud copy and the sign-in account (required by app stores).
