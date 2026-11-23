@@ -221,3 +221,10 @@ Object.assign(KA, {
   'Your data': 'შენი მონაცემები',
   'All steps': 'ყველა ეტაპი',
 });
+Object.assign(KA, {
+  'Me': 'ჩემი', 'Rest': 'დასვენება', 'Rest day': 'დასვენების დღე', 'min': 'წთ', 'Close': 'დახურვა',
+  'this week': 'ამ კვირაში', 'My plan': 'ჩემი გეგმა', 'Learn the skills': 'უნარების სწავლა', '{n} min trained': '{n} წთ ნავარჯიშები',
+  'Saved to the cloud': 'შენახულია ღრუბელში', 'Up next': 'შემდეგი', '{a} of {b} skills solid': '{b}-დან {a} უნარი ათვისებულია',
+  'Go deeper': 'ჩაუღრმავდი', 'All techniques': 'ყველა ტექნიკა',
+});
+Object.assign(KA, { '{n} skills': '{n} უნარი' });

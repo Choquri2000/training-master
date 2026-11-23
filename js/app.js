@@ -70,7 +70,7 @@ function statusBadge(st) { return `<span class="badge st-${st}">${t(st)}</span>`
 let cloudOn = false;
 onSync(st => {
   const was = cloudOn; cloudOn = !!st.email;
-  if (was !== cloudOn && /^#?\/?(today)?$/.test(location.hash.replace('#/', ''))) render();
+  if (was !== cloudOn && /^(today|me)?$/.test(location.hash.replace(/^#\/?/, ''))) render(); else updateMeDot();
 });
 function backupDue() {
   const s = store.get();
@@ -88,47 +88,89 @@ function Today() {
   const mine = picks().length > 0;
   const focus = fighter ? (sessionKey === 'ffight' || sessionKey === 'footwork' ? [] : sharpenSkills(d.day, weekNumber())) : sessionKey && sessionKey !== 'footwork' ? (mine && programFocus(d.day, weekNumber()).length ? programFocus(d.day, weekNumber()) : focusTechs(sessionKey === 'main' ? 3 : 2)) : [];
   const note = sessionKey ? coachNote({ key: sessionKey, bw: phaseWeek(weekNumber()), fighter, deload: isDeload() }) : '';
-  const ev = eventInfo(), dd = sessionKey ? drillOfDay(sessionKey, weekNumber(), profile()) : null;
-  // Only the most important notices, so the session stays the focus.
-  const notes = [
-    syncAvailable() && !cloudOn ? `<a class="notice warn" href="#/settings"><b>${tr("Your progress isn't backed up yet.")}</b><span>${tr('Sign in once')} ${tr('to save it to the cloud automatically.')}</span></a>` : '',
-    !syncAvailable() && backupDue() ? `<a class="notice warn" href="#/settings"><b>${tr('Your progress is saved only on this phone.')}</b><span>${tr('Back it up')} ${tr('(takes 2 seconds).')}</span></a>` : '',
-    testsDue() ? `<a class="notice" href="#/tests"><b>${tr('Your monthly tests are due.')}</b><span>${tr('Skill tests')}</span></a>` : '',
-    fixActive() ? `<p class="notice"><b>${tr('Fix-it block')}</b><span>${tr('day {n} of 14', { n: fixActive().day })}</span></p>` : '',
-    isDeload() ? `<p class="notice"><span>${t('deloadNote')}</span></p>` : '',
-  ].filter(Boolean).slice(0, 2).join('');
-  const career = (() => { const c = careerOf(store.get()), n = campDone(store.get(), c); return !c.fights.length || n >= MIN_CAMP ? nextOpponent(c, careerStyles()).name : ''; })();
-  const el = h(`<section class="today">
-    <header class="phead">
-      <p class="eyebrow">${tr('week')} ${weekNumber()}${isDeload() ? ' · ' + tr('deload') : ''}${mine ? ' · ' + esc(tr((fighter ? fighterVolume : volume)(weekNumber()).label)) : ''}</p>
-      <h1>${L(DAY_NAMES)[d.day]}</h1>
-      ${ev ? `<p class="evbadge">🥊 ${esc(ev.name || tr('Your date'))}: ${ev.days === 0 ? tr('today!') : tr('{n} days to go', { n: ev.days })}</p>` : ''}
-    </header>
-    ${notes}
-    <div class="hero">
+  const ev = eventInfo(), ti = todayIdx();
+  const mon = new Date(); mon.setDate(mon.getDate() - ti);
+  const dates = Array.from({ length: 7 }, (_, i) => { const x = new Date(mon); x.setDate(mon.getDate() + i); return isoDate(x); });
+  const doneDays = new Set(store.get().log.map(e => e.date));
+  const sname = k => k ? L(SESSION_TYPES[k === 'main' && !fighter && isDeload() ? 'technique' : k].name) : tr('Rest');
+  const short = L(DAY_NAMES).map(n => n.slice(0, store.get().lang === 'ka' ? 2 : 1));
+  const el = h(`<section class="train">
+    <p class="eyebrow">${L(DAY_NAMES)[d.day]} · ${tr('week')} ${weekNumber()}${isDeload() ? ' · ' + tr('deload') : ''}${fixActive() ? ' · ' + tr('Fix-it block') : ''}</p>
+    <div class="strip" role="tablist">${dates.map((dt, i) => { const k = dayPlan(i, fighter)?.key; return `<button class="sd${i === ti ? ' now' : ''}${k ? ' on' : ''}${doneDays.has(dt) ? ' done' : ''}" data-day="${i}" aria-label="${esc(L(DAY_NAMES)[i])}"><span>${esc(short[i])}</span><i></i></button>`; }).join('')}</div>
+    <div class="daypeek" hidden></div>
+    ${ev ? `<p class="evbadge">🥊 ${esc(ev.name || tr('Your date'))}: ${ev.days === 0 ? tr('today!') : tr('{n} days to go', { n: ev.days })}</p>` : ''}
+    <div class="stage-card">
       ${sessionKey ? `
-        <p class="eyebrow">${fighter ? tr('Fighter training') : t('combat')}</p>
-        <h2>${esc(L(SESSION_TYPES[sessionKey].name))}</h2>
-        <p class="meta"><span>⏱ ${tr('about {n} min', { n: sessionMinutes(sessionKey, focus) })}</span></p>
-        <p class="sub">${esc(L(SESSION_TYPES[sessionKey].blurb).replace(/^\d+(-\d+| to \d+)? (min|წთ)[.,]? /, ''))}</p>
-        ${fighter && sessionKey === 'fcombo' ? `<p class="sub">${tr('Combos of the week')}: <strong>${weekCombos(weekNumber()).map(c => esc(c.say)).join(' · ')}</strong></p>` : ''}
-        ${focus.length ? `<p class="label">${fighter ? tr('Sharpen today') : t('focusToday')}</p><ul class="chips">${focus.map(id => `<li><a href="#/tech/${id}">${esc(L(techById[id].name))}</a></li>`).join('')}</ul>` : ''}
-        ${dd ? `<a class="row-link" href="#/drills/${dd.id}"><span class="label">${tr('Drill of the day')}</span><b>${esc(L(dd.name))}</b></a>` : ''}
-        <a class="btn primary block xl" href="#/session/${sessionKey}/${focus.join(',')}">▶ ${t('start')}</a>
-        ${note ? `<details class="coach"><summary>${tr("Coach's note")}</summary><p>${esc(note)}</p></details>` : ''}
-        ${mine ? '' : `<p class="muted small center"><a href="#/plan">${tr('Pick your skills')}</a> ${tr('to get a full weekly plan.')}</p>`}
-      ` : `<p class="eyebrow">${t('combat')}</p><h2>${t('noCombatToday')}</h2>
-        <a class="btn block" href="#/session/footwork/">${tr('10-15 min footwork (optional)')}</a>`}
+        <h1>${esc(sname(sessionKey))}</h1>
+        <p class="mins">${sessionMinutes(sessionKey, focus)} <small>${tr('min')}</small></p>
+        ${focus.length ? `<p class="focus">${focus.map(id => `<a href="#/tech/${id}">${esc(L(techById[id].name))}</a>`).join('<span>·</span>')}</p>` : fighter && sessionKey === 'fcombo' ? `<p class="focus">${weekCombos(weekNumber()).map(c => esc(c.say)).join('<span>·</span>')}</p>` : ''}
+        <a class="go" href="#/session/${sessionKey}/${focus.join(',')}" aria-label="${t('start')}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></a>
+        <p class="go-label">${t('start')}</p>
+        ${note ? `<details class="tip"><summary>${tr("Coach's note")}</summary><p>${esc(note)}</p></details>` : ''}
+      ` : `
+        <h1>${tr('Rest day')}</h1>
+        <p class="focus">${t('noCombatToday')}</p>
+        <a class="go soft" href="#/session/footwork/" aria-label="${tr('10-15 min footwork (optional)')}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></a>
+        <p class="go-label">${tr('10-15 min footwork (optional)')}</p>`}
     </div>
-    <div class="quick">
-      <a href="#/spar"><i>🥊</i><b>${tr('Sparring partner')}</b></a>
-      <a href="#/timer"><i>⏱</i><b>${tr('Round timer')}</b></a>
-      ${career ? `<a href="#/career" class="wide"><i>🏆</i><b>${tr('Fight night is ready')}</b><span>${esc(career)}</span></a>` : ''}
+    <nav class="also-links"><a href="#/timer">⏱ ${tr('Round timer')}</a><a href="#/spar">🥊 ${tr('Sparring partner')}</a></nav>
+  </section>`);
+  const peek = $('.daypeek', el);
+  $('.strip', el).addEventListener('click', e => {
+    const btn = e.target.closest('[data-day]'); if (!btn) return;
+    const i = +btn.dataset.day, wd = WEEK[i], k = dayPlan(i, fighter)?.key;
+    const same = !peek.hidden && peek.dataset.day == i;
+    el.querySelectorAll('.sd').forEach(b => b.classList.toggle('sel', !same && b === btn));
+    peek.hidden = same; peek.dataset.day = i;
+    peek.innerHTML = `<b>${esc(L(DAY_NAMES)[i])}</b><span>${doneDays.has(dates[i]) ? '✓ ' : ''}${esc(sname(k))}</span>${other && wd.run ? `<span><span class="dot k-run"></span>${t('run')}: ${esc(L(wd.run))}</span>` : ''}${other && wd.strength ? `<span><span class="dot k-strength"></span>${esc(L(STRENGTH[wd.strength].name))}</span>` : ''}`;
+  });
+  view.replaceChildren(el);
+}
+
+// Line icons for list rows (24px, stroke = currentColor).
+const ICON_PATHS = {
+  plan: '<rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
+  progress: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+  tests: '<rect x="5" y="4" width="14" height="17" rx="2.5"/><path d="M9 4V3h6v1M9 12l2 2 4-4"/>',
+  career: '<path d="M8 4h8v5a4 4 0 0 1-8 0zM8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8 21h8M9 17h6"/>',
+  profile: '<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>',
+  settings: '<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/>',
+  drills: '<path d="M13 2 4 14h7l-1 8 9-12h-7z"/>',
+  combos: '<path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16z"/>',
+  styles: '<path d="m12 3 9 5-9 5-9-5zM3 13l9 5 9-5"/>',
+  iq: '<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/>',
+  targets: '<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1" fill="currentColor"/>',
+};
+const icon = k => `<svg class="ico" viewBox="0 0 24 24" aria-hidden="true">${ICON_PATHS[k]}</svg>`;
+
+// The "Me" tab: a few numbers, then one short list. Everything else lives one tap down.
+function Me() {
+  const s = store.get();
+  const thisMon = (() => { const x = new Date(); x.setDate(x.getDate() - todayIdx()); return isoDate(x); })();
+  const wk = s.log.filter(e => e.date >= thisMon).length;
+  const ids = picks().length ? picks() : TECHNIQUES.map(x => x.id);
+  const solid = ids.filter(id => s.status[id] === 'done').length;
+  const mins = s.log.reduce((a, e) => a + (e.minutes || 0), 0);
+  const c = careerOf(s), fightReady = !c.fights.length || campDone(s, c) >= MIN_CAMP;
+  const row = (href, icon, title, sub, flag) => `<a class="lrow nav" href="${href}"><i>${icon}</i><span><b>${title}</b>${sub ? `<small>${sub}</small>` : ''}</span>${flag ? '<em class="flag"></em>' : ''}</a>`;
+  const unsafe = syncAvailable() ? !cloudOn : backupDue();
+  const el = h(`<section class="me"><h1>${tr('Me')}</h1>
+    ${unsafe ? `<a class="notice warn" href="#/settings"><b>${tr(syncAvailable() ? "Your progress isn't backed up yet." : 'Your progress is saved only on this phone.')}</b><span>${syncAvailable() ? tr('Sign in once') + ' ' + tr('to save it to the cloud automatically.') : tr('Back it up') + ' ' + tr('(takes 2 seconds).')}</span></a>` : ''}
+    <div class="nums">
+      <div><b>${wk}</b><span>${tr('this week')}</span></div>
+      <div><b>${s.log.length}</b><span>${t('sessions')}</span></div>
+      <div><b>${solid}<small>/${ids.length}</small></b><span>${t('skillsSolid')}</span></div>
     </div>
-    ${other ? `<div class="card also"><p class="label">${tr('Also today')}</p>
-      <p><span class="dot k-run"></span>${t('run')}: ${d.run ? esc(L(d.run)) : t('rest')}</p>
-      ${d.strength ? `<details><summary><span class="dot k-strength"></span>${esc(L(STRENGTH[d.strength].name))}${d.combat ? ' · ' + tr('after combat') : ''}</summary><ul class="slist">${STRENGTH[d.strength].items.map(([n, r]) => `<li>${esc(tr(n))} <em>${esc(tr(r))}</em></li>`).join('')}</ul></details>` : ''}
-    </div>` : ''}
+    <div class="card list">
+      ${row('#/plan', icon('plan'), tr('My plan'), tr(stage() === 'fighter' ? 'Fighter training' : 'Learn the skills'))}
+      ${row('#/log', icon('progress'), t('log'), tr('{n} min trained', { n: mins }))}
+      ${row('#/tests', icon('tests'), tr('Skill tests'), testsDue() ? tr('Your monthly tests are due.') : '', testsDue())}
+      ${row('#/career', icon('career'), tr('Fighter career'), fightReady ? tr('Fight night is ready') : '', fightReady)}
+    </div>
+    <div class="card list">
+      ${row('#/profile', icon('profile'), tr('Your profile'), '')}
+      ${row('#/settings', icon('settings'), t('settings'), cloudOn ? tr('Saved to the cloud') : '', unsafe)}
+    </div>
   </section>`);
   view.replaceChildren(el);
 }
@@ -348,35 +390,53 @@ function Pathway() {
   view.replaceChildren(el);
 }
 
-function Library() {
-  const filter = sessionStorage.getItem('libFilter') || 'all';
-  const list = TECHNIQUES.filter(x => filter === 'all' || x.discipline === filter);
-  const el = h(`<section class="learn"><h1>${t('learn')}</h1>
-    ${toolsRow()}
-    <h2>${t('techniques')} <small>${list.length}</small></h2>
+function Library(arg) {
+  if (arg) return LibraryList(arg);
+  const s = store.get(), ids = picks().length ? picks() : TECHNIQUES.map(x => x.id);
+  const solid = ids.filter(id => s.status[id] === 'done').length;
+  const next = techById[focusTechs(1)[0]];
+  const discs = Object.keys(DISCIPLINES).map(k => ({ k, n: TECHNIQUES.filter(x => x.discipline === k).length, d: TECHNIQUES.filter(x => x.discipline === k && s.status[x.id] === 'done').length })).filter(x => x.n);
+  const el = h(`<section class="learn"><div class="titlerow"><h1>${t('learn')}</h1><a class="iconbtn" href="#/library/all" aria-label="${tr('Search techniques')}"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></a></div>
+    ${next ? `<a class="upnext" href="#/tech/${next.id}"><div class="fig-slot" data-tech="${next.id}"></div><div><p class="eyebrow">${tr('Up next')}</p><b>${esc(L(next.name))}</b><span>${esc(L(next.purpose)).split('. ')[0]}</span></div></a>` : ''}
+    <div class="meter"><span>${tr('{a} of {b} skills solid', { a: solid, b: ids.length })}</span><div class="progress"><div style="width:${(solid / ids.length) * 100}%"></div></div></div>
+    <div class="cats">${discs.map(x => `<a href="#/library/${x.k}"><b>${esc(L(DISCIPLINES[x.k]))}</b><span>${tr('{n} skills', { n: x.n })}</span><div class="progress"><div style="width:${(x.d / x.n) * 100}%"></div></div></a>`).join('')}</div>
+    <h2>${tr('Go deeper')}</h2>
+    <div class="card list">
+      <a class="lrow nav" href="#/drills"><i>${icon('drills')}</i><span><b>${tr('Practical drills')}</b></span></a>
+      <a class="lrow nav" href="#/combos"><i>${icon('combos')}</i><span><b>${tr('My combos')}</b></span></a>
+      <a class="lrow nav" href="#/styles"><i>${icon('styles')}</i><span><b>${tr('Fighting styles')}</b></span></a>
+      <a class="lrow nav" href="#/iq"><i>${icon('iq')}</i><span><b>${tr('Fight IQ')}</b></span></a>
+      <a class="lrow nav" href="#/targets"><i>${icon('targets')}</i><span><b>${tr('Targets on the body')}</b></span></a>
+    </div>
+  </section>`);
+  view.replaceChildren(el);
+  const slot = $('.fig-slot', el);
+  if (slot) { const f = createFigure(slot, slot.dataset.tech, { speed: 0.6, mirror: profile().stance === 'south' }); cleanup.push(() => f.destroy()); }
+}
+
+function LibraryList(disc) {
+  const list = TECHNIQUES.filter(x => disc === 'all' || x.discipline === disc);
+  const el = h(`<section class="learn"><a href="#/library" class="back">← ${t('learn')}</a>
+    <h1>${disc === 'all' ? tr('All techniques') : esc(L(DISCIPLINES[disc]))}</h1>
     <input type="search" class="search" placeholder="${tr('Search techniques')}" aria-label="${tr('Search techniques')}">
-    <div class="filters scroll">${['all', ...Object.keys(DISCIPLINES)].map(k => `<button class="pill ${k === filter ? 'on' : ''}" data-f="${k}">${k === 'all' ? t('filterAll') : esc(L(DISCIPLINES[k]))}</button>`).join('')}</div>
     <div class="libgrid">${list.map(x => `<a class="libcard" href="#/tech/${x.id}" data-q="${esc((L(x.name) + ' ' + x.name.en).toLowerCase())}">
       <div class="fig-slot" data-tech="${x.id}"></div>
-      <div><strong>${esc(L(x.name))}</strong><span class="muted small">${esc(L(LEVELS[x.phase]))} · ${esc(L(DISCIPLINES[x.discipline]))}</span>${statusBadge(statusOf(x.id))}</div>
+      <div><strong>${esc(L(x.name))}</strong><span class="muted small">${esc(L(LEVELS[x.phase]))}${disc === 'all' ? ' · ' + esc(L(DISCIPLINES[x.discipline])) : ''}</span>${statusBadge(statusOf(x.id))}</div>
     </a>`).join('')}</div><p class="muted center nores" hidden>${tr('No technique matches.')}</p></section>`);
   $('.search', el).addEventListener('input', e => {
     const q = e.target.value.trim().toLowerCase(); let n = 0;
     el.querySelectorAll('.libcard').forEach(c => { const hit = !q || c.dataset.q.includes(q); c.hidden = !hit; n += hit; });
     $('.nores', el).hidden = n > 0;
   });
-  el.querySelector('.filters').addEventListener('click', e => {
-    if (e.target.dataset.f) { try { sessionStorage.setItem('libFilter', e.target.dataset.f); } catch { /* ignore */ } Library(); }
-  });
   view.replaceChildren(el);
-  // Animate thumbnails only while visible.
+  if (disc === 'all') setTimeout(() => $('.search', el).focus(), 50);
   const io = new IntersectionObserver(entries => entries.forEach(en => {
     const slot = en.target;
     if (en.isIntersecting && !slot._fig) slot._fig = createFigure(slot, slot.dataset.tech, { speed: 0.6, mirror: profile().stance === 'south' });
     else if (!en.isIntersecting && slot._fig) { slot._fig.destroy(); slot._fig = null; }
   }));
-  el.querySelectorAll('.fig-slot').forEach(s => io.observe(s));
-  cleanup.push(() => { io.disconnect(); el.querySelectorAll('.fig-slot').forEach(s => s._fig?.destroy()); });
+  el.querySelectorAll('.fig-slot').forEach(sl => io.observe(sl));
+  cleanup.push(() => { io.disconnect(); el.querySelectorAll('.fig-slot').forEach(sl => sl._fig?.destroy()); });
 }
 
 function Tech(id) {
@@ -385,7 +445,7 @@ function Tech(id) {
   const s = store.get();
   const st = statusOf(id);
   const el = h(`<section class="tech">
-    <a href="#/library" class="back">← ${t('library')}</a>
+    <a href="#/library/${x.discipline}" class="back">← ${esc(L(DISCIPLINES[x.discipline]))}</a>
     <h1>${esc(L(x.name))}</h1>
     <p class="muted">${esc(L(LEVELS[x.phase]))} · ${esc(L(DISCIPLINES[x.discipline]))} · ${statusBadge(st)}</p>
     ${suitable(id) ? '' : `<p class="note">${tr('Left out of your plan because of the limits in your profile.')} <a href="#/profile">${tr('Profile')}</a></p>`}
@@ -472,6 +532,7 @@ function Session(kind, techCsv) {
   }
   const startedAt = Date.now();
   const el = h(`<section class="session">
+    <a class="close" href="#/today" aria-label="${tr('Close')}">✕</a>
     <div class="seg-label"></div>
     <div class="clock">0:00</div>
     <div class="callout"></div>
@@ -902,7 +963,7 @@ function Tests(k) {
     return `<a class="libcard test" href="#/tests/${x.k}"><div><strong>${tr(x.name)}</strong><br>
       ${last ? `<span class="stat">${last.v}</span> <small>${tr(x.unit)}</small> ${prev && d ? `<span class="${good ? 'ok' : 'err'}">${d > 0 ? '▲' : '▼'} ${Math.abs(d)}</span>` : ''}<br><span class="muted small">${tr('Last')}: ${last.date} · ${tr('Best')}: ${best}</span>` : `<span class="muted small">${tr('Not done yet')}</span>`}</div></a>`;
   }).join('');
-  const el = h(`<section><a href="#/log" class="back">← ${t('log')}</a><h1>${tr('Skill tests')}</h1>
+  const el = h(`<section><a href="#/me" class="back">← ${tr('Me')}</a><h1>${tr('Skill tests')}</h1>
     <p class="muted">${tr('Do all four once a month, on a fresh day, after a warm-up. Same conditions each time, so the numbers are comparable.')}</p>
     ${testsDue() ? `<p class="note">${tr('Your monthly tests are due.')}</p>` : ''}
     <div class="libgrid">${rows}</div></section>`);
@@ -1276,7 +1337,7 @@ function careerCard() {
 function Career() {
   const s = store.get(), c = careerOf(s), rc = record(c), tier = tierOf(c), d = campDone(s, c), op = nextOpponent(c, careerStyles()), ost = styleById[op.style];
   const ready = !c.fights.length || d >= MIN_CAMP, last = c.fights[c.fights.length - 1];
-  const el = h(`<section><a href="#/log" class="back">← ${t('log')}</a><h1>${tr('Fighter career')}</h1>
+  const el = h(`<section><a href="#/me" class="back">← ${tr('Me')}</a><h1>${tr('Fighter career')}</h1>
     ${last && c.seen === false ? `<div class="card result ${last.res === 'W' ? 'win' : 'loss'}"><h3>${last.res === 'W' ? tr('You won!') : tr('You lost')}</h3>
       <p>${esc(tr(last.res === 'W' ? 'Win by {how} against {opp}.' : 'Loss by {how} against {opp}.', { how: L(HOW[last.how]), opp: last.opp }))}</p>
       <p class="muted small">${last.res === 'W' ? tr('You climb the rankings.') : tr('Every champion has losses. Do a full camp and come back stronger.')}</p></div>` : ''}
@@ -1336,18 +1397,28 @@ function eventClick(e, root) {
 }
 
 // ---------- router ----------
-const routes = { targets: Targets, career: Career, drills: Drills, spar: Spar, styles: Styles, combos: MyCombos, timer: Timer, tests: Tests, iq: IQ, profile: () => Profile(false), today: Today, week: () => Plan(), plan: Plan, pathway: Pathway, library: Library, tech: Tech, session: Session, log: Log, settings: Settings };
+const routes = { me: Me, targets: Targets, career: Career, drills: Drills, spar: Spar, styles: Styles, combos: MyCombos, timer: Timer, tests: Tests, iq: IQ, profile: () => Profile(false), today: Today, week: () => Plan(), plan: Plan, pathway: Pathway, library: Library, tech: Tech, session: Session, log: Log, settings: Settings };
 
-const NAVMAP = { career: 'log', drills: 'library', week: 'plan', pathway: 'plan', profile: 'settings', tech: 'library', styles: 'library', iq: 'library', combos: 'library', tests: 'log', timer: 'today', spar: 'today', session: 'today' };
+const NAVMAP = { career: 'me', drills: 'library', week: 'me', plan: 'me', pathway: 'me', profile: 'me', settings: 'me', log: 'me', tech: 'library', styles: 'library', iq: 'library', combos: 'library', targets: 'library', tests: 'me', timer: 'today', spar: 'today', session: 'today' };
 function render() {
   cleanup.forEach(f => f()); cleanup = [];
   document.documentElement.lang = store.get().lang || 'en';
   document.body.classList.toggle('first', !hasProfile());
   const [name = 'today', ...args] = location.hash.replace(/^#\/?/, '').split('/');
   (routes[name] || Today)(...args);
+  document.body.classList.toggle('immersive', name === 'session');
+  // Pages one level under "Me" get a way back.
+  const sec = view.firstElementChild;
+  if (NAVMAP[name] === 'me' && hasProfile() && sec && !sec.querySelector(':scope > .back')) sec.prepend(h(`<a href="#/me" class="back">← ${tr('Me')}</a>`));
+  updateMeDot();
   document.querySelectorAll('nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === `#/${name}` || (NAVMAP[name] || name) === a.getAttribute('href').slice(2)));
   document.querySelectorAll('[data-t]').forEach(n => { n.textContent = t(n.dataset.t); });
   window.scrollTo(0, 0);
+}
+
+function updateMeDot() {
+  const d = document.getElementById('medot'); if (!d) return;
+  try { d.hidden = !hasProfile() || !((syncAvailable() ? !cloudOn : backupDue()) || testsDue()); } catch { /* still starting up */ }
 }
 
 // First run: start learning the four foundations.

@@ -512,3 +512,90 @@ body.first .savebar { bottom: calc(12px + env(safe-area-inset-bottom)); }
 .iqlist li a { color: var(--text); font-weight: 650; text-decoration: none; }
 .iqlist li a::before { content: ''; position: absolute; inset: 0; }
 .iqlist br { display: none; } .iqlist .muted { display: block; margin-top: 2px; }
+
+/* ==========================================================================
+   v3 (2026-11-23): three tabs, one button. Train, Learn, Me.
+   ========================================================================== */
+main { padding-top: calc(12px + env(safe-area-inset-top)); }
+.tabs a { position: relative; font-size: .72rem; }
+.tabs a:first-child svg { fill: currentColor; stroke: none; }
+.tabs a:first-child:not(.on) svg { fill: none; stroke: currentColor; }
+.medot { position: absolute; top: 5px; left: calc(50% + 8px); width: 9px; height: 9px; border-radius: 50%; background: var(--brand); border: 2px solid var(--surface); }
+.medot[hidden] { display: none; }
+.back { margin-top: 2px; }
+
+/* Train */
+.train { display: flex; flex-direction: column; min-height: calc(100svh - var(--tabh) - 60px - env(safe-area-inset-bottom) - env(safe-area-inset-top)); }
+.train > .eyebrow { margin: 6px 0 12px; text-align: center; }
+.strip { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+.sd { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 8px 0 10px; border: 0; border-radius: 14px; background: transparent; color: var(--muted); font: inherit; font-size: .78rem; font-weight: 600; cursor: pointer; }
+.sd i { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--line); box-sizing: border-box; }
+.sd.on i { border-color: var(--brand); }
+.sd.done i { background: var(--brand); border-color: var(--brand); }
+.sd.now { background: var(--surface); color: var(--text); box-shadow: var(--shadow); }
+.sd.sel { outline: 2px solid var(--text); outline-offset: -2px; }
+.daypeek { display: flex; flex-direction: column; gap: 2px; margin: 10px 0 0; padding: 12px 16px; border-radius: var(--radius-s); background: var(--surface); border: 1px solid var(--line); font-size: .92rem; }
+.daypeek[hidden] { display: none; }
+.train .evbadge { align-self: center; margin: 14px 0 0; }
+.stage-card { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 28px 8px 12px; }
+.stage-card h1 { font-size: 2.1rem; margin: 0; max-width: 15ch; }
+.stage-card .mins { font-size: 1.05rem; font-weight: 700; color: var(--muted); margin: 6px 0 0; }
+.stage-card .mins small { font-size: 1em; }
+.stage-card .focus { margin: 10px 0 0; color: var(--muted); font-size: .95rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 8px; max-width: 32ch; }
+.stage-card .focus a { color: var(--text); text-decoration: none; font-weight: 600; }
+.stage-card .focus span { color: var(--line); }
+.go { margin: 34px 0 0; width: 132px; height: 132px; border-radius: 50%; display: grid; place-items: center; background: var(--brand); color: #fff; text-decoration: none;
+  box-shadow: 0 0 0 10px color-mix(in srgb, var(--brand) 12%, transparent), 0 14px 40px color-mix(in srgb, var(--brand) 45%, transparent); transition: transform .12s; animation: breathe 3.2s ease-in-out infinite; }
+.go:active { transform: scale(.94); }
+.go svg { width: 52px; height: 52px; fill: currentColor; margin-left: 6px; }
+.go.soft { width: 96px; height: 96px; background: var(--surface); color: var(--text); border: 1px solid var(--line); box-shadow: var(--shadow); animation: none; }
+.go.soft svg { width: 36px; height: 36px; }
+@keyframes breathe { 50% { box-shadow: 0 0 0 18px color-mix(in srgb, var(--brand) 7%, transparent), 0 14px 40px color-mix(in srgb, var(--brand) 45%, transparent); } }
+.go-label { margin: 18px 0 0; font-weight: 700; font-size: 1.05rem; }
+details.tip { margin: 14px 0 0; max-width: 34ch; } details.tip summary { justify-content: center; color: var(--muted); font-size: .88rem; padding: 4px 0; }
+details.tip summary::after { margin-left: 0; } details.tip p { margin: 6px 0 0; font-size: .9rem; color: var(--muted); }
+.also-links { display: flex; justify-content: center; gap: 8px; margin: 18px 0 4px; }
+.also-links a { padding: 10px 14px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); color: var(--text); text-decoration: none; font-weight: 600; font-size: .88rem; }
+
+/* list rows (Me, Learn) */
+.card.list { padding: 0 16px; margin: 0 0 14px; }
+.lrow.nav { display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--text); padding: 13px 22px 13px 0; position: relative; min-height: 56px; }
+.lrow.nav::after { content: '›'; position: absolute; right: 0; top: 50%; transform: translateY(-52%); font-size: 1.4rem; color: var(--muted); }
+.lrow.nav i { font-style: normal; font-size: 1.2rem; width: 26px; text-align: center; flex: none; }
+.lrow.nav > span { flex: 1; min-width: 0; } .lrow.nav b { font-weight: 600; }
+.lrow.nav small { display: block; color: var(--muted); font-size: .82rem; }
+.flag { width: 9px; height: 9px; border-radius: 50%; background: var(--brand); flex: none; }
+.nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 0 0 16px; }
+.nums div { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 12px; box-shadow: var(--shadow); display: flex; flex-direction: column; }
+.nums b { font-size: 1.9rem; font-weight: 800; letter-spacing: -.03em; line-height: 1.1; } .nums b small { font-size: .9rem; color: var(--muted); font-weight: 600; }
+.nums span { font-size: .78rem; color: var(--muted); font-weight: 600; margin-top: 2px; }
+
+/* Learn hub */
+.titlerow { display: flex; align-items: center; justify-content: space-between; }
+.iconbtn { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--surface); border: 1px solid var(--line); color: var(--text); }
+.iconbtn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; }
+.upnext { display: flex; align-items: center; gap: 14px; padding: 14px; border-radius: 22px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow-l); text-decoration: none; color: var(--text); }
+.upnext .fig-slot { width: 96px; height: 104px; }
+.upnext div:last-child { display: flex; flex-direction: column; min-width: 0; } .upnext .eyebrow { color: var(--brand); margin: 0 0 2px; }
+.upnext b { font-size: 1.2rem; letter-spacing: -.01em; line-height: 1.2; } .upnext span { color: var(--muted); font-size: .88rem; margin-top: 4px; line-height: 1.35; }
+.meter { margin: 16px 2px 18px; } .meter span { display: block; font-size: .85rem; font-weight: 600; color: var(--muted); margin-bottom: 6px; }
+.cats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.cats a { display: flex; flex-direction: column; justify-content: space-between; gap: 10px; min-height: 92px; padding: 14px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); text-decoration: none; color: var(--text); }
+.cats b { font-weight: 650; line-height: 1.25; font-size: .95rem; } .cats span { color: var(--muted); font-size: .82rem; font-weight: 600; }
+
+/* Session: full screen, nothing else */
+body.immersive .tabs { display: none; }
+body.immersive { padding-bottom: calc(20px + env(safe-area-inset-bottom)); }
+.session { position: relative; }
+.session .close { position: absolute; left: 0; top: 0; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--surface); border: 1px solid var(--line); color: var(--text); text-decoration: none; font-size: 1rem; z-index: 1; }
+.session .seg-label { padding: 0 48px; min-height: 44px; display: flex; align-items: center; justify-content: center; margin-top: 0; }
+.seqbar { top: 0; }
+.lrow.nav i { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: var(--surface-2); color: var(--text); }
+.ico { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.cats .progress { height: 4px; margin-top: -4px; }
+.cats span { margin-top: auto; }
+/* session: clock in the middle, controls within thumb reach */
+.session { display: flex; flex-direction: column; min-height: calc(100svh - 40px - env(safe-area-inset-top) - env(safe-area-inset-bottom)); }
+.session .clock { margin-top: 4vh; }
+.session .ctl { margin-top: auto; padding-top: 16px; }
+.session .callout:empty, .session .hint:empty, .session .cues:empty { display: none; }
