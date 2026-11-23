@@ -1,5 +1,5 @@
 // Corner coach: in the rest between rounds a voice gives one short instruction, like a real
-// cornerman. Spoken in English; the screen shows it in the app language.
+// cornerman. Spoken in the app language (Georgian uses recorded clips, see js/voice.js).
 const B = (en, ka) => ({ en, ka });
 const OPEN = [B('Breathe. Good round.', 'ისუნთქე. კარგი რაუნდი იყო.'), B('Big breaths, drop the shoulders.', 'ღრმად ისუნთქე, მხრები მოადუნე.'), B('Relax. In through the nose.', 'მოდუნდი. ცხვირით ჩაისუნთქე.'), B('Good work. Slow the breathing down.', 'კარგია. სუნთქვა დაამშვიდე.')];
 const FIGHT = [
@@ -25,7 +25,7 @@ const DRILL = [
 ];
 const LAST = [B('Last round. Empty the tank.', 'ბოლო რაუნდია. დახარჯე ყველაფერი.'), B('Last one. Win this round.', 'ბოლოა. ეს რაუნდი მოიგე.')];
 const pick = (arr, n) => arr[Math.abs(n) % arr.length];
-const join = (a, b) => B(`${a.en} ${b.en}`, `${a.ka} ${b.ka}`);
+const join = (a, b) => ({ ...B(`${a.en} ${b.en}`, `${a.ka} ${b.ka}`), parts: [a.ka, b.ka] });
 
 // Adds `corner` to every rest that sits between two work rounds. focus: [{ en, ka }] skill cues to weave in.
 export function addCorner(segs, { fight = false, focus = [], seed = Date.now() } = {}) {
