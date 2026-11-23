@@ -123,7 +123,7 @@ function Today() {
   const dates = Array.from({ length: 7 }, (_, i) => { const x = new Date(mon); x.setDate(mon.getDate() + i); return isoDate(x); });
   const doneDays = new Set(store.get().log.map(e => e.date));
   const sname = k => k ? L(SESSION_TYPES[k === 'main' && !fighter && isDeload() ? 'technique' : k].name) : tr('Rest');
-  const short = L(DAY_NAMES).map(n => n.slice(0, ['ka', 'ru'].includes(store.get().lang) ? 2 : 1));
+  const short = store.get().lang === 'ru' ? ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'] : L(DAY_NAMES).map(n => n.slice(0, store.get().lang === 'ka' ? 2 : 1));
   const el = h(`<section class="train">
     <p class="eyebrow">${L(DAY_NAMES)[d.day]} · ${tr('week')} ${weekNumber()}${isDeload() ? ' · ' + tr('deload') : ''}${fixActive() ? ' · ' + tr('Fix-it block') : ''}</p>
     <div class="strip" role="tablist">${dates.map((dt, i) => { const k = dayPlan(i, fighter)?.key; return `<button class="sd${i === ti ? ' now' : ''}${k ? ' on' : ''}${doneDays.has(dt) ? ' done' : ''}" data-day="${i}" aria-label="${esc(L(DAY_NAMES)[i])}"><span>${esc(short[i])}</span><i></i></button>`; }).join('')}</div>

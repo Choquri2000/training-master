@@ -1,0 +1,45 @@
+1998	Offerta di lancio
+1999	Risparmi il {n}%
+2000	primo anno
+2001	poi {p} all'anno
+2002	l'offerta termina il {d}
+2003	all'anno
+2004	al mese
+2005	Piedi veloci: {0} s di passi rapidi in guardia, mani alte
+2006	Core: dead bug, plank laterale, bird dog
+2007	Finale {0} di {1}: colpi dritti veloci
+2008	Usa un tappetino o un tappeto per tutto ciò che tocca terra. Scalda prima anche e ginocchia; fermati se un ginocchio fa male.
+2009	Scalda le anche prima di calciare e calcia a metà potenza finché la forma è giusta. Ruota sull'avampiede della gamba d'appoggio per proteggere il ginocchio.
+2010	Gomitate e ginocchiate sono solo per la distanza molto corta. Allenale lentamente e mai a piena potenza su un partner.
+2011	Non bloccare mai del tutto il gomito colpendo a vuoto; fermati appena prima. Al sacco, fasciati le mani e usa i guantoni.
+2012	Muoviti a un ritmo che controlli. Un dolore acuto vuol dire fermarsi; la stanchezza muscolare è normale.
+2013	Riscaldamento: saltelli leggeri, circonduzioni delle braccia, shadow leggera
+2014	Shadow: mescola ciò che hai allenato, leggera
+2015	Defaticamento: anche, spalle, polpacci
+2016	Riscaldamento: saltelli sul posto, mobilità, shadow leggera
+2017	Round {0} di {1}: combinazioni a chiamata
+2018	Core: dead bug, plank laterale, sprawl
+2019	Saltelli di riscaldamento
+2020	Gioco di gambe a chiamata
+2021	Gioco di gambe + jab a chiamata
+2022	Round di shadow {0}: combinazioni a chiamata
+2023	Esercizio di combinazione: {0}. Ogni ripetizione pulita, torna in guardia
+2024	Affina
+2025	Round di difesa {0} di {1}: difendi, poi contrattacca
+2026	Solo pugni: combinazioni a chiamata
+2027	Round di combattimento {0} di {1}: attacca, difendi, muoviti
+2028	Raffica {0} di {1}: colpi dritti, a tutta
+2029	Sprawl: {0} s, quanti più possibile con buona tecnica
+2030	Manubri a casa per la potenza dei pugni
+2031	{0} min: goblet squat, piegamenti, rematore a un braccio, pugni leggeri con manubri. Fermati due ripetizioni prima del cedimento.
+2032	Corsa leggera per la resistenza nei round
+2033	{0}-{1} min a un ritmo in cui riesci ancora a parlare. Costruisce la base che tiene le mani alte al terzo round.
+2034	Core e collo per incassare i colpi
+2035	{0} min: plank, plank laterali, dead bug, tenute leggere del collo con la mano. Lento e controllato.
+2036	Mobilità per calci e schivate
+2037	{0} min: anche, femorali, colonna toracica. Calci più alti e movimenti di testa più facili.
+2038	Ripetute per il ritmo da match
+2039	Corsa o salto della corda: {0} x {1} min forte, {2} min facile. Come round veri.
+2040	Riposo completo
+2041	Anche dormire e mangiare sono allenamento. Le abilità si consolidano mentre riposi.
+2042	Riscaldamento: shadow leggera

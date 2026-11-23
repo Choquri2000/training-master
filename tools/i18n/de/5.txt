@@ -1,0 +1,45 @@
+1998	Startangebot
+1999	Spare {n} %
+2000	erstes Jahr
+2001	danach {p} pro Jahr
+2002	Angebot endet am {d}
+2003	pro Jahr
+2004	pro Monat
+2005	Schnelle Füße: {0} s schnelle Schritte in der Auslage, Hände oben
+2006	Core: Dead Bug, Seitstütz, Bird Dog
+2007	Finisher {0} von {1}: schnelle gerade Schläge
+2008	Nimm eine Matte oder einen Teppich für alles mit Bodenkontakt. Wärm zuerst Hüfte und Knie auf; hör auf, wenn ein Knie schmerzt.
+2009	Wärm die Hüfte vor dem Treten auf und tritt mit halber Kraft, bis die Form stimmt. Dreh auf dem Fußballen des Standbeins, um das Knie zu schützen.
+2010	Ellbogen und Knie sind nur für ganz kurze Distanz. Übe sie langsam und nie mit voller Kraft am Partner.
+2011	Streck den Ellbogen beim Schlagen in die Luft nie ganz durch; stopp knapp davor. Am Sack Hände bandagieren und Handschuhe tragen.
+2012	Beweg dich in einem Tempo, das du kontrollierst. Stechender Schmerz heißt aufhören; Muskelmüdigkeit ist normal.
+2013	Aufwärmen: leichtes Federn, Armkreisen, lockeres Schattenboxen
+2014	Schattenboxen: mische, was du geübt hast, locker
+2015	Cool-down: Hüfte, Schultern, Waden
+2016	Aufwärmen: Seilspringen auf der Stelle, Mobilität, lockeres Schattenboxen
+2017	Runde {0} von {1}: Kombis auf Ansage
+2018	Core: Dead Bug, Seitstütz, Sprawls
+2019	Aufwärmen: Federn
+2020	Beinarbeit auf Ansage
+2021	Beinarbeit + Jab auf Ansage
+2022	Schattenbox-Runde {0}: Kombis auf Ansage
+2023	Kombi-Übung: {0}. Jede Wiederholung sauber, zurück in die Deckung
+2024	Schärfen
+2025	Verteidigungsrunde {0} von {1}: verteidigen, dann kontern
+2026	Nur Hände: Kombis auf Ansage
+2027	Kampfrunde {0} von {1}: angreifen, verteidigen, bewegen
+2028	Schlagserie {0} von {1}: gerade Schläge, alles geben
+2029	Sprawls: {0} s, so viele wie möglich mit sauberer Technik
+2030	Kurzhanteln zu Hause für Schlagkraft
+2031	{0} Min: Goblet Squats, Liegestütze, einarmiges Rudern, leichte Kurzhantel-Schläge. Zwei Wiederholungen vor dem Muskelversagen aufhören.
+2032	Lockerer Lauf für Rundenausdauer
+2033	{0}-{1} Min in einem Tempo, bei dem du noch reden kannst. Das baut die Basis, die deine Hände in Runde drei oben hält.
+2034	Core und Nacken, um Treffer wegzustecken
+2035	{0} Min: Planks, Seitstütz, Dead Bugs, sanftes Nackenhalten mit der Hand. Langsam und kontrolliert.
+2036	Mobilität für Tritte und Ausweichen
+2037	{0} Min: Hüfte, Beinrückseite, Brustwirbelsäule. Höhere Tritte und leichtere Kopfbewegung.
+2038	Intervalle für Kampftempo
+2039	Laufen oder Seilspringen: {0} x {1} Min hart, {2} Min locker. Wie echte Runden.
+2040	Kompletter Ruhetag
+2041	Schlaf und Essen sind auch Training. Skills setzen sich, während du ruhst.
+2042	Aufwärmen: lockeres Schattenboxen

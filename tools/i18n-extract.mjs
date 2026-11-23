@@ -30,12 +30,13 @@ const { KA, EN_LONG } = await import(new URL('js/data/ka-ui.js', root)); Object.
 // Text written inline in the code: an English literal right before its Georgian twin, and tr('...') calls.
 const lit = String.raw`'((?:\\.|[^'\\])*)'|"((?:\\.|[^"\\])*)"|\x60((?:\\.|[^\x60\\])*)\x60`;
 const pair = new RegExp(`(?:${lit})\\s*,\\s*(?:['"\x60])[^'"\x60]*[\u10A0-\u10FF]`, 'g');
+const enk = new RegExp(`\\ben:\\s*(?:${lit})`, 'g');
 const trc = new RegExp(`\\btr\\(\\s*(?:${lit})`, 'g');
 const unq = s => s.replace(/\\'/g, "'").replace(/\\"/g, '"').replace(/\\n/g, '\n');
 const tmpl = s => (/\$\{[^}]*\.(en|ka|label)\b/.test(s) ? null : s.replace(/"\$\{[^}]*\}"/g, '"\u0000"').replace(/\$\{[^}]*\}/g, '0'));
 for (const f of [...files, 'js/app.js', 'js/session.js', 'js/mocap.js', 'js/figure.js', 'js/pro.js', 'js/sync.js']) {
   const src = readFileSync(new URL(f, root), 'utf8');
-  for (const re of [pair, trc]) for (const m of src.matchAll(re)) {
+  for (const re of [pair, trc, enk]) for (const m of src.matchAll(re)) {
     const s = m[1] ?? m[2] ?? (m[3] != null ? tmpl(m[3]) : null);
     if (s != null && !/[\u10A0-\u10FF]/.test(s)) add(unq(s));
   }
@@ -45,6 +46,12 @@ for (const f of [...files, 'js/app.js', 'js/session.js', 'js/mocap.js', 'js/figu
 // Spoken calls ("one two, kick") are translated word by word in js/data/calls.js instead.
 const { callParts } = await import(new URL('js/voice.js', root));
 const list = [...out].filter(s => !/^\{\d+\}$/.test(s) && !/^[A-Z_]+$/.test(s) && !(s === s.toLowerCase() && callParts(s.replace(/\{\d+\}/g, 'one'))));
+// Append-only: translations are numbered by position in en.json, so old texts keep their number
+// and new ones go on the end (texts no longer used stay, harmlessly).
 mkdirSync(new URL('tools/i18n/', root), { recursive: true });
-writeFileSync(new URL('tools/i18n/en.json', root), JSON.stringify(list, null, 0).replace(/","/g, '",\n"'));
-console.log(list.length, 'texts,', list.join('').length, 'characters');
+const file = new URL('tools/i18n/en.json', root);
+let old = []; try { old = JSON.parse(readFileSync(file, 'utf8')); } catch { /* first run */ }
+const added = list.filter(s => !old.includes(s));
+writeFileSync(file, JSON.stringify([...old, ...added], null, 0).replace(/","/g, '",\n"'));
+console.log(old.length + added.length, 'texts,', added.length, 'new:');
+added.forEach((s, i) => console.log(old.length + i + '\t' + s));
