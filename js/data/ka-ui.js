@@ -228,3 +228,10 @@ Object.assign(KA, {
   'Go deeper': 'ჩაუღრმავდი', 'All techniques': 'ყველა ტექნიკა',
 });
 Object.assign(KA, { '{n} skills': '{n} უნარი' });
+Object.assign(KA, {
+  'How much have you trained?': 'რამდენი გივარჯიშია?', 'Which days can you train?': 'რომელ დღეებში შეგიძლია ვარჯიში?', 'Which foot do you put forward?': 'რომელი ფეხი გაქვს წინ?',
+  'Pick 2 to 6 days.': 'აირჩიე 2-დან 6 დღემდე.', 'Next': 'შემდეგი', 'Back': 'უკან',
+  'Start learning': 'სწავლის დაწყება', 'Solid': 'ათვისებულია', 'Turn view': 'ხედის შემობრუნება', 'Steps': 'ნაბიჯებით',
+  'How': 'როგორ', 'Mistakes': 'შეცდომები', 'Drill it': 'ივარჯიშე', '3D figure': '3D ფიგურა', 'Fighting style': 'საბრძოლო სტილი',
+  'Fight or test date': 'ბრძოლის ან ტესტის თარიღი',
+});

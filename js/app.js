@@ -237,27 +237,24 @@ function Plan(mode) {
   if (mode === 'edit' || !mine.length) return PlanEdit(mine);
   const wk = weekNumber(), first = wk - blockWeek(wk) + 1;
   const fighter = stage() === 'fighter', n = learnedCount(), sty = styleById[profile().style];
-  const el = h(`<section>
-    <h1>${tr('Plan')}</h1>
-    <div class="stages">
-      <div class="stage ${fighter ? 'past' : 'cur'}"><strong>1 · ${tr('Learn the skills')}</strong>
-        <span class="muted small">${tr('{n} of {m} marked solid', { n, m: mine.length })}</span>
-        <div class="progress"><div style="width:${(n / mine.length) * 100}%"></div></div></div>
-      <div class="stage ${fighter ? 'cur' : ''}"><strong>2 · ${tr('Fighter training')}</strong>
-        <span class="muted small">${tr('The routine you keep for years')}</span></div>
-    </div>
-    <div class="card stylecard">${sty ? `<span>${tr('Your style')}: <a href="#/styles/${sty.id}"><strong>${esc(SL(sty).name)}</strong></a></span> <a class="small" href="#/styles/quiz">${tr('Change')}</a>`
-      : `<span>${tr('Train towards a fighting style?')}</span> <a class="btn small" href="#/styles/quiz">${tr('Find my style')}</a>`}</div>
+  const ev = eventInfo();
+  const el = h(`<section class="planpage">
+    <h1>${tr('My plan')}</h1>
+    <p class="sub">${fighter ? tr('Fighter training') + ' · ' + tr('The routine you keep for years') : tr('Learn the skills') + ' · ' + tr('{n} of {m} marked solid', { n, m: mine.length })}</p>
+    ${fighter ? '' : `<div class="progress"><div style="width:${(n / mine.length) * 100}%"></div></div>`}
     ${planCard(wk, false)}
-    ${eventCard()}
-    ${wk < first + 3 ? `<details><summary>${tr('Next weeks')}</summary><div class="week">${[1, 2, 3].map(i => first + blockWeek(wk) - 1 + i).filter(w => w <= first + 3).map(w => planCard(w, false)).join('')}</div></details>` : ''}
-    ${profile().other ? `<details><summary>${tr('Running and strength this week')}</summary>${fullWeek()}</details>` : ''}
-    <details><summary>${tr('How the plan works')}</summary><p>${tr(fighter ? 'FIGHTER_INTRO' : 'LEARN_INTRO')}</p>
-      ${fighter ? `<button class="btn ghost" data-stage="learn">${tr('Back to learning (add new skills)')}</button>` : `<button class="btn" data-stage="fighter">${tr("I've learned them: start fighter training")}</button>`}
-      <p class="small"><a href="#/pathway">${tr('Phases and checkpoints')}</a></p></details>
-    <details><summary>${tr('Your skills')} (${mine.length})</summary>
-      <ul class="chips">${mine.map(id => `<li><a href="#/tech/${id}">${esc(L(techById[id].name))}</a></li>`).join('')}</ul></details>
-    <div class="actions"><a class="btn" href="#/plan/edit">${tr('Change skills')}</a> <a class="btn ghost" href="#/profile">${tr('Change profile')}</a></div>
+    <div class="card list">
+      <a class="lrow nav" href="#/plan/edit"><i>${icon('targets')}</i><span><b>${tr('Your skills')}</b><small>${mine.length}</small></span></a>
+      <a class="lrow nav" href="${sty ? '#/styles/' + sty.id : '#/styles/quiz'}"><i>${icon('styles')}</i><span><b>${tr('Fighting style')}</b><small>${sty ? esc(SL(sty).name) : tr('Find my style')}</small></span></a>
+    </div>
+    <div class="card list exp">
+      <details><summary class="lrow"><i>${icon('career')}</i><span><b>${tr('Fight or test date')}</b>${ev ? `<small>${esc(ev.name || tr('Your date'))}: ${tr('{n} days to go', { n: ev.days })}</small>` : ''}</span></summary>${eventCard()}</details>
+      ${wk < first + 3 ? `<details><summary class="lrow"><i>${icon('plan')}</i><span><b>${tr('Next weeks')}</b></span></summary><div class="week">${[1, 2, 3].map(i => first + blockWeek(wk) - 1 + i).filter(w => w <= first + 3).map(w => planCard(w, false)).join('')}</div></details>` : ''}
+      ${profile().other ? `<details><summary class="lrow"><i>${icon('drills')}</i><span><b>${tr('Running and strength this week')}</b></span></summary>${fullWeek()}</details>` : ''}
+      <details><summary class="lrow"><i>${icon('iq')}</i><span><b>${tr('How the plan works')}</b></span></summary><p>${tr(fighter ? 'FIGHTER_INTRO' : 'LEARN_INTRO')}</p>
+        ${fighter ? `<button class="btn ghost" data-stage="learn">${tr('Back to learning (add new skills)')}</button>` : `<button class="btn" data-stage="fighter">${tr("I've learned them: start fighter training")}</button>`}
+        <p class="small"><a href="#/pathway">${tr('Phases and checkpoints')}</a></p></details>
+    </div>
   </section>`);
   el.addEventListener('click', e => {
     if (eventClick(e, el)) return Plan();
@@ -305,14 +302,66 @@ function PlanEdit(mine) {
 
 // ---------- profile ----------
 // Who you are as a fighter. First launch asks once; Settings can change it any time.
+function saveProfile(val, first) {
+  val.days.sort((a, b) => a - b);
+  store.update(st => {
+    st.profile = val;
+    if (!first) return;
+    const mon = new Date(); mon.setDate(mon.getDate() - (mon.getDay() + 6) % 7);
+    if (!st.startDate) st.startDate = isoDate(mon);
+    st.phaseUnlocked = Math.max(st.phaseUnlocked || 1, { new: 1, some: 2, exp: 3 }[val.level]);
+    if (!st.program?.picks?.length) {
+      const ids = PRESETS[val.level === 'new' ? 'basics' : 'allround'].ids;
+      st.program = { picks: ids, since: isoDate(), combosAdded: true };
+      const known = val.level === 'exp' ? TECHNIQUES.filter(x => x.phase === 1 && !x.uses).map(x => x.id) : val.level === 'some' ? ['stance', 'step', 'jab', 'cross'] : [];
+      ids.forEach(id => { st.status[id] = known.includes(id) ? 'done' : (st.status[id] || 'learning'); });
+    }
+  }, first ? tr('Plan built') : tr('Profile saved'));
+  location.hash = first ? '#/today' : '#/me';
+  if (first) render();
+}
+
+// First run: three questions, one per screen. Everything else starts on sensible defaults (editable in your profile).
+function Welcome(step = 0, val = { ...profile(), days: [...profile().days], limits: [...profile().limits] }) {
+  const ka = store.get().lang === 'ka', lab = c => (ka && c[2]) || tr(c[1]);
+  const steps = ['level', 'days', 'stance'];
+  const k = steps[step];
+  const q = { level: tr('How much have you trained?'), days: tr('Which days can you train?'), stance: tr('Which foot do you put forward?') }[k];
+  const opts = k === 'days'
+    ? `<div class="daypick">${L(DAY_NAMES).map((n, i) => `<button type="button" class="dp${val.days.includes(i) ? ' on' : ''}" data-v="${i}">${esc(n.slice(0, 3))}</button>`).join('')}</div><p class="muted center small daysmsg">${tr('Pick 2 to 6 days.')}</p>`
+    : `<div class="choices">${CHOICES[k].map(c => `<button type="button" class="choice${val[k] === c[0] ? ' on' : ''}" data-v="${c[0]}"><b>${esc(lab(c))}</b>${c[3] ? `<span>${esc(tr(c[3]))}</span>` : ''}</button>`).join('')}</div>`;
+  const el = h(`<section class="welcome">
+    <div class="dots">${steps.map((_, i) => `<i class="${i <= step ? 'on' : ''}"></i>`).join('')}</div>
+    ${step ? `<button type="button" class="back plain" data-back>← ${tr('Back')}</button>` : `<p class="hello">${tr('Welcome to Combat Coach')}</p>`}
+    <h1>${q}</h1>
+    ${opts}
+    <div class="wfoot">
+      <button type="button" class="btn primary block xl" data-next>${step === steps.length - 1 ? tr('Build my plan') : tr('Next')}</button>
+      ${!step && syncAvailable() ? `<p class="center small muted">${tr('Used the app on another phone?')} <a href="#/settings">${tr('Sign in')}</a></p>` : ''}
+    </div>
+  </section>`);
+  const okDays = () => val.days.length >= 2 && val.days.length <= 6;
+  const sync = () => { if (k === 'days') { $('[data-next]', el).disabled = !okDays(); $('.daysmsg', el).classList.toggle('err', !okDays()); } };
+  el.addEventListener('click', e => {
+    const b = e.target.closest('[data-v]');
+    if (b) {
+      if (k === 'days') { const v = +b.dataset.v, set = new Set(val.days); set.has(v) ? set.delete(v) : set.add(v); val.days = [...set]; b.classList.toggle('on'); }
+      else { val[k] = b.dataset.v; el.querySelectorAll('.choice').forEach(x => x.classList.toggle('on', x === b)); }
+      return sync();
+    }
+    if (e.target.closest('[data-back]')) return Welcome(step - 1, val);
+    if (e.target.closest('[data-next]')) return step < steps.length - 1 ? Welcome(step + 1, val) : saveProfile(val, true);
+  });
+  view.replaceChildren(el); sync(); window.scrollTo(0, 0);
+}
+
 function Profile(first) {
+  if (first) return Welcome();
   const p = profile(), ka = store.get().lang === 'ka';
   const lab = c => (ka && c[2]) || tr(c[1]);
   const group = (k, multi) => `<div class="pgroup" data-k="${k}"${multi ? ' data-multi' : ''}>${CHOICES[k].map(c => `<button type="button" class="pill${(multi ? p[k].includes(c[0]) : p[k] === c[0]) ? ' on' : ''}" data-v="${c[0]}">${esc(lab(c))}${c[3] ? `<small>${esc(tr(c[3]))}</small>` : ''}</button>`).join('')}</div>`;
   const el = h(`<section class="profile">
-    <h1>${first ? tr('Welcome to Combat Coach') : tr('Your profile')}</h1>
-    <p class="muted">${tr('A few questions so the plan fits you. You can change any answer later in Settings.')}</p>
-    ${first && syncAvailable() ? `<p class="note">${tr('Used the app on another phone?')} <a href="#/settings">${tr('Sign in')}</a> ${tr('and your plan comes back.')}</p>` : ''}
+    <h1>${tr('Your profile')}</h1>
     <h2>${tr('Your experience')}</h2>${group('level')}
     <h2>${tr('Your stance')}</h2>${group('stance')}
     <h2>${tr('Training days')}</h2>
@@ -339,22 +388,7 @@ function Profile(first) {
     }
     if (!('save' in (e.target.dataset || {}))) return;
     if ($('.other', el)) val.other = $('.other', el).checked;
-    val.days.sort((a, b) => a - b);
-    store.update(st => {
-      st.profile = val;
-      if (!first) return;
-      const mon = new Date(); mon.setDate(mon.getDate() - (mon.getDay() + 6) % 7);
-      if (!st.startDate) st.startDate = isoDate(mon);
-      st.phaseUnlocked = Math.max(st.phaseUnlocked || 1, { new: 1, some: 2, exp: 3 }[val.level]);
-      if (!st.program?.picks?.length) {
-        const ids = PRESETS[val.level === 'new' ? 'basics' : 'allround'].ids;
-        st.program = { picks: ids, since: isoDate(), combosAdded: true };
-        const known = val.level === 'exp' ? TECHNIQUES.filter(x => x.phase === 1 && !x.uses).map(x => x.id) : val.level === 'some' ? ['stance', 'step', 'jab', 'cross'] : [];
-        ids.forEach(id => { st.status[id] = known.includes(id) ? 'done' : (st.status[id] || 'learning'); });
-      }
-    }, first ? tr('Plan built') : tr('Profile saved'));
-    location.hash = first ? '#/today' : '#/settings';
-    if (first) render();
+    saveProfile(val, first);
   });
   view.replaceChildren(el);
 }
@@ -444,43 +478,41 @@ function Tech(id) {
   if (!x) return Library();
   const s = store.get();
   const st = statusOf(id);
+  const views = [['three', '3/4'], ['side', tr('Side')], ['front', tr('Front')]];
+  const next = { notStarted: ['learning', tr('Start learning')], learning: ['done', t('markDone')], done: ['learning', '✓ ' + tr('Solid')] }[st];
   const el = h(`<section class="tech">
     <a href="#/library/${x.discipline}" class="back">← ${esc(L(DISCIPLINES[x.discipline]))}</a>
     <h1>${esc(L(x.name))}</h1>
-    <p class="muted">${esc(L(LEVELS[x.phase]))} · ${esc(L(DISCIPLINES[x.discipline]))} · ${statusBadge(st)}</p>
-    ${suitable(id) ? '' : `<p class="note">${tr('Left out of your plan because of the limits in your profile.')} <a href="#/profile">${tr('Profile')}</a></p>`}
     <p class="purpose">${esc(L(x.purpose))}</p>
-    ${x.uses ? `<p class="muted small">${tr('Built from')}: ${x.uses.map(u => `<a href="#/tech/${u}">${esc(L(techById[u].name))}</a>`).join(', ')}</p>` : ''}
-    <div class="fig-big"></div>
+    ${suitable(id) ? '' : `<p class="notice"><span>${tr('Left out of your plan because of the limits in your profile.')}</span></p>`}
+    <div class="figwrap">
+      <div class="fig-big"></div>
+      <div class="figbar">
+        <button type="button" class="fb" data-view="0" aria-label="${tr('Turn view')}">⟳ <span>3/4</span></button>
+        <div class="fseg" role="group">
+          <button type="button" class="on" data-mode="normal">${t('normal')}</button><button type="button" data-mode="slow">${t('slow')}</button><button type="button" data-mode="step">${tr('Steps')}</button>
+        </div>
+      </div>
+    </div>
     <div class="figcap" aria-live="polite"></div>
-    ${x.animNote ? `<p class="muted small"><strong>${tr('Animation note')}:</strong> ${esc(L(x.animNote))}</p>` : ''}
-    <div class="figctl">
-      <div class="seg" data-g="view">
-        <button class="pill" data-view="side">${tr('Side')}</button><button class="pill on" data-view="three">3/4</button><button class="pill" data-view="front">${tr('Front')}</button>
-      </div>
-      <div class="seg" data-g="mode">
-        <button class="pill" data-mode="step">${tr('Step by step')}</button><button class="pill" data-mode="slow">${t('slow')}</button><button class="pill on" data-mode="normal">${t('normal')}</button>
-      </div>
-      ${MOCAP.has(id) ? `<div class="seg" data-g="model"><button class="pill${(s.model || 'fighter') === 'fighter' ? ' on' : ''}" data-model="fighter">${tr('Fighter')}</button><button class="pill${s.model === 'mannequin' ? ' on' : ''}" data-model="mannequin">${tr('Mannequin (lead side blue)')}</button></div>` : ''}
+    <div class="segtabs" role="tablist">
+      <button type="button" class="on" data-tab="how">${tr('How')}</button><button type="button" data-tab="mis">${tr('Mistakes')}</button><button type="button" data-tab="dr">${t('drills')}</button><button type="button" data-tab="nt">${t('notes')}</button>
+    </div>
+    <div class="tabp" data-p="how">
+      <ol class="steps-list">${L(x.keyPoints).map(k => `<li>${esc(k)}</li>`).join('')}</ol>
+      <p class="safety small">${esc(L(safetyNote(x)))}</p>
+      ${x.uses ? `<p class="muted small">${tr('Built from')}: ${x.uses.map(u => `<a href="#/tech/${u}">${esc(L(techById[u].name))}</a>`).join(', ')}</p>` : ''}
+      ${profile().stance === 'south' ? `<p class="muted small">${tr('Shown southpaw (mirrored) to match your stance. Lead means your right side.')}</p>` : ''}
+      ${x.animNote ? `<p class="muted small">${esc(L(x.animNote))}</p>` : ''}
       <p class="muted small">${MOCAP.has(id) ? tr('MOCAP_HINT') : tr('FIGURE_HINT')}</p>
     </div>
-    <h2>${t('keyPoints')}</h2>
-    <ol>${L(x.keyPoints).map(k => `<li>${esc(k)}</li>`).join('')}</ol>
-    <h2>${t('mistakes')}</h2>
-    <div class="mistakes">${L(x.mistakes).map(m => `<div class="mistake"><div class="m">✗ ${esc(m.m)}</div><div class="fix">✓ ${esc(m.fix)}</div></div>`).join('')}</div>
-    <h2>${t('drills')}</h2>
-    <ul>${L(x.drills).map(d => `<li><strong>${esc(d.name)}:</strong> ${esc(d.how)}</li>`).join('')}</ul>
-    <h2>${tr('Safety')}</h2>
-    <p class="safety">${esc(L(safetyNote(x)))}</p>
-    ${profile().stance === 'south' ? `<p class="muted small">${tr('Shown southpaw (mirrored) to match your stance. Lead means your right side.')}</p>` : ''}
-    <h2>${t('notes')}</h2>
-    <textarea class="notes" rows="3" placeholder="${tr('What felt off? What did the video show?')}">${esc(s.notes[id] || '')}</textarea>
-    <div class="actions">
-      ${st === 'locked' ? `<p class="muted">${t('locked')}: ${tr('pass the phase {n} checkpoint first.', { n: x.phase - 1 })}</p>` : `
-        ${st !== 'learning' ? `<button class="btn" data-st="learning">${t('markLearning')}</button>` : ''}
-        ${st !== 'done' ? `<button class="btn primary" data-st="done">${t('markDone')}</button>` : ''}
-        ${st === 'learning' || st === 'done' ? `<button class="btn ghost" data-st="">${t('markReset')}</button>` : ''}
-        <a class="btn" href="#/session/drill/${id}">${tr('Drill this (3 x 2 min)')}</a>`}
+    <div class="tabp" data-p="mis" hidden><div class="mistakes">${L(x.mistakes).map(m => `<div class="mistake"><div class="m">✗ ${esc(m.m)}</div><div class="fix">✓ ${esc(m.fix)}</div></div>`).join('')}</div></div>
+    <div class="tabp" data-p="dr" hidden><ul class="drill-list">${L(x.drills).map(d => `<li><b>${esc(d.name)}</b><span>${esc(d.how)}</span></li>`).join('')}</ul></div>
+    <div class="tabp" data-p="nt" hidden><textarea class="notes" rows="4" placeholder="${tr('What felt off? What did the video show?')}">${esc(s.notes[id] || '')}</textarea></div>
+    <div class="actionbar actions">
+      ${st === 'locked' ? `<p class="muted small">${t('locked')}: ${tr('pass the phase {n} checkpoint first.', { n: x.phase - 1 })}</p>` : `
+        <a class="btn primary" href="#/session/drill/${id}">▶ ${tr('Drill it')}</a>
+        <button type="button" class="btn${st === 'done' ? ' solid' : ''}" data-st="${next[0]}">${next[1]}</button>`}
     </div>
   </section>`);
   const rerender = () => { cleanup.forEach(f => f()); cleanup = []; Tech(id); };
@@ -488,18 +520,22 @@ function Tech(id) {
   const cap = $('.figcap', el);
   const fig = createViewer($('.fig-big', el), id, { onLabel: (txt, i, n) => { cap.textContent = n > 1 ? `${i}/${n} · ${txt}` : txt; } });
   cleanup.push(() => fig.destroy());
-  $('.figctl', el).addEventListener('click', e => {
-    const b = e.target.closest('.pill'); if (!b) return;
-    b.parentElement.querySelectorAll('.pill').forEach(x => x.classList.toggle('on', x === b));
-    if (b.dataset.model) { store.set({ model: b.dataset.model }); return rerender(); }
-    if (b.dataset.view) fig.setView(b.dataset.view);
-    if (b.dataset.mode) { fig.setStep(b.dataset.mode === 'step'); fig.setSpeed(b.dataset.mode === 'normal' ? 1 : 0.4); }
+  $('.figbar', el).addEventListener('click', e => {
+    const v = e.target.closest('[data-view]');
+    if (v) { const i = (+v.dataset.view + 1) % views.length; v.dataset.view = i; v.querySelector('span').textContent = views[i][1]; fig.setView(views[i][0]); return; }
+    const m = e.target.closest('[data-mode]'); if (!m) return;
+    m.parentElement.querySelectorAll('button').forEach(b => b.classList.toggle('on', b === m));
+    fig.setStep(m.dataset.mode === 'step'); fig.setSpeed(m.dataset.mode === 'normal' ? 1 : 0.4);
+  });
+  $('.segtabs', el).addEventListener('click', e => {
+    const b = e.target.closest('[data-tab]'); if (!b) return;
+    el.querySelectorAll('.segtabs button').forEach(x => x.classList.toggle('on', x === b));
+    el.querySelectorAll('.tabp').forEach(p => { p.hidden = p.dataset.p !== b.dataset.tab; });
   });
   $('.notes', el).addEventListener('change', e => store.update(st => { st.notes[id] = e.target.value; }));
   $('.actions', el).addEventListener('click', e => {
-    if (!('st' in e.target.dataset)) return;
-    store.update(st => { if (e.target.dataset.st) st.status[id] = e.target.dataset.st; else delete st.status[id]; },
-      tr({ learning: 'Marked as learning', done: 'Marked as solid', '': 'Status reset' }[e.target.dataset.st]));
+    const b = e.target.closest('[data-st]'); if (!b) return;
+    store.update(st => { st.status[id] = b.dataset.st; }, tr({ learning: 'Marked as learning', done: 'Marked as solid' }[b.dataset.st]));
     rerender();
   });
 }
@@ -586,7 +622,7 @@ function Session(kind, techCsv) {
       } else { $('.fig-big', el).replaceChildren(); $('.cues', el).innerHTML = ''; }
     }
     if (!tech) { const lg = s.legend ? `<p class="legend">${esc(L(s.legend))}</p>` : ''; if ($('.cues', el).innerHTML !== lg) $('.cues', el).innerHTML = lg; }
-    if (p.done) $('.logform', el).hidden = false;
+    if (p.done) { $('.logform', el).hidden = false; el.classList.add('finished'); }
   };
   const player = new Player(segs, render);
   render(player);
@@ -669,8 +705,6 @@ function Log() {
     <p class="label">${t('skillsSolid')} · ${Math.round((solid / ids.length) * 100)}%</p>
     <div class="progress"><div style="width:${(solid / ids.length) * 100}%"></div></div></div>
     <div class="stack">
-    <a class="tool row" href="#/tests"><i>📋</i><b>${tr('Skill tests')}</b><span>${testsDue() ? tr('Your monthly tests are due.') : tr('{n} results', { n: (s.tests || []).length })}</span></a>
-    ${careerCard()}
     ${fixCard()}
     </div>
     ${off.length ? `<h2>${t('needsWork')}</h2><p class="muted small">${t('needsWorkHint')}</p><ul class="chips">${off.map(chip).join('')}</ul>` : ''}
@@ -707,10 +741,10 @@ function Settings() {
         <p class="cloud-msg small"></p>
       </form>
     </div>` : ''}
-    <div class="card"><h3>${tr('Your profile')}</h3><p class="small">${esc(profileSummary())}</p><a class="btn" href="#/profile">${tr('Change profile')}</a></div>
     <div class="card list">
       <label class="lrow"><span>${t('voice')}</span><input type="checkbox" class="voice switch" ${s.voice ? 'checked' : ''}></label>
       <label class="lrow"><span>${t('language')}</span><select class="lang">${LANGS.map(l => `<option value="${l.code}" ${l.code === s.lang ? 'selected' : ''}>${l.label}</option>`).join('')}</select></label>
+      <label class="lrow"><span>${tr('3D figure')}</span><select class="model"><option value="fighter"${(s.model || 'fighter') === 'fighter' ? ' selected' : ''}>${tr('Fighter')}</option><option value="mannequin"${s.model === 'mannequin' ? ' selected' : ''}>${tr('Mannequin (lead side blue)')}</option></select></label>
       <label class="lrow"><span>${tr('Plan start (Monday of week 1)')}<small class="muted">${tr('Every 4th week from this date is a deload week.')}</small></span><input type="date" class="start" value="${s.startDate || '2026-11-16'}"></label>
     </div>
     <div class="card"><h3>${tr('Your data')}</h3>
@@ -721,7 +755,6 @@ function Settings() {
       </div>
       <button class="btn danger" data-a="reset">${t('resetData')}</button>
     </div>
-    <p class="muted small center">${tr('Combos the timer can call right now:')} ${availableCombos().map(c => esc(c.say)).join(' · ')}</p>
   </section>`);
   view.replaceChildren(el);
   if (syncAvailable()) {
@@ -749,6 +782,7 @@ function Settings() {
     $('[data-a=signout]', el).onclick = () => signOut();
   }
   $('.voice', el).onchange = e => store.set({ voice: e.target.checked });
+  $('.model', el).onchange = e => store.set({ model: e.target.value });
   $('.lang', el).onchange = e => { store.set({ lang: e.target.value }); render(); };
   $('.start', el).onchange = e => store.set({ startDate: e.target.value });
   $('.imp', el).onchange = async e => {
