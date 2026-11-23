@@ -714,3 +714,6 @@ section > select, section > label > select { width: 100%; }
 .session .fig-big.callfig { max-width: 360px; animation: callin .18s ease-out; }
 .session .fig-big.callfig.loading::after { content: ''; }
 @keyframes callin { from { opacity: .35; } to { opacity: 1; } }
+.pro .btn.plan { position: relative; flex-direction: column; gap: 2px; }
+.pro .btn.plan small { font-weight: 400; opacity: .8; }
+.pro .btn.plan .badge { position: absolute; top: -10px; right: 12px; font-style: normal; font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--ok); color: #fff; }

@@ -1,5 +1,5 @@
 // Offline cache. Bump VERSION whenever files change so phones pick up the update.
-const VERSION = 'cc-v34';
+const VERSION = 'cc-v35';
 const FILES = [
   './', 'index.html', 'privacy.html', 'terms.html', 'css/style.css', 'manifest.webmanifest', 'icons/icon.svg', 'icons/icon-192.png',
   'js/app.js', 'js/figure.js', 'js/session.js', 'js/store.js', 'js/i18n.js',

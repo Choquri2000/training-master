@@ -794,7 +794,14 @@ function Pro(gated) {
     plans().then(list => {
       if (!el.isConnected || isPro()) return;
       if (!list.length) { box.innerHTML = `<p class="muted">${tr('Plans are not available right now.')}</p>`; return; }
-      box.innerHTML = list.map((x, i) => `<button class="btn plan ${x.type === 'yearly' ? 'primary' : ''}" data-i="${i}"><b>${x.type === 'yearly' ? tr('Yearly') : tr('Monthly')}</b> ${esc(x.price)} · ${tr('7 days free')}</button>`).join('');
+      list.sort((a, b) => (b.type === 'yearly') - (a.type === 'yearly')); // best value first
+      box.innerHTML = list.map((x, i) => {
+        const yearly = x.type === 'yearly';
+        const badge = x.offer ? tr('Launch offer') : x.save > 0 ? tr('Save {n}%', { n: x.save }) : '';
+        const price = x.offer ? `${esc(x.offer.price)} ${tr('first year')}` : `${esc(x.price)} ${tr(yearly ? 'a year' : 'a month')}`;
+        const sub = x.offer ? tr('then {p} a year', { p: x.price }) + (x.offer.ends ? ` · ${tr('offer ends {d}', { d: x.offer.ends })}` : '') : tr('7 days free');
+        return `<button class="btn plan ${yearly ? 'primary' : ''}" data-i="${i}">${badge ? `<em class="badge">${badge}</em>` : ''}<b>${yearly ? tr('Yearly') : tr('Monthly')}</b> ${price}<small>${sub}</small></button>`;
+      }).join('');
       box.onclick = async ev => {
         const b = ev.target.closest('[data-i]'); if (!b) return;
         await buy(list[+b.dataset.i], user);
