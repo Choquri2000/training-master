@@ -682,3 +682,5 @@ body.immersive #toast { bottom: auto; top: calc(12px + env(safe-area-inset-top))
 .card.list.exp details > .card > h3 { display: none; }
 select { max-width: 100%; box-sizing: border-box; }
 section > select, section > label > select { width: 100%; }
+.extra { margin-top: 26px; max-width: 34ch; padding: 14px 16px; border-radius: var(--radius); background: var(--surface); border: 1px dashed var(--line); text-align: left; display: flex; flex-direction: column; gap: 3px; }
+.extra .eyebrow { margin: 0; } .extra b { font-weight: 650; } .extra span { color: var(--muted); font-size: .9rem; }
