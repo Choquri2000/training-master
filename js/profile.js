@@ -1,6 +1,7 @@
 // Your profile: who you are as a fighter. Everything the plan does adapts to it:
 // where you start, which days you train, how long, how hard, what you avoid, and your stance.
 import { store } from './store.js';
+import { P } from './i18n.js';
 import { TECHNIQUES, techById } from './data/techniques.js';
 
 export const DEFAULT_PROFILE = { level: 'some', stance: 'orth', days: [0, 2, 4], minutes: 0, goal: 'skills', kit: 'none', limits: [], other: false };
@@ -123,8 +124,7 @@ export function coachNote({ key, bw, fighter, deload }) {
   if (sh < 0) parts.push(['Your last sessions felt very hard, so today has one round less.', 'ბოლო ვარჯიშები ძალიან რთული იყო, ამიტომ დღეს ერთი რაუნდით ნაკლებია.']);
   if (sh > 0) parts.push(['Your last sessions felt easy, so today has one round more.', 'ბოლო ვარჯიშები მსუბუქი იყო, ამიტომ დღეს ერთი რაუნდით მეტია.']);
   if (p.level === 'new' && !deload) parts.push(['Rounds are shorter while you are new. Learn to relax and breathe.', 'სანამ ახალბედა ხარ, რაუნდები უფრო მოკლეა. ისწავლე მოდუნება და სუნთქვა.']);
-  const ka = store.get().lang === 'ka';
-  return parts.slice(0, 2).map(x => x[ka ? 1 : 0]).join(' ');
+  return parts.slice(0, 2).map(x => P(...x)).join(' ');
 }
 
 // Safety note for a technique, by what it involves.

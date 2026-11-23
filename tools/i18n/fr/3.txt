@@ -1,0 +1,400 @@
+1200	Se pencher en arrière
+1201	La tête doit avancer légèrement pendant que le coup monte.
+1202	Uppercut arrière, crochet avant, direct. {0} x {1} min.
+1203	Rouler (bob and weave)
+1204	Passe sous un crochet en U et remonte à distance pour contrer.
+1205	Fléchis les genoux pour passer sous le coup ; la tête dessine un "U".
+1206	Va dans le sens du coup (sous un crochet avant = roule vers ta gauche).
+1207	Mains hautes, regard devant.
+1208	Remonte prêt à frapper, en général avec un crochet.
+1209	Utilise l'exercice de la corde : passe sous la corde avec les jambes.
+1210	Descendre trop bas
+1211	Juste assez bas pour que le coup passe au-dessus de ta tête.
+1212	Rouler sous la corde
+1213	Roule sous une corde à hauteur de menton en avançant le long. {0} x {1} min.
+1214	{0}-{1}-rouler-{2}
+1215	Jab, direct, rouler, direct. {0} x {1} min.
+1216	Switch kick (circulaire avant)
+1217	Un changement de pieds rapide pour que la jambe avant frappe avec puissance.
+1218	Petit saut ou pas pour changer de pieds : le pied avant recule, le pied arrière avance et s'ouvre.
+1219	Frappe tout de suite après le changement, même mécanique que le circulaire arrière.
+1220	Garde le changement petit : un grand changement annonce le coup.
+1221	Grand changement visible
+1222	Les pieds ne bougent que de {0} à {1} cm pendant le changement.
+1223	S'arrêter après le changement
+1224	Changement et coup de pied ne font qu'un : "ba-BAM".
+1225	{0}-switch kick
+1226	Jab, puis switch kick. {0} x {1} min.
+1227	Genou direct
+1228	Enfonce le genou arrière dans le corps à courte distance.
+1229	Les mains vont devant (comme pour saisir la tête ou les épaules) et tirent vers le bas.
+1230	Monte sur la pointe du pied d'appui et pousse les hanches vers l'avant.
+1231	Pointe les orteils vers le bas pour que le genou soit la pointe.
+1232	Lever le genou sans pousser des hanches
+1233	Pense "hanches devant", pas "genou en haut".
+1234	Se pencher au-dessus du genou
+1235	Penche-toi un peu en arrière pour que les hanches puissent pousser.
+1236	Genoux jusqu'à la cloche
+1237	{0} x {1} min en alternant les genoux, change de garde entre les répétitions.
+1238	Changement de niveau
+1239	Baisse vite les hanches (sans te plier) pour préparer ou feinter une amenée au sol.
+1240	Fléchis les genoux pour baisser les hanches ; dos droit, tête haute.
+1241	Les mains restent devant, prêtes à défendre ou saisir.
+1242	Souvent après un coup : {0}-{1} puis changement de niveau.
+1243	Se plier à la taille (la tête passe sous les hanches)
+1244	Garde la tête au-dessus des genoux.
+1245	{0}-{1}-changement de niveau
+1246	Relevé technique
+1247	Relève-toi du sol en sécurité, garde haute et loin de l'adversaire.
+1248	Assis : une main au sol derrière toi, l'autre bras protège le visage.
+1249	Pousse sur la main au sol et le pied opposé pour lever les hanches.
+1250	Passe la jambe libre en arrière et retombe en garde à distance.
+1251	Se relever droit devant l'adversaire
+1252	La jambe passe derrière et tu retombes à un pas.
+1253	Baisser la main de garde
+1254	Garde le bras libre devant le visage tout du long.
+1255	Relevés
+1256	{0} x {1} de chaque côté, en alternant.
+1257	Esquive et contre en direct
+1258	Esquive le jab à l'intérieur et place un direct au même moment.
+1259	Esquive et frappe ensemble : l'esquive charge la hanche arrière.
+1260	Le contre reste droit et court.
+1261	Après le contre, replace-toi ou sors en angle ; ne reste pas en face.
+1262	Esquiver, pause, puis frapper
+1263	Dis "esquive-deux" comme un seul mot pendant l'exercice.
+1264	Contres en shadow
+1265	Imagine le jab, esquive et contre. {0} x {1} min.
+1266	Contre en retrait
+1267	Recule juste hors de portée du jab, puis lance un direct quand il se retire.
+1268	Mets le poids sur la jambe arrière, la tête passe au-dessus du genou arrière.
+1269	Mains hautes ; la main avant peut attraper le jab.
+1270	Rebondis sur la jambe arrière dans le direct.
+1271	Se pencher en arrière jambes tendues
+1272	Fléchis le genou arrière pour que le mouvement vienne des jambes.
+1273	Recule-{0}
+1274	Sors en angle après les enchaînements
+1275	Ne reste jamais en face après avoir frappé : termine chaque enchaînement en sortant de l'axe.
+1276	Termine l'enchaînement, puis pivote ou fais un pas de côté vers l'extérieur du pied avant.
+1277	Mains hautes en bougeant ; regard sur la cible.
+1278	Admirer l'enchaînement sans bouger
+1279	Chaque enchaînement se termine par "bouge" dit à voix haute.
+1280	Enchaînement + déplacement
+1281	{0} x {1} min d'enchaînements au choix, chacun terminé par un pivot ou un pas.
+1282	Coude horizontal
+1283	Frappe tranchante à courte distance avec la pointe du coude.
+1284	Monte le coude à hauteur d'épaule, la main près de ton oreille.
+1285	Tourne hanches et épaules pour trancher à travers la cible.
+1286	L'autre main protège le visage.
+1287	Les coudes touchent à l'intérieur de la distance des crochets.
+1288	Main relâchée
+1289	Garde la paume près de la tête pour que la pointe du coude mène.
+1290	{0}-coude
+1291	Crochet avant puis coude arrière. {0} x {1} min.
+1292	Attraper le coup de pied et répondre
+1293	Bloque un coup de pied au corps et contre pendant que l'adversaire est sur une jambe.
+1294	Absorbe le coup avec le bras et le corps du même côté, puis cueille la jambe.
+1295	Recule ou tourne pour le déséquilibrer.
+1296	Réponds aussitôt : direct, ou coup de pied à la jambe d'appui.
+1297	Aller chercher le coup de pied
+1298	Laisse le coup venir à toi, puis enroule.
+1299	Attraper et répondre en solo
+1300	Imagine le coup de pied, attrape, recule, direct. {0} x {1} min.
+1301	Posture de clinch et genoux
+1302	Contrôle la tête et place des genoux depuis le clinch thaï.
+1303	Mains superposées derrière la tête de l'adversaire (l'une sur l'autre), doigts non entrelacés.
+1304	Les coudes se serrent devant sa poitrine, tes hanches poussent vers l'avant.
+1305	Tire la tête vers le bas en montant les genoux.
+1306	Entrelacer les doigts
+1307	Paume sur le dos de la main, doigts libres.
+1308	Hanches en arrière
+1309	Tiens-toi droit, hanches rentrées, poitrine haute.
+1310	Genoux en clinch (solo)
+1311	Bras en position de clinch, genoux alternés. {0} x {1} min.
+1312	Entrée double-leg (shadow)
+1313	Pas de pénétration pour l'amenée au sol double-leg classique, en solo.
+1314	D'abord le changement de niveau, puis un grand pas du pied avant entre les pieds de l'adversaire.
+1315	Le genou arrière touche le sol en douceur ; tête haute, dos droit.
+1316	Les mains vont derrière les genoux ; ramène la jambe arrière et pousse à travers.
+1317	Tendre les mains avant que les pieds arrivent
+1318	Le pas fait le travail : les mains ne saisissent qu'à la fin.
+1319	Tête baissée
+1320	Ta tête reste haute, menton en avant.
+1321	Pas de pénétration
+1322	{0} x {1} de chaque côté à travers le garage. Utilise un tapis pour le genou.
+1323	Sprawl puis frappe
+1324	Défends l'amenée au sol et remonte en frappant aussitôt.
+1325	Sprawl, puis remonte en garde en un seul mouvement.
+1326	Place le premier coup dès que tes pieds sont posés.
+1327	Se relever lentement mains basses
+1328	Les mains reviennent au visage en remontant.
+1329	Sprawl-{0}-{1}
+1330	(dure {0} secondes).
+1331	{0}-{1} min de jeu de jambes (facultatif)
+1332	Faire une sauvegarde
+1333	Créer mon plan
+1334	Changer de compétences
+1335	Sauvegarde cloud
+1336	Enchaînements que le minuteur peut annoncer maintenant :
+1337	Continuer avec Google
+1338	Créer un compte
+1339	Terminé !
+1340	Travaille-le ({0} x {1} min)
+1341	E-mail ou mot de passe incorrect.
+1342	Chaque {0}e semaine à partir de cette date est une semaine de récupération.
+1343	Bleu = côté avant, gris = côté arrière. "Face" est ce que voit ton adversaire.
+1344	Capture de mouvement d'un vrai combattant. Fais glisser pour tourner la vue, pince pour zoomer. "Face" est ce que voit ton adversaire.
+1345	Combattant
+1346	Mannequin (côté avant en bleu)
+1347	Mot de passe oublié
+1348	Depuis
+1349	ton plan
+1350	Face
+1351	Profil
+1352	Étape par étape
+1353	Plan complet de {0} semaines et tes compétences
+1354	La connexion Google a été bloquée ou fermée. Réessaie, ou utilise l'e-mail et le mot de passe.
+1355	Parcours la technique
+1356	Mon plan de compétences
+1357	Pas de coups de pied puissants (jour jambes).
+1358	Pas d'internet. Réessaie une fois en ligne.
+1359	Pas encore enregistré, nouvel essai prévu
+1360	Non connecté : les données sont seulement sur ce téléphone
+1361	Ou utilise l'e-mail (marche mieux si l'appli est installée sur l'écran d'accueil) :
+1362	Validé
+1363	Mot de passe ({0}+ caractères)
+1364	Étape de la phase {n} validée
+1365	Étape de la phase {n} retirée
+1366	Choisir des compétences
+1367	Choisis les compétences que tu veux apprendre et l'appli crée ton plan de combat hebdomadaire.
+1368	Choisis tes compétences
+1369	pour avoir un plan hebdomadaire complet.
+1370	Plan enregistré
+1371	Début du plan (lundi de la semaine {0})
+1372	E-mail de réinitialisation envoyé.
+1373	Enregistré dans le cloud à
+1374	Séance enregistrée
+1375	Se connecter
+1376	Connecte-toi une fois
+1377	pour l'enregistrer automatiquement dans le cloud.
+1378	Connecte-toi une fois et tout ce que tu fais est enregistré automatiquement sur ton compte, sur chaque téléphone que tu utilises.
+1379	Se déconnecter
+1380	Actif
+1381	Tout débloquer
+1382	Tous les parcours et toutes les techniques
+1383	Routine de combattant, enchaînements et partenaire de sparring
+1384	Carrière de combattant et tests de compétences
+1385	De nouvelles compétences et de nouveaux plans au fil du temps
+1386	Chargement...
+1387	Restaurer les achats
+1388	Renouvellement automatique jusqu'à résiliation. Résilie quand tu veux dans Google Play, au moins {0} heures avant le renouvellement.
+1389	Pro est actif. Merci !
+1390	Les formules ne sont pas disponibles pour le moment.
+1391	Annuel
+1392	Mensuel
+1393	essai gratuit
+1394	L'achat n'a pas abouti. Tu n'as pas été débité.
+1395	Aucun abonnement trouvé pour ce compte.
+1396	Impossible de joindre la boutique. Réessaie.
+1397	Cela fait partie de Pro. La première phase reste gratuite.
+1398	{0} jours gratuits, puis facturé jusqu'à résiliation. Résilie quand tu veux en deux touches. Remboursement complet dans les {1} jours suivant ton premier paiement.
+1399	Se termine le {d}
+1400	Se renouvelle le {d}
+1401	Gérer l'abonnement
+1402	Connecte-toi d'abord pour que Pro te suive sur tous tes appareils.
+1403	{0} jours gratuits
+1404	Paiement reçu. Déblocage de Pro...
+1405	Impossible d'ouvrir la page de paiement. Vérifie ta connexion.
+1406	Impossible d'ouvrir ta page d'abonnement. Réessaie.
+1407	Supprimer le compte
+1408	Touche encore pour supprimer définitivement
+1409	Cela résilie tout abonnement et supprime ton compte et la copie dans le cloud. Les données de cet appareil restent.
+1410	Compte supprimé.
+1411	Par sécurité, déconnecte-toi, reconnecte-toi, puis supprime.
+1412	Politique de confidentialité
+1413	Conditions d'utilisation
+1414	Connecté en tant que
+1415	Touche encore pour confirmer
+1416	Touche les compétences que tu veux travailler. Commence par un ensemble prêt si tu veux, puis ajoute ou retire.
+1417	Cet e-mail a déjà un compte. Touche Se connecter.
+1418	Impossible de lire ce fichier.
+1419	Saisis d'abord ton e-mail.
+1420	Annuler
+1421	À surveiller
+1422	semaine
+1423	Qu'est-ce qui clochait ? Qu'a montré la vidéo ?
+1424	Tes données restent sur cet appareil (stockage du navigateur). Exporte-les de temps en temps comme sauvegarde.
+1425	Ta progression n'est enregistrée que sur ce téléphone.
+1426	Ta progression n'est pas encore sauvegardée.
+1427	Tes compétences
+1428	après le combat
+1429	récupération
+1430	focus
+1431	valide d'abord l'étape de la phase {n}.
+1432	{n} choisies
+1433	{n} x {0} min par compétence (première série lente), puis shadow léger
+1434	{n} x {t} rounds sur annonce, après {0} min par compétence
+1435	Marquée en apprentissage
+1436	Marquée comme acquise
+1437	Statut réinitialisé
+1438	Données importées
+1439	Tout a été réinitialisé
+1440	Création du compte...
+1441	Connexion...
+1442	✓ Enregistré
+1443	Enregistrement
+1444	Hors ligne
+1445	Non sauvegardé
+1446	Technique
+1447	Retour en garde
+1448	Fais glisser le curseur, ou la silhouette pour la tourner
+1449	technique
+1450	principal
+1451	jeu de jambes
+1452	exercice
+1453	Complet (recommandé)
+1454	Tout
+1455	Construction : apprends lentement
+1456	Construction : ajoute de la vitesse
+1457	Pic : rounds sous pression
+1458	Récupération : technique seulement
+1459	Poings
+1460	Coups de pied, genoux et coudes
+1461	MMA : changements de niveau et sol
+1462	Défense et contres
+1463	Entraînement de combattant
+1464	Enchaînements de la semaine
+1465	À affûter aujourd'hui
+1466	{n} x {t} rounds de combat
+1467	{n} séries de frappes, sprawls, gainage
+1468	Jeu de jambes, {n} rounds de défense, enchaînements poings seuls
+1469	Apprends les compétences
+1470	{n} sur {m} marquées comme acquises
+1471	La routine que tu gardes pendant des années
+1472	Retour à l'apprentissage (ajouter des compétences)
+1473	Je les ai apprises : démarrer l'entraînement de combattant
+1474	Entraînement de combattant démarré
+1475	Retour à l'apprentissage
+1476	Base : propre et précis
+1477	Construction : plus de rounds
+1478	Pic : rythme de combat
+1479	Récupération : léger et technique
+1480	Défense
+1481	Rounds de combat
+1482	Étape {0} : tu apprends les compétences que tu as choisies. Toutes les {1} semaines forment un bloc ({2} semaines de progression + une semaine facile), en tournant sur chaque compétence. Quand une compétence est solide, ouvre-la et touche "Marquer comme acquise". Quand toutes le sont, l'appli passe d'elle-même à l'entraînement de combattant (ou touche le bouton ci-dessous quand tu te sens prêt).
+1483	Étape {0} : tu t'entraînes maintenant comme un combattant, avec les compétences apprises. Cette routine ne s'arrête jamais : ton premier jour, ce sont les enchaînements (deux enchaînements de la semaine travaillés jusqu'à l'automatisme), le suivant la défense, le jeu de jambes et les contres (sans coups de pied), et le jour dur les rounds de combat et la condition physique. Toutes les {1} semaines : {2} semaines où les rounds et le rythme montent, puis une semaine facile. Les enchaînements et les compétences à affûter changent chaque semaine, pour que tout reste vif.
+1484	Développé couché haltères (plat)
+1485	Rowing haltère à un bras
+1486	Développé épaules assis
+1487	Oiseau buste penché
+1488	Curl marteau
+1489	Barre au front allongé
+1490	Goblet squat
+1491	Soulevé de terre roumain aux haltères
+1492	Fente arrière
+1493	Mollets sur une jambe
+1494	Dead bug
+1495	Développé incliné haltères
+1496	Rowing buste penché à deux bras
+1497	Pull-over haltère
+1498	Élévations latérales
+1499	Pompes (en déficit ou diamant)
+1500	Russian twists + gainage latéral
+1501	{0} x {1}-{2} chacun
+1502	{0} x {1} par jambe
+1503	{0} x {1} chacun
+1504	{0} x {1} de chaque côté
+1505	{0} x presque à l'échec
+1506	{0} x {1} / {2} x {3} s chacun
+1507	Jab, direct ({0}-{1})
+1508	Blocage
+1509	Recul, direct ({0})
+1510	Teep
+1511	Coup de pied circulaire
+1512	Switch kick
+1513	Genou
+1514	Coude
+1515	Double-leg
+1516	Rouler dessous
+1517	Bloque le coup de pied
+1518	Attrape le coup de pied
+1519	Construit à partir de
+1520	environ {n} min
+1521	Note du coach
+1522	Sécurité
+1523	Profil
+1524	Ton profil
+1525	Modifier le profil
+1526	Bienvenue dans Combat Coach
+1527	Quelques questions pour que le plan te corresponde. Tu peux changer chaque réponse plus tard dans Réglages.
+1528	Tu as utilisé l'appli sur un autre téléphone ?
+1529	et ton plan revient.
+1530	Ton expérience
+1531	Ta garde
+1532	Jours d'entraînement
+1533	Durée par séance
+1534	Ton objectif
+1535	Matériel
+1536	Quelque chose à protéger ?
+1537	Choisis de {0} à {1} jours. Laisse un jour de repos entre les séances dures si tu peux.
+1538	Les techniques qui sollicitent ces zones sont retirées et les exercices remplacés par des plus sûrs. Si quelque chose fait mal, consulte d'abord un médecin ou un kiné.
+1539	Afficher aussi mon plan course et musculation
+1540	Plan créé
+1541	Profil enregistré
+1542	Jamais entraîné, ou très peu
+1543	Je connais les bases : garde, jab, direct
+1544	Entraîné depuis un an ou plus
+1545	protéger
+1546	Bases pour débutants
+1547	Retiré de ton plan à cause des limites de ton profil.
+1548	Affiché en fausse garde (en miroir) pour correspondre à ta garde. Avant désigne ton côté droit.
+1549	{0} min
+1550	Tes tests mensuels sont à faire.
+1551	Tests de compétences
+1552	{n} résultats
+1553	Mes enchaînements
+1554	Crée les tiens, animés
+1555	Minuteur de rounds
+1556	Sac, pattes d'ours, sparring
+1557	Mesure tes progrès chaque mois
+1558	QI de combat
+1559	Stratégie, avec exercices
+1560	Mets coups, défenses et déplacements dans l'ordre. L'appli anime l'enchaînement à partir d'une vraie capture de mouvement, et le minuteur l'annonce pendant tes rounds.
+1561	Nouvel enchaînement
+1562	Travailler
+1563	Pas encore d'enchaînements. Commence par un que tu veux maîtriser, comme {0}-{1}, esquive, {2}.
+1564	Attaque
+1565	Déplacement
+1566	Modifier l'enchaînement
+1567	Touche pour ajouter (jusqu'à {0}). Touche une étape de la séquence pour la retirer.
+1568	Nom (facultatif)
+1569	Supprimer
+1570	Ton enchaînement sera joué ici.
+1571	Le minuteur dira
+1572	Enchaînement enregistré
+1573	Enchaînement supprimé
+1574	Pour le sac, les pattes d'ours, le sparring ou un cours. Cloche au début et à la fin de chaque round, un clic {0} secondes avant la fin.
+1575	Rounds
+1576	Durée du round
+1577	Annonces
+1578	Rythme des annonces
+1579	Pas d'annonces (cloche seulement)
+1580	Boxe : poings seuls
+1581	Muay-thaï / kickboxing
+1582	Mix combat
+1583	Moyen
+1584	Rapide
+1585	Dernier
+1586	Meilleur
+1587	Pas encore fait
+1588	Fais les quatre une fois par mois, un jour reposé, après l'échauffement. Mêmes conditions à chaque fois, pour que les chiffres soient comparables.
+1589	Résultat enregistré
+1590	Ton total
+1591	Je l'ai chronométré moi-même
+1592	Prêt
+1593	Touche pour démarrer
+1594	Attends…
+1595	Trop tôt. Attends l'annonce.
+1596	Ta réaction typique (médiane de {0}).
+1597	Fais les {0} rounds
+1598	Note chaque point de {0} à {1}
+1599	{n} rounds de {t}, le minuteur annonce.

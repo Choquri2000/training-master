@@ -1,0 +1,399 @@
+800	Braucht außergewöhnliche Beine und Kondition; wenn du müde wirst, hört der Kopf auf, sich zu bewegen, und du wirst zur Zielscheibe.
+801	Muss durch den Jab hindurch, um nah ranzukommen.
+802	Kann im Clinch gebunden und von einem guten Jab-und-Bewegung-Kämpfer frustriert werden.
+803	Jab und seitliche Bewegung; nie frontal stehen bleiben.
+804	Die Arme binden, wenn er reinkommt.
+805	Uppercuts timen, wenn er abtaucht.
+806	Kleinere, explosive Kämpfer mit starken Beinen und großer Ausdauer.
+807	Sowjetische / osteuropäische Schule
+808	Das Amateursystem der UdSSR und später der Ukraine, Russlands und Kasachstans. Aufgebaut auf riesigen Mengen Beinarbeit und Techniktraining.
+809	Ziemlich aufrecht, längere Auslage, leichtfüßig mit konstantem Rhythmus. Ein fleißiger, präziser Jab, schnelle gerade Kombinationen und nach jedem Angriff im Winkel raus.
+810	Hervorragende Distanzkontrolle und Beinarbeit.
+811	Saubere, präzise Punkte in hoher Schlagzahl.
+812	Sehr disziplinierte Grundlagen: schwer aus der Position zu erwischen.
+813	Der aufrechte Kopf kann von Kämpfern getroffen werden, die den Jab timen.
+814	Kann gegen viel Druck und Körperarbeit in der Nahdistanz Probleme haben.
+815	Weniger natürlicher Nahkampf.
+816	Den Ring abschneiden und den Körper bearbeiten.
+817	Den Jab mit Ausweichen oder einem Führhandhaken kontern.
+818	Ihn in den Nahkampf zwingen.
+819	Technische Kämpfer, die gern denken, sich bewegen und punkten, besonders größere.
+820	Philly Shell (Schulterrolle)
+821	Aus den Gyms von Philadelphia; auf höchstem Niveau genutzt von James Toney und Floyd Mayweather Jr.
+822	Führarm tief vor dem Bauch, vordere Schulter hoch zum Schutz des Kinns, hinterer Handschuh an der Wange. Schläge rollen an der Schulter ab, dann kommt sofort der Konter (oft die Gerade).
+823	Hervorragendes Kontern, besonders der Pull Counter.
+824	Sehr effizient: wenig verschwendete Energie.
+825	Schwer sauber zu treffen, wenn das Timing stimmt.
+826	Braucht Weltklasse-Reflexe und viele Jahre, bis es funktioniert.
+827	Offen für den Führhandhaken und Körpertreffer, wenn das Timing nicht stimmt.
+828	Wenig Schlagzahl kann Runden kosten; schwach gegen Kicks im Kickboxen.
+829	Antäuschen, um den Konter zu provozieren, dann in die Lücke schlagen.
+830	Den Körper angreifen und den Jab verdoppeln.
+831	Ständig Druck machen, damit er die Füße nicht setzen kann.
+832	Erfahrene, ruhige Konterboxer mit schnellen Reflexen. Kein Einstiegsstil für Anfänger.
+833	Out-Boxer (treffen und bewegen)
+834	Der klassische Distanzboxer, zur Ikone gemacht von Muhammad Ali.
+835	Bleibt am Ende des Jabs, bewegt sich seitlich, punktet und ist weg. Nutzt ständig den Jab und die Gerade, wenn der Gegner reinkommt.
+836	Kassiert wenig und kontrolliert das Tempo.
+837	Gewinnt Runden mit sauberer Schlagzahl.
+838	Frustriert Druckkämpfer.
+839	Braucht starke Beine und Ausdauer für viele Runden.
+840	Kann in den Seilen oder in einer Ecke gestellt werden.
+841	Weniger Schlagkraft; muss nach Punkten gewinnen.
+842	Den Ring abschneiden statt hinterherzulaufen.
+843	Den Körper angreifen, um die Beine zu verlangsamen.
+844	Antäuschen, um den Jab zu provozieren, dann darüber kontern.
+845	Größere Kämpfer mit langer Reichweite und guter Bewegung.
+846	Swarmer / Druckkämpfer (mexikanischer Stil)
+847	Ständiger Vorwärtsdruck und Körperschläge, verbunden mit dem mexikanischen Boxen und Kämpfern wie Julio César Chávez.
+848	Hohe Deckung, läuft dahinter nach vorn, schneidet den Ring ab und gräbt Haken in den Körper, dann geht es nach oben. Schlägt in Serien und lässt den Gegner nie durchatmen.
+849	Bricht Gegner mental und körperlich.
+850	Körperarbeit raubt dem Gegner Beine und Ausdauer.
+851	Riesige Schlagzahl in den späten Runden.
+852	Steckt beim Reingehen ein; braucht ein starkes Kinn.
+853	Ein cleverer Beweger kann ihn auskontern und nach Punkten schlagen.
+854	Braucht einen enormen Motor.
+855	Jab und Drehung, damit er in die Schläge läuft.
+856	Beim Reinkommen kontern; clinchen, wenn er da ist.
+857	Nicht in den Seilen Schläge tauschen.
+858	Harte, top-konditionierte Kämpfer, die gern nah kämpfen, oft kleiner als ihre Gegner.
+859	Muay Femur (der Techniker)
+860	Der „kluge Kämpfer“ des Muay Thai, in Thailand hoch angesehen für Timing, Balance und Gelassenheit.
+861	Ruhig, aufrecht und ausbalanciert. Kontrolliert die Distanz mit dem Teep, punktet mit sauberen Kicks, Checks und Fängen und kontert genau im richtigen Moment.
+862	Kontrolliert den Kampf und die Wertung.
+863	Sehr schwer sauber zu treffen; hervorragende Balance.
+864	Effizient: gewinnt, ohne einzustecken.
+865	Kann von unermüdlichem Druck überarbeitet werden.
+866	Weniger K.o.-Siege.
+867	Das Timing zu entwickeln dauert viele Jahre.
+868	Ständig Druck machen und ihm den Raum für den Teep nehmen.
+869	Den Clinch erzwingen.
+870	Ihn in deinem Tempo kämpfen lassen.
+871	Geduldige, technische Kämpfer mit gutem Timing.
+872	Muay Khao (der Kniekämpfer)
+873	Der Clinch-Spezialist des Muay Thai. Läuft nach vorn, um den Nacken zu greifen, und feuert Knie zum Körper.
+874	Aufrechte Haltung, Hüfte vorn, läuft durch die Schläge in den Clinch, kontrolliert dann den Kopf und landet Knie um Knie.
+875	Dominiert den Clinch und gewinnt nach Thai-Wertung.
+876	Knie zum Körper leeren den Tank des Gegners.
+877	Sehr schwer auf Abstand zu halten.
+878	Frisst beim Reingehen Treffer.
+879	Unter Kickbox-Regeln ist der Clinch begrenzt, was die Hauptwaffe wegnimmt.
+880	Sehr kräftezehrender Stil.
+881	Teep und aus der Linie bewegen, damit er nicht schließen kann.
+882	Rahmen und den Clinch brechen, dann beim Trennen treffen.
+883	Ellbogen einsetzen, wenn er nach dem Nacken greift.
+884	Große, starke Kämpfer mit langen Beinen und großem Motor.
+885	Muay Mat (der Puncher)
+886	Der aggressive Muay-Thai-Kämpfer mit schweren Händen, der den K.o. sucht.
+887	Läuft hinter hoher Deckung nach vorn, nimmt oder checkt Kicks und schlägt harte Schläge, abgeschlossen mit Low oder Körperkicks.
+888	K.o.-Kraft in beiden Händen.
+889	Einschüchternd; zwingt Gegner zum Zurückweichen.
+890	Schläge sind für viele kickorientierte Kämpfer eine Schwachstelle.
+891	Kann vorhersehbar sein.
+892	Teeps und lange Kicks stoppen das Vorwärtsgehen.
+893	Steckt ein, während er den großen Treffer sucht.
+894	Teep zur Hüfte, wenn er reinkommt.
+895	Aus langer Distanz kicken und bewegen.
+896	Clinch und Knie, wenn er schließt.
+897	Starke Kämpfer mit natürlicher Schlagkraft, oft mit Box-Hintergrund.
+898	Muay Tae (der Kicker)
+899	Der Spezialist für Kicks auf Distanz, punktet mit kraftvollen Körper- und Kopfkicks.
+900	Hält den Kampf mit dem Teep auf Kick-Distanz, dann harte Roundhouses gegen Arme, Körper und Kopf von beiden Seiten.
+901	Kontrolliert die Distanz und punktet stark mit Kicks.
+902	Körperkicks beschädigen Arme und Rippen.
+903	Gefährliche K.o.s durch Kopfkicks.
+904	Kicks können gefangen und gekontert werden.
+905	Schwächer, wenn er in der Nahdistanz Schläge bekommt.
+906	Braucht Beweglichkeit und hervorragende Balance.
+907	Die Distanz schließen und schlagen.
+908	Den Kick fangen und fegen oder kontern.
+909	Checken, dann sofort mit Schlägen antworten.
+910	Bewegliche Kämpfer mit langen Beinen.
+911	Holländisches Kickboxen
+912	Entwickelt in holländischen Gyms wie Mejiro, Chakuriki und Mike's Gym, mit viel Boxen und hartem Sparring.
+913	Hohe Deckung, ständiger Druck, Boxkombinationen, die immer mit einem Kick enden (berühmt ist der Low Kick). Schnell, aggressiv und kombinationsbasiert.
+914	Riesige Schlagzahl und fließende Kombinationen.
+915	Hände und Kicks kombiniert: schwer zu lesen.
+916	Bricht Gegner mit Druck und Low Kicks.
+917	Die hohe Deckung lässt den Körper offen.
+918	Weniger Clinch-Arbeit; unter Muay-Thai-Regeln mit Knien und Teeps konterbar.
+919	Sehr fordernd für die Kondition.
+920	Teep und Knie, wenn er reinkommt.
+921	Die Low Kicks checken und kontern.
+922	Aus der Linie gehen statt in den Seilen zu decken.
+923	Aggressive Kämpfer, die Kombinationen und Druck mögen.
+924	Wrestle-Boxer (Druck-Ringer)
+925	Der erfolgreichste MMA-Ansatz der letzten Jahrzehnte: Schläge und Takedowns so gemischt, dass jedes das andere vorbereitet.
+926	Läuft mit enger Deckung nach vorn, nutzt Schläge, damit der Gegner deckt oder reagiert, dann Levelwechsel und Takedown. Sobald die Takedown-Gefahr echt ist, treffen auch die Schläge.
+927	Die Takedown-Gefahr lässt die Schläge wirken, und umgekehrt.
+928	Kontrolliert, wo der Kampf stattfindet.
+929	Zermürbt Gegner mit der Zeit.
+930	Braucht einen Weltklasse-Motor und Ringerkönnen.
+931	Aus zu großer Distanz schießen bringt dir ein Knie oder einen Sprawl ein.
+932	Hat Probleme gegen starke Sprawler mit guten Kontern.
+933	Mit Kicks und Jab auf Distanz halten.
+934	Sprawlen und beim Aufstehen mit Schlägen bestrafen.
+935	Weg vom Käfig bleiben.
+936	Starke, top-konditionierte Kämpfer mit Ringer- oder Grappling-Basis.
+937	Sprawl and Brawl
+938	Die Antwort des Strikers auf Ringer: den Takedown abwehren, den Kampf im Stand halten und den K.o. suchen.
+939	Eine Kickbox-Auslage etwas tiefer als üblich, damit die Hüfte schnell nach hinten kommt. Starker Sprawl, schnelles Aufstehen und schwere Schläge, sobald der Gegner keine Takedowns mehr versucht.
+940	K.o.-Gefahr in jeder Sekunde im Stand.
+941	Starke Takedown-Abwehr.
+942	Hält den Kampf dort, wo der Striker am besten ist.
+943	Begrenzt, wenn er trotzdem zu Boden gebracht wird.
+944	Kann ohne eigene Takedowns vorhersehbar werden.
+945	Ringer, die Takedowns verketten, können ihn auslaugen.
+946	Takedown-Versuche verketten und den Käfig nutzen.
+947	Schläge mischen, damit er nicht auf den Takedown warten kann.
+948	Ihn dein Gewicht tragen lassen.
+949	Striker mit natürlicher Schlagkraft, die den Kampf im Stand halten wollen.
+950	Karate-basiertes MMA (rein und raus)
+951	Seitliches Distanz-Striking aus dem Point-Karate, erfolgreich genutzt von Kämpfern wie Lyoto Machida und Stephen Thompson.
+952	Seitliche Auslage, große Distanz, rein und raus federn. Explosive gerade Blitzangriffe und Kicks, dann direkt wieder raus aus der Reichweite; kontert, wenn der Gegner reinstürmt.
+953	Sehr schwer zu lesen und zu erreichen.
+954	Explosive Blitzangriffe und scharfe Konter.
+955	Hervorragendes Distanzmanagement.
+956	Die seitliche Auslage ist offen für Low Kicks und Takedowns.
+957	Wenig Schlagzahl kann knappe Runden kosten.
+958	Hat Probleme, wenn er an den Käfig gedrängt wird.
+959	Waden- und Beinkicks gegen das vordere Bein.
+960	Ihn an den Käfig drängen und ringen.
+961	Antäuschen, um den Konter zu provozieren, dann schließen.
+962	Schnelle, lange Kämpfer mit gutem Timing, oft mit Karate- oder Taekwondo-Hintergrund.
+963	Boxen
+964	Muay Thai / Kickboxen
+965	MMA-Grundlagen
+966	Auslage und Beinarbeit
+967	Angriffskombinationen
+968	Verteidigen und kontern
+969	Kampfauslage und Deckung
+970	Die Basis, in der jeder Schlag, Kick und jede Verteidigung beginnt und endet.
+971	Füße etwa schulterbreit, Zehen des vorderen Fußes und Ferse des hinteren auf einer Linie (wie auf Schienen, nicht auf einem Seil).
+972	Gewicht {0}/{1} oder leicht nach hinten, Knie locker, hintere Ferse leicht angehoben.
+973	Führhand auf Augenbrauenhöhe, eine Faust vor dem Gesicht; hintere Faust an Wange oder Kinn.
+974	Ellbogen unten zum Schutz der Rippen, Kinn eingezogen, Blick unter den Augenbrauen hindurch.
+975	Locker und entspannt bleiben: Anspannung macht dich langsam.
+976	Füße auf einer Linie (Seiltänzer)
+977	Schau nach unten: Zwischen den Linien deiner Füße sollte etwa hüftbreit Platz sein.
+978	Kinn oben
+979	Halte eine Runde lang einen Tennisball (oder eine gerollte Socke) zwischen Kinn und Brust.
+980	Abstehende Ellbogen
+981	Stell dir vor, zwischen jedem Ellbogen und deinen Rippen klemmt ein Blatt Papier.
+982	Frontal stehen
+983	Deine vordere Schulter sollte ungefähr auf dein Ziel zeigen.
+984	Spiegelcheck
+985	{0} x {1} Min. die Auslage vor einem Spiegel halten und jeden Kernpunkt prüfen. Leicht federn.
+986	Auslage neu einnehmen
+987	Locker herumgehen, dann auf ein Klatschen (oder die Glocke) in die Auslage springen. {0} Wiederholungen.
+988	Schritt-Nachzieh-Beinarbeit
+989	In jede Richtung bewegen und dabei in Auslage und Balance bleiben.
+990	Der Fuß, der der Richtung am nächsten ist, bewegt sich zuerst: vor = vorderer Fuß, zurück = hinterer Fuß, links = vorderer Fuß, rechts = hinterer Fuß.
+991	Mit dem anderen Fuß abdrücken, dann nachziehen, um dieselbe Auslagenbreite herzustellen.
+992	Kleine Schritte ({0} bis {1} cm). Nie die Füße kreuzen, nie zusammenbringen.
+993	Die Kopfhöhe bleibt gleich: kein Auf und Ab beim Schreiten.
+994	Füße kreuzen oder schließen
+995	Klebe zwei Linien auf den Garagenboden und halte jeden Fuß auf seiner Linie.
+996	Zu große Schritte und Vorlehnen
+997	Kürzere Schritte. Nach jedem Schritt solltest du sofort schlagen können.
+998	Halte beide Fäuste während der ganzen Übung am Gesicht.
+999	Box-Übung
+1000	Vor, rechts, zurück, links. {0} Min. pro Richtungsfolge, {1} Runden.
+1001	Angesagte Schritte
+1002	Nutze den Timer mit Beinarbeitsansagen: Reagier auf jede Ansage mit einem sauberen Schritt.
+1003	Drehung auf dem vorderen Fuß
+1004	Den Winkel ändern, damit du weg von der Mittellinie des Gegners bist.
+1005	Auf dem Ballen des vorderen Fußes drehen und den hinteren Fuß herumschwingen (als Rechtsausleger nach rechts, etwa {0} bis {1} Grad).
+1006	Hände bleiben oben, Augen beim Ziel.
+1007	In einer normalen Auslage zum neuen Winkel enden.
+1008	Auf der Ferse drehen
+1009	Die vordere Ferse leicht anheben; auf dem Fußballen drehen.
+1010	Zuerst den Oberkörper schwingen
+1011	Der hintere Fuß treibt die Drehung; die Schultern folgen.
+1012	Jab und Drehung
+1013	Jab, dann drehen. {0} x {1} Min.
+1015	Schnelle gerade Führhand: misst die Distanz und bereitet alles andere vor.
+1016	Gerade aus der Deckung schlagen: kein Ausholen, kein Fallenlassen vorher.
+1017	Die Faust ganz am Ende eindrehen (Handfläche nach unten) und mit den ersten beiden Knöcheln treffen.
+1018	Die vordere Schulter hebt sich zum Schutz des Kinns; die hintere Hand klebt am Gesicht.
+1019	Auf derselben Linie zurückziehen, schneller als sie rausging.
+1020	Einen kleinen Schritt mit dem vorderen Fuß dazunehmen, wenn du Reichweite brauchst.
+1021	Die Jab-Hand beim Zurückziehen senken
+1022	Berühre nach jedem Jab mit dem vorderen Handschuh die Stirn, bevor der nächste kommt.
+1023	Die hintere Hand rutscht vom Kinn
+1024	Halte eine ganze Runde den hinteren Daumen an der Wange.
+1025	Über das vordere Knie hinaus lehnen
+1026	Deine Nase sollte hinter den Zehen des vorderen Fußes bleiben.
+1027	Abstehender Ellbogen (ein „Hühnerflügel“)
+1028	Der Ellbogen zeigt bis zum letzten Moment vor der Streckung nach unten.
+1029	{0} x {1} Min.: einfache, doppelte und Schritt-Jabs, dazwischen bewegen.
+1030	Jabs mit leichtem Band
+1031	Band hinter dir auf Schulterhöhe befestigt: {0} x {1} schnelle Jabs, Fokus auf schnelles Zurückziehen.
+1032	Gerade ({0})
+1033	Die kraftvolle Gerade aus der hinteren Hand.
+1034	Die Kraft beginnt am hinteren Fuß: hintere Ferse nach außen drehen und die Hüfte nach vorn treiben.
+1035	Die Schultern drehen, sodass die hintere Schulter am Ende nah am Kinn ist.
+1036	Die Faust geht gerade von der Wange los und dreht sich am Ende ein.
+1037	Die Führhand kehrt zum Gesicht zurück, während die Gerade feuert.
+1038	Das Gewicht verlagert sich etwas aufs vordere Bein, aber der Kopf bleibt über dem vorderen Knie.
+1039	Die hintere Ferse bleibt flach
+1040	Denk bei jeder Geraden an „den Käfer zerquetschen“ mit dem hinteren Fuß.
+1041	Schlag nur aus dem Arm
+1042	Schlag langsame Geraden, bei denen sich zuerst die Hüfte dreht und zuletzt der Arm.
+1043	Die Führhand sinkt
+1044	Der vordere Handschuh berührt die Stirn, während die Gerade draußen ist.
+1045	Überdrehen und nach vorn fallen
+1046	Stopp die Drehung, wenn die hintere Schulter das Kinn deckt.
+1047	{0}-{1}-Rhythmus
+1048	{0} x {1} Min. Jab-Gerade, nach jedem Paar die Auslage neu einnehmen.
+1049	Gerade in Zeitlupe
+1050	{0} Wiederholungen mit {1} % Tempo, dabei den hinteren Fuß im Spiegel beobachten.
+1051	Ausweichen
+1052	Den Kopf knapp aus der Linie eines geraden Schlags bewegen, damit du kontern kannst.
+1053	In den Knien beugen und leicht in der Hüfte drehen: Der Kopf bewegt sich etwa {0} cm, nicht mehr.
+1054	Gegen einen Jab nach außen (rechts) ausweichen, gegen eine Gerade nach innen (links).
+1055	Die ganze Zeit die Augen beim Gegner und die Hände oben.
+1056	Sofort zur Mitte zurück oder aus der Ausweichposition kontern.
+1057	Seitlich in der Hüfte abknicken
+1058	Dein Kopf sollte über den Knien bleiben: Nutz die Beine.
+1059	Klein: gerade genug, damit der Schlag am Ohr vorbeigeht.
+1060	Auf den Boden schauen
+1061	Fixiere eine Markierung an der Wand auf Kopfhöhe.
+1062	Schnur-Linie
+1063	Spann eine Schnur auf Kinnhöhe quer durch die Garage; geh daran entlang und weich von Seite zu Seite aus. {0} x {1} Min.
+1064	Jab-Ausweichen-Gerade
+1065	Jab, nach rechts ausweichen, Gerade. {0} x {1} Min.
+1066	Parade
+1067	Einen Jab mit einem kleinen Klaps der hinteren Hand umlenken.
+1068	Die hintere Hand tippt den ankommenden Schlag nach unten oder zur Seite, eine kurze Bewegung von {0} bis {1} cm.
+1069	Nah am Gesicht abfangen, nicht durch Entgegengreifen.
+1070	Die parierende Hand geht direkt zurück ans Kinn.
+1071	Nach dem Schlag greifen
+1072	Erst parieren, wenn der Schlag eine Unterarmlänge vor deinem Gesicht ist.
+1073	Große Wischbewegung
+1074	Stell dir vor, du schüttelst Wasser von der Handfläche, mehr nicht.
+1075	Parade im Schattenboxen
+1076	Stell dir einen Jab vor, parieren, mit Jab antworten. {0} x {1} Min.
+1077	Hoher Deckungsblock
+1078	Gegen Haken und schwere Treffer decken.
+1079	Handschuhe an die Schläfen, Ellbogen eng, Unterarme senkrecht.
+1080	Kinn einziehen und die Knie leicht beugen, um abzufedern.
+1081	Gleich danach zurück in die normale Deckung; nicht eingeigelt bleiben.
+1082	Augen zu
+1083	Durch die Lücke zwischen den Handschuhen schauen.
+1084	Wegdrehen
+1085	Der Gefahr frontal zugewandt bleiben und die Füße fest stellen.
+1086	Blocken und antworten
+1087	Links blocken, rechts blocken, dann {0}-{1}. {2} x {3} Min.
+1088	Vorderer Teep (Stoßtritt)
+1089	Der „Jab mit dem Bein“ im Muay Thai: hält Distanz und bricht den Rhythmus.
+1090	Erst das vordere Knie hoch zur Brust heben (Anziehen).
+1091	Den Fußballen (oder die Ferse) durch den Bauch des Ziels nach vorn stoßen, die Hüfte streckt sich.
+1092	Für Balance und Reichweite leicht zurücklehnen; die Hände bleiben oben.
+1093	Den Fuß schnell in die Auslage zurückholen, nicht vorn fallen lassen.
+1094	Nach oben statt nach vorn kicken
+1095	Stell dir vor, du stößt mit dem Fuß eine Tür zu.
+1096	Kein Anziehen
+1097	Das Knie berührt deinen vorderen Ellbogen, bevor du streckst.
+1098	Die Arme sinken zur Balance
+1099	Übe, einen langsamen Teep {0} Sekunden in voller Streckung mit Händen oben zu halten.
+1100	Langsame Teeps
+1101	{0} x {1} pro Bein im halben Tempo, die Streckung {2} Sekunde halten.
+1102	Jab-Teep
+1103	Jab, dann Teep. {0} x {1} Min.
+1104	Hinterer Roundhouse-Kick (Körper)
+1105	Der typische kraftvolle Muay-Thai-Kick, Treffer mit dem Schienbein.
+1106	Den vorderen Fuß leicht zur Seite setzen und die Zehen nach außen drehen (öffnet die Hüfte).
+1107	Auf den Ballen des Standfußes gehen und ihn beim Kick drehen: Die Ferse zeigt am Ende zum Ziel.
+1108	Das Bein wie einen Baseballschläger schwingen und die Hüfte überdrehen; Kontakt mit dem unteren Schienbein.
+1109	Der hintere Arm schwingt zum Ausgleich nach unten und hinten, die Führhand schützt das Gesicht.
+1110	Das Bein auf demselben Weg zurück in die Auslage bringen.
+1111	Der Standfuß bleibt flach
+1112	Übe die Drehung allein: auf dem Fußballen hochgehen und drehen, {0} Wiederholungen.
+1113	Mit dem Fuß statt dem Schienbein kicken
+1114	Kick durch das Ziel, als wäre es nicht da; ziel mit dem Schienbein, nicht mit den Zehen.
+1115	Beide Hände sinken
+1116	Die Führhand bleibt am Gesicht; nur der hintere Arm schwingt.
+1117	Weit zurücklehnen
+1118	Die Hüfte überdrehen und den Kopf ungefähr über dem Standfuß halten.
+1119	Hüftdrehung an der Bank
+1120	An der Bank festhalten, {0} x {1} langsame Kicks pro Seite mit Fokus auf Drehung und Hüfte.
+1121	Kicken und zurück
+1122	{0} x {1} Min.: Kick, zurück in der Auslage landen, Deckung prüfen, wiederholen.
+1123	Check (Schienbeinblock)
+1124	Einen Low oder Körperkick mit dem Schienbein blocken.
+1125	Das vordere Knie hoch und leicht nach außen heben, damit das Schienbein zum Kick zeigt.
+1126	Knie und Ellbogen kommen auf derselben Seite eng zusammen.
+1127	Aufrecht auf dem Standbein; nicht wegkippen.
+1128	Den Fuß direkt in der Auslage absetzen, bereit zum Kontern.
+1129	Vom Kick wegdrehen
+1130	Die Hüfte bleibt nach vorn; das Schienbein macht die Arbeit.
+1131	Den Fuß heben, aber nicht das Knie
+1132	Das Knie steigt mindestens auf Hüfthöhe.
+1133	Check und Konter
+1134	Checken, dann {0}-{1} oder hinterer Kick. {2} x {3} Min.
+1135	MMA-Auslage und Auslagenwechsel
+1136	Eine etwas tiefere, breitere Auslage, die Takedowns genauso abwehrt wie Schläge.
+1137	Etwas breiter und tiefer als eine Box-Auslage, Gewicht mittig, Hände etwas tiefer und weiter vorn.
+1138	Die Auslage mit einem kleinen Hüpfer oder Schritt wechseln, ausbalanciert mit Händen oben landen.
+1139	Beim Schattenboxen in beiden Auslagen gleich wohl fühlen.
+1140	Aufrecht stehen wie im Boxen
+1141	Beug die Knie, bis deine Hände bei einem schnellen Takedown die Hüfthöhe des Gegners erreichen.
+1142	Füße mitten im Wechsel zusammen
+1143	Mit einem kleinen Scherensprung wechseln, sodass die Füße in voller Breite aneinander vorbeigehen.
+1144	Wechsel auf die Glocke
+1145	{0} x {1} Min.: jedes Mal wechseln, wenn du „Auslage wechseln“ hörst.
+1146	Sprawl
+1147	Einen Takedown stoppen, indem du die Beine nach hinten wirfst und die Hüfte auf den Gegner fallen lässt.
+1148	Beide Beine kräftig und breit nach hinten werfen, auf den Fußballen landen.
+1149	Die Hüfte zum Boden treiben; Brust schwer, Kopf oben.
+1150	Die Hände gehen runter, um den eindringenden Gegner zu blocken (oder einen Underhook zu setzen).
+1151	Sofort zurück in die Auslage springen.
+1152	Die Hüfte bleibt hoch
+1153	Deine Hüfte sollte unten fast den Boden berühren.
+1154	Knie schlagen auf dem Boden auf
+1155	Mit gestreckten Beinen auf den Fußballen landen.
+1156	Nach unten schauen
+1157	Die Augen oben auf Kopfhöhe halten.
+1158	Sprawl auf die Glocke
+1159	{0} x {1} Min.: Schattenboxen und bei jeder Ansage sprawlen, dann zurück zum Schlagen.
+1160	Führhandhaken ({0})
+1161	Kurzer, gebogener Kraftschlag von der Führseite.
+1162	Arm etwa {0} Grad gebeugt, Ellbogen auf Höhe der Faust.
+1163	Die Kraft kommt aus dem Drehen von vorderem Fuß und Hüfte, nicht aus dem Schwingen des Arms.
+1164	Die hintere Hand klebt am Kinn.
+1165	Die Faust kann mit Handfläche nach unten oder Daumen nach oben sein; das Handgelenk gerade halten.
+1166	Ausholen (den Arm erst zurückziehen)
+1167	Den Haken genau aus der Deckungsposition starten.
+1168	Arm zu weit / zu gestreckt
+1169	Den Winkel fest halten; der Körper dreht den Arm wie ein Türscharnier.
+1170	Die vordere Ferse bleibt stehen
+1171	Den vorderen Fuß drehen, als würdest du eine Zigarette austreten.
+1172	Jab, Gerade, Führhandhaken. {0} x {1} Min.
+1173	Haken aus der Deckung
+1174	{0} x {1} langsame Haken pro Seite, am Ende einfrieren und die Ellbogenhöhe prüfen.
+1175	Schlaghandhaken ({0})
+1176	Ein schwerer Haken mit der hinteren Hand, meist nach einem Führhandhaken oder einer Geraden.
+1177	Hinteren Fuß und Hüfte drehen wie bei der Geraden, aber der Arm bleibt gebeugt.
+1178	Kurz und eng: nicht weit ausholen.
+1179	Die Führhand kehrt zum Gesicht zurück.
+1180	Weit ausholen
+1181	Dein Ellbogen sollte nicht hinter die Schulterlinie gehen.
+1182	Zu viel reinlegen
+1183	Ausbalanciert enden, bereit für den nächsten Schlag.
+1184	Führhandhaken, Schlaghandhaken. {0} x {1} Min.
+1185	Führhand-Uppercut ({0})
+1186	Aufsteigender Schlag durch die Deckung in der Nahdistanz.
+1187	Leicht aufs vordere Bein abtauchen, dann mit Beinen und Hüfte nach oben treiben.
+1188	Die Faust steigt mit der Handfläche zu dir, der Ellbogen bleibt nah am Körper.
+1189	Nur auf kurze Distanz: Ziel ist das Kinn oder der Körper.
+1190	Die Hand zum Aufladen senken
+1191	Das Abtauchen kommt aus den Knien, nicht vom Senken der Faust.
+1192	Aus zu großer Distanz schlagen
+1193	Übe ihn nach einem Ausweichen oder einem Haken, wenn du schon nah bist.
+1194	Führhand-Uppercut, Gerade. {0} x {1} Min.
+1195	Schlaghand-Uppercut ({0})
+1196	Kraftvoller Uppercut mit der hinteren Hand.
+1197	Die hintere Hüfte nach vorn und oben treiben; die hintere Ferse dreht nach außen.
+1198	Die Faust steigt nah am Körper, Handfläche zu dir.
+1199	Die Führhand schützt das Gesicht.

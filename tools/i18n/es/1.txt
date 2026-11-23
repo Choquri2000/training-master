@@ -1,0 +1,399 @@
+400	Empuja fuerte, retrocede fuera de su alcance y vete.
+401	Alto y estrecho es fácil de levantar y lanzar. Bajo y ancho pesa.
+402	Tirar de sus brazos
+403	Empuja su cuerpo; los brazos siguen al cuerpo.
+404	Abrazo y salida
+405	Con un compañero abrazando suave: {0} repeticiones lentas de bajar, enmarcar, rodilla (solo tocar), empujar, alejarse. Cambiad.
+406	Escape de estrangulamiento frontal a dos manos
+407	Manos alrededor de tu cuello desde delante. Protege primero la vía aérea, rompe el agarre por los pulgares y gira hacia fuera.
+408	Mete el mentón con fuerza y sube los hombros: así proteges la garganta al instante.
+409	Tira hacia abajo de sus pulgares con ambas manos, o sube un brazo bien alto y gira fuerte hacia un lado, para que tu hombro rompa ambos brazos.
+410	El giro carga un codo o un puño de martillo de vuelta por encima de sus brazos.
+411	Aléjate enseguida y vete; pide ayuda.
+412	Tirar de sus muñecas
+413	Ve a por los pulgares o gira todo el cuerpo; las muñecas son demasiado fuertes.
+414	Esperar
+415	Reacciona en el primer segundo, mientras aún tienes aire y fuerza.
+416	Romper estrangulamientos
+417	Con un compañero poniendo las manos suave: {0} repeticiones lentas de meter el mentón, girar, alejarse. Nunca aprietes al practicar.
+418	Derribado: levántate con seguridad
+419	Si acabas en el suelo, el peligro es una patada a la cabeza mientras te levantas. Protege la cabeza, mantén los pies entre tú y él y levántate con el levantamiento técnico.
+420	Boca arriba o de lado, mantén un pie levantado hacia él y una mano protegiendo la cabeza.
+421	Apoya una mano detrás de ti y el pie contrario en el suelo.
+422	Levanta la cadera y pasa la pierna libre hacia atrás, cayendo en guardia a distancia.
+423	Manos arriba enseguida y luego vete.
+424	Levantarse recto delante de él
+425	Eso pone tu cabeza donde puede golpearla. Levántate hacia atrás, alejándote.
+426	Darle la espalda para levantarte
+427	Nunca des la espalda; mírale de frente hasta estar de pie.
+428	Repeticiones de levantamiento
+429	{0} x {1} min sobre colchoneta: túmbate, guardia, levantamiento técnico, paso atrás. Alterna los lados.
+430	nocaut
+431	parada (TKO)
+432	decisión unánime
+433	decisión dividida
+434	Amateur
+435	Promesa profesional
+436	En el ranking
+437	Aspirante
+438	Combate por el título
+439	{0}-{1}: jab, directo
+440	La combinación más importante del striking: el jab prepara el directo.
+441	El directo sale mientras vuelve el jab, como un solo movimiento.
+442	Gira el pie y la cadera de atrás con el directo.
+443	Ambas manos vuelven a la cara por la misma línea por la que salieron.
+444	Pausar entre los golpes
+445	Cuenta «uno-dos» como una sola palabra.
+446	Bajar la mano del jab al lanzar el directo
+447	La mano adelantada vuelve a la cara antes de que entre el directo.
+448	{0}-{1} con el reloj
+449	{0} x {1} min: {2}-{3}, recolócate, {4}-{5}. Cada repetición rápida y limpia.
+450	{0}-{1}-{2}: doble jab, directo
+451	Dos jabs acortan la distancia y esconden el directo.
+452	El segundo jab entra con un paso: llega más lejos que el primero.
+453	Jabs secos, no empujados.
+454	El directo sale de la vuelta del segundo jab.
+455	Dos jabs perezosos
+456	El primer jab puede ser más ligero, el segundo es seco y entra con paso.
+457	Jabs avanzando
+458	A lo largo del garaje: {0}-{1}-{2}, recolócate, repite. {3} x {4} min.
+459	{0}-{1}-{2}: jab, directo, gancho de adelante
+460	El remate clásico de tres golpes: el directo carga el gancho.
+461	El directo te gira hacia el lado izquierdo, así que el gancho sale desde ahí.
+462	Gancho corto: codo a la altura del hombro, gira sobre el pie adelantado.
+463	Mentón protegido detrás del hombro en el gancho.
+464	Cargar el gancho hacia atrás
+465	Sin recoger: el gancho empieza donde terminó el directo.
+466	Ponerse de frente después
+467	Termina en guardia o sal de la línea.
+468	Asaltos de {0}-{1}-{2}
+469	{0} x {1} min. Cada {2}.ª repetición, termina con un paso hacia un lado.
+470	Cuatro golpes que fluyen izquierda-derecha-izquierda-derecha; el último directo entra cuando se cubre del gancho.
+471	Cada golpe carga el siguiente: nunca te recoloques a mitad.
+472	Los pies se quedan debajo de ti: pasos pequeños, sin lanzarte.
+473	Expulsa el aire en cada golpe.
+474	Perder el equilibrio en el último directo
+475	Golpes cortos para que tu peso quede centrado.
+476	Escalera
+477	{0}-{1}, luego {2}-{3}-{4}, luego {5}-{6}-{7}-{8}, repite. {9} x {10} min.
+478	{0}-{1}-{2}: directo, gancho, directo
+479	Una combinación de potencia: empieza con el directo cuando espera el jab.
+480	Lanza el directo desde la guardia, sin jab que lo prepare.
+481	Gancho y directo giran la cadera de un lado a otro.
+482	Manos a casa entre cada golpe.
+483	Avisar el primer directo
+484	Sácalo directo desde la guardia, sin bajar el hombro.
+485	Asaltos de potencia
+486	{0} x {1} min, giro completo de cadera, ritmo constante.
+487	{0}-{1}: gancho de adelante, gancho de atrás
+488	Dos ganchos para la distancia corta, una vez dentro de su jab.
+489	Bajo y cerca; los ganchos son golpes de dentro.
+490	Gira todo el cuerpo en cada gancho, el brazo solo acompaña.
+491	Codos a {0} grados, los puños delante de ti.
+492	Asaltos en corto
+493	{0} x {1} min de {2}-{3}, luego {4}-{5}-{6}.
+494	{0}-{1}: uppercut de adelante, directo
+495	El uppercut le sube la guardia y el directo entra recto por el centro.
+496	Baja un poco hacia el lado adelantado para cargar el uppercut.
+497	Uppercut corto y luego el directo recto por el centro.
+498	Bajar la mano antes del uppercut
+499	Carga con las piernas, no bajando el puño.
+500	Asaltos de {0}-{1}
+501	{0} x {1} min, añade un gancho ({2}-{3}-{4}) en el último minuto.
+502	{0}-{1}-{2}: uppercut de atrás, gancho, directo
+503	Un remate en corto: por el centro, por el lado y luego recto.
+504	Uppercut de atrás desde una ligera bajada hacia el lado de atrás.
+505	El gancho sale del giro de cadera del uppercut.
+506	Termina con el directo y sal.
+507	Quedarse erguido en corto
+508	Rodillas flexionadas, cabeza fuera de la línea central.
+509	Asaltos en corto
+510	{0} x {1} min.
+511	Jab a la cabeza, patada frontal al cuerpo: le impide avanzar.
+512	El jab le hace subir las manos; el teep entra por debajo.
+513	Empuja con la cadera y vuelve a apoyar el pie en guardia.
+514	Patear solo con la pierna
+515	Sube primero la rodilla y luego empuja la cadera adelante.
+516	Asaltos de distancia
+517	{0} x {1} min: {2}-teep, recolócate.
+518	El jab esconde el cambio de pies, luego la pierna adelantada patea al cuerpo.
+519	Cambia los pies mientras vuelve el jab.
+520	Gira la cadera del todo y patea a través.
+521	Un cambio grande y lento
+522	Saltito pequeño y rápido: los pies solo se cambian de sitio.
+523	Asaltos de patada con cambio
+524	{0} x {1} min, ligero de pies.
+525	{0}-{1}-{2}, patada (combinación holandesa)
+526	Manos a la cabeza y luego la patada de atrás: el gancho te gira y la patada ya está cargada.
+527	El gancho pasa tu peso a la pierna adelantada, listo para patear.
+528	Patea al cuerpo o a la pierna y vuelve a la guardia.
+529	Manos arriba mientras pateas.
+530	Una pausa antes de la patada
+531	La patada es el {0}.º tiempo: sin recolocarte entre medias.
+532	Asaltos holandeses
+533	{0} x {1} min, patea al cuerpo y a la pierna en repeticiones alternas.
+534	{0}-{1}, rodilla
+535	Los golpes te acercan y la rodilla entra cuando se cubre.
+536	Entra con el directo para quedar a distancia de rodilla.
+537	Empuja la cadera adelante con la rodilla, inclínate un poco atrás.
+538	Rodilla desde demasiado lejos
+539	El directo te lleva adelante; la rodilla sale desde ahí.
+540	Asaltos de rodilla
+541	{0} x {1} min, alterna la pierna de la rodilla cada {2} repeticiones.
+542	En corto: el gancho le gira la cabeza y el codo de atrás sigue por la misma línea.
+543	Solo a muy corta distancia.
+544	El codo sigue el giro de cadera del gancho, de vuelta hacia el otro lado.
+545	Estirarse con el codo
+546	Si tienes que estirarte, lanza un directo.
+547	{0}-{1}, derribo a dos piernas
+548	La mezcla clave del MMA: los golpes le suben las manos y luego cambias de nivel y entras.
+549	Cambia de nivel mientras vuelve el directo.
+550	El mismo aspecto para el golpe y la entrada, para que no sepa qué viene.
+551	Los golpes acortan la distancia primero.
+552	Del golpe al derribo
+553	{0} x {1} repeticiones por asalto, sobre colchoneta o alfombra.
+554	Esquiva, {0}-{1}
+555	Esquiva su jab por fuera y responde con directo y gancho mientras está abierto.
+556	Esquiva lo justo: el golpe falla por unos centímetros.
+557	La esquiva carga el directo; el directo carga el gancho.
+558	Esquivar demasiado
+559	Tu cabeza sale por fuera de tu rodilla adelantada, no más.
+560	Asaltos de esquiva y contra
+561	{0} x {1} min: imagina el jab cada vez.
+562	Rolling, {0}-{1}
+563	Pasa por debajo de su gancho, sube cargado y dispara tu propio gancho y directo.
+564	Dobla las rodillas, no la cintura; la mirada sigue en él.
+565	Subes por el lado adelantado, lo que carga tu gancho.
+566	Agacharse recto hacia abajo
+567	Muévete en U: abajo, al lado, arriba.
+568	Asaltos de rolling
+569	{0} x {1} min. Imagina un gancho, rolling, contra.
+570	Bloqueo, {0}-{1}
+571	Recibe el golpe en la guardia y responde enseguida antes de que se recoloque.
+572	Bloquea con el guante contra la cabeza, codo cerrado.
+573	La contra empieza en el momento en que el golpe toca tu guardia.
+574	Bloquear y esperar
+575	Bloquear y golpear es un solo ritmo: «bloqueo, tres dos».
+576	Asaltos de bloqueo y contra
+577	Desvío, {0}-{1}
+578	Aparta su jab con la mano de atrás y devuélvele tu propio {0}-{1}.
+579	Desvío pequeño: un toque, no un manotazo.
+580	Tu jab sale mientras vuelve su jab.
+581	Ir a buscar el desvío
+582	Espera a que el jab llegue a tu cara y entonces toca.
+583	Asaltos de desvío
+584	Atrás, {0}-{1}
+585	Échate atrás ante el jab, vuelve de golpe con el directo y remata con el gancho.
+586	Retrocede con las piernas: el peso a la rodilla de atrás.
+587	El gancho sigue el giro de cadera del directo.
+588	Echarse recto atrás con las piernas rígidas
+589	Dobla la rodilla de atrás y mantén las manos arriba.
+590	Asaltos de pull counter
+591	Chequeo, patada
+592	Bloquea su patada baja con la tibia y responde enseguida con tu propia patada.
+593	Levanta la rodilla adelantada y gira la tibia hacia fuera para recibir la patada.
+594	Apoya el pie y patea mientras aún está girando.
+595	Bloquear y esperar
+596	La patada sale en cuanto tu pie toca el suelo.
+597	Asaltos de chequeo y respuesta
+598	Atrapa, {0}, patada
+599	Atrapa la patada al cuerpo, golpea mientras está sobre una pierna y patea cuando apoye.
+600	Absorbe y recoge la pierna; directo mientras está atrapado.
+601	Suelta la pierna y patea antes de que recupere el equilibrio.
+602	Sujetar la pierna demasiado tiempo
+603	Atrapa, golpea, suelta: un segundo.
+604	Asaltos de atrapar
+605	{0} x {1} min. Imagina la patada cada vez.
+606	Cinta o tiza en el suelo
+607	Cuadrado de juego de pies
+608	El juego de pies que aguanta bajo presión sale de patrones repetidos hasta que no requieren pensar. La cinta te obliga a ser honesto con la distancia y las líneas.
+609	Marca con cinta un cuadrado de unos {0} m en el suelo, con una línea por el medio.
+610	En guardia sobre la línea central. El temporizador canta un patrón; hazlo una vez, seco, y vuelve a la guardia.
+611	Los pies nunca se cruzan ni se juntan más que el ancho de hombros. Manos arriba todo el tiempo.
+612	Cruzar los pies al girar
+613	Botar alto en vez de deslizarse
+614	Bajar las manos al moverse
+615	Banda elástica ligera
+616	Sombra con banda
+617	La banda tira de tus manos hacia la guardia y hace que cada golpe trabaje contra resistencia. El último asalto sin ella hace que tus manos se sientan rápidas.
+618	Ancla una banda ligera detrás de ti a la altura del pecho (en una puerta o un poste firme), o pásala por la espalda alta y sujeta un extremo en cada mano.
+619	Lanza lo que cante el temporizador a un {0} por ciento. Vuelve cada golpe al mentón con control.
+620	El último asalto es sin banda: mismas combinaciones, velocidad máxima.
+621	Una banda tan fuerte que cambia tu técnica
+622	Estirar el codo de golpe
+623	Dejar que la banda tire de la mano hacia atrás
+624	Mancuernas muy ligeras ({0}-{1} kg) o botellas de agua
+625	Asaltos con mancuernas ligeras
+626	La resistencia de hombros es la razón por la que las manos caen en el último asalto. Asaltos cortos con muy poco peso entrenan los hombros para mantener la guardia cansado.
+627	Usa el peso más ligero que tengas, no más de {0} kg (o dos botellas pequeñas de agua). Más peso daña los codos y frena el golpe.
+628	Solo golpes rectos. Para justo antes de la extensión completa y vuelve la mano recta al mentón.
+629	Entre cantos, manos en el mentón. Para enseguida si te duele un hombro o un codo.
+630	Ganchos o uppercuts con pesas
+631	Bloquear el codo al final
+632	Peso demasiado alto
+633	Nada; deja el móvil donde puedas verlo
+634	Señales de reacción
+635	Los combates son decisiones bajo presión de tiempo. Las señales hacen que reacciones a lo que ves, no a un plan, así entrenas la decisión además de la velocidad.
+636	Pon el móvil a la altura de los ojos, a unos {0} m. En guardia de cara a él.
+637	Asalto {0}: los números se dicen en voz alta. Asalto {1}: los números solo aparecen en pantalla. Asalto {2}: colores en pantalla.
+638	Reacciona en cuanto lo veas y vuelve a la guardia. Una respuesta limpia gana a una rápida equivocada.
+639	Adivinar antes de la señal
+640	Mirar al suelo
+641	No volver a la guardia
+642	Nada (al principio ayuda tener una pared cerca)
+643	Equilibrio y base de patada
+644	Una patada vale lo que la pierna en la que te apoyas. Mantener posiciones en extensión completa crea el equilibrio y la fuerza de cadera que hacen las patadas potentes y seguras.
+645	Apoyos a una pierna: rodilla libre arriba, manos en guardia, mirada en un punto al frente.
+646	Patadas lentas: {0} segundos arriba, mantén {1} segundos en extensión completa, {2} segundos de vuelta a la guardia.
+647	Chequeo y patada: cuando se cante, bloquea o patea y vuelve directo a la guardia, manos arriba.
+648	Echarse atrás para subir más la pierna
+649	Bajar las manos durante la patada
+650	Apoyarse en una rodilla plana y bloqueada
+651	Banco, mancuernas
+652	Circuito de preparación para el combate
+653	Un asalto son ráfagas de trabajo con recuperaciones cortas, no un trote constante. Este circuito copia ese ritmo con ejercicios que construyen el motor que necesita un combate, con el material que tienes.
+654	Cinco estaciones de {0} segundos cada una, seguidas, y luego descanso. Eso es un asalto.
+655	Trabaja duro pero con técnica: lo que entrena este ejercicio es la buena técnica estando cansado.
+656	En los días de fuerza usa mancuernas moderadas para los remos, no las más pesadas.
+657	Sprawls descuidados con la cadera alta
+658	Redondear la espalda en los remos
+659	Darlo todo en el asalto {0} y morir
+660	Nada
+661	Últimos {0} segundos
+662	Los jueces recuerdan cómo termina un asalto, y los peleadores cansados se apagan. Entrenar un final a tope cuando ya estás cansado te enseña a ganar el final de cada asalto.
+663	Cada asalto empieza técnico: combinaciones limpias a la orden, a ritmo constante.
+664	A falta de {0} segundos el temporizador grita: a tope con tus mejores combinaciones hasta la campana.
+665	A tope sigue significando manos de vuelta a la guardia y mover la cabeza.
+666	Guardar energía los dos primeros minutos para que el final sea fácil
+667	Golpear con los brazos sin las piernas
+668	Bajar la guardia al cansarte
+669	Distancia: pelea a tu distancia
+670	Cada intercambio ocurre en una de tres distancias: patadas, puños o clinch. Quien controla la distancia decide qué armas funcionan.
+671	Distancia de patada: solo llegan el teep y las patadas. Los pegadores tienen que entrar para tocarte.
+672	Distancia de puños: entran los golpes rectos; ganchos y uppercuts necesitan medio paso más cerca.
+673	Distancia de clinch: rodillas, codos, ganchos cortos y lucha.
+674	Conoce tu mejor distancia, lleva el combate allí y no te quedes en una distancia donde solo pega el rival.
+675	Entra y sal
+676	{0} asaltos: a cada orden, entra a distancia de puños y conecta {1}-{2}, o sal a distancia de patada y teep. Nunca te quedes entre distancias.
+677	El jab es tu herramienta más importante
+678	El jab mide la distancia, ciega, frena un ataque, puntúa y prepara todo lo demás. Quien hace bien el jab controla los combates.
+679	Medir: toca el objetivo para encontrar tu distancia antes de los golpes de potencia.
+680	Cegar: un jab a la cara esconde el directo o la patada que viene detrás.
+681	Frenar: un jab seco rompe el ritmo de quien avanza.
+682	Varíalo: a la cabeza, al cuerpo, doble, con paso. Un jab predecible recibe contra.
+683	Solo jab
+684	{0} asaltos usando solo el jab: simple, doble, al cuerpo, entrando y saliendo. Luego {1} asalto donde cada combinación empieza con jab.
+685	Control del ring: nunca retrocedas en línea recta
+686	Retroceder recto es la forma más rápida de acabar contra las cuerdas o una pared. Controlar el ring es moverse en ángulos y mantener el centro.
+687	Bajo presión, da un paso atrás y enseguida hacia un lado, o pivota fuera de la línea.
+688	La espalda hacia el centro, no hacia las cuerdas.
+689	Para cortar el ring, da el paso hacia donde se mueve, no hacia donde está.
+690	El movimiento lateral más el jab te hacen difícil de atrapar.
+691	Ángulos
+692	{0} asaltos de juego de pies a la orden: cada «paso atrás» debe ir seguido de «muévete» o «pivota». Termina cada asalto en el centro de tu espacio.
+693	Pelear contra la guardia contraria
+694	Ortodoxo contra zurdo lo cambia todo: las manos adelantadas se encuentran, el lado abierto cambia y la mano y la patada de atrás se vuelven las mejores armas.
+695	Gana el pie exterior: mantén tu pie adelantado por fuera del suyo. Así alinea tu recto de atrás.
+696	El recto de atrás (directo) por el centro es el golpe clave contra la guardia contraria.
+697	La patada de atrás al cuerpo entra por el lado abierto.
+698	Usa el gancho de adelante cuando entra; cuidado con su recto de atrás de respuesta.
+699	Guardia contraria
+700	{0} asaltos: imagina un rival con la guardia contraria. Paso por fuera y luego directo, o patada al cuerpo.
+701	Hábitos defensivos que te protegen
+702	La mayoría de las caídas vienen de pequeños hábitos: una mano bajada, el mentón arriba, los ojos cerrados o quedarse quieto tras golpear. Los buenos hábitos funcionan cuando estás cansado.
+703	Cada golpe vuelve a la guardia por la misma línea.
+704	Mentón abajo, ojos abiertos, mira por debajo de las cejas.
+705	Nunca te quedes delante tras una combinación: defiende, muévete, o las dos cosas.
+706	Expulsa el aire en cada golpe; los peleadores cansados se olvidan de respirar.
+707	Combinación y luego defensa
+708	{0} asaltos: cada combinación va seguida de una defensa (esquiva, rolling o bloqueo) y un movimiento. Di «muévete» en voz alta.
+709	Fintas y ritmo
+710	Un rival que lee tu ritmo puede cronometrarte. Las fintas y el ritmo roto le hacen reaccionar a cosas que nunca llegan y lo abren para lo que sí llega.
+711	Finta con el hombro, la mano adelantada o medio paso. Pequeña, rápida y creíble.
+712	Mira su reacción: si se encoge o sube las manos, ataca lo que se abre.
+713	Cambia de velocidad: un jab lento seguido de un directo rápido.
+714	No fintes todo el tiempo: una finta solo funciona porque detrás vienen ataques reales.
+715	De la finta al golpe
+716	{0} asaltos: antes de cada combinación enseña una finta (hombro, medio jab o medio paso) y luego lanza la combinación real.
+717	Contragolpear: hazle fallar y hazle pagar
+718	Los contragolpes entran más fuerte porque el rival está abierto y se mete en el golpe. Los buenos contragolpeadores se mantienen tranquilos y esperan el golpe que esperan.
+719	Conoce su costumbre: la mayoría lanza el mismo primer golpe una y otra vez.
+720	Defiende en pequeño para seguir a distancia de responder.
+721	Contraataca enseguida, en medio segundo, antes de que se recoloque.
+722	Provoca el ataque: enseña un hueco a propósito y contraataca lo que venga.
+723	Asaltos de contra
+724	{0} asaltos de órdenes de defensa: cada defensa va seguida al momento de su contra.
+725	Cuando estás tocado o agotado
+726	Todos los peleadores acaban tocados o sin gasolina en algún momento. Saber exactamente qué hacer evita que un mal momento se convierta en un combate perdido.
+727	Cúbrete cerrado: codos dentro, guantes en la cabeza, mentón abajo. No des la espalda.
+728	Muévete: sal de la línea y aléjate de su mano fuerte.
+729	Clinch: átale los brazos y apóyate en él para ganar segundos.
+730	Respira por la nariz, baja el ritmo y vuelve con un jab, no con un golpe a lo loco.
+731	Sobrevive y recupérate
+732	{0} asaltos a ritmo duro con descanso corto: cuando el temporizador cante «cúbrete», cúbrete y muévete unos segundos, y vuelve con un jab.
+733	Lunes
+734	Martes
+735	Miércoles
+736	Jueves
+737	Viernes
+738	Sábado
+739	Domingo
+740	Fundamentos
+741	Guardia, juego de pies, los dos golpes rectos, defensa básica, el teep y la patada al cuerpo.
+742	Grábate {0} asaltos de sombra: la guardia arriba, los pies nunca se cruzan ni se juntan, cada golpe vuelve a la cara.
+743	Combinaciones
+744	Ganchos, uppercuts, rolling, la patada con cambio y las rodillas, más cambios de nivel y levantarse.
+745	Grábate {0}-{1}-{2} + patada a máxima velocidad: la mano de atrás nunca deja el mentón y caes equilibrado en guardia.
+746	Contras y distancia
+747	Contragolpe, ángulos, codos, el clinch, atrapar patadas y entradas al derribo.
+748	Grábate {0} asaltos mezclando distancias, donde cada combinación termina con defensa o un ángulo.
+749	Armas avanzadas
+750	Patadas a la pantorrilla, al hígado, el golpe superman, golpes giratorios, la rodilla voladora y la patada interrogación, cuando lo básico esté sólido.
+751	Grábate {0} asaltos donde cada golpe avanzado aparezca al menos dos veces, preparado por uno básico, y caigas equilibrado cada vez.
+752	Los días de garaje son lunes, miércoles y viernes: combate y fuerza en una sola visita.
+753	Primero combate, luego fuerza. La técnica necesita un cuerpo fresco; levantar cansado es más seguro que aprender cansado.
+754	Lunes y miércoles: carrera por la mañana (suave), garaje más tarde.
+755	El miércoles es día de piernas, así que esa sesión de combate es solo técnica y juego de pies, sin patadas fuertes.
+756	Asaltos duros de combate solo el viernes, el día sin carrera. La fuerza C de después es solo tren superior y core.
+757	Martes, jueves y domingo son días solo de carrera, para que las carreras clave estén frescas. El juego de pies del sábado es opcional.
+758	Cada {0}.ª semana es de descarga: solo técnica, sin asaltos duros, la mitad de series de fuerza.
+759	Sesión de técnica
+760	{0} min, RPE {1} a {2}. Aprende y pule {3} a {4} técnicas.
+761	Sesión principal
+762	{0} a {1} min. Primero técnica, luego asaltos a RPE {2} a {3}.
+763	Juego de pies (opcional)
+764	{0} min, suave. Solo movimiento, sin golpes fuertes.
+765	Combinaciones y técnica
+766	Sombra, repite las combinaciones de la semana hasta que salgan solas, afina dos técnicas.
+767	Defensa, juego de pies y contras
+768	Suave para las piernas: sin patadas fuertes. Muévete, defiende a la orden y contraataca enseguida.
+769	Asaltos de combate y preparación
+770	El día duro: asaltos completos mezclando ataque, defensa y movimiento, y un remate de preparación física.
+771	Fuerza A: tren superior
+772	Fuerza B: piernas y core
+773	Fuerza C: tren superior y core (tras el combate del viernes)
+774	Suave {0} km ({1}:{2}-{3}:{4} /km)
+775	Series: {0} x {1} m ({2}:{3}-{4}:{5} /km)
+776	Suave {0} km + {1} x {2} s de progresivos
+777	Umbral {0} x {1} min, o tempo {2} km en semanas alternas
+778	Suave {0}-{1} km
+779	Tirada larga {0} km
+780	Esquiva por fuera o desvía, luego {0}
+781	Paso atrás, luego {0}-{1}
+782	Bloquea los dos, responde {0}-{1}
+783	Pasa por debajo, sube con {0}-{1}
+784	Codo abajo para bloquear, luego devuelve el gancho
+785	Échate atrás o cúbrete, luego {0}
+786	Rolling o pivota fuera, luego {0}
+787	Bloquea o atrapa, luego {0}
+788	Chequeo, patada de vuelta enseguida
+789	Sal de la línea o atrapa, luego patada
+790	Enmarca en la cadera, empuja, {0}
+791	Posición interior, luego rodilla o sal
+792	Sprawl, atrás, {0}-{1}
+793	Hueco: lanza tu mejor combinación
+795	Creado por el entrenador Cus D'Amato y hecho famoso por Floyd Patterson y Mike Tyson.
+796	Guantes altos contra las mejillas, codos cerrados, agachado y bastante de frente. La cabeza nunca deja de moverse: esquivas y rollings con ritmo, y luego ganchos y uppercuts explosivos desde los ángulos que crea el movimiento de cabeza.
+797	Muy difícil de golpear limpio mientras la cabeza se mueve.
+798	Contras explosivas y mucha potencia desde la posición agachada.
+799	Permite a un peleador más bajo entrar ante uno más alto.

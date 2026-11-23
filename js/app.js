@@ -61,7 +61,7 @@ import { unlockVoice } from './voice.js';
 import { store } from './store.js';
 import { planWeek, PROGRAM_WEEKS, PRESETS, picks, programFocus, volume, blockWeek, themeOf, stage, learnedCount, fighterVolume, weekCombos, sharpenSkills, myCombos, fixActive, findWeak, eventInfo, phaseWeek } from './program.js';
 import { profile, hasProfile, DEFAULT_PROFILE, CHOICES, weekDays, dayPlan, legsDay, suitable, adaptSession, coachNote, safetyNote, LEVELS } from './profile.js';
-import { t, L, LANGS, tr } from './i18n.js';
+import { t, L, P, LANGS, langDir, tr, loadLang, speechLang } from './i18n.js';
 import { isPro, onPro, locked, locked as proLocked, PRO_ROUTES, proAvailable, canBuy, entitlement, plans, buy } from './pro.js';
 import { initSync, onSync, signIn, signInGoogle, signOut, resetPassword, syncAvailable, deleteAccount, currentUser, manageSubscription } from './sync.js';
 
@@ -123,7 +123,7 @@ function Today() {
   const dates = Array.from({ length: 7 }, (_, i) => { const x = new Date(mon); x.setDate(mon.getDate() + i); return isoDate(x); });
   const doneDays = new Set(store.get().log.map(e => e.date));
   const sname = k => k ? L(SESSION_TYPES[k === 'main' && !fighter && isDeload() ? 'technique' : k].name) : tr('Rest');
-  const short = L(DAY_NAMES).map(n => n.slice(0, store.get().lang === 'ka' ? 2 : 1));
+  const short = store.get().lang === 'ru' ? ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'] : L(DAY_NAMES).map(n => n.slice(0, store.get().lang === 'ka' ? 2 : 1));
   const el = h(`<section class="train">
     <p class="eyebrow">${L(DAY_NAMES)[d.day]} · ${tr('week')} ${weekNumber()}${isDeload() ? ' · ' + tr('deload') : ''}${fixActive() ? ' · ' + tr('Fix-it block') : ''}</p>
     <div class="strip" role="tablist">${dates.map((dt, i) => { const k = dayPlan(i, fighter)?.key; return `<button class="sd${i === ti ? ' now' : ''}${k ? ' on' : ''}${doneDays.has(dt) ? ' done' : ''}" data-day="${i}" aria-label="${esc(L(DAY_NAMES)[i])}"><span>${esc(short[i])}</span><i></i></button>`; }).join('')}</div>
@@ -895,7 +895,7 @@ function Settings() {
   }
   $('.voice', el).onchange = e => store.set({ voice: e.target.checked });
   $('.model', el).onchange = e => store.set({ model: e.target.value });
-  $('.lang', el).onchange = e => { store.set({ lang: e.target.value }); render(); };
+  $('.lang', el).onchange = async e => { await loadLang(e.target.value); store.set({ lang: e.target.value }); render(); };
   $('.start', el).onchange = e => store.set({ startDate: e.target.value });
   $('.imp', el).onchange = async e => {
     const f = e.target.files[0]; if (!f) return;
@@ -1206,7 +1206,7 @@ function Drills(id) {
 
 // ----- Targets on the body -----
 function Targets(id) {
-  const ka = store.get().lang === 'ka', T = x => (ka ? x.ka : x.en);
+  const T = L;
   let sel = targetById[id] ? id : 'chin';
   const el = h(`<section><a href="#/library" class="back">← ${t('library')}</a><h1>${tr('Targets on the body')}</h1>
     <p class="muted">${tr('Tap a target on the figure or below. Drag the figure to turn it.')}</p>
@@ -1232,7 +1232,7 @@ function Targets(id) {
 
 // ----- Fight IQ -----
 function IQ(id) {
-  const ka = store.get().lang === 'ka', T = l => (ka ? l.ka : l.en);
+  const T = L;
   const done = store.get().iqDone || {};
   if (id && lessonById[id]) {
     const l = lessonById[id], x = T(l);
@@ -1255,7 +1255,7 @@ function IQ(id) {
 }
 
 // ----- Fighting styles -----
-const SL = x => (store.get().lang === 'ka' ? x.ka : x.en);
+const SL = L;
 const rateBars = (st, other) => `<div class="rbars">${DIMS.map(([k, en, ka]) => `<div class="rb"><span>${esc(store.get().lang === 'ka' ? ka : tr(en))}</span>
   <i><b style="width:${st.rate[k] * 20}%"></b></i>${other ? `<i class="b2"><b style="width:${other.rate[k] * 20}%"></b></i>` : ''}</div>`).join('')}</div>`;
 function Styles(id, arg) {
@@ -1360,7 +1360,7 @@ function StyleQuiz() {
   const ka = store.get().lang === 'ka', ans = [];
   const el = h(`<section class="profile"><a href="#/styles" class="back">← ${tr('Fighting styles')}</a><h1>${tr('Which style suits you?')}</h1>
     <p class="muted">${tr('Eight quick questions. Answer for how you are now, not how you want to be.')}</p>
-    ${QUIZ.map(([q, opts], i) => `<h2>${i + 1}. ${esc(q[ka ? 1 : 0])}</h2><div class="pgroup" data-q="${i}">${opts.map(([o], j) => `<button type="button" class="pill" data-a="${j}">${esc(o[ka ? 1 : 0])}</button>`).join('')}</div>`).join('')}
+    ${QUIZ.map(([q, opts], i) => `<h2>${i + 1}. ${esc(P(...q))}</h2><div class="pgroup" data-q="${i}">${opts.map(([o], j) => `<button type="button" class="pill" data-a="${j}">${esc(P(...o))}</button>`).join('')}</div>`).join('')}
     <div class="savebar"><span class="count"></span><button class="btn primary" data-go disabled>${tr('Show my style')}</button></div>
     <div class="qres"></div>
   </section>`);
@@ -1374,7 +1374,7 @@ function StyleQuiz() {
   });
   const showResult = () => {
     const score = Object.fromEntries(STYLES.map(s => [s.id, 0])), why = {};
-    ans.forEach((a, q) => Object.entries(QUIZ[q][1][a][1]).forEach(([id, pts]) => { score[id] += pts; if (pts >= 2) (why[id] ||= []).push(QUIZ[q][1][a][0][ka ? 1 : 0]); }));
+    ans.forEach((a, q) => Object.entries(QUIZ[q][1][a][1]).forEach(([id, pts]) => { score[id] += pts; if (pts >= 2) (why[id] ||= []).push(P(...QUIZ[q][1][a][0])); }));
     if (profile().limits.some(l => l === 'knees' || l === 'back')) { score.wrestleboxer -= 3; score.sprawlbrawl -= 2; }
     const top = Object.entries(score).sort((a, b) => b[1] - a[1]).slice(0, 3), max = top[0][1] || 1;
     const [best] = top, s = styleById[best[0]];
@@ -1405,7 +1405,7 @@ function Matchup(pair) {
   const [a0, b0] = (pair || '').split(',');
   const a = styleById[a0] || styleById[profile().style] || STYLES[0], b = styleById[b0] || STYLES.find(s => s.id !== a.id);
   const xa = SL(a), xb = SL(b), r = a.rate, o = b.rate;
-  const T = (en, k) => (store.get().lang === 'ka' ? k : en);
+  const T = P;
   const range = r.r > o.r + 1 ? T('Fight long: keep them at the end of your jab and kicks, and leave on an angle every time they step in.', 'იბრძოლე შორიდან: დაიჭირე ჯების და წიხლების ბოლოზე და ყოველ შემოსვლაზე კუთხით გადი.')
     : r.r < o.r - 1 ? T('Fight close: take their range away, get inside behind a tight guard and stay there.', 'იბრძოლე ახლოს: წაართვი მანძილი, მჭიდრო დაცვით შედი შიგნით და იქ დარჩი.')
       : T('Win the middle: take the centre of the ring and be first to land.', 'მოიგე ცენტრი: დაიკავე რინგის შუა და პირველმა მოარტყი.');
@@ -1438,8 +1438,8 @@ function sparSegs(opp, see = false, o = {}) {
   const pool = ATTACKS.filter(a => allow.has(a.t)).flatMap(a => Array(Math.max(0, 1 + (w[a.say] || 0))).fill(a.say));
   if (L0 >= 6) pool.push('jab, hook', see ? 'one two, hook' : 'hook, body', ...(allow.has('k') ? ['one two, kick'] : [])); // doubles at higher levels
   if (see) pool.splice(0, pool.length, ...pool.filter(c => OPP_CALLS[c])); // 3D: only attacks with a real capture
-  const hints = Object.fromEntries(ATTACKS.map(a => [a.say, ka ? a.ka : a.en]));
-  Object.assign(hints, { 'jab, hook': ka ? 'პარირება, როლი, კონტრი' : 'Parry, roll, counter', 'one two, kick': ka ? 'ბლოკი, ბლოკი, ჩეკი, შემდეგ კონტრი' : 'Block, block, check, then counter', 'hook, body': ka ? 'როლი, იდაყვი დაბლა, შემდეგ 3-2' : 'Roll, elbow down, then 3-2', 'one two, hook': ka ? 'ბლოკი, ბლოკი, როლი, შემდეგ 3-2' : 'Block, block, roll, then 3-2' });
+  const hints = Object.fromEntries(ATTACKS.map(a => [a.say, L(a)]));
+  Object.assign(hints, { 'jab, hook': P('Parry, roll, counter', 'პარირება, როლი, კონტრი'), 'one two, kick': P('Block, block, check, then counter', 'ბლოკი, ბლოკი, ჩეკი, შემდეგ კონტრი'), 'hook, body': P('Roll, elbow down, then 3-2', 'როლი, იდაყვი დაბლა, შემდეგ 3-2'), 'one two, hook': P('Block, block, roll, then 3-2', 'ბლოკი, ბლოკი, როლი, შემდეგ 3-2') });
   const gap = Math.max(1300, 4300 - 330 * (L0 - 1)), secs = o.secs || (L0 >= 6 ? 180 : 120), n = o.rounds || 3;
   return [{ label: R1(['Get ready: bounce, hands up, eyes forward', 'მომზადება: ხტუნვა, ხელები ზევით, თვალი წინ']), kind: 'warm', secs: 60 },
     ...Array.from({ length: n }, (_, i) => [
@@ -1516,7 +1516,7 @@ function fixCard() {
   if (!w.skills.length) return `<div class="card fix"><h3>${tr('Fix-it block')}</h3><p class="muted small">${tr('Rate skills after sessions or do the skill tests, and the app finds what to fix.')}</p>${ended}</div>`;
   return `<div class="card fix"><h3>${tr('Fix-it block')}</h3>
     <p>${tr('What to fix')}: ${names(w.skills)}</p>
-    <ul class="small muted">${w.why.map(x => `<li>${esc(x[ka ? 1 : 0])}</li>`).join('')}</ul>
+    <ul class="small muted">${w.why.map(x => `<li>${esc(P(...x))}</li>`).join('')}</ul>
     <button class="btn primary small" data-fix="start">${tr('Start a 2-week fix-it block')}</button>${ended}</div>`;
 }
 function fixClick(e) {
@@ -1549,6 +1549,7 @@ const NAVMAP = { pro: 'me', career: 'me', drills: 'library', week: 'me', plan: '
 function render() {
   cleanup.forEach(f => f()); cleanup = [];
   document.documentElement.lang = store.get().lang || 'en';
+  document.documentElement.dir = langDir(document.documentElement.lang);
   document.body.classList.toggle('first', !hasProfile());
   let [name = 'today', ...args] = location.hash.replace(/^#\/?/, '').split('/');
   if (locked() && (PRO_ROUTES.includes(name) || (name === 'tech' && techById(args[0])?.phase > 1))) { name = 'pro'; args = [true]; }
@@ -1589,6 +1590,7 @@ function addProfile() {
   if (s.profile || !(s.program?.picks?.length || s.log.length)) return;
   store.set({ profile: { ...DEFAULT_PROFILE, days: [0, 2, 4, 5] } });
 }
+await loadLang();
 seed(); addCombos(); addProfile();
 onPro(() => { if (document.readyState !== 'loading') try { render(); } catch { /* starting up */ } });
 initSync(() => { addCombos(); addProfile(); render(); });

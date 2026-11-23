@@ -1,0 +1,45 @@
+1998	Offre de lancement
+1999	Économise {n} %
+2000	première année
+2001	puis {p} par an
+2002	l'offre se termine le {d}
+2003	par an
+2004	par mois
+2005	Pieds rapides : {0} s de petits pas rapides en garde, mains hautes
+2006	Gainage : dead bug, gainage latéral, bird dog
+2007	Finisher {0} sur {1} : coups droits rapides
+2008	Utilise un tapis pour tout ce qui touche le sol. Échauffe d'abord les hanches et les genoux ; arrête si un genou fait mal.
+2009	Échauffe les hanches avant les coups de pied et frappe à mi-puissance tant que la forme n'est pas bonne. Pivote sur la plante du pied d'appui pour protéger le genou.
+2010	Coudes et genoux, c'est uniquement à très courte distance. Travaille-les lentement et jamais à pleine puissance sur un partenaire.
+2011	Ne verrouille jamais complètement le coude en frappant dans le vide ; arrête-toi juste avant. Au sac, bande tes mains et mets des gants.
+2012	Bouge à un rythme que tu contrôles. Une douleur vive, c'est stop ; la fatigue musculaire est normale.
+2013	Échauffement : petits sautillements, cercles de bras, shadow léger
+2014	Shadow : mélange ce que tu as travaillé, léger
+2015	Retour au calme : hanches, épaules, mollets
+2016	Échauffement : corde imaginaire sur place, mobilité, shadow léger
+2017	Round {0} sur {1} : enchaînements sur annonce
+2018	Gainage : dead bug, gainage latéral, sprawls
+2019	Sautillements d'échauffement
+2020	Jeu de jambes sur annonce
+2021	Jeu de jambes + jab sur annonce
+2022	Round de shadow {0} : enchaînements sur annonce
+2023	Exercice d'enchaînement : {0}. Chaque répétition propre, retour en garde
+2024	Affûter
+2025	Round de défense {0} sur {1} : défends, puis contre
+2026	Poings seuls : enchaînements sur annonce
+2027	Round de combat {0} sur {1} : attaque, défends, bouge
+2028	Série {0} sur {1} : coups droits, à fond
+2029	Sprawls : {0} s, autant que possible avec une bonne technique
+2030	Haltères à la maison pour la puissance de frappe
+2031	{0} min : goblet squats, pompes, rowing à un bras, coups légers avec haltères. Arrête deux répétitions avant l'échec.
+2032	Footing facile pour l'endurance des rounds
+2033	{0}-{1} min à un rythme où tu peux encore parler. Ça construit la base qui garde tes mains hautes au troisième round.
+2034	Gainage et cou pour encaisser
+2035	{0} min : planches, planches latérales, dead bugs, maintiens doux du cou avec la main. Lent et contrôlé.
+2036	Mobilité pour les coups de pied et les esquives
+2037	{0} min : hanches, ischios, colonne thoracique. Coups de pied plus hauts et mouvements de tête plus faciles.
+2038	Fractionné pour le rythme de combat
+2039	Course ou corde à sauter : {0} x {1} min fort, {2} min facile. Comme de vrais rounds.
+2040	Repos complet
+2041	Le sommeil et l'alimentation font aussi partie de l'entraînement. Les compétences se fixent pendant le repos.
+2042	Échauffement : shadow léger

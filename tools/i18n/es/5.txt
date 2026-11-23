@@ -1,0 +1,45 @@
+1998	Oferta de lanzamiento
+1999	Ahorra un {n}%
+2000	primer año
+2001	luego {p} al año
+2002	la oferta termina el {d}
+2003	al año
+2004	al mes
+2005	Pies rápidos: {0} s de pasos rápidos en guardia, manos arriba
+2006	Core: dead bug, plancha lateral, bird dog
+2007	Final {0} de {1}: golpes rectos rápidos
+2008	Usa una esterilla o alfombra para todo lo que toque el suelo. Calienta primero cadera y rodillas; para si te duele una rodilla.
+2009	Calienta la cadera antes de patear y patea a media potencia hasta que la forma sea correcta. Gira sobre la planta del pie de apoyo para proteger la rodilla.
+2010	Codos y rodillas son solo para muy corta distancia. Entrénalos despacio y nunca a plena potencia sobre un compañero.
+2011	Nunca bloquees del todo el codo al golpear al aire; para justo antes. En el saco, véndate las manos y usa guantes.
+2012	Muévete a un ritmo que controles. Un dolor agudo significa parar; el cansancio muscular es normal.
+2013	Calentamiento: rebote suave, círculos de brazos, sombra suave
+2014	Sombra: mezcla lo que practicaste, suave
+2015	Vuelta a la calma: cadera, hombros, gemelos
+2016	Calentamiento: saltos en el sitio, movilidad, sombra suave
+2017	Asalto {0} de {1}: combos con llamadas
+2018	Core: dead bug, plancha lateral, sprawls
+2019	Rebote de calentamiento
+2020	Juego de pies con llamadas
+2021	Juego de pies + jab con llamadas
+2022	Asalto de sombra {0}: combos con llamadas
+2023	Ejercicio de combo: {0}. Cada repetición limpia, vuelve a la guardia
+2024	Afina
+2025	Asalto de defensa {0} de {1}: defiende y contraataca
+2026	Solo puños: combos con llamadas
+2027	Asalto de combate {0} de {1}: ataca, defiende, muévete
+2028	Ráfaga {0} de {1}: golpes rectos, a tope
+2029	Sprawls: {0} s, tantos como puedas con buena técnica
+2030	Mancuernas en casa para la pegada
+2031	{0} min: sentadillas goblet, flexiones, remo a una mano, golpes ligeros con mancuernas. Para dos repeticiones antes del fallo.
+2032	Carrera suave para aguantar los asaltos
+2033	{0}-{1} min a un ritmo en el que aún puedas hablar. Crea la base que mantiene tus manos arriba en el tercer asalto.
+2034	Core y cuello para encajar golpes
+2035	{0} min: planchas, planchas laterales, dead bugs, isométricos suaves de cuello con la mano. Lento y controlado.
+2036	Movilidad para patadas y esquivas
+2037	{0} min: cadera, isquios, columna torácica. Patadas más altas y movimiento de cabeza más fácil.
+2038	Intervalos para el ritmo de combate
+2039	Corre o salta a la comba: {0} x {1} min fuerte, {2} min suave. Como asaltos reales.
+2040	Descanso total
+2041	Dormir y comer también es entrenar. Las habilidades se asientan mientras descansas.
+2042	Calentamiento: sombra suave

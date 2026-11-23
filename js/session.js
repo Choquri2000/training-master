@@ -1,5 +1,6 @@
 // Session player: runs a list of segments with a countdown, bell sounds and spoken callouts.
-import { sayKa, stopVoice } from './voice.js';
+import { sayKa, stopVoice, callIn } from './voice.js';
+import { L, speechLang } from './i18n.js';
 import { COMBOS, FOOTWORK_CALLS, techById } from './data/techniques.js';
 import { store } from './store.js';
 import { programCombos, stage, offenceCombos, defenceCalls } from './program.js';
@@ -37,14 +38,32 @@ function clack() {
   } catch { /* ignore */ }
 }
 
+// The device's best voice for a language: neural/online voices sound far more natural.
+function bestVoice(code) {
+  const all = speechSynthesis.getVoices(), base = code.slice(0, 2);
+  const list = all.filter(v => v.lang.replace('_', '-').toLowerCase().startsWith(base));
+  const score = v => (/natural|neural|online|enhanced|premium|google/i.test(v.name) ? 2 : 0) + (v.lang.replace('_', '-').toLowerCase() === code.toLowerCase() ? 1 : 0) + (v.localService ? 0 : 0.5);
+  return list.sort((a, b) => score(b) - score(a))[0] || null;
+}
+if (typeof window !== 'undefined' && 'speechSynthesis' in window) { speechSynthesis.getVoices(); speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices(); }
+
 // text: what to say in English. ka: the Georgian version (string or list of phrases), if the caller has one.
+// Georgian uses recorded clips (js/voice.js); every other language uses the phone's own voice, free and offline.
 export function say(text, ka) {
   if (!store.get().voice) return;
-  if (store.get().lang === 'ka' && sayKa(ka || text)) return;
+  const lang = store.get().lang || 'en';
+  if (lang === 'ka' && sayKa(ka || text)) return;
   if (!('speechSynthesis' in window)) return;
+  let words = text, code = 'en-US', v = null;
+  if (lang !== 'en' && lang !== 'ka') {
+    code = speechLang(); v = bestVoice(code);
+    if (v || !speechSynthesis.getVoices().length) words = callIn(text, lang) || L(text);
+    else code = 'en-US'; // no voice for this language on the phone: English is better than garbled words
+  }
+  if (!v) v = bestVoice(code);
   speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang = 'en-US'; u.rate = 1.15;
+  const u = new SpeechSynthesisUtterance(words);
+  u.lang = code; if (v) u.voice = v; u.rate = lang === 'en' ? 1.15 : 1.1;
   speechSynthesis.speak(u);
 }
 

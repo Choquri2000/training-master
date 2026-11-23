@@ -1,0 +1,399 @@
+800	Demande des jambes et une condition physique exceptionnelles ; fatigué, la tête cesse de bouger et tu deviens une cible.
+801	Doit passer à travers le jab pour entrer.
+802	Peut être bloqué au clinch et frustré par un bon combattant jab-déplacement.
+803	Jab et déplacement latéral ; ne reste jamais immobile en face.
+804	Bloque ses bras quand il entre.
+805	Place des uppercuts quand il plonge.
+806	Combattants plus petits et explosifs, aux jambes solides et à grande endurance.
+807	École soviétique / d'Europe de l'Est
+808	Le système amateur de l'URSS, puis de l'Ukraine, de la Russie et du Kazakhstan. Bâti sur énormément de jeu de jambes et de travail technique.
+809	Plutôt droit, garde plus longue, léger sur les appuis avec un rythme constant. Un jab actif et précis, des enchaînements droits rapides, et une sortie en angle après chaque attaque.
+810	Excellente gestion de la distance et du jeu de jambes.
+811	Points propres, précis et en volume.
+812	Bases très disciplinées : difficile à prendre hors position.
+813	La tête haute peut être touchée par ceux qui chronomètrent le jab.
+814	Peut souffrir face à une forte pression et au travail au corps de près.
+815	Moins à l'aise dans le combat rapproché.
+816	Coupe le ring et travaille au corps.
+817	Contre le jab par une esquive ou un crochet avant.
+818	Oblige-le à combattre de près.
+819	Combattants techniques qui aiment réfléchir, bouger et marquer, surtout les grands.
+820	Philly shell (rouler l'épaule)
+821	Né dans les salles de Philadelphie ; utilisé au plus haut niveau par James Toney et Floyd Mayweather Jr.
+822	Bras avant bas devant le ventre, épaule avant levée pour protéger le menton, gant arrière à la joue. Les coups glissent sur l'épaule, puis la contre (souvent le direct) revient aussitôt.
+823	Contre-attaque superbe, surtout la contre en retrait.
+824	Très efficace : peu d'énergie gaspillée.
+825	Difficile à toucher proprement quand le timing est bon.
+826	Demande des réflexes d'élite et des années pour fonctionner.
+827	Exposé au crochet avant et aux coups au corps quand le timing se dérègle.
+828	Le faible volume peut faire perdre des rounds ; faible contre les coups de pied en kick.
+829	Feinte pour provoquer la contre, puis frappe dans l'ouverture.
+830	Attaque le corps et double le jab.
+831	Garde une pression constante pour qu'il ne puisse pas poser ses appuis.
+832	Contreurs expérimentés et calmes, aux réflexes rapides. Pas un style pour débuter.
+833	Boxeur à distance (toucher et bouger)
+834	Le boxeur classique de longue distance, rendu iconique par Muhammad Ali.
+835	Reste au bout du jab, se déplace latéralement, marque et s'en va. Utilise le jab en permanence et le direct quand l'adversaire entre.
+836	Prend peu de coups et contrôle le rythme.
+837	Gagne les rounds avec un volume propre.
+838	Frustre les combattants de pression.
+839	Demande des jambes solides et de l'endurance pour de nombreux rounds.
+840	Peut être piégé dans les cordes ou dans un coin.
+841	Moins de puissance de frappe ; doit gagner aux points.
+842	Coupe le ring au lieu de le poursuivre.
+843	Attaque le corps pour ralentir les jambes.
+844	Feinte pour provoquer le jab, puis contre par-dessus.
+845	Combattants grands, avec une longue allonge et un bon déplacement.
+846	Fonceur / combattant de pression (style mexicain)
+847	Pression constante vers l'avant et travail au corps, associés à la boxe mexicaine et à des combattants comme Julio César Chávez.
+848	Garde haute, avance derrière elle, coupe le ring et enfonce des crochets au corps, puis monte à la tête. Frappe en série et ne laisse jamais l'adversaire souffler.
+849	Casse l'adversaire mentalement et physiquement.
+850	Le travail au corps vide les jambes et l'endurance de l'adversaire.
+851	Énorme volume dans les derniers rounds.
+852	Encaisse en avançant ; a besoin d'un menton solide.
+853	Peut être contré et battu aux points par un bon déplaceur.
+854	A besoin d'un moteur énorme.
+855	Jab et pivot pour qu'il marche dans les coups.
+856	Contre à son entrée ; clinch quand il arrive.
+857	N'échange pas dans les cordes.
+858	Combattants durs et bien préparés qui aiment combattre de près, souvent plus petits que leurs adversaires.
+859	Muay Femur (le technicien)
+860	Le « combattant intelligent » du Muay Thai, très respecté en Thaïlande pour son timing, son équilibre et son sang-froid.
+861	Calme, droit et équilibré. Contrôle la distance avec le teep, marque avec des coups de pied propres, des blocages et des saisies, et contre au moment exact.
+862	Contrôle le combat et le pointage.
+863	Très difficile à toucher proprement ; équilibre superbe.
+864	Efficace : gagne sans prendre de coups.
+865	Peut être débordé par une pression incessante.
+866	Moins de KO.
+867	Il faut des années pour développer le timing.
+868	Mets une pression constante et enlève-lui l'espace pour teeper.
+869	Force le clinch.
+870	Fais-le combattre à ton rythme.
+871	Combattants patients et techniques, avec un bon timing.
+872	Muay Khao (le combattant des genoux)
+873	Le spécialiste du clinch en Muay Thai. Avance pour saisir la nuque et envoie des genoux au corps.
+874	Posture haute, hanches en avant, traverse les coups pour arriver au clinch, puis contrôle la tête et place genou sur genou.
+875	Domine le clinch et gagne au pointage thaï.
+876	Les genoux au corps vident le réservoir de l'adversaire.
+877	Très difficile à tenir à distance.
+878	Encaisse des coups en entrant.
+879	En règles kickboxing, le clinch est limité, ce qui lui retire son arme principale.
+880	Style très épuisant.
+881	Teep et sors de la ligne pour qu'il ne puisse pas fermer la distance.
+882	Cadre et casse le clinch, puis frappe à la séparation.
+883	Utilise les coudes quand il cherche la nuque.
+884	Combattants grands et forts, aux longues jambes et au gros moteur.
+885	Muay Mat (le puncheur)
+886	Le combattant de Muay Thai agressif, aux mains lourdes, qui cherche le KO.
+887	Avance derrière une garde haute, absorbe ou bloque les coups de pied, et envoie des coups de poing durs finis par des low kicks ou des middle kicks.
+888	Puissance de KO dans les deux mains.
+889	Intimidant ; force les adversaires à reculer.
+890	Les poings sont un point faible chez beaucoup de combattants axés sur les jambes.
+891	Peut être prévisible.
+892	Les teeps et les coups de pied longs stoppent sa marche avant.
+893	Prend des coups en cherchant le gros coup.
+894	Teep aux hanches quand il entre.
+895	Frappe de loin avec les jambes et bouge.
+896	Clinch et genou quand il ferme la distance.
+897	Combattants forts avec une puissance naturelle, souvent issus de la boxe.
+898	Muay Tae (le kickeur)
+899	Le spécialiste des coups de pied à longue distance, qui marque avec de puissants middle et high kicks.
+900	Garde le combat à distance de pieds avec le teep, puis envoie des circulaires durs aux bras, au corps et à la tête des deux côtés.
+901	Contrôle la distance et marque beaucoup avec les jambes.
+902	Les middle kicks abîment les bras et les côtes.
+903	Dangereux KO sur high kick.
+904	Les coups de pied peuvent être attrapés et contrés.
+905	Plus faible quand on le frappe de près.
+906	Demande de la souplesse et un excellent équilibre.
+907	Réduis la distance et frappe des poings.
+908	Attrape le coup de pied et balaie ou contre.
+909	Bloque, puis riposte tout de suite des poings.
+910	Combattants souples aux longues jambes.
+911	Kickboxing hollandais
+912	Développé dans les salles hollandaises comme Mejiro, Chakuriki et Mike's Gym, avec beaucoup de boxe et des sparrings durs.
+913	Garde haute, pression constante, enchaînements de boxe qui finissent toujours par un coup de pied (le plus célèbre étant le low kick). Rapide, agressif et basé sur les enchaînements.
+914	Énorme volume et enchaînements fluides.
+915	Poings et pieds combinés : difficile à lire.
+916	Casse l'adversaire par la pression et les low kicks.
+917	La garde haute laisse le corps ouvert.
+918	Moins de travail au clinch ; en règles Muay Thai, peut être contré par les genoux et les teeps.
+919	Très exigeant physiquement.
+920	Teep et genou quand il entre.
+921	Bloque les low kicks et contre.
+922	Sors de la ligne au lieu de te couvrir dans les cordes.
+923	Combattants agressifs qui aiment les enchaînements et la pression.
+924	Lutteur-boxeur (lutteur de pression)
+925	L'approche du MMA la plus efficace de ces dernières décennies : frappes et amenées mêlées pour que chacune prépare l'autre.
+926	Avance avec une garde serrée, utilise les coups pour faire couvrir ou réagir l'adversaire, puis change de niveau et plonge. Dès que la menace d'amenée est réelle, les coups passent aussi.
+927	La menace d'amenée fait marcher les frappes, et inversement.
+928	Contrôle l'endroit où se passe le combat.
+929	Use les adversaires avec le temps.
+930	Demande un moteur d'élite et un vrai niveau en lutte.
+931	Plonger de trop loin te vaut un genou ou un sprawl.
+932	Souffre face aux excellents sprawleurs qui ont de bonnes contres.
+933	Garde la distance avec les jambes et le jab.
+934	Sprawl et punis avec des coups quand il se relève.
+935	Reste loin de la cage.
+936	Combattants forts et très préparés, avec une base de lutte ou de grappling.
+937	Sprawl and brawl
+938	La réponse du frappeur aux lutteurs : défendre l'amenée, garder le combat debout et chercher le KO.
+939	Une garde de kickboxing un peu plus basse que d'habitude pour reculer vite les hanches. Sprawl solide, relevés rapides et grosses frappes dès que l'adversaire renonce à plonger.
+940	Menace de KO à chaque seconde passée debout.
+941	Solide défense contre les amenées.
+942	Garde le combat là où le frappeur est le meilleur.
+943	Limité s'il est amené au sol malgré tout.
+944	Peut devenir prévisible sans ses propres amenées.
+945	Les lutteurs qui enchaînent les tentatives peuvent l'épuiser.
+946	Enchaîne les tentatives d'amenée et utilise la cage.
+947	Mélange les frappes pour qu'il ne puisse pas attendre l'amenée.
+948	Fais-lui porter ton poids.
+949	Frappeurs avec une puissance naturelle qui veulent garder le combat debout.
+950	MMA à base de karaté (entrer et sortir)
+951	Frappe de profil à longue distance issue du karaté points, utilisée avec succès par des combattants comme Lyoto Machida et Stephen Thompson.
+952	Garde de profil, grande distance, sautillements dedans-dehors. Attaques éclair et coups de pied explosifs, puis sortie immédiate hors de portée ; contre quand l'adversaire se précipite.
+953	Très difficile à lire et à atteindre.
+954	Attaques éclair explosives et contres tranchantes.
+955	Excellente gestion de la distance.
+956	La garde de profil est exposée aux low kicks et aux amenées.
+957	Le faible volume peut faire perdre les rounds serrés.
+958	Souffre quand il est poussé contre la cage.
+959	Calf kicks et low kicks sur la jambe avant.
+960	Pousse-le contre la cage et lutte.
+961	Feinte pour provoquer la contre, puis ferme la distance.
+962	Combattants rapides et longilignes au bon timing, souvent issus du karaté ou du taekwondo.
+963	Boxe
+964	Muay Thai / Kickboxing
+965	Bases du MMA
+966	Garde et jeu de jambes
+967	Enchaînements d'attaque
+968	Défense et contre
+969	Garde de combat
+970	La base où commencent et finissent chaque coup de poing, coup de pied et défense.
+971	Pieds à largeur d'épaules, orteils du pied avant et talon arrière sur la même ligne (comme sur des rails, pas sur une corde).
+972	Poids {0}/{1} ou légèrement en arrière, genoux souples, talon arrière un peu levé.
+973	Main avant à hauteur des sourcils, à un poing du visage ; poing arrière contre la joue ou le menton.
+974	Coudes en bas pour protéger les côtes, menton rentré, regard sous les sourcils.
+975	Reste léger et relâché : la tension te ralentit.
+976	Pieds sur une seule ligne (funambule)
+977	Regarde en bas : il doit y avoir entre les lignes de tes pieds un écart à peu près de la largeur des hanches.
+978	Menton levé
+979	Tiens une balle de tennis (ou une chaussette roulée) entre le menton et la poitrine pendant un round.
+980	Coudes écartés
+981	Imagine tenir une feuille de papier entre chaque coude et tes côtes.
+982	Se mettre de face
+983	Ton épaule avant doit pointer à peu près vers ta cible.
+984	Contrôle au miroir
+985	{0} x {1} min à tenir la garde devant un miroir, en vérifiant chaque point clé. Sautille légèrement.
+986	Remise en garde
+987	Marche tranquillement, puis à un clap (ou à la cloche) mets-toi en garde d'un coup. {0} répétitions.
+988	Pas chassés
+989	Se déplacer dans toutes les directions en restant en garde et équilibré.
+990	Le pied le plus proche de la direction bouge en premier : avant = pied avant, arrière = pied arrière, gauche = pied avant, droite = pied arrière.
+991	Pousse sur l'autre pied, puis ramène-le pour retrouver la même largeur de garde.
+992	Petits pas ({0} à {1} cm). Ne croise jamais les pieds, ne les rapproche jamais.
+993	La hauteur de la tête reste la même : pas de rebond en marchant.
+994	Croiser ou coller les pieds
+995	Colle deux lignes de ruban au sol du garage et garde chaque pied sur sa ligne.
+996	Pas trop grands et buste penché
+997	Des pas plus courts. Après chaque pas, tu dois pouvoir frapper aussitôt.
+998	Garde les deux poings contre le visage pendant tout l'exercice.
+999	Exercice du carré
+1000	Avant, droite, arrière, gauche. {0} min par ordre de directions, {1} rounds.
+1001	Pas sur annonce
+1002	Utilise le minuteur avec les annonces de déplacement : réponds à chaque annonce par un pas propre.
+1003	Pivot sur le pied avant
+1004	Change l'angle pour sortir de la ligne centrale de l'adversaire.
+1005	Tourne sur l'avant du pied avant en faisant pivoter le pied arrière (vers ta droite en orthodoxe, environ {0} à {1} degrés).
+1006	Les mains restent hautes, les yeux sur la cible.
+1007	Termine dans une garde normale face au nouvel angle.
+1008	Pivoter sur le talon
+1009	Lève légèrement le talon avant ; tourne sur l'avant du pied.
+1010	Tourner d'abord le haut du corps
+1011	Le pied arrière lance la rotation ; les épaules suivent.
+1012	Jab et pivot
+1013	Jab, puis pivot. {0} x {1} min.
+1015	Coup droit rapide de la main avant : mesure la distance et prépare tout le reste.
+1016	Frappe droit depuis la garde : pas d'élan, pas de main qui descend d'abord.
+1017	Tourne le poing (paume vers le bas) tout à la fin et touche avec les deux premières phalanges.
+1018	L'épaule avant monte pour couvrir le menton ; la main arrière reste collée au visage.
+1019	Ramène-le par la même ligne, plus vite qu'à l'aller.
+1020	Ajoute un petit pas du pied avant quand tu as besoin de distance.
+1021	Baisser la main du jab au retour
+1022	Après chaque jab, touche ton front avec le gant avant avant le suivant.
+1023	La main arrière quitte le menton
+1024	Garde le pouce arrière contre la joue pendant tout un round.
+1025	Se pencher au-delà du genou avant
+1026	Ton nez doit rester derrière les orteils du pied avant.
+1027	Coude écarté (l'« aile de poulet »)
+1028	Le coude pointe vers le bas jusqu'au dernier moment avant l'extension.
+1029	{0} x {1} min : jabs simples, doublés et avec pas, en te déplaçant entre eux.
+1030	Jabs avec élastique léger
+1031	Élastique fixé derrière toi à hauteur d'épaule : {0} x {1} jabs rapides, concentre-toi sur le retour sec.
+1032	Direct ({0})
+1033	Le coup droit puissant de la main arrière.
+1034	La puissance part du pied arrière : tourne le talon arrière vers l'extérieur et pousse la hanche en avant.
+1035	Tourne les épaules pour que l'épaule arrière finisse près du menton.
+1036	Le poing part droit de la joue et se retourne à la fin.
+1037	La main avant revient au visage quand le direct part.
+1038	Le poids passe un peu sur la jambe avant mais la tête reste au-dessus du genou avant.
+1039	Le talon arrière reste à plat
+1040	Pense à « écraser l'insecte » avec le pied arrière à chaque direct.
+1041	Coup de bras seulement
+1042	Lance des directs lents où la hanche tourne d'abord et le bras en dernier.
+1043	La main avant tombe
+1044	Le gant avant touche le front pendant que le direct est sorti.
+1045	Trop tourner et tomber en avant
+1046	Arrête la rotation quand l'épaule arrière couvre le menton.
+1047	Rythme {0}-{1}
+1048	{0} x {1} min de jab-direct, en te remettant en garde après chaque paire.
+1049	Direct au ralenti
+1050	{0} répétitions à {1} % de vitesse en regardant le pied arrière dans le miroir.
+1051	Esquive
+1052	Déplace la tête juste hors de la ligne d'un coup droit pour pouvoir contrer.
+1053	Plie les genoux et tourne légèrement la taille : la tête bouge d'environ {0} cm, pas plus.
+1054	Esquive à l'extérieur (à droite) contre un jab, à l'intérieur (à gauche) contre un direct.
+1055	Les yeux sur l'adversaire et les mains hautes tout le temps.
+1056	Reviens au centre tout de suite ou contre depuis la position d'esquive.
+1057	Se plier sur le côté à la taille
+1058	Ta tête doit rester au-dessus de tes genoux : utilise les jambes.
+1059	Petite : juste assez pour laisser passer le coup près de ton oreille.
+1060	Regarder le sol
+1061	Fixe un repère sur le mur à hauteur de tête.
+1062	Ligne de ficelle
+1063	Tends une ficelle à travers le garage à hauteur de menton ; avance le long en esquivant d'un côté à l'autre. {0} x {1} min.
+1064	Jab-esquive-direct
+1065	Jab, esquive à droite, direct. {0} x {1} min.
+1066	Parade
+1067	Dévie un jab d'une petite tape de la main arrière.
+1068	La main arrière tape le coup qui arrive vers le bas ou sur le côté, un mouvement court de {0} à {1} cm.
+1069	Prends-le près du visage, sans aller le chercher.
+1070	La main qui pare revient directement au menton.
+1071	Aller chercher le coup
+1072	Pare seulement quand le coup est à une longueur d'avant-bras de ton visage.
+1073	Grand geste de revers
+1074	Imagine chasser de l'eau de ta paume, rien de plus.
+1075	Parade en shadow
+1076	Imagine un jab, pare, réponds par un jab. {0} x {1} min.
+1077	Blocage garde haute
+1078	Couvre-toi contre les crochets et les gros coups.
+1079	Les gants reviennent aux tempes, coudes serrés, avant-bras verticaux.
+1080	Rentre le menton et plie un peu les genoux pour absorber.
+1081	Reviens en garde normale juste après ; ne reste pas recroquevillé.
+1082	Yeux fermés
+1083	Regarde par l'espace entre tes gants.
+1084	Se détourner
+1085	Reste face à la menace, les appuis bien posés.
+1086	Bloquer et riposter
+1087	Bloque à gauche, bloque à droite, puis {0}-{1}. {2} x {3} min.
+1088	Teep avant (coup de pied poussé)
+1089	Le « jab avec la jambe » du Muay Thai : garde la distance et casse le rythme.
+1090	Monte d'abord le genou avant haut vers la poitrine (armé).
+1091	Pousse l'avant du pied (ou le talon) à travers le ventre de la cible en étendant la hanche.
+1092	Penche-toi un peu en arrière pour l'équilibre et l'allonge ; les mains restent hautes.
+1093	Ramène vite le pied en garde, ne le laisse pas tomber devant.
+1094	Frapper vers le haut au lieu de vers l'avant
+1095	Imagine fermer une porte en la poussant du pied.
+1096	Pas d'armé
+1097	Le genou touche ton coude avant avant que tu étendes.
+1098	Les bras tombent pour l'équilibre
+1099	Entraîne-toi à tenir un teep lent en extension complète {0} secondes, mains hautes.
+1100	Teeps lents
+1101	{0} x {1} par jambe à mi-vitesse, en tenant l'extension {2} seconde.
+1102	Jab-teep
+1103	Jab puis teep. {0} x {1} min.
+1104	Circulaire arrière (au corps)
+1105	Le coup de pied puissant emblématique du Muay Thai, qui touche avec le tibia.
+1106	Décale légèrement le pied avant sur le côté et ouvre les orteils (ça ouvre la hanche).
+1107	Monte sur l'avant du pied d'appui et pivote en frappant : le talon finit pointé vers la cible.
+1108	Balance la jambe comme une batte de baseball en basculant la hanche ; contact avec le bas du tibia.
+1109	Le bras arrière descend et part en arrière en contrepoids, la main avant protège le visage.
+1110	Laisse la jambe revenir par le même chemin en garde.
+1111	Le pied d'appui reste à plat
+1112	Travaille le pivot seul : monte et tourne sur l'avant du pied, {0} répétitions.
+1113	Frapper avec le pied au lieu du tibia
+1114	Frappe à travers la cible comme si elle n'existait pas ; vise avec le tibia, pas avec les orteils.
+1115	Les deux mains tombent
+1116	La main avant reste au visage ; seul le bras arrière balance.
+1117	Se pencher loin en arrière
+1118	Bascule la hanche et garde la tête à peu près au-dessus du pied d'appui.
+1119	Rotation de hanche au banc
+1120	Tiens le banc pour l'équilibre, {0} x {1} coups de pied lents par côté en te concentrant sur le pivot et la hanche.
+1121	Frapper et revenir
+1122	{0} x {1} min : coup de pied, retombe en garde, vérifie la garde, recommence.
+1123	Blocage tibia (check)
+1124	Bloque un low kick ou un middle kick avec ton tibia.
+1125	Lève le genou avant vers le haut et un peu vers l'extérieur pour que le tibia fasse face au coup.
+1126	Genou et coude se rapprochent du même côté.
+1127	Reste droit sur la jambe d'appui ; ne te penche pas pour fuir.
+1128	Repose directement le pied en garde, prêt à contrer.
+1129	Se détourner du coup de pied
+1130	Garde les hanches face à l'avant ; c'est le tibia qui travaille.
+1131	Lever le pied mais pas le genou
+1132	Le genou monte au moins à hauteur de hanche.
+1133	Blocage et contre
+1134	Bloque, puis {0}-{1} ou pied arrière. {2} x {3} min.
+1135	Garde MMA et changement de garde
+1136	Une garde un peu plus basse et large, qui défend les amenées autant que les frappes.
+1137	Un peu plus large et basse qu'une garde de boxe, poids centré, mains un peu plus basses et plus en avant.
+1138	Change de garde par un petit sautillé ou un pas, en retombant équilibré, mains hautes.
+1139	Sois aussi à l'aise dans les deux gardes en shadow.
+1140	Rester droit comme en boxe
+1141	Plie les genoux jusqu'à ce que tes mains arrivent à hauteur des hanches de l'adversaire sur une amenée rapide.
+1142	Pieds collés au milieu du changement
+1143	Change avec un petit saut en ciseaux pour que les pieds se croisent à pleine largeur.
+1144	Changement à la cloche
+1145	{0} x {1} min : change à chaque fois que tu entends « change de garde ».
+1146	Sprawl
+1147	Stoppe une amenée en projetant les jambes en arrière et en écrasant les hanches sur l'adversaire.
+1148	Projette les deux jambes en arrière, fort et écartées, et retombe sur l'avant des pieds.
+1149	Enfonce les hanches vers le sol ; poitrine lourde, tête haute.
+1150	Les mains descendent pour bloquer (ou passer un underhook) l'adversaire qui plonge.
+1151	Remonte en garde tout de suite.
+1152	Les hanches restent hautes
+1153	Tes hanches doivent presque toucher le sol en bas.
+1154	Les genoux tapent le sol
+1155	Retombe sur l'avant des pieds, jambes tendues.
+1156	Regarder en bas
+1157	Garde les yeux à hauteur de tête.
+1158	Sprawl à la cloche
+1159	{0} x {1} min : shadow et sprawl à chaque annonce, puis reviens à la frappe.
+1160	Crochet avant ({0})
+1161	Coup puissant, court et courbe, du côté avant.
+1162	Bras plié à environ {0} degrés, coude à hauteur du poing.
+1163	La puissance vient de la rotation du pied et de la hanche avant, pas du balancement du bras.
+1164	La main arrière reste collée au menton.
+1165	Le poing peut être paume vers le bas ou pouce vers le haut ; garde le poignet droit.
+1166	Armer (tirer d'abord le bras en arrière)
+1167	Démarre le crochet depuis la position exacte de garde.
+1168	Bras trop large / trop tendu
+1169	Garde l'angle fixe ; le corps fait tourner le bras comme une charnière de porte.
+1170	Le talon avant reste planté
+1171	Pivote le pied avant comme pour écraser une cigarette.
+1172	Jab, direct, crochet avant. {0} x {1} min.
+1173	Crochet depuis la garde
+1174	{0} x {1} crochets lents par côté, en te figeant à la fin pour vérifier la hauteur du coude.
+1175	Crochet arrière ({0})
+1176	Un crochet lourd de la main arrière, généralement après un crochet avant ou un direct.
+1177	Tourne le pied et la hanche arrière comme pour le direct, mais le bras reste plié.
+1178	Court et serré : ne l'élargis pas.
+1179	La main avant revient au visage.
+1180	Crochet trop large
+1181	Ton coude ne doit pas passer derrière la ligne de l'épaule.
+1182	Trop s'engager
+1183	Termine équilibré, prêt à lancer le coup suivant.
+1184	Crochet avant, crochet arrière. {0} x {1} min.
+1185	Uppercut avant ({0})
+1186	Coup montant à travers la garde, à courte distance.
+1187	Descends légèrement sur la jambe avant, puis pousse vers le haut avec les jambes et la hanche.
+1188	Le poing monte paume vers toi, le coude reste près du corps.
+1189	Courte distance seulement : la cible est le menton ou le corps.
+1190	Baisser la main pour charger
+1191	La descente vient des genoux, pas du poing qui baisse.
+1192	Le lancer de trop loin
+1193	Travaille-le après une esquive ou un crochet, quand tu es déjà près.
+1194	Uppercut avant, direct. {0} x {1} min.
+1195	Uppercut arrière ({0})
+1196	Uppercut puissant de la main arrière.
+1197	Pousse la hanche arrière vers l'avant et le haut ; le talon arrière tourne vers l'extérieur.
+1198	Le poing monte près du corps, paume vers toi.
+1199	La main avant protège le visage.
