@@ -11,6 +11,11 @@ service cloud.firestore {
         && request.resource.data.data.size() < 900000
         && request.resource.data.updatedAt is int;
     }
+    // Pro status: written only by the payment-check server (service account), never by the app.
+    match /entitlements/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if false;
+    }
     match /{document=**} { allow read, write: if false; }
   }
 }
