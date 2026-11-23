@@ -2,6 +2,7 @@
 // Combat sports keep many English words (jab, uppercut, clinch) in these languages; that is how coaches say them.
 export const CALLS = {
   es: {
+    cover: 'cúbrete',
     'spinning back fist': 'puño giratorio', 'spinning back kick': 'patada giratoria', 'question mark kick': 'patada interrogación',
     'last thirty all out': '¡Últimos treinta, a tope!', 'superman punch': 'superman', 'switch sides': 'cambia de lado',
     'in and out': 'entra y sal', 'step forward': 'paso adelante', 'step back': 'paso atrás', 'step left': 'paso a la izquierda', 'step right': 'paso a la derecha',
@@ -15,6 +16,7 @@ export const CALLS = {
     overhand: 'overhand', clinch: 'clinch', now: '¡ahora!', pull: 'atrás', ready: 'listos', go: '¡vamos!', next: 'siguiente',
   },
   de: {
+    cover: 'Deckung',
     'spinning back fist': 'Spinning Backfist', 'spinning back kick': 'gedrehter Rückwärtstritt', 'question mark kick': 'Fragezeichen-Kick',
     'last thirty all out': 'Letzte dreißig, alles geben!', 'superman punch': 'Superman-Punch', 'switch sides': 'Seite wechseln',
     'in and out': 'rein und raus', 'step forward': 'Schritt vor', 'step back': 'Schritt zurück', 'step left': 'Schritt links', 'step right': 'Schritt rechts',
@@ -28,6 +30,7 @@ export const CALLS = {
     overhand: 'Overhand', clinch: 'Clinch', now: 'jetzt!', pull: 'zurück', ready: 'bereit', go: 'los!', next: 'weiter',
   },
   fr: {
+    cover: 'couvre-toi',
     'spinning back fist': 'revers tourné', 'spinning back kick': 'pied retourné', 'question mark kick': 'coup de pied point d\'interrogation',
     'last thirty all out': 'Trente dernières secondes, à fond !', 'superman punch': 'superman punch', 'switch sides': 'change de côté',
     'in and out': 'entre et sors', 'step forward': 'pas en avant', 'step back': 'pas en arrière', 'step left': 'pas à gauche', 'step right': 'pas à droite',
@@ -41,6 +44,7 @@ export const CALLS = {
     overhand: 'overhand', clinch: 'clinch', now: 'maintenant !', pull: 'recule', ready: 'prêt', go: 'allez !', next: 'suivant',
   },
   it: {
+    cover: 'copriti',
     'spinning back fist': 'pugno girato', 'spinning back kick': 'calcio girato', 'question mark kick': 'calcio a punto interrogativo',
     'last thirty all out': 'Ultimi trenta, a tutta!', 'superman punch': 'superman punch', 'switch sides': 'cambia lato',
     'in and out': 'entra ed esci', 'step forward': 'passo avanti', 'step back': 'passo indietro', 'step left': 'passo a sinistra', 'step right': 'passo a destra',
@@ -54,6 +58,7 @@ export const CALLS = {
     overhand: 'overhand', clinch: 'clinch', now: 'ora!', pull: 'indietro', ready: 'pronti', go: 'via!', next: 'avanti',
   },
   ru: {
+    cover: 'закройся',
     'spinning back fist': 'бэкфист с разворота', 'spinning back kick': 'удар с разворота', 'question mark kick': 'удар «знак вопроса»',
     'last thirty all out': 'Последние тридцать, на максимум!', 'superman punch': 'супермен-панч', 'switch sides': 'смени сторону',
     'in and out': 'вошёл и вышел', 'step forward': 'шаг вперёд', 'step back': 'шаг назад', 'step left': 'шаг влево', 'step right': 'шаг вправо',

@@ -1,0 +1,399 @@
+400	Repousse fort et recule hors de portée, puis pars.
+401	Grand et étroit, c'est facile à soulever et projeter. Bas et large, c'est lourd.
+402	Tirer sur ses bras
+403	Repousse plutôt son corps ; les bras suivent le corps.
+404	Étreinte et dégagement
+405	Avec un partenaire qui serre légèrement : {0} répétitions lentes de baisser, cadrer, genou (juste toucher), pousser, s'éloigner. Changez.
+406	Dégagement d'étranglement de face à deux mains
+407	Des mains autour de ton cou, de face. Protège d'abord les voies respiratoires, casse la prise au niveau des pouces et tourne-toi vers l'extérieur.
+408	Rentre fort le menton et monte les épaules : ça protège la gorge immédiatement.
+409	Arrache ses pouces vers le bas à deux mains, ou lève un bras bien haut et tourne-toi sèchement sur le côté, pour que ton épaule casse ses deux bras.
+410	La rotation charge un coude ou un marteau-poing en retour par-dessus ses bras.
+411	Éloigne-toi tout de suite et pars ; appelle à l'aide.
+412	Tirer sur ses poignets
+413	Vise les pouces ou tourne tout le corps ; les poignets sont trop forts.
+414	Attendre
+415	Réagis dans la première seconde, tant que tu as encore de l'air et de la force.
+416	Dégagements d'étranglement
+417	Avec un partenaire qui pose les mains légèrement : {0} répétitions lentes de rentrer le menton, tourner, s'éloigner. Ne serre jamais à l'entraînement.
+418	Au sol : se relever en sécurité
+419	Si tu te retrouves au sol, le danger est un coup de pied à la tête pendant que tu te relèves. Protège ta tête, garde tes pieds entre toi et lui, et relève-toi avec le relevé technique.
+420	Sur le dos ou sur le côté, garde un pied levé vers lui et une main qui protège la tête.
+421	Pose une main derrière toi et le pied opposé au sol.
+422	Lève les hanches et passe la jambe libre en arrière, pour retomber en garde à distance.
+423	Mains hautes tout de suite, puis pars.
+424	Se relever tout droit devant lui
+425	Ça met ta tête là où il peut frapper. Relève-toi en reculant, loin de lui.
+426	Tourner le dos pour se relever
+427	Ne donne jamais ton dos ; reste face à lui jusqu'en haut.
+428	Répétitions de relevé
+429	{0} x {1} min sur un tapis : allonge-toi, garde, relevé technique, pas en arrière. Alterne les côtés.
+430	KO
+431	arrêt (TKO)
+432	décision unanime
+433	décision partagée
+434	Amateur
+435	Espoir pro
+436	Classé
+437	Prétendant
+438	Combat pour le titre
+439	{0}-{1} : jab, direct
+440	L'enchaînement le plus important du pieds-poings : le jab prépare le direct.
+441	Le direct part pendant que le jab revient, comme un seul mouvement.
+442	Tourne le pied et la hanche arrière dans le direct.
+443	Les deux mains reviennent au visage par la même ligne qu'à l'aller.
+444	Marquer une pause entre les coups
+445	Compte « un-deux » comme un seul mot.
+446	Baisser la main du jab quand le direct part
+447	La main avant revient au visage avant que le direct touche.
+448	{0}-{1} contre la montre
+449	{0} x {1} min : {2}-{3}, replace-toi, {4}-{5}. Chaque répétition rapide et propre.
+450	{0}-{1}-{2} : double jab, direct
+451	Deux jabs réduisent la distance et cachent le direct.
+452	Le deuxième jab avance d'un pas : il va plus loin que le premier.
+453	Des jabs secs, pas poussés.
+454	Le direct part du retour du deuxième jab.
+455	Deux jabs mous
+456	Le premier jab peut être plus léger, le deuxième est sec et avance.
+457	Jabs en avançant
+458	À travers le garage : {0}-{1}-{2}, replace-toi, recommence. {3} x {4} min.
+459	{0}-{1}-{2} : jab, direct, crochet avant
+460	La finition classique en trois coups : le direct charge le crochet.
+461	Le direct te fait tourner vers la gauche, donc le crochet part de là.
+462	Crochet court : coude à hauteur d'épaule, pivot sur le pied avant.
+463	Menton caché derrière l'épaule sur le crochet.
+464	Armer le crochet
+465	Pas d'élan : le crochet commence là où le direct s'est arrêté.
+466	Se mettre de face après
+467	Termine en garde ou sors de la ligne.
+468	Rounds de {0}-{1}-{2}
+469	{0} x {1} min. Toutes les {2} répétitions, termine par un pas sur le côté.
+470	Quatre coups qui coulent gauche-droite-gauche-droite ; le dernier direct touche quand il couvre le crochet.
+471	Chaque coup charge le suivant : ne te replace jamais au milieu.
+472	Les pieds restent sous toi : petits pas, pas de plongeon.
+473	Expire sur chaque coup.
+474	Perdre l'équilibre sur le dernier direct
+475	Garde des coups courts pour que ton poids reste centré.
+476	Échelle
+477	{0}-{1}, puis {2}-{3}-{4}, puis {5}-{6}-{7}-{8}, recommence. {9} x {10} min.
+478	{0}-{1}-{2} : direct, crochet, direct
+479	Un enchaînement de puissance : commence par le direct quand il attend le jab.
+480	Lance le direct depuis la garde, sans jab pour le préparer.
+481	Le crochet et le direct font tourner les hanches dans un sens puis dans l'autre.
+482	Mains à la maison entre chaque coup.
+483	Annoncer le premier direct
+484	Pars directement de la garde, sans baisser l'épaule.
+485	Rounds de puissance
+486	{0} x {1} min, rotation complète des hanches, rythme régulier.
+487	{0}-{1} : crochet avant, crochet arrière
+488	Deux crochets pour le corps-à-corps, une fois à l'intérieur de son jab.
+489	Reste bas et près ; les crochets sont des coups de l'intérieur.
+490	Tourne tout le corps pour chaque crochet, le bras ne fait que suivre.
+491	Coudes à {0} degrés, les poings restent devant toi.
+492	Rounds à courte distance
+493	{0} x {1} min de {2}-{3}, puis {4}-{5}-{6}.
+494	{0}-{1} : uppercut avant, direct
+495	L'uppercut soulève sa garde, le direct passe tout droit au milieu.
+496	Descends légèrement côté avant pour charger l'uppercut.
+497	Uppercut court, puis le direct en plein milieu.
+498	Baisser la main avant l'uppercut
+499	Charge avec les jambes, pas en baissant le poing.
+500	Rounds de {0}-{1}
+501	{0} x {1} min, ajoute un crochet ({2}-{3}-{4}) la dernière minute.
+502	{0}-{1}-{2} : uppercut arrière, crochet, direct
+503	Une finition à courte distance : par le milieu, par le côté, puis tout droit.
+504	Uppercut arrière depuis une légère descente côté arrière.
+505	Le crochet part de la rotation de hanche de l'uppercut.
+506	Termine par le direct et sors.
+507	Rester droit à courte distance
+508	Genoux fléchis, tête hors de la ligne centrale.
+509	Rounds à courte distance
+510	{0} x {1} min.
+511	Jab à la tête, coup de pied poussé au corps : ça l'empêche d'avancer.
+512	Le jab lui fait lever les mains ; le teep passe dessous.
+513	Pousse à travers avec la hanche, puis repose le pied en garde.
+514	Frapper avec la jambe seulement
+515	Lève d'abord le genou, puis pousse la hanche en avant.
+516	Rounds de distance
+517	{0} x {1} min : {2}-teep, replace-toi.
+518	Le jab cache le changement de pieds, puis la jambe avant frappe au corps.
+519	Change de pieds pendant que le jab revient.
+520	Bascule complètement la hanche et frappe à travers.
+521	Un changement grand et lent
+522	Petit sautillé rapide : les pieds échangent juste leur place.
+523	Rounds de switch kick
+524	{0} x {1} min, léger sur les appuis.
+525	{0}-{1}-{2}, pied (enchaînement hollandais)
+526	Les mains à la tête, puis le pied arrière : le crochet te tourne et le coup de pied est déjà chargé.
+527	Le crochet fait passer ton poids sur la jambe avant, prêt à frapper.
+528	Frappe au corps ou à la jambe, puis retour en garde.
+529	Garde les mains hautes en frappant.
+530	Une pause avant le coup de pied
+531	Le coup de pied est le {0}e temps : pas de replacement entre les deux.
+532	Rounds hollandais
+533	{0} x {1} min, frappe au corps et à la jambe en alternance.
+534	{0}-{1}, genou
+535	Les coups te rapprochent, le genou touche quand il se couvre.
+536	Avance sur le direct pour être à distance de genou.
+537	Pousse les hanches en avant dans le genou, penche-toi légèrement en arrière.
+538	Genou de trop loin
+539	Le direct te porte vers l'avant ; le genou part de là.
+540	Rounds de genoux
+541	{0} x {1} min, change de jambe toutes les {2} répétitions.
+542	À courte distance : le crochet tourne sa tête, le coude arrière suit sur la même ligne.
+543	Seulement à très courte distance.
+544	Le coude suit la rotation de hanche du crochet, dans l'autre sens.
+545	S'allonger avec le coude
+546	Si tu dois t'allonger, lance plutôt un direct.
+547	{0}-{1}, double jambe
+548	Le mélange clé du MMA : les coups font monter ses mains, puis tu changes de niveau et tu plonges.
+549	Change de niveau pendant que le direct revient.
+550	Même allure pour le coup et l'amenée, pour qu'il ne sache pas ce qui arrive.
+551	Les coups réduisent d'abord la distance.
+552	Du coup à l'amenée
+553	{0} x {1} répétitions par round, sur un tapis ou une moquette.
+554	Esquive, {0}-{1}
+555	Esquive son jab vers l'extérieur et réponds direct et crochet pendant qu'il est ouvert.
+556	Esquive juste ce qu'il faut : le coup rate de quelques centimètres.
+557	L'esquive charge le direct ; le direct charge le crochet.
+558	Esquiver trop loin
+559	Ta tête passe à l'extérieur de ton genou avant, pas plus loin.
+560	Rounds esquive-contre
+561	{0} x {1} min : imagine le jab à chaque fois.
+562	Rotation, {0}-{1}
+563	Roule sous son crochet, remonte chargé et envoie ton propre crochet et direct.
+564	Plie les genoux, pas la taille ; les yeux restent sur lui.
+565	Tu remontes côté avant, ce qui charge ton crochet.
+566	Se baisser tout droit
+567	Bouge en U : bas, en travers, haut.
+568	Rounds de rotation
+569	{0} x {1} min. Imagine un crochet, rotation, contre.
+570	Blocage, {0}-{1}
+571	Prends le coup sur la garde, puis réponds tout de suite avant qu'il se replace.
+572	Bloque avec le gant contre la tête, coude serré.
+573	La contre commence au moment où le coup touche ta garde.
+574	Bloquer et attendre
+575	Bloquer-frapper, c'est un seul rythme : « bloque, trois deux ».
+576	Rounds blocage-contre
+577	Parade, {0}-{1}
+578	Écarte son jab avec la main arrière et renvoie ton propre {0}-{1}.
+579	Petite parade : une tape, pas un revers.
+580	Ton jab part pendant que son jab revient.
+581	Aller chercher la parade
+582	Attends que le jab arrive à ton visage, puis tape.
+583	Rounds de parade
+584	Retrait, {0}-{1}
+585	Recule le buste devant le jab, reviens comme un ressort avec le direct et finis avec le crochet.
+586	Recule avec les jambes : le poids sur le genou arrière.
+587	Le crochet suit la rotation de hanche du direct.
+588	Reculer tout droit avec les jambes raides
+589	Plie le genou arrière et garde les mains hautes.
+590	Rounds de contre en retrait
+591	Blocage tibia, pied
+592	Bloque son low kick avec le tibia, puis réponds tout de suite avec ton propre coup de pied.
+593	Lève le genou avant et tourne le tibia vers l'extérieur pour recevoir le coup.
+594	Pose le pied et frappe pendant qu'il est encore en train de tourner.
+595	Bloquer et attendre
+596	Le coup de pied part dès que ton pied touche le sol.
+597	Rounds blocage-riposte
+598	Attrape, {0}, pied
+599	Attrape le coup de pied au corps, frappe pendant qu'il est sur une jambe, puis frappe du pied quand il retombe.
+600	Absorbe, puis ramasse la jambe ; direct pendant qu'il est piégé.
+601	Lâche la jambe et frappe avant qu'il retrouve l'équilibre.
+602	Tenir la jambe trop longtemps
+603	Attrape, frappe, lâche : une seconde.
+604	Rounds de saisie
+605	{0} x {1} min. Imagine le coup de pied à chaque fois.
+606	Ruban adhésif ou craie au sol
+607	Carré de jeu de jambes
+608	Un jeu de jambes qui tient sous la pression vient de schémas répétés jusqu'à ne plus y penser. Le ruban te rend honnête sur la distance et les lignes.
+609	Trace au ruban un carré d'environ {0} m de côté au sol, avec une ligne au milieu.
+610	Mets-toi en garde sur la ligne centrale. Le minuteur annonce un schéma ; fais-le une fois, sèchement, et reviens en garde.
+611	Les pieds ne se croisent jamais et ne se rapprochent jamais plus que la largeur des épaules. Les mains restent hautes tout le temps.
+612	Croiser les pieds en tournant
+613	Sautiller haut au lieu de glisser
+614	Baisser les mains en se déplaçant
+615	Élastique de résistance léger
+616	Shadow avec élastique
+617	L'élastique ramène tes mains en garde et fait travailler chaque coup contre une résistance. Le dernier round sans lui donne des mains qui paraissent rapides.
+618	Fixe un élastique léger derrière toi à hauteur de poitrine (ancrage de porte ou poteau solide), ou passe-le dans le haut du dos et tiens une extrémité dans chaque main.
+619	Lance ce que le minuteur annonce à environ {0} pour cent. Ramène chaque coup au menton en contrôle.
+620	Le dernier round est sans élastique : mêmes enchaînements, pleine vitesse.
+621	Un élastique si fort qu'il change ta technique
+622	Claquer le coude en extension
+623	Laisser l'élastique tirer la main en arrière
+624	Haltères très légers ({0}-{1} kg) ou bouteilles d'eau
+625	Rounds avec haltères légers
+626	L'endurance des épaules explique pourquoi les mains tombent au dernier round. Des rounds courts avec un poids très léger apprennent aux épaules à tenir la garde quand tu es fatigué.
+627	Utilise le poids le plus léger que tu as, pas plus de {0} kg (ou deux petites bouteilles d'eau). Plus lourd abîme les coudes et ralentit le coup.
+628	Coups droits seulement. Arrête juste avant l'extension complète et ramène la main droit au menton.
+629	Entre les annonces, mains au menton. Arrête tout de suite si une épaule ou un coude fait mal.
+630	Crochets ou uppercuts avec des poids
+631	Verrouiller le coude en fin de coup
+632	Poids trop lourd
+633	Rien ; garde le téléphone là où tu le vois
+634	Signaux de réaction
+635	Les combats sont des décisions sous pression du temps. Les signaux te font réagir à ce que tu vois, pas à un plan : tu entraînes la décision autant que la vitesse.
+636	Mets le téléphone à hauteur des yeux, à environ {0} m. Mets-toi en garde face à lui.
+637	Round {0} : les chiffres sont annoncés à voix haute. Round {1} : les chiffres apparaissent seulement à l'écran. Round {2} : des couleurs à l'écran.
+638	Réagis dès que tu le vois, puis reviens en garde. Une réponse propre bat une réponse rapide mais fausse.
+639	Deviner avant le signal
+640	Regarder le sol
+641	Ne pas revenir en garde
+642	Rien (un mur à côté aide au début)
+643	Équilibre et base pour les coups de pied
+644	Un coup de pied ne vaut que la jambe sur laquelle tu te tiens. Tenir des positions en extension complète construit l'équilibre et la force de hanche qui rendent les coups de pied puissants et sûrs.
+645	Appui sur une jambe : genou libre levé, mains en garde, regard sur un point devant toi.
+646	Coups de pied lents : {0} secondes pour monter, tiens {1} secondes en extension, {2} secondes pour revenir en garde.
+647	Blocage et pied : à l'annonce, bloque ou frappe et reviens directement en garde, mains hautes.
+648	Se pencher en arrière pour monter la jambe plus haut
+649	Mains qui tombent pendant le coup de pied
+650	Se tenir sur un genou à plat, verrouillé
+651	Banc, haltères
+652	Circuit de préparation au combat
+653	Un round, ce sont des efforts intenses avec de courtes récupérations, pas un footing régulier. Ce circuit copie ce rythme avec des exercices qui construisent le moteur dont un combat a besoin, avec ton matériel.
+654	Cinq ateliers de {0} secondes chacun, enchaînés, puis repos. C'est un round.
+655	Travaille dur mais proprement : une bonne technique malgré la fatigue, c'est ce que travaille cet exercice.
+656	Les jours de force, prends des haltères modérés pour le rowing, pas les plus lourds.
+657	Sprawls bâclés avec les hanches hautes
+658	Arrondir le dos au rowing
+659	Tout donner au round {0} et s'effondrer
+660	Rien
+661	{0} dernières secondes
+662	Les juges retiennent la fin d'un round, et les combattants fatigués s'éteignent. Travailler une fin à fond quand tu es déjà fatigué t'apprend à gagner la fin de chaque round.
+663	Chaque round commence technique : enchaînements propres sur annonce, à rythme régulier.
+664	À {0} secondes de la fin, le minuteur crie : à fond avec tes meilleurs enchaînements jusqu'à la cloche.
+665	À fond veut toujours dire mains qui reviennent en garde et tête qui bouge.
+666	Économiser l'énergie les deux premières minutes pour que la fin soit facile
+667	Frapper avec les bras sans les jambes
+668	Baisser la garde en fatigue
+669	Distance : combats à ta distance
+670	Chaque échange se passe à l'une de trois distances : pieds, poings ou clinch. Celui qui contrôle la distance décide quelles armes fonctionnent.
+671	Distance de pieds : seuls le teep et les coups de pied atteignent. Les boxeurs doivent entrer pour te toucher.
+672	Distance de poings : les coups droits touchent ; crochets et uppercuts demandent un demi-pas de plus.
+673	Distance de clinch : genoux, coudes, crochets courts et lutte.
+674	Connais ta meilleure distance, emmène le combat là-bas, et ne reste pas à une distance où seul l'adversaire peut toucher.
+675	Entrer et sortir
+676	{0} rounds : à chaque annonce, entre à distance de poings et place {1}-{2}, ou sors à distance de pieds et teep. Ne reste jamais entre deux distances.
+677	Le jab est ton outil le plus important
+678	Le jab mesure la distance, aveugle, stoppe une attaque, marque et prépare tout le reste. Ceux qui jabent bien contrôlent les combats.
+679	Mesurer : touche la cible pour trouver ta distance avant les coups puissants.
+680	Aveugler : un jab au visage cache le direct ou le coup de pied qui suit.
+681	Stopper : un jab sec casse le rythme de celui qui avance.
+682	Varie-le : à la tête, au corps, doublé, avec un pas. Un jab prévisible se fait contrer.
+683	Jab uniquement
+684	{0} rounds avec le jab uniquement : simple, double, au corps, en entrant et en sortant. Puis {1} round où chaque enchaînement commence par un jab.
+685	Contrôle du ring : ne recule jamais en ligne droite
+686	Reculer tout droit, c'est le moyen le plus rapide de finir dans les cordes ou contre un mur. Contrôler le ring, c'est bouger en angles et garder le centre.
+687	Sous pression, recule d'un pas et tout de suite sur le côté, ou pivote hors de la ligne.
+688	Garde le dos vers le centre, pas vers les cordes.
+689	Pour couper le ring, va du côté où il se déplace, pas là où il est.
+690	Déplacement latéral plus jab : tu deviens difficile à piéger.
+691	Angles
+692	{0} rounds de jeu de jambes sur annonce : chaque « pas en arrière » doit être suivi de « bouge » ou « pivote ». Termine chaque round au centre de ton espace.
+693	Combattre la garde inverse
+694	Orthodoxe contre gaucher, ça change tout : les mains avant se rencontrent, le côté ouvert change, et la main arrière et le pied arrière deviennent les meilleures armes.
+695	Gagne le pied extérieur : garde ton pied avant à l'extérieur du sien. Ça aligne ton direct arrière.
+696	Le direct arrière au milieu est le coup clé contre la garde inverse.
+697	Le pied arrière au corps touche le côté ouvert.
+698	Utilise le crochet avant quand il entre ; attention à son direct arrière en retour.
+699	Garde inverse
+700	{0} rounds : imagine un adversaire en garde inverse. Pas à l'extérieur, puis direct, ou pied au corps.
+701	Les réflexes défensifs qui te protègent
+702	La plupart des chutes viennent de petites habitudes : une main baissée, le menton levé, les yeux fermés, ou rester immobile après avoir frappé. Les bonnes habitudes tiennent quand tu es fatigué.
+703	Chaque coup revient en garde par la même ligne.
+704	Menton baissé, yeux ouverts, regarde sous tes sourcils.
+705	Ne reste jamais en face après un enchaînement : défends, bouge, ou les deux.
+706	Expire sur chaque coup ; les combattants fatigués oublient de respirer.
+707	Enchaînement, puis défense
+708	{0} rounds : chaque enchaînement est suivi d'une défense (esquive, rotation ou blocage) et d'un déplacement. Dis « bouge » à voix haute.
+709	Feintes et rythme
+710	Un adversaire qui lit ton rythme peut te chronométrer. Les feintes et le rythme cassé le font réagir à ce qui ne vient jamais, et l'ouvrent pour ce qui arrive.
+711	Feinte avec l'épaule, la main avant ou un demi-pas. Petite, rapide et crédible.
+712	Observe sa réaction : s'il sursaute ou lève les mains, attaque ce qui s'ouvre.
+713	Change de vitesse : un jab lent suivi d'un direct rapide.
+714	Ne feinte pas tout le temps : une feinte ne marche que parce que de vraies attaques suivent.
+715	De la feinte au coup
+716	{0} rounds : avant chaque enchaînement, montre une feinte (épaule, demi-jab ou demi-pas), puis lance le vrai enchaînement.
+717	Contre-attaquer : fais-le rater, fais-le payer
+718	Les contres touchent le plus fort parce que l'adversaire est ouvert et avance dans le coup. Les bons contreurs restent calmes et attendent le coup qu'ils attendent.
+719	Connais son habitude : la plupart des gens lancent le même premier coup encore et encore.
+720	Défends petit pour rester à distance de riposte.
+721	Contre tout de suite, en moins d'une demi-seconde, avant qu'il se replace.
+722	Provoque l'attaque : montre une ouverture exprès, puis contre ce qui arrive.
+723	Rounds de contre
+724	{0} rounds d'annonces défensives : chaque défense est suivie immédiatement de sa contre.
+725	Quand tu es touché ou épuisé
+726	Tout combattant finit un jour touché ou à bout de souffle. Savoir exactement quoi faire évite qu'un mauvais moment devienne un combat perdu.
+727	Couvre-toi serré : coudes rentrés, gants sur la tête, menton baissé. Ne tourne pas le dos.
+728	Bouge : sors de la ligne et éloigne-toi de sa main forte.
+729	Clinch : bloque ses bras et appuie-toi sur lui pour gagner des secondes.
+730	Respire par le nez, ralentis et reviens avec un jab, pas avec un coup désordonné.
+731	Survivre et récupérer
+732	{0} rounds à rythme dur avec repos court : quand le minuteur annonce « couvre-toi », couvre-toi et bouge quelques secondes, puis reviens avec un jab.
+733	Lundi
+734	Mardi
+735	Mercredi
+736	Jeudi
+737	Vendredi
+738	Samedi
+739	Dimanche
+740	Fondamentaux
+741	Garde, jeu de jambes, les deux coups droits, la défense de base, le teep et le middle kick.
+742	Filme {0} rounds de shadow : la garde reste haute, les pieds ne se croisent ni ne se collent, chaque coup revient au visage.
+743	Enchaînements
+744	Crochets, uppercuts, rotations, le switch kick et les genoux, plus les changements de niveau et le relevé.
+745	Filme {0}-{1}-{2} + pied à pleine vitesse : la main arrière ne quitte jamais le menton, et tu retombes équilibré en garde.
+746	Contres et distance
+747	Contre-attaque, angles, coudes, le clinch, attraper les coups de pied et les entrées d'amenée.
+748	Filme {0} rounds en mélangeant les distances, où chaque enchaînement finit par une défense ou un angle.
+749	Armes avancées
+750	Calf kicks, coups au foie, superman punch, coups tournés, genou sauté et coup de pied point d'interrogation, une fois les bases solides.
+751	Filme {0} rounds où chaque coup avancé apparaît au moins deux fois, préparé par un coup de base, et tu retombes équilibré à chaque fois.
+752	Les jours de garage sont lundi, mercredi et vendredi : combat et force en une seule séance.
+753	Le combat d'abord, la force ensuite. La technique demande un corps frais ; soulever fatigué est plus sûr qu'apprendre fatigué.
+754	Lundi et mercredi : course le matin (facile), garage plus tard dans la journée.
+755	Le mercredi est le jour des jambes, donc cette séance de combat reste technique et jeu de jambes, sans coups de pied durs.
+756	Rounds de combat durs uniquement le vendredi, le jour sans course. La force C après, c'est haut du corps et gainage seulement.
+757	Mardi, jeudi et dimanche sont des jours de course uniquement, pour que les sorties clés restent fraîches. Le jeu de jambes du samedi est facultatif.
+758	Toutes les {0} semaines, une semaine de décharge : technique uniquement, pas de rounds durs, moitié moins de séries de force.
+759	Séance technique
+760	{0} min, RPE {1} à {2}. Apprends et peaufine {3} à {4} techniques.
+761	Séance principale
+762	{0} à {1} min. La technique d'abord, puis des rounds à RPE {2} à {3}.
+763	Jeu de jambes (facultatif)
+764	{0} min, facile. Déplacements uniquement, pas de coups appuyés.
+765	Enchaînements et technique
+766	Shadow, répète les enchaînements de la semaine jusqu'à l'automatisme, affûte deux techniques.
+767	Défense, jeu de jambes et contres
+768	Doux pour les jambes : pas de coups de pied durs. Bouge, défends sur annonce et contre tout de suite.
+769	Rounds de combat et préparation physique
+770	Le jour dur : rounds complets mêlant attaque, défense et déplacement, puis une finition physique.
+771	Force A : haut du corps
+772	Force B : jambes et gainage
+773	Force C : haut du corps et gainage (après le combat du vendredi)
+774	Facile {0} km ({1}:{2}-{3}:{4} /km)
+775	Fractionné : {0} x {1} m ({2}:{3}-{4}:{5} /km)
+776	Facile {0} km + {1} x {2} s d'accélérations
+777	Seuil {0} x {1} min, ou tempo {2} km une semaine sur deux
+778	Facile {0}-{1} km
+779	Sortie longue {0} km
+780	Esquive à l'extérieur ou pare, puis {0}
+781	Pas en arrière, puis {0}-{1}
+782	Bloque les deux, réponds {0}-{1}
+783	Roule dessous, remonte avec {0}-{1}
+784	Coude en bas pour bloquer, puis crochet en retour
+785	Recule le buste ou couvre-toi, puis {0}
+786	Roule ou pivote, puis {0}
+787	Bloque ou attrape, puis {0}
+788	Blocage tibia, pied en retour tout de suite
+789	Sors de la ligne ou attrape, puis pied
+790	Cadre aux hanches, repousse, {0}
+791	Position intérieure, puis genou ou dégage-toi
+792	Sprawl, recule, {0}-{1}
+793	Ouverture : lance ton meilleur enchaînement
+795	Développé par l'entraîneur Cus D'Amato et rendu célèbre par Floyd Patterson et Mike Tyson.
+796	Gants hauts contre les joues, coudes serrés, accroupi et plutôt de face. La tête ne s'arrête jamais : esquives et rotations en rythme, puis crochets et uppercuts explosifs depuis les angles que crée le mouvement de tête.
+797	Très difficile à toucher proprement tant que la tête bouge.
+798	Contres explosifs et grosse puissance depuis la position accroupie.
+799	Permet à un combattant plus petit d'entrer sur un plus grand.

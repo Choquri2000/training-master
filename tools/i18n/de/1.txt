@@ -1,0 +1,399 @@
+400	Kräftig wegstoßen, außer Reichweite zurücktreten, dann gehen.
+401	Hoch und schmal ist leicht anzuheben und zu werfen. Tief und breit ist schwer.
+402	An seinen Armen ziehen
+403	Schieb stattdessen seinen Körper weg; die Arme folgen dem Körper.
+404	Umklammerung lösen
+405	Mit einem Partner, der leicht umklammert: {0} langsame Wiederholungen von Absenken, Rahmen, Knie (nur antippen), Stoßen, Weggehen. Wechseln.
+406	Befreiung aus dem beidhändigen Würgegriff von vorn
+407	Hände um deinen Hals von vorn. Schütze zuerst die Atemwege, brich den Griff an den Daumen und dreh dich heraus.
+408	Kinn fest einziehen und Schultern hochziehen: Das schützt sofort die Kehle.
+409	Mit beiden Händen an seinen Daumen nach unten reißen, oder einen Arm hoch strecken und dich scharf zur Seite drehen, sodass deine Schulter beide Arme löst.
+410	Die Drehung lädt einen Ellbogen oder Hammerfaust über seine Arme zurück.
+411	Sofort weggehen und verschwinden; um Hilfe rufen.
+412	An seinen Handgelenken ziehen
+413	Geh an die Daumen oder dreh den ganzen Körper; Handgelenke sind zu stark.
+414	Abwarten
+415	Reagier in der ersten Sekunde, solange du noch Luft und Kraft hast.
+416	Würgegriffe lösen
+417	Mit einem Partner, der die Hände leicht anlegt: {0} langsame Wiederholungen von Einziehen, Drehen, Weggehen. Beim Üben nie zudrücken.
+418	Am Boden: sicher aufstehen
+419	Landest du am Boden, droht beim Aufstehen ein Tritt gegen den Kopf. Schütze den Kopf, halte die Füße zwischen dir und ihm und steh mit dem technischen Aufstehen auf.
+420	Auf dem Rücken oder der Seite einen Fuß zu ihm hochhalten und eine Hand am Kopf zur Deckung.
+421	Eine Hand hinter dir aufstützen und den gegenüberliegenden Fuß auf den Boden.
+422	Hüfte anheben und das freie Bein nach hinten durchschwingen, auf Distanz in der Auslage landen.
+423	Sofort Hände hoch, dann gehen.
+424	Direkt vor ihm gerade aufstehen
+425	So ist dein Kopf genau da, wo er ihn treffen kann. Steh rückwärts auf, von ihm weg.
+426	Zum Aufstehen den Rücken zudrehen
+427	Nie den Rücken zeigen; ihm bis ganz oben zugewandt bleiben.
+428	Aufsteh-Wiederholungen
+429	{0} x {1} Min. auf einer Matte: hinlegen, Deckung, technisches Aufstehen, Schritt zurück. Seiten abwechseln.
+430	K.o.
+431	Abbruch (TKO)
+432	einstimmige Entscheidung
+433	geteilte Entscheidung
+434	Amateur
+435	Profi-Talent
+436	In der Rangliste
+437	Herausforderer
+438	Titelkampf
+439	{0}-{1}: Jab, Gerade
+440	Die wichtigste Kombination im Striking: Der Jab bereitet die Gerade vor.
+441	Die Gerade geht los, während der Jab zurückkommt, wie eine einzige Bewegung.
+442	Dreh hinteren Fuß und Hüfte in die Gerade.
+443	Beide Hände kehren auf derselben Linie ins Gesicht zurück, auf der sie rausgingen.
+444	Pause zwischen den Schlägen
+445	Zähl „eins-zwei“ wie ein Wort.
+446	Die Jab-Hand sinkt, während die Gerade geht
+447	Die Führhand ist zurück am Gesicht, bevor die Gerade trifft.
+448	{0}-{1} gegen die Uhr
+449	{0} x {1} Min.: {2}-{3}, neu ansetzen, {4}-{5}. Jede Wiederholung schnell und sauber.
+450	{0}-{1}-{2}: doppelter Jab, Gerade
+451	Zwei Jabs überbrücken die Distanz und verstecken die Gerade.
+452	Der zweite Jab geht mit Schritt: Er reicht weiter als der erste.
+453	Jabs schnappen lassen, nicht schieben.
+454	Die Gerade kommt aus dem Rückzug des zweiten Jabs.
+455	Zwei faule Jabs
+456	Der erste Jab darf leichter sein, der zweite ist scharf und geht mit Schritt.
+457	Jabs im Vorwärtsgehen
+458	Quer durch die Garage: {0}-{1}-{2}, neu ansetzen, wiederholen. {3} x {4} Min.
+459	{0}-{1}-{2}: Jab, Gerade, Führhandhaken
+460	Das klassische Drei-Schlag-Finish: Die Gerade lädt den Haken.
+461	Die Gerade dreht dich zur linken Seite, also feuert der Haken von dort.
+462	Kurzer Haken: Ellbogen auf Schulterhöhe, auf dem vorderen Fuß drehen.
+463	Beim Haken bleibt das Kinn hinter der Schulter.
+464	Den Haken aufziehen
+465	Kein Ausholen: Der Haken beginnt dort, wo die Gerade endete.
+466	Danach frontal stehen
+467	In der Auslage enden oder aus der Linie gehen.
+468	{0}-{1}-{2}-Runden
+469	{0} x {1} Min. Bei jeder {2}. Wiederholung mit einem Seitschritt enden.
+470	Vier Schläge, die links-rechts-links-rechts fließen; die letzte Gerade trifft, während er den Haken abdeckt.
+471	Jeder Schlag lädt den nächsten: nie in der Mitte neu ansetzen.
+472	Die Füße bleiben unter dir: kleine Schritte, kein Vorwerfen.
+473	Bei jedem Schlag ausatmen.
+474	Bei der letzten Geraden das Gleichgewicht verlieren
+475	Schläge kurz halten, damit dein Gewicht mittig bleibt.
+476	Leiter
+477	{0}-{1}, dann {2}-{3}-{4}, dann {5}-{6}-{7}-{8}, wiederholen. {9} x {10} Min.
+478	{0}-{1}-{2}: Gerade, Haken, Gerade
+479	Eine Power-Kombination: mit der Geraden eröffnen, wenn er den Jab erwartet.
+480	Die Gerade aus der Auslage starten, ohne Jab zur Vorbereitung.
+481	Haken und Gerade drehen die Hüfte hin und her.
+482	Hände zwischen jedem Schlag zurück nach Hause.
+483	Die erste Gerade ankündigen
+484	Direkt aus der Deckung starten, ohne die Schulter fallen zu lassen.
+485	Power-Runden
+486	{0} x {1} Min., volle Hüftdrehung, gleichmäßiges Tempo.
+487	{0}-{1}: Führhandhaken, Schlaghandhaken
+488	Zwei Haken für die Nahdistanz, sobald du in seinem Jab bist.
+489	Tief und nah bleiben; Haken sind Nahschläge.
+490	Für jeden Haken den ganzen Körper drehen, der Arm folgt nur.
+491	Ellbogen bei {0} Grad, die Fäuste bleiben vor dir.
+492	Nahkampf-Runden
+493	{0} x {1} Min. {2}-{3}, dann {4}-{5}-{6}.
+494	{0}-{1}: Führhand-Uppercut, Gerade
+495	Der Uppercut hebt seine Deckung, die Gerade geht gerade durch die Mitte.
+496	Leicht zur Führseite abtauchen, um den Uppercut zu laden.
+497	Kurzer Uppercut, dann die Gerade durch die Mitte.
+498	Die Hand vor dem Uppercut senken
+499	Mit den Beinen laden, nicht durch Senken der Faust.
+500	{0}-{1}-Runden
+501	{0} x {1} Min., in der letzten Minute einen Haken ({2}-{3}-{4}) anhängen.
+502	{0}-{1}-{2}: Schlaghand-Uppercut, Haken, Gerade
+503	Ein Finisher für die Nahdistanz: durch die Mitte, um die Seite, dann gerade.
+504	Schlaghand-Uppercut aus einem leichten Abtauchen zur hinteren Seite.
+505	Der Haken kommt aus der Hüftdrehung des Uppercuts.
+506	Mit der Geraden enden und raussteppen.
+507	In der Nahdistanz aufrecht stehen
+508	Knie gebeugt, Kopf weg von der Mittellinie.
+509	Nahdistanz-Runden
+510	{0} x {1} Min.
+511	Jab zum Kopf, Stoßtritt zum Körper: stoppt sein Vorwärtsgehen.
+512	Der Jab lässt ihn die Hände heben; der Teep geht darunter.
+513	Mit der Hüfte durchschieben, dann den Fuß in der Auslage wieder absetzen.
+514	Nur mit dem Bein kicken
+515	Erst das Knie heben, dann die Hüfte nach vorn schieben.
+516	Distanz-Runden
+517	{0} x {1} Min.: {2}-Teep, neu ansetzen.
+518	Der Jab versteckt den Fußwechsel, dann kickt das vordere Bein zum Körper.
+519	Die Füße wechseln, während der Jab zurückkommt.
+520	Die Hüfte voll überdrehen und durchkicken.
+521	Ein großer, langsamer Wechsel
+522	Kleiner, schneller Hüpfer: Die Füße tauschen nur die Plätze.
+523	Switch-Kick-Runden
+524	{0} x {1} Min., leichtfüßig.
+525	{0}-{1}-{2}, Kick (holländische Kombination)
+526	Hände zum Kopf, dann der hintere Kick: Der Haken dreht dich, sodass der Kick schon geladen ist.
+527	Der Haken verlagert dein Gewicht aufs vordere Bein, bereit zum Kicken.
+528	Kick zum Körper oder Bein, dann zurück in die Deckung.
+529	Beim Kicken die Hände oben lassen.
+530	Eine Pause vor dem Kick
+531	Der Kick ist der {0}. Schlag: kein Neuansetzen dazwischen.
+532	Holland-Runden
+533	{0} x {1} Min., abwechselnd zum Körper und zum Bein kicken.
+534	{0}-{1}, Knie
+535	Die Schläge bringen dich nah, das Knie trifft, wenn er sich deckt.
+536	Mit der Geraden reingehen, damit du auf Knie-Distanz bist.
+537	Die Hüfte durch das Knie nach vorn treiben, leicht zurücklehnen.
+538	Knie aus zu großer Distanz
+539	Die Gerade trägt dich nach vorn; das Knie kommt von dort.
+540	Knie-Runden
+541	{0} x {1} Min., alle {2} Wiederholungen das Kniebein wechseln.
+542	Nahdistanz: Der Haken dreht seinen Kopf, der hintere Ellbogen folgt auf derselben Linie.
+543	Nur auf sehr kurzer Distanz.
+544	Der Ellbogen folgt der Hüftdrehung des Hakens, zurück in die andere Richtung.
+545	Mit dem Ellbogen nachgreifen
+546	Musst du dich strecken, schlag lieber eine Gerade.
+547	{0}-{1}, Double-Leg
+548	Die Schlüsselmischung im MMA: Schläge holen seine Hände hoch, dann wechselst du das Level und schießt.
+549	Level wechseln, während die Gerade zurückkommt.
+550	Schlag und Takedown sehen gleich aus, sodass er nicht weiß, was kommt.
+551	Die Schläge überbrücken zuerst die Distanz.
+552	Vom Schlag zum Takedown
+553	{0} x {1} Wiederholungen pro Runde, auf Matte oder Teppich.
+554	Ausweichen, {0}-{1}
+555	Seinem Jab nach außen ausweichen und mit Gerade und Haken antworten, solange er offen ist.
+556	Gerade genug ausweichen: Der Schlag verfehlt um ein paar Zentimeter.
+557	Das Ausweichen lädt die Gerade; die Gerade lädt den Haken.
+558	Zu weit ausweichen
+559	Dein Kopf geht bis außerhalb deines vorderen Knies, nicht weiter.
+560	Ausweich-Konter-Runden
+561	{0} x {1} Min.: stell dir jedes Mal den Jab vor.
+562	Abrollen, {0}-{1}
+563	Unter seinem Haken abrollen, geladen hochkommen und deinen eigenen Haken und die Gerade feuern.
+564	Knie beugen, nicht die Hüfte; die Augen bleiben bei ihm.
+565	Du kommst auf der Führseite hoch, das lädt deinen Haken.
+566	Gerade nach unten abducken
+567	In einem U bewegen: runter, rüber, hoch.
+568	Abroll-Runden
+569	{0} x {1} Min. Stell dir einen Haken vor, abrollen, kontern.
+570	Blocken, {0}-{1}
+571	Den Schlag auf der Deckung nehmen, dann sofort antworten, bevor er neu ansetzt.
+572	Mit dem Handschuh am Kopf blocken, Ellbogen eng.
+573	Der Konter beginnt, sobald der Schlag auf deiner Deckung landet.
+574	Blocken und abwarten
+575	Blocken und schlagen ist ein Rhythmus: „Block, drei zwei“.
+576	Block-Konter-Runden
+577	Parieren, {0}-{1}
+578	Seinen Jab mit der hinteren Hand wegschlagen und deine eigene {0}-{1} zurückfeuern.
+579	Kleine Parade: ein Antippen, kein Wegwischen.
+580	Dein Jab geht, während sein Jab zurückkommt.
+581	Der Parade entgegengreifen
+582	Warte, bis der Jab zu deinem Gesicht kommt, dann antippen.
+583	Parade-Runden
+584	Zurückziehen, {0}-{1}
+585	Vom Jab zurücklehnen, mit der Geraden zurückfedern und mit dem Haken abschließen.
+586	Mit den Beinen zurückziehen: Gewicht aufs hintere Knie.
+587	Der Haken folgt der Hüftdrehung der Geraden.
+588	Mit steifen Beinen gerade nach hinten ziehen
+589	Hinteres Knie beugen und die Hände oben halten.
+590	Pull-Counter-Runden
+591	Checken, Kick
+592	Seinen Low Kick mit dem Schienbein checken, dann sofort mit deinem eigenen Kick antworten.
+593	Das vordere Knie heben und das Schienbein nach außen drehen, dem Kick entgegen.
+594	Fuß absetzen und zurückkicken, während er sich noch dreht.
+595	Checken und abwarten
+596	Der Kick geht los, sobald dein Fuß landet.
+597	Check-Antwort-Runden
+598	Fangen, {0}, Kick
+599	Den Körperkick fangen, schlagen, während er auf einem Bein steht, dann kicken, wenn er landet.
+600	Aufnehmen, dann das Bein schaufeln; Gerade, solange er gefangen ist.
+601	Das Bein loslassen und kicken, bevor er sein Gleichgewicht findet.
+602	Das Bein zu lange halten
+603	Fangen, schlagen, loslassen: eine Sekunde.
+604	Fang-Runden
+605	{0} x {1} Min. Stell dir jedes Mal den Kick vor.
+606	Klebeband oder Kreide auf dem Boden
+607	Beinarbeits-Box
+608	Beinarbeit, die unter Druck hält, kommt aus Mustern, die so lange geübt wurden, bis sie kein Nachdenken mehr brauchen. Das Klebeband hält dich bei Distanz und Linien ehrlich.
+609	Klebe ein Quadrat von etwa {0} m Breite auf den Boden, mit einer Linie durch die Mitte.
+610	Steh in der Auslage auf der Mittellinie. Der Timer sagt ein Muster an; führ es einmal scharf aus und geh zurück in die Auslage.
+611	Die Füße kreuzen nie und kommen nie enger als schulterbreit. Die Hände bleiben die ganze Zeit oben.
+612	Beim Kreisen die Füße kreuzen
+613	Hoch hüpfen statt gleiten
+614	Beim Bewegen die Hände senken
+615	Leichtes Widerstandsband
+616	Schattenboxen mit Band
+617	Das Band zieht deine Hände in die Deckung zurück und lässt jeden Schlag gegen Widerstand arbeiten. Die letzte Runde ohne Band lässt deine Hände schnell wirken.
+618	Befestige ein leichtes Band hinter dir auf Brusthöhe (Türanker oder fester Pfosten) oder leg es über den oberen Rücken und halte in jeder Hand ein Ende.
+619	Schlag, was der Timer ansagt, mit etwa {0} Prozent. Jeden Schlag kontrolliert zum Kinn zurückführen.
+620	Die letzte Runde ohne Band: dieselben Kombinationen, volles Tempo.
+621	Ein Band, so stark, dass es deine Technik verändert
+622	Den Ellbogen durchschnappen lassen
+623	Das Band die Hand zurückreißen lassen
+624	Sehr leichte Kurzhanteln ({0}-{1} kg) oder Wasserflaschen
+625	Runden mit leichten Hanteln
+626	Fehlende Schulterausdauer ist der Grund, warum die Hände in der letzten Runde sinken. Kurze Runden mit sehr leichtem Gewicht trainieren die Schultern, die Deckung auch müde zu halten.
+627	Nimm das leichteste Gewicht, das du hast, höchstens {0} kg (oder zwei kleine Wasserflaschen). Mehr Gewicht schadet den Ellbogen und bremst den Schlag.
+628	Nur gerade Schläge. Kurz vor der vollen Streckung stoppen und die Hand gerade zum Kinn zurückführen.
+629	Zwischen den Ansagen bleiben die Hände am Kinn. Sofort aufhören, wenn Schulter oder Ellbogen schmerzen.
+630	Haken oder Uppercuts mit Gewichten
+631	Den Ellbogen am Ende durchstrecken
+632	Gewicht zu schwer
+633	Nichts; leg das Handy so, dass du es sehen kannst
+634	Reaktionssignale
+635	Kämpfe sind Entscheidungen unter Zeitdruck. Signale lassen dich auf das reagieren, was du siehst, nicht auf einen Plan; so trainierst du die Entscheidung genauso wie die Schnelligkeit.
+636	Stell das Handy auf Augenhöhe, etwa {0} m entfernt. Steh ihm in der Auslage gegenüber.
+637	Runde {0}: Zahlen werden angesagt. Runde {1}: Zahlen erscheinen nur auf dem Bildschirm. Runde {2}: Farben auf dem Bildschirm.
+638	Reagier, sobald du es siehst, dann zurück in die Auslage. Eine saubere Antwort schlägt eine schnelle falsche.
+639	Vor dem Signal raten
+640	Auf den Boden schauen
+641	Nicht in die Auslage zurückkehren
+642	Nichts (eine Wand in der Nähe hilft am Anfang)
+643	Gleichgewicht und Kick-Basis
+644	Ein Kick ist nur so gut wie das Bein, auf dem du stehst. Positionen in voller Streckung zu halten baut Gleichgewicht und Hüftkraft auf, die Kicks kraftvoll und sicher machen.
+645	Einbeinstand: Knie des freien Beins oben, Hände in der Deckung, Blick auf einen Punkt vor dir.
+646	Langsame Kicks: {0} Sekunden hoch, {1} Sekunden in voller Streckung halten, {2} Sekunden zurück in die Auslage.
+647	Checken und Kicken: auf Ansage checken oder kicken und direkt in der Auslage landen, Hände oben.
+648	Zurücklehnen, um das Bein höher zu bekommen
+649	Hände sinken beim Kick
+650	Auf einem flachen, durchgestreckten Knie stehen
+651	Bank, Kurzhanteln
+652	Kampf-Konditionszirkel
+653	Eine Runde besteht aus Arbeitsschüben mit kurzen Erholungen, nicht aus gleichmäßigem Joggen. Dieser Zirkel kopiert diesen Rhythmus mit Übungen, die den Motor für den Kampf aufbauen, mit deiner Ausrüstung.
+654	Fünf Stationen zu je {0} Sekunden direkt hintereinander, dann eine Pause. Das ist eine Runde.
+655	Hart arbeiten, aber sauber: Genau gute Technik im müden Zustand trainiert diese Übung.
+656	An Krafttagen moderate Hanteln für das Rudern, nicht deine schwersten.
+657	Schlampige Sprawls mit hoher Hüfte
+658	Beim Rudern einen runden Rücken machen
+659	In Runde {0} alles geben und dann eingehen
+660	Nichts
+661	Letzte {0} Sekunden
+662	Punktrichter erinnern sich, wie eine Runde endet, und müde Kämpfer bauen ab. Ein Vollgas-Finish im müden Zustand zu trainieren lehrt dich, das Ende jeder Runde zu gewinnen.
+663	Jede Runde beginnt technisch: saubere Kombinationen auf Ansage, gleichmäßiges Tempo.
+664	Bei {0} Sekunden vor Schluss ruft der Timer: Vollgas mit deinen besten Kombinationen bis zur Glocke.
+665	Vollgas heißt trotzdem: Hände zurück in die Deckung und den Kopf bewegen.
+666	In den ersten zwei Minuten Kraft sparen, damit das Finish leicht wird
+667	Nur mit den Armen schlagen, ohne die Beine
+668	Müde die Deckung fallen lassen
+669	Distanz: kämpf auf deiner Distanz
+670	Jeder Schlagabtausch findet auf einer von drei Distanzen statt: Kick-, Schlag- oder Clinch-Distanz. Wer die Distanz kontrolliert, entscheidet, welche Waffen wirken.
+671	Kick-Distanz: Nur Teep und Kicks reichen. Boxer müssen reinkommen, um dich zu treffen.
+672	Schlag-Distanz: Gerade Schläge treffen; Haken und Uppercuts brauchen einen halben Schritt näher.
+673	Clinch-Distanz: Knie, Ellbogen, kurze Haken und Ringen.
+674	Kenn deine beste Distanz, bring den Kampf dorthin und steh nicht auf einer Distanz, auf der nur der Gegner treffen kann.
+675	Rein und raus
+676	{0} Runden: Ansage für Ansage auf Schlagdistanz reingehen und {1}-{2} landen oder auf Kick-Distanz raus und Teep. Nie zwischen den Distanzen stehen bleiben.
+677	Der Jab ist dein wichtigstes Werkzeug
+678	Der Jab misst die Distanz, blendet, stoppt einen Angriff, punktet und bereitet alles andere vor. Wer gut jabbt, kontrolliert Kämpfe.
+679	Messen: das Ziel antippen, um deine Distanz vor den harten Schlägen zu finden.
+680	Blenden: Ein Jab ins Gesicht versteckt die Gerade oder den Kick dahinter.
+681	Stoppen: Ein scharfer Jab bricht den Rhythmus eines Gegners, der nach vorn kommt.
+682	Variier ihn: zum Kopf, zum Körper, doppelt, mit Schritt. Ein vorhersehbarer Jab wird gekontert.
+683	Nur Jab
+684	{0} Runden nur mit dem Jab: einfach, doppelt, zum Körper, rein und raus. Dann {1} Runde, in der jede Kombination mit einem Jab beginnt.
+685	Ringkontrolle: nie in gerader Linie zurückweichen
+686	Gerade zurückweichen ist der schnellste Weg in die Seile oder an die Wand. Ringkontrolle heißt, sich in Winkeln zu bewegen und die Mitte zu halten.
+687	Unter Druck einen Schritt zurück und sofort zur Seite, oder aus der Linie drehen.
+688	Den Rücken zur Mitte, nicht zu den Seilen.
+689	Um den Ring abzuschneiden, zur Seite steppen, zu der er sich bewegt, nicht dorthin, wo er jetzt ist.
+690	Seitliche Bewegung plus Jab machen dich schwer zu stellen.
+691	Winkel
+692	{0} Runden Beinarbeit auf Ansage: Auf jedes „Schritt zurück“ muss „bewegen“ oder „drehen“ folgen. Beende jede Runde in der Mitte deiner Fläche.
+693	Gegen die umgekehrte Auslage kämpfen
+694	Rechtsausleger gegen Linksausleger ändert alles: Die Führhände treffen sich, die offene Seite wechselt, und die hintere Hand und der hintere Kick werden die besten Waffen.
+695	Gewinn den äußeren Fuß: Halte deinen vorderen Fuß außerhalb seines. Das richtet deine hintere Gerade aus.
+696	Die hintere Gerade durch die Mitte ist der Schlüsselschlag gegen die umgekehrte Auslage.
+697	Der hintere Kick zum Körper trifft die offene Seite.
+698	Nutze den Führhandhaken, wenn er reinkommt; achte auf seine hintere Gerade als Antwort.
+699	Umgekehrte Auslage
+700	{0} Runden: Stell dir einen Gegner in umgekehrter Auslage vor. Außen vorbeisteppen, dann Gerade oder Kick zum Körper.
+701	Defensive Gewohnheiten, die dich schützen
+702	Die meisten Niederschläge kommen von kleinen Gewohnheiten: eine gesenkte Hand, ein hohes Kinn, geschlossene Augen oder Stillstehen nach dem Schlagen. Gute Gewohnheiten funktionieren auch müde.
+703	Jeder Schlag kehrt auf derselben Linie in die Deckung zurück.
+704	Kinn runter, Augen offen, unter den Augenbrauen hindurch schauen.
+705	Nach einer Kombination nie frontal stehen bleiben: verteidigen, bewegen oder beides.
+706	Bei jedem Schlag ausatmen; müde Kämpfer vergessen das Atmen.
+707	Kombination, dann Verteidigung
+708	{0} Runden: Auf jede Kombination folgen eine Verteidigung (ausweichen, abrollen oder blocken) und eine Bewegung. Sag laut „bewegen“.
+709	Finten und Rhythmus
+710	Ein Gegner, der deinen Rhythmus liest, kann dich timen. Finten und gebrochener Rhythmus lassen ihn auf Dinge reagieren, die nie kommen, und öffnen ihn für das, was kommt.
+711	Finte mit der Schulter, der Führhand oder einem halben Schritt. Klein, schnell und glaubwürdig.
+712	Beobachte seine Reaktion: Zuckt er oder hebt die Hände, greif an, was sich öffnet.
+713	Tempo wechseln: ein langsamer Jab, gefolgt von einer schnellen Geraden.
+714	Nicht ständig antäuschen: Eine Finte wirkt nur, weil echte Angriffe folgen.
+715	Von der Finte zum Schlag
+716	{0} Runden: Vor jeder Kombination eine Finte zeigen (Schulter, halber Jab oder halber Schritt), dann die echte Kombination schlagen.
+717	Kontern: lass ihn verfehlen, lass ihn bezahlen
+718	Konter treffen am härtesten, weil der Gegner offen ist und in den Schlag läuft. Gute Konterboxer bleiben ruhig und warten auf den Schlag, den sie erwarten.
+719	Kenn seine Gewohnheit: Die meisten schlagen immer wieder denselben ersten Schlag.
+720	Klein verteidigen, damit du noch auf Distanz bist, um zurückzuschlagen.
+721	Sofort kontern, innerhalb einer halben Sekunde, bevor er neu ansetzt.
+722	Den Angriff provozieren: absichtlich eine Lücke zeigen, dann kontern, was kommt.
+723	Konter-Runden
+724	{0} Runden Verteidigungsansagen: Auf jede Verteidigung folgt sofort ihr Konter.
+725	Wenn du getroffen oder erschöpft bist
+726	Jeder Kämpfer wird irgendwann getroffen oder ist platt. Genau zu wissen, was zu tun ist, verhindert, dass aus einem schlechten Moment ein verlorener Kampf wird.
+727	Eng decken: Ellbogen innen, Handschuhe am Kopf, Kinn runter. Nicht den Rücken zudrehen.
+728	Bewegen: aus der Linie und weg von seiner Schlaghand.
+729	Clinch: seine Arme binden und dich auf ihn lehnen, um Sekunden zu gewinnen.
+730	Durch die Nase atmen, Tempo rausnehmen und mit einem Jab zurückkommen, nicht mit einem wilden Schwinger.
+731	Überstehen und erholen
+732	{0} Runden in hohem Tempo mit kurzer Pause: Wenn der Timer „Deckung“ ruft, ein paar Sekunden decken und bewegen, dann mit einem Jab zurückkommen.
+733	Montag
+734	Dienstag
+735	Mittwoch
+736	Donnerstag
+737	Freitag
+738	Samstag
+739	Sonntag
+740	Grundlagen
+741	Auslage, Beinarbeit, die beiden geraden Schläge, Grundverteidigung, der Teep und der Körperkick.
+742	Film dich {0} Runden beim Schattenboxen: Die Deckung bleibt oben, die Füße kreuzen nie und kommen nie zusammen, jeder Schlag kehrt ins Gesicht zurück.
+743	Kombinationen
+744	Haken, Uppercuts, Abrollen, der Switch-Kick und Knie, dazu Levelwechsel und Aufstehen.
+745	Film {0}-{1}-{2} + Kick in vollem Tempo: Die hintere Hand verlässt nie das Kinn, und du landest ausbalanciert in der Auslage.
+746	Konter und Distanz
+747	Kontern, Winkel, Ellbogen, der Clinch, Kicks fangen und Takedown-Ansätze.
+748	Film dich {0} Runden mit wechselnden Distanzen, in denen jede Kombination mit Verteidigung oder einem Winkel endet.
+749	Fortgeschrittene Waffen
+750	Wadenkicks, Leberhaken, der Superman-Punch, Drehtechniken, das fliegende Knie und der Fragezeichen-Kick, sobald die Grundlagen sitzen.
+751	Film dich {0} Runden, in denen jede fortgeschrittene Technik mindestens zweimal vorkommt, vorbereitet durch eine einfache, und du jedes Mal ausbalanciert landest.
+752	Garagentage sind Montag, Mittwoch und Freitag: Kampfsport und Kraft in einem Besuch.
+753	Erst Kampfsport, dann Kraft. Technikarbeit braucht einen frischen Körper; müde heben ist sicherer als müde lernen.
+754	Montag und Mittwoch: morgens laufen (locker), später am Tag die Garage.
+755	Mittwoch ist Beintag, also bleibt diese Kampfeinheit bei Technik und Beinarbeit, ohne harte Kicks.
+756	Harte Kampfrunden nur am Freitag, dem Tag ohne Lauf. Kraft C danach ist nur Oberkörper und Rumpf.
+757	Dienstag, Donnerstag und Sonntag sind reine Lauftage, damit die wichtigen Läufe frisch bleiben. Beinarbeit am Samstag ist optional.
+758	Jede {0}. Woche ist eine Entlastungswoche: nur Technik, keine harten Runden, die Hälfte der Kraftsätze.
+759	Technikeinheit
+760	{0} Min., RPE {1} bis {2}. {3} bis {4} Techniken lernen und verfeinern.
+761	Haupteinheit
+762	{0} bis {1} Min. Erst Technik, dann Runden bei RPE {2} bis {3}.
+763	Beinarbeit (optional)
+764	{0} Min., locker. Nur Bewegung, keine harten Schläge.
+765	Kombinationen und Technik
+766	Schattenboxen, die Kombinationen der Woche drillen, bis sie automatisch kommen, zwei Techniken schärfen.
+767	Verteidigung, Beinarbeit und Konter
+768	Schonend für die Beine: keine harten Kicks. Bewegen, auf Ansage verteidigen und sofort kontern.
+769	Kampfrunden und Kondition
+770	Der harte Tag: volle Runden mit Angriff, Verteidigung und Bewegung, dann ein Konditions-Finisher.
+771	Kraft A: Oberkörper
+772	Kraft B: Beine und Rumpf
+773	Kraft C: Oberkörper und Rumpf (nach dem Freitagstraining)
+774	Locker {0} km ({1}:{2}-{3}:{4} /km)
+775	Intervalle: {0} x {1} m ({2}:{3}-{4}:{5} /km)
+776	Locker {0} km + {1} x {2} s Steigerungen
+777	Schwelle {0} x {1} Min. oder Tempo {2} km im Wochenwechsel
+778	Locker {0}-{1} km
+779	Langer Lauf {0} km
+780	Außen ausweichen oder parieren, dann {0}
+781	Schritt zurück, dann {0}-{1}
+782	Beide blocken, mit {0}-{1} antworten
+783	Drunter abrollen, mit {0}-{1} hochkommen
+784	Ellbogen runter zum Blocken, dann Haken zurück
+785	Zurückziehen oder decken, dann {0}
+786	Abrollen oder wegdrehen, dann {0}
+787	Checken oder fangen, dann {0}
+788	Checken, sofort zurückkicken
+789	Aus der Linie oder fangen, dann Kick
+790	An der Hüfte rahmen, wegdrücken, {0}
+791	Innenposition, dann Knie oder lösen
+792	Sprawl, zurück, {0}-{1}
+793	Lücke: schlag deine beste Kombination
+795	Entwickelt von Trainer Cus D'Amato und berühmt gemacht von Floyd Patterson und Mike Tyson.
+796	Handschuhe hoch an den Wangen, Ellbogen eng, geduckt und ziemlich frontal. Der Kopf hört nie auf, sich zu bewegen: Ausweichen und Abrollen im Rhythmus, dann explosive Haken und Uppercuts aus den Winkeln, die die Kopfbewegung schafft.
+797	Sehr schwer sauber zu treffen, solange der Kopf in Bewegung bleibt.
+798	Explosive Konter und große Wucht aus der Hocke.
+799	Lässt einen kleineren Kämpfer an einen größeren herankommen.

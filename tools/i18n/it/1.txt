@@ -1,0 +1,399 @@
+400	Spingi via forte e indietreggia fuori portata, poi vattene.
+401	Alto e stretto è facile da sollevare e proiettare. Basso e largo pesa.
+402	Tirargli le braccia
+403	Spingi invece il suo corpo; le braccia seguono il corpo.
+404	Abbraccio e liberazione
+405	Con un compagno che abbraccia piano: {0} ripetizioni lente di abbassarsi, incorniciare, ginocchiata (solo toccare), spingere, allontanarsi. Cambiate.
+406	Liberazione dallo strangolamento frontale a due mani
+407	Mani attorno al collo da davanti. Proteggi prima le vie respiratorie, rompi la presa sui pollici e girati fuori.
+408	Abbassa forte il mento e alza le spalle: così proteggi subito la gola.
+409	Strappa giù i suoi pollici con entrambe le mani, o alza un braccio in alto e girati di scatto di lato, così la tua spalla stacca entrambe le braccia.
+410	La rotazione carica una gomitata o un pugno a martello di ritorno sopra le sue braccia.
+411	Allontanati subito e vattene; chiedi aiuto.
+412	Tirargli i polsi
+413	Vai sui pollici o gira tutto il corpo; i polsi sono troppo forti.
+414	Aspettare
+415	Reagisci nel primo secondo, finché hai ancora fiato e forza.
+416	Liberazioni dagli strangolamenti
+417	Con un compagno che appoggia le mani piano: {0} ripetizioni lente di mento giù, rotazione, allontanarsi. Mai stringere in allenamento.
+418	A terra: rialzarsi in sicurezza
+419	Se finisci a terra, il pericolo è un calcio alla testa mentre ti rialzi. Proteggi la testa, tieni i piedi tra te e lui e rialzati con l'alzata tecnica.
+420	Sulla schiena o sul fianco, tieni un piede alzato verso di lui e una mano a protezione della testa.
+421	Appoggia una mano dietro di te e il piede opposto a terra.
+422	Alza le anche e porta la gamba libera indietro, atterrando in guardia a distanza.
+423	Mani alte subito, poi vattene.
+424	Alzarsi dritti davanti a lui
+425	Così la tua testa è dove può colpirla. Rialzati all'indietro, lontano da lui.
+426	Dargli le spalle per alzarsi
+427	Non dare mai la schiena; resta di fronte a lui fino in piedi.
+428	Ripetizioni di alzata
+429	{0} x {1} min su un tappetino: sdraiati, guardia, alzata tecnica, passo indietro. Alterna i lati.
+430	KO
+431	interruzione (TKO)
+432	decisione unanime
+433	decisione divisa
+434	Dilettante
+435	Promessa pro
+436	In classifica
+437	Sfidante
+438	Match per il titolo
+439	{0}-{1}: jab, diretto
+440	La combinazione più importante dello striking: il jab prepara il diretto.
+441	Il diretto parte mentre il jab torna, come un unico movimento.
+442	Ruota piede e anca dietro nel diretto.
+443	Entrambe le mani tornano al viso sulla stessa linea da cui sono partite.
+444	Fermarsi tra i colpi
+445	Conta «uno-due» come una sola parola.
+446	Abbassare la mano del jab mentre parte il diretto
+447	La mano avanti torna al viso prima che arrivi il diretto.
+448	{0}-{1} contro il tempo
+449	{0} x {1} min: {2}-{3}, risistemati, {4}-{5}. Ogni ripetizione veloce e pulita.
+450	{0}-{1}-{2}: doppio jab, diretto
+451	Due jab accorciano la distanza e nascondono il diretto.
+452	Il secondo jab entra con un passo: arriva più lontano del primo.
+453	Jab secchi, non spinti.
+454	Il diretto parte dal ritorno del secondo jab.
+455	Due jab pigri
+456	Il primo jab può essere più leggero, il secondo è secco ed entra con il passo.
+457	Jab avanzando
+458	Da un capo all'altro del garage: {0}-{1}-{2}, risistemati, ripeti. {3} x {4} min.
+459	{0}-{1}-{2}: jab, diretto, gancio avanti
+460	La classica chiusura a tre colpi: il diretto carica il gancio.
+461	Il diretto ti gira verso sinistra, quindi il gancio parte da lì.
+462	Gancio corto: gomito all'altezza della spalla, ruota sul piede avanti.
+463	Mento nascosto dietro la spalla nel gancio.
+464	Caricare il gancio all'indietro
+465	Niente caricamento: il gancio parte dove è finito il diretto.
+466	Mettersi di fronte dopo
+467	Finisci in guardia o esci dalla linea.
+468	Round di {0}-{1}-{2}
+469	{0} x {1} min. Ogni {2} ripetizioni, finisci con un passo laterale.
+470	Quattro colpi che scorrono sinistro-destro-sinistro-destro; l'ultimo diretto arriva mentre copre il gancio.
+471	Ogni colpo carica il successivo: non risistemarti mai a metà.
+472	I piedi restano sotto di te: passi piccoli, niente affondi.
+473	Espira a ogni colpo.
+474	Perdere l'equilibrio sull'ultimo diretto
+475	Colpi corti così il peso resta centrato.
+476	Scala
+477	{0}-{1}, poi {2}-{3}-{4}, poi {5}-{6}-{7}-{8}, ripeti. {9} x {10} min.
+478	{0}-{1}-{2}: diretto, gancio, diretto
+479	Una combinazione di potenza: apri con il diretto quando si aspetta il jab.
+480	Parti con il diretto dalla guardia, senza jab di preparazione.
+481	Gancio e diretto girano le anche avanti e indietro.
+482	Mani a casa tra un colpo e l'altro.
+483	Telegrafare il primo diretto
+484	Partilo direttamente dalla guardia, senza abbassare la spalla.
+485	Round di potenza
+486	{0} x {1} min, rotazione completa dell'anca, ritmo costante.
+487	{0}-{1}: gancio avanti, gancio dietro
+488	Due ganci per la corta distanza, una volta dentro il suo jab.
+489	Resta basso e vicino; i ganci sono colpi da dentro.
+490	Gira tutto il corpo per ogni gancio, il braccio segue soltanto.
+491	Gomiti a {0} gradi, i pugni restano davanti a te.
+492	Round in corta
+493	{0} x {1} min di {2}-{3}, poi {4}-{5}-{6}.
+494	{0}-{1}: montante avanti, diretto
+495	Il montante gli alza la guardia, il diretto passa dritto in mezzo.
+496	Abbassati leggermente verso il lato avanti per caricare il montante.
+497	Montante corto, poi il diretto dritto al centro.
+498	Abbassare la mano prima del montante
+499	Carica con le gambe, non abbassando il pugno.
+500	Round di {0}-{1}
+501	{0} x {1} min, aggiungi un gancio ({2}-{3}-{4}) nell'ultimo minuto.
+502	{0}-{1}-{2}: montante dietro, gancio, diretto
+503	Una chiusura in corta: dal centro, dal lato, poi dritto.
+504	Montante dietro da una leggera discesa verso il lato dietro.
+505	Il gancio parte dalla rotazione d'anca del montante.
+506	Chiudi con il diretto ed esci.
+507	Restare alti in corta
+508	Ginocchia piegate, testa fuori dalla linea centrale.
+509	Round in corta
+510	{0} x {1} min.
+511	Jab alla testa, calcio frontale al corpo: gli impedisce di avanzare.
+512	Il jab gli fa alzare le mani; il teep passa sotto.
+513	Spingi con l'anca, poi riappoggia il piede in guardia.
+514	Calciare solo con la gamba
+515	Alza prima il ginocchio, poi spingi l'anca in avanti.
+516	Round di distanza
+517	{0} x {1} min: {2}-teep, risistemati.
+518	Il jab nasconde il cambio dei piedi, poi la gamba avanti calcia al corpo.
+519	Cambia i piedi mentre il jab torna.
+520	Ruota l'anca del tutto e calcia attraverso.
+521	Un cambio grande e lento
+522	Saltello piccolo e rapido: i piedi si scambiano solo il posto.
+523	Round di calcio con cambio
+524	{0} x {1} min, leggero sui piedi.
+525	{0}-{1}-{2}, calcio (combinazione olandese)
+526	Mani alla testa, poi il calcio dietro: il gancio ti gira e il calcio è già carico.
+527	Il gancio sposta il peso sulla gamba avanti, pronto a calciare.
+528	Calcia al corpo o alla gamba, poi torna in guardia.
+529	Tieni le mani alte mentre calci.
+530	Una pausa prima del calcio
+531	Il calcio è il {0}° tempo: nessuna risistemazione in mezzo.
+532	Round olandesi
+533	{0} x {1} min, calcia corpo e gamba a ripetizioni alterne.
+534	{0}-{1}, ginocchiata
+535	I pugni ti avvicinano, la ginocchiata arriva quando si copre.
+536	Entra con il diretto così sei a distanza di ginocchiata.
+537	Spingi le anche avanti nella ginocchiata, inclinati leggermente indietro.
+538	Ginocchiata da troppo lontano
+539	Il diretto ti porta avanti; la ginocchiata parte da lì.
+540	Round di ginocchiate
+541	{0} x {1} min, alterna la gamba ogni {2} ripetizioni.
+542	In corta: il gancio gli gira la testa, la gomitata dietro segue sulla stessa linea.
+543	Solo a distanza molto corta.
+544	La gomitata segue la rotazione d'anca del gancio, di ritorno dall'altra parte.
+545	Allungarsi con il gomito
+546	Se devi allungarti, tira invece un diretto.
+547	{0}-{1}, doppia gamba
+548	Il mix chiave dell'MMA: i pugni gli fanno alzare le mani, poi cambi livello ed entri.
+549	Cambia livello mentre il diretto torna.
+550	Stesso aspetto per colpo ed entrata, così non sa cosa arriva.
+551	I pugni accorciano prima la distanza.
+552	Dal colpo all'atterramento
+553	{0} x {1} ripetizioni per round, su un tappetino o un tappeto.
+554	Schivata, {0}-{1}
+555	Schiva il suo jab all'esterno e rispondi con diretto e gancio mentre è scoperto.
+556	Schiva quanto basta: il colpo manca di pochi centimetri.
+557	La schivata carica il diretto; il diretto carica il gancio.
+558	Schivare troppo
+559	La testa esce fuori dal ginocchio avanti, non oltre.
+560	Round di schivata e contro
+561	{0} x {1} min: immagina il jab ogni volta.
+562	Rotazione, {0}-{1}
+563	Passa sotto il suo gancio, risali carico e spara il tuo gancio e diretto.
+564	Piega le ginocchia, non la vita; lo sguardo resta su di lui.
+565	Risali dal lato avanti, che carica il tuo gancio.
+566	Abbassarsi dritti
+567	Muoviti a U: giù, di lato, su.
+568	Round di rotazione
+569	{0} x {1} min. Immagina un gancio, rotazione, contro.
+570	Parata, {0}-{1}
+571	Prendi il colpo sulla guardia, poi rispondi subito prima che si risistemi.
+572	Para con il guantone contro la testa, gomito stretto.
+573	Il contro parte nell'istante in cui il colpo tocca la tua guardia.
+574	Parare e aspettare
+575	Parare e colpire sono un solo ritmo: «parata, tre due».
+576	Round di parata e contro
+577	Deviazione, {0}-{1}
+578	Devia il suo jab con la mano dietro e rimandagli il tuo {0}-{1}.
+579	Deviazione piccola: un tocco, non uno schiaffo.
+580	Il tuo jab parte mentre il suo jab torna.
+581	Andare a cercare la deviazione
+582	Aspetta che il jab arrivi al tuo viso, poi tocca.
+583	Round di deviazione
+584	Indietro, {0}-{1}
+585	Inclinati indietro dal jab, torna a molla con il diretto e chiudi con il gancio.
+586	Arretra con le gambe: peso sul ginocchio dietro.
+587	Il gancio segue la rotazione d'anca del diretto.
+588	Tirarsi dritti indietro con le gambe rigide
+589	Piega il ginocchio dietro e tieni le mani alte.
+590	Round di pull counter
+591	Parata con la tibia, calcio
+592	Para il suo low kick con la tibia, poi rispondi subito con il tuo calcio.
+593	Alza il ginocchio avanti e gira la tibia fuori incontro al calcio.
+594	Appoggia il piede e calcia mentre sta ancora ruotando.
+595	Parare e aspettare
+596	Il calcio parte appena il piede tocca terra.
+597	Round di parata e risposta
+598	Afferra, {0}, calcio
+599	Afferra il calcio al corpo, colpisci mentre è su una gamba, poi calcia quando atterra.
+600	Assorbi, poi raccogli la gamba; diretto mentre è intrappolato.
+601	Lascia la gamba e calcia prima che ritrovi l'equilibrio.
+602	Tenere la gamba troppo a lungo
+603	Afferra, colpisci, lascia: un secondo.
+604	Round di prese
+605	{0} x {1} min. Immagina il calcio ogni volta.
+606	Nastro o gesso sul pavimento
+607	Quadrato del gioco di gambe
+608	Il gioco di gambe che regge sotto pressione nasce da schemi ripetuti finché non serve pensarci. Il nastro ti tiene onesto su distanza e linee.
+609	Segna con il nastro un quadrato di circa {0} m sul pavimento, con una linea nel mezzo.
+610	In guardia sulla linea centrale. Il timer chiama uno schema; fallo una volta, secco, e torna in guardia.
+611	I piedi non si incrociano mai e non si avvicinano mai più della larghezza delle spalle. Mani alte sempre.
+612	Incrociare i piedi girando
+613	Saltellare alto invece di scivolare
+614	Abbassare le mani muovendosi
+615	Elastico leggero
+616	Shadow con elastico
+617	L'elastico riporta le mani in guardia e fa lavorare ogni colpo contro resistenza. L'ultimo round senza elastico fa sembrare le mani veloci.
+618	Fissa un elastico leggero dietro di te all'altezza del petto (ancoraggio alla porta o un palo solido), o passalo sulla parte alta della schiena e tieni un capo in ogni mano.
+619	Tira quello che chiama il timer a circa il {0} per cento. Riporta ogni colpo al mento con controllo.
+620	L'ultimo round è senza elastico: stesse combinazioni, velocità piena.
+621	Un elastico così forte da cambiarti la tecnica
+622	Far scattare il gomito in estensione
+623	Lasciare che l'elastico strappi indietro la mano
+624	Manubri leggerissimi ({0}-{1} kg) o bottiglie d'acqua
+625	Round con manubri leggeri
+626	La resistenza delle spalle è il motivo per cui le mani calano all'ultimo round. Round brevi con pesi leggerissimi allenano le spalle a tenere la guardia da stanco.
+627	Usa il peso più leggero che hai, non più di {0} kg (o due bottigliette d'acqua). Più peso fa male ai gomiti e rallenta il colpo.
+628	Solo colpi dritti. Fermati appena prima dell'estensione completa e riporta la mano dritta al mento.
+629	Tra una chiamata e l'altra, mani al mento. Fermati subito se fa male una spalla o un gomito.
+630	Ganci o montanti con i pesi
+631	Bloccare il gomito alla fine
+632	Peso troppo alto
+633	Niente; tieni il telefono dove puoi vederlo
+634	Segnali di reazione
+635	I combattimenti sono decisioni sotto pressione di tempo. I segnali ti fanno reagire a ciò che vedi, non a un piano, così alleni la decisione oltre alla velocità.
+636	Metti il telefono all'altezza degli occhi, a circa {0} m. In guardia di fronte.
+637	Round {0}: i numeri vengono detti a voce. Round {1}: i numeri compaiono solo sullo schermo. Round {2}: colori sullo schermo.
+638	Reagisci appena lo vedi, poi torna in guardia. Una risposta pulita batte una veloce sbagliata.
+639	Indovinare prima del segnale
+640	Guardare il pavimento
+641	Non tornare in guardia
+642	Niente (all'inizio aiuta un muro vicino)
+643	Equilibrio e base dei calci
+644	Un calcio vale quanto la gamba su cui poggi. Tenere posizioni in estensione completa costruisce l'equilibrio e la forza d'anca che rendono i calci potenti e sicuri.
+645	Appoggio su una gamba: ginocchio libero alto, mani in guardia, sguardo su un punto davanti.
+646	Calci lenti: {0} secondi su, tieni {1} secondi in estensione completa, {2} secondi per tornare in guardia.
+647	Parata e calcio: alla chiamata, para o calcia e torna subito in guardia, mani alte.
+648	Inclinarsi indietro per alzare di più la gamba
+649	Mani che calano durante il calcio
+650	Stare su un ginocchio piatto e bloccato
+651	Panca, manubri
+652	Circuito di condizionamento per il combattimento
+653	Un round è fatto di scatti di lavoro con brevi recuperi, non di una corsetta costante. Questo circuito copia quel ritmo con esercizi che costruiscono il motore che serve in un incontro, con l'attrezzatura che hai.
+654	Cinque stazioni da {0} secondi ciascuna, una dopo l'altra, poi riposo. Questo è un round.
+655	Lavora duro ma con tecnica: è proprio la buona tecnica da stanco che allena questo esercizio.
+656	Nei giorni di forza usa manubri moderati per i rematori, non i più pesanti.
+657	Sprawl sciatti con le anche alte
+658	Arrotondare la schiena nei rematori
+659	Dare tutto al round {0} e crollare
+660	Niente
+661	Ultimi {0} secondi
+662	I giudici ricordano come finisce un round, e i fighter stanchi calano. Allenare un finale a tutta quando sei già stanco ti insegna a vincere la fine di ogni round.
+663	Ogni round inizia tecnico: combinazioni pulite a chiamata, ritmo costante.
+664	A {0} secondi dalla fine il timer grida: a tutta con le tue combinazioni migliori fino alla campana.
+665	A tutta significa comunque mani di nuovo in guardia e testa in movimento.
+666	Risparmiare energie nei primi due minuti per avere un finale facile
+667	Colpire con le braccia senza le gambe
+668	Abbassare la guardia da stanco
+669	Distanza: combatti alla tua distanza
+670	Ogni scambio avviene a una di tre distanze: calci, pugni o clinch. Chi controlla la distanza decide quali armi funzionano.
+671	Distanza di calcio: arrivano solo teep e calci. I pugili devono entrare per toccarti.
+672	Distanza di pugno: entrano i colpi dritti; ganci e montanti richiedono mezzo passo più vicino.
+673	Distanza di clinch: ginocchiate, gomitate, ganci corti e lotta.
+674	Conosci la tua distanza migliore, porta lì il combattimento e non restare a una distanza dove può colpire solo l'avversario.
+675	Entra ed esci
+676	{0} round: a ogni chiamata entra a distanza di pugno e metti {1}-{2}, o esci a distanza di calcio e teep. Non restare mai tra due distanze.
+677	Il jab è il tuo strumento più importante
+678	Il jab misura la distanza, acceca, ferma un attacco, fa punti e prepara tutto il resto. Chi usa bene il jab controlla gli incontri.
+679	Misurare: tocca il bersaglio per trovare la distanza prima dei colpi potenti.
+680	Accecare: un jab in faccia nasconde il diretto o il calcio che segue.
+681	Fermare: un jab secco spezza il ritmo di chi avanza.
+682	Variarlo: alla testa, al corpo, doppio, con un passo. Un jab prevedibile viene contrato.
+683	Solo jab
+684	{0} round usando solo il jab: singolo, doppio, al corpo, entrando e uscendo. Poi {1} round in cui ogni combinazione inizia con un jab.
+685	Controllo del ring: mai indietreggiare in linea retta
+686	Indietreggiare dritti è il modo più veloce di finire alle corde o contro un muro. Controllare il ring significa muoversi in angoli e tenere il centro.
+687	Sotto pressione, fai un passo indietro e subito di lato, o ruota fuori dalla linea.
+688	La schiena verso il centro, non verso le corde.
+689	Per tagliare il ring, vai dal lato verso cui si muove, non dove si trova ora.
+690	Movimento laterale più jab ti rendono difficile da intrappolare.
+691	Angoli
+692	{0} round di gioco di gambe a chiamata: ogni «passo indietro» deve essere seguito da «muoviti» o «ruota». Finisci ogni round al centro del tuo spazio.
+693	Combattere contro la guardia opposta
+694	Ortodosso contro mancino cambia tutto: le mani avanti si incontrano, il lato aperto cambia, e la mano dietro e il calcio dietro diventano le armi migliori.
+695	Conquista il piede esterno: tieni il piede avanti all'esterno del suo. Allinea il tuo diretto dietro.
+696	Il diretto dietro al centro è il colpo chiave contro la guardia opposta.
+697	Il calcio dietro al corpo entra sul lato aperto.
+698	Usa il gancio avanti quando entra; attento al suo diretto dietro di risposta.
+699	Guardia opposta
+700	{0} round: immagina un avversario in guardia opposta. Passo all'esterno, poi diretto, o calcio al corpo.
+701	Abitudini difensive che ti proteggono
+702	La maggior parte dei knockdown nasce da piccole abitudini: una mano abbassata, il mento alto, gli occhi chiusi, o restare fermi dopo aver colpito. Le buone abitudini funzionano quando sei stanco.
+703	Ogni colpo torna in guardia sulla stessa linea.
+704	Mento basso, occhi aperti, guarda da sotto le sopracciglia.
+705	Non restare mai davanti dopo una combinazione: difenditi, muoviti, o entrambe le cose.
+706	Espira a ogni colpo; i fighter stanchi dimenticano di respirare.
+707	Combinazione, poi difesa
+708	{0} round: ogni combinazione è seguita da una difesa (schivata, rotazione o parata) e da un movimento. Di' «muoviti» ad alta voce.
+709	Finte e ritmo
+710	Un avversario che legge il tuo ritmo può prenderti il tempo. Finte e ritmo spezzato lo fanno reagire a cose che non arrivano mai e lo aprono per quello che arriva.
+711	Finta con la spalla, la mano avanti o mezzo passo. Piccola, rapida e credibile.
+712	Guarda la sua reazione: se sussulta o alza le mani, attacca quello che si apre.
+713	Cambia velocità: un jab lento seguito da un diretto veloce.
+714	Non fintare sempre: una finta funziona solo perché seguono attacchi veri.
+715	Dalla finta al colpo
+716	{0} round: prima di ogni combinazione mostra una finta (spalla, mezzo jab o mezzo passo), poi tira la combinazione vera.
+717	Contrattaccare: fallo sbagliare, faglielo pagare
+718	I contrattacchi entrano più forti perché l'avversario è scoperto e si muove dentro il colpo. I buoni contrattaccanti restano calmi e aspettano il colpo che si aspettano.
+719	Conosci la sua abitudine: quasi tutti tirano lo stesso primo colpo più e più volte.
+720	Difenditi in piccolo così resti a distanza per rispondere.
+721	Contrattacca subito, entro mezzo secondo, prima che si risistemi.
+722	Provoca l'attacco: mostra un'apertura apposta, poi contra quello che arriva.
+723	Round di contrattacco
+724	{0} round di chiamate difensive: ogni difesa è seguita subito dal suo contro.
+725	Quando sei colpito o esausto
+726	Ogni fighter prima o poi viene colpito o resta senza fiato. Sapere esattamente cosa fare impedisce che un brutto momento diventi un incontro perso.
+727	Copriti stretto: gomiti dentro, guantoni sulla testa, mento basso. Non dare la schiena.
+728	Muoviti: esci dalla linea e lontano dalla sua mano forte.
+729	Clinch: legagli le braccia e appoggiati su di lui per guadagnare secondi.
+730	Respira dal naso, rallenta e torna con un jab, non con un colpo alla cieca.
+731	Sopravvivi e recupera
+732	{0} round a ritmo duro con recupero breve: quando il timer chiama «copriti», copriti e muoviti per qualche secondo, poi torna con un jab.
+733	Lunedì
+734	Martedì
+735	Mercoledì
+736	Giovedì
+737	Venerdì
+738	Sabato
+739	Domenica
+740	Fondamentali
+741	Guardia, gioco di gambe, i due colpi dritti, difesa base, il teep e il calcio al corpo.
+742	Filmati per {0} round di shadow: la guardia resta alta, i piedi non si incrociano né si chiudono, ogni colpo torna al viso.
+743	Combinazioni
+744	Ganci, montanti, rotazioni, il calcio con cambio e le ginocchiate, più cambi di livello e rialzarsi.
+745	Filma {0}-{1}-{2} + calcio a velocità piena: la mano dietro non lascia mai il mento e atterri in equilibrio in guardia.
+746	Contrattacchi e distanza
+747	Contrattacco, angoli, gomitate, il clinch, prendere i calci ed entrate di atterramento.
+748	Filmati per {0} round mescolando le distanze, in cui ogni combinazione finisce con una difesa o un angolo.
+749	Armi avanzate
+750	Calci al polpaccio, colpi al fegato, il superman punch, colpi girati, la ginocchiata volante e il calcio a punto interrogativo, quando le basi sono solide.
+751	Filmati per {0} round in cui ogni colpo avanzato compare almeno due volte, preparato da uno base, e atterri in equilibrio ogni volta.
+752	I giorni in garage sono lunedì, mercoledì e venerdì: combattimento e forza in un'unica visita.
+753	Prima il combattimento, poi la forza. La tecnica richiede un corpo fresco; sollevare pesi da stanco è più sicuro che imparare da stanco.
+754	Lunedì e mercoledì: corsa al mattino (facile), garage più tardi.
+755	Il mercoledì è il giorno delle gambe, quindi quella sessione di combattimento resta su tecnica e gioco di gambe, senza calci duri.
+756	Round duri di combattimento solo il venerdì, il giorno senza corsa. La forza C dopo è solo parte alta e core.
+757	Martedì, giovedì e domenica sono giorni di sola corsa, così le corse chiave restano fresche. Il gioco di gambe del sabato è facoltativo.
+758	Ogni {0}ª settimana è di scarico: solo tecnica, niente round duri, metà delle serie di forza.
+759	Sessione di tecnica
+760	{0} min, RPE da {1} a {2}. Impara e rifinisci da {3} a {4} tecniche.
+761	Sessione principale
+762	Da {0} a {1} min. Prima la tecnica, poi round a RPE da {2} a {3}.
+763	Gioco di gambe (facoltativo)
+764	{0} min, facile. Solo movimento, niente colpi duri.
+765	Combinazioni e tecnica
+766	Shadow, ripeti le combinazioni della settimana finché non vengono da sole, affina due tecniche.
+767	Difesa, gioco di gambe e contrattacchi
+768	Leggero per le gambe: niente calci duri. Muoviti, difenditi a chiamata e contrattacca subito.
+769	Round di combattimento e condizionamento
+770	Il giorno duro: round completi che mescolano attacco, difesa e movimento, poi una chiusura di condizionamento.
+771	Forza A: parte alta
+772	Forza B: gambe e core
+773	Forza C: parte alta e core (dopo il combattimento del venerdì)
+774	Facile {0} km ({1}:{2}-{3}:{4} /km)
+775	Ripetute: {0} x {1} m ({2}:{3}-{4}:{5} /km)
+776	Facile {0} km + {1} x {2} s di allunghi
+777	Soglia {0} x {1} min, o tempo {2} km a settimane alterne
+778	Facile {0}-{1} km
+779	Lungo {0} km
+780	Schiva all'esterno o devia, poi {0}
+781	Passo indietro, poi {0}-{1}
+782	Para entrambi, rispondi {0}-{1}
+783	Passa sotto, risali con {0}-{1}
+784	Gomito giù per parare, poi gancio di ritorno
+785	Indietro o copriti, poi {0}
+786	Rotazione o ruota via, poi {0}
+787	Para o afferra, poi {0}
+788	Parata con la tibia, calcio di ritorno subito
+789	Esci dalla linea o afferra, poi calcio
+790	Incornicia sulle anche, spingi via, {0}
+791	Posizione interna, poi ginocchiata o liberati
+792	Sprawl, indietro, {0}-{1}
+793	Apertura: tira la tua combinazione migliore
+795	Sviluppato dall'allenatore Cus D'Amato e reso famoso da Floyd Patterson e Mike Tyson.
+796	Guantoni alti contro le guance, gomiti stretti, accovacciato e abbastanza frontale. La testa non smette mai di muoversi: schivate e rotazioni a ritmo, poi ganci e montanti esplosivi dagli angoli che crea il movimento di testa.
+797	Molto difficile da colpire pulito finché la testa si muove.
+798	Contrattacchi esplosivi e grande potenza dalla posizione accovacciata.
+799	Permette a un fighter più basso di entrare su uno più alto.
