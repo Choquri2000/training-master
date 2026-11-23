@@ -48,10 +48,22 @@ export async function plans() {
   if (!canBuy()) return [];
   const P = await loadPaddle();
   const ids = [['monthly', PADDLE.monthly], ['yearly', PADDLE.yearly]].filter(x => x[1]);
+  const items = ids.map(([, priceId]) => ({ priceId, quantity: 1 }));
   try {
-    const r = await P.PricePreview({ items: ids.map(([, priceId]) => ({ priceId, quantity: 1 })) });
-    return ids.map(([type, id], i) => ({ type, id, price: r.data.details.lineItems[i].formattedTotals.total }));
-  } catch { return ids.map(([type, id]) => ({ type, id, price: type === 'yearly' ? '$29.99' : '$4.99' })); }
+    const r = await P.PricePreview({ items });
+    const li = r.data.details.lineItems, num = i => +li[i].totals.total;
+    const list = ids.map(([type, id], i) => ({ type, id, price: li[i].formattedTotals.total, amount: num(i) }));
+    // Real saving of yearly vs paying monthly for 12 months.
+    const m = list.find(x => x.type === 'monthly'), y = list.find(x => x.type === 'yearly');
+    if (m && y) y.save = Math.round((1 - y.amount / (m.amount * 12)) * 100);
+    // Launch offer on the yearly plan: price shown is what Paddle will really charge, renewal at the regular price.
+    const L = PADDLE.launch;
+    if (y && L?.discountId && (!L.ends || new Date() <= new Date(L.ends + 'T23:59:59'))) {
+      const d = await P.PricePreview({ items: [{ priceId: y.id, quantity: 1 }], discountId: L.discountId });
+      y.offer = { price: d.data.details.lineItems[0].formattedTotals.total, ends: L.ends, discountId: L.discountId };
+    }
+    return list;
+  } catch { return ids.map(([type, id]) => ({ type, id, price: type === 'yearly' ? '$29.99' : '$4.99', save: type === 'yearly' ? 50 : 0 })); }
 }
 
 // Opens Paddle's checkout. The account id travels with the order so the server can unlock Pro.
@@ -62,6 +74,7 @@ export async function buy(plan, user) {
     onCheckoutDone = res;
     P.Checkout.open({
       items: [{ priceId: plan.id, quantity: 1 }],
+      ...(plan.offer ? { discountId: plan.offer.discountId } : {}),
       customer: user.email ? { email: user.email } : undefined,
       customData: { uid: user.uid },
       settings: { displayMode: 'overlay', theme: matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light', allowLogout: false },
