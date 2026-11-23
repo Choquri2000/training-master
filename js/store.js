@@ -2,8 +2,10 @@
 // so export/import is a single JSON blob.
 const KEY = 'combat-coach-v1';
 
+// New users start in their phone's language when the app has it.
+const LANG0 = (() => { try { const l = (navigator.language || 'en').slice(0, 2).toLowerCase(); return ['en', 'es', 'de', 'fr', 'it', 'ka', 'ru'].includes(l) ? l : 'en'; } catch { return 'en'; } })();
 const DEFAULTS = {
-  lang: 'en',
+  lang: LANG0,
   voice: true,
   status: {},       // techId -> 'learning' | 'done'
   phaseUnlocked: 1, // highest phase open

@@ -1,0 +1,399 @@
+1	Hoy
+2	Entrenar
+3	Yo
+4	Semana
+5	Ruta
+6	Aprender
+7	Plan
+8	Progreso
+9	Ajustes
+10	Correr
+11	Fuerza
+12	Combate
+13	Descanso
+14	Empezar sesión
+15	Hoy no hay sesión de combate. Deja descansar las técnicas o haz {0} min de sombra suave si te sientes fresco.
+16	Técnicas clave de hoy
+17	Puntos clave
+18	Errores comunes y cómo corregirlos
+19	Ejercicios
+20	Fase
+21	Bloqueado
+22	Aprendiendo
+23	Hecho
+24	Sin empezar
+25	Empezar a aprender
+26	Marcar como dominada
+27	Reiniciar
+28	Control
+29	He superado este control en vídeo
+30	Siguiente fase desbloqueada
+31	Pausa
+32	Reanudar
+33	Saltar
+34	Parar
+35	Terminar
+36	¿Qué tan duro fue? (RPE {0}-{1})
+37	Guardar
+38	Guardado
+39	min
+40	sesiones
+41	Esta semana
+42	Aún no hay sesiones registradas.
+43	Voz del entrenador
+44	Idioma
+45	Exportar mis datos
+46	Importar datos
+47	Borrar todo
+48	Velocidad
+49	Lento
+50	Normal
+51	Cómo encaja la semana
+52	Abrir
+53	Mis notas
+54	Semana de descarga: solo técnica, sin asaltos duros.
+55	Todo
+56	¿Cómo te salió cada técnica?
+57	Fácil
+58	No salió
+59	Las técnicas marcadas «No salió» vuelven antes en tu plan.
+60	Racha
+61	semanas
+62	Técnicas dominadas
+63	Minutos de combate por semana
+64	A mejorar
+65	Las marcaste como «no salió». Tu plan las trae antes.
+66	Salen fáciles
+67	¿Lista para marcarla como dominada? Ábrela y toca «Marcar como dominada».
+68	Historial
+69	Fecha
+70	Sesión
+71	Técnicas
+72	Principiante
+73	Intermedio
+74	Avanzado
+75	Experto
+76	Mentón y mandíbula
+77	Un golpe en la punta del mentón o en el lateral de la mandíbula gira la cabeza de golpe. El cerebro va con retraso respecto al cráneo, y eso provoca el nocaut. La mandíbula es el objetivo de la mayoría de los golpes definitivos.
+78	Gancho o directo al lateral de la mandíbula; uppercut bajo el mentón cuando la cabeza viene hacia delante.
+79	Sien
+80	El lateral de la cabeza por encima de la oreja, donde el cráneo es más fino. Las patadas y ganchos que entran aquí son muy peligrosos; por eso la guardia la cubre con los guantes.
+81	Patada circular alta o patada interrogación por encima de la guardia; ganchos alrededor de ella; puño giratorio.
+82	Plexo solar
+83	El punto blando bajo el esternón, por encima del estómago. Un golpe recto aquí empuja el diafragma y corta la respiración: el rival no puede respirar durante unos segundos.
+84	Golpes rectos: el directo al cuerpo, el teep, la patada giratoria, un rodillazo recto en el clinch.
+85	Hígado
+86	Bajo las últimas costillas, en el lado derecho del rival, frente a tu mano adelantada (ortodoxo contra ortodoxo). Un golpe limpio provoca un dolor retardado y abrumador que tumba a los peleadores aún conscientes.
+87	Gancho de adelante al cuerpo, patada al cuerpo con la pierna adelantada (con cambio), rodillazo recto; baja de nivel para llegar.
+88	Costillas y bazo
+89	El lado izquierdo del rival, abierto a tu patada y tu mano de atrás. Las costillas flotantes de abajo no están unidas al esternón y se rompen o se lesionan con facilidad; el bazo está detrás de ellas.
+90	Patada circular de atrás al cuerpo, gancho o uppercut de atrás al cuerpo.
+91	Muslo (pierna adelantada)
+92	El músculo grande de la parte exterior del muslo adelantado. Las patadas bajas repetidas ahí duermen la pierna: el rival no puede empujar con ella y sus golpes y movimiento pierden fuerza.
+93	Patada baja circular de atrás con la tibia, unos centímetros por encima de la rodilla; prepárala con golpes a la cabeza.
+94	Pantorrilla (pierna adelantada)
+95	La parte de atrás y exterior de la pantorrilla adelantada, justo debajo de la rodilla. Es difícil de bloquear porque entra por debajo de la rodilla, y unas pocas patadas limpias le quitan al rival la guardia y el juego de pies.
+96	La patada a la pantorrilla: una circular baja y corta cuando su peso está en la pierna adelantada.
+97	Golpes avanzados
+98	Fintas, preparaciones y trampas
+99	Movimientos de firma
+100	Defensa personal
+101	Patada a la pantorrilla
+102	Una circular baja a la parte de atrás de la pantorrilla adelantada. Le quita al rival la base y el movimiento, y es difícil de bloquear porque entra por debajo de la rodilla.
+103	Saca un poco el pie adelantado para abrir el ángulo y luego gira la cadera.
+104	Apunta con la parte baja de la tibia a la zona carnosa de atrás y fuera de la pantorrilla, justo bajo el pliegue de la rodilla.
+105	Lánzala cuando su peso esté en la pierna adelantada: cuando da un paso o lanza el jab.
+106	Patada corta y rápida, y vuelve a la guardia. No persigas la potencia.
+107	Pegar en el hueso de la tibia
+108	Apunta más abajo y más atrás: al músculo blando detrás de la pierna, no a la parte delantera de la tibia.
+109	Bajar la mano de atrás al patear
+110	El guante de atrás se queda en el mentón; la patada sale de la cadera, no del brazo.
+111	Jab, patada a la pantorrilla
+112	{0} x {1} min: jab para traer su peso adelante, luego patada a la pantorrilla. Toca el saco o un cojín a la altura de la pantorrilla.
+113	Al hígado (gancho de adelante al cuerpo)
+114	El hígado está bajo las últimas costillas del lado derecho del rival, frente a tu mano adelantada. Un gancho limpio ahí puede tumbar a un peleador aunque siga consciente.
+115	Baja de nivel con las rodillas, no doblando la cintura. La cabeza va un poco hacia tu lado adelantado, por fuera de su mano de atrás.
+116	Gira fuerte la cadera y el pie adelantados, como en un gancho normal, con el codo pegado a tus costillas.
+117	Apunta hacia arriba y hacia dentro bajo el codo: el objetivo son las últimas costillas de su lado derecho.
+118	Vuelve a subir con la mano a la cara, o sigue con un gancho a la cabeza.
+119	Lanzarlo desde demasiado lejos
+120	Es un golpe corto. Entra primero para que el codo quede doblado a unos {0} grados.
+121	Inclinarse con la cabeza por delante
+122	Dobla las rodillas; tu cabeza queda sobre la rodilla adelantada y fuera de la línea central.
+123	Jab, al hígado
+124	{0} x {1} min: jab a la cabeza para subirle la guardia, baja, gancho de adelante al cuerpo. Después añade un gancho a la cabeza.
+125	Golpe superman
+126	Un golpe de mano de atrás lanzado mientras el cuerpo vuela hacia delante tras fingir una rodilla o patada. La finta le baja la guardia y el salto acorta la distancia rápido.
+127	Finta con la pierna de atrás: sube la rodilla como si fueras a patear o dar un rodillazo.
+128	Baja de golpe esa pierna hacia atrás mientras te impulsas con el pie adelantado.
+129	Lanza el directo en lo alto del salto, con la pierna de atrás pateando hacia atrás para equilibrarte.
+130	Cae sobre el pie adelantado en guardia y prepárate: ahora estás cerca.
+131	Saltar alto en vez de hacia delante
+132	Avanza una distancia corta; es una estocada, no un salto.
+133	Sin finta, así que lo ve venir
+134	La finta con la pierna de atrás tiene que parecer primero una patada real.
+135	Patada, patada, superman
+136	{0} x {1} min: dos patadas de atrás reales, y luego el mismo inicio se convierte en un golpe superman. Suave en el saco o al aire.
+137	Hecho con dos capturas: una subida de rodilla (la finta) encadenada con un directo. Un superman real también lanza la pierna de atrás hacia atrás; fíjate en eso en los puntos clave.
+138	Aprende los giros y los saltos a ritmo de paseo en un suelo despejado, descalzo o sobre una colchoneta. Fija la vista en un punto de la pared para orientarte y para si te mareas.
+139	Puño giratorio
+140	La mano de atrás da la vuelta con el giro y golpea con el dorso del puño. Sorprende a rivales que giran alejándose de tu mano de atrás, o tras un gancho fallado.
+141	Cruza el pie adelantado (un pasito a tu derecha si eres ortodoxo) para cargar el giro.
+142	Gira primero la cabeza y mira por encima del hombro de atrás: encuentra el objetivo antes de que llegue el brazo.
+143	Deja que el brazo de atrás salga a la altura de la cabeza y golpea con el dorso del guante, codo ligeramente doblado.
+144	Sigue girando hasta volver a la guardia; nunca te pares de espaldas a él.
+145	Girar a ciegas
+146	La cabeza gira primero. Si no ves el objetivo, no lances el brazo.
+147	Lanzarlo desde demasiado lejos
+148	Úsalo a distancia de puños, cuando se mueve hacia tu lado de atrás o después de fallar el gancho.
+149	Giros lentos
+150	{0} x {1} min de puños giratorios lentos al aire, mirando por encima del hombro cada vez. Luego {2} x {3} min mezclándolo después de un gancho de adelante.
+151	No existe una captura libre del puño giratorio, así que se muestra el giro de una patada giratoria encadenado con un golpe de mano de atrás. Sigue los puntos clave para el brazo.
+152	Patada giratoria
+153	Una patada recta lanzada hacia atrás con el talón, la patada más potente al cuerpo. Ideal contra rivales que avanzan de frente.
+154	Gira sobre el pie adelantado y mira el objetivo por encima del hombro de atrás.
+155	Recoge la rodilla de atrás pegada al pecho mientras le das la espalda.
+156	Empuja el talón recto hacia atrás en línea, puntas hacia abajo; el pie viaja como un pistón, no en arco.
+157	Recoge la pierna y termina el giro en guardia, manos arriba.
+158	Barrer la pierna como en una circular
+159	Rodilla al pecho y luego recto: el talón va en línea recta desde tu cadera a su abdomen.
+160	Dar la espalda sin mirar
+161	La cabeza gira primero para ver lo que pateas y lo que te llega.
+162	Patadas a la pared
+163	{0} x {1} min: de lado a una pared o un saco, gira, recoge, empuja el talón contra ella despacio. Luego {2} x {3} min después de un jab o de una patada fallada.
+164	Rodilla voladora
+165	Un rodillazo en salto que recorre distancia rápido. Pilla a rivales que bajan la cabeza, entran al derribo o avanzan.
+166	Da un paso corto con el pie adelantado y luego impulsa la rodilla de atrás hacia arriba y adelante al saltar.
+167	Cambia las piernas en el aire para que suba la rodilla de atrás (o salta directo desde la pierna de atrás).
+168	Las manos enmarcan arriba, cerca de su cabeza o en tu guardia. La cadera empuja hacia delante con la rodilla.
+169	Cae equilibrado sobre ambos pies en guardia; no te caigas encima de él.
+170	Saltar recto hacia arriba
+171	Es avanzar: apunta la rodilla a su mentón o su pecho, no al techo.
+172	Caer desequilibrado
+173	Cae sobre la parte delantera de ambos pies, rodillas flexionadas, manos de vuelta a la guardia.
+174	Paso y vuelo
+175	{0} x {1} min: paso y rodilla voladora a un saco colgado o un cojín sujeto a la altura del pecho. Descanso completo entre repeticiones; calidad antes que velocidad.
+176	Patada interrogación
+177	Una patada que empieza como patada al cuerpo y gira tarde hacia la cabeza, dibujando un signo de interrogación en el aire. El rival baja el brazo para cubrir el cuerpo y se abre la cabeza.
+178	Sube la rodilla en la línea de la patada al cuerpo, como la lanzas siempre.
+179	En el último momento pivota más sobre el pie de apoyo y gira la cadera para que la rodilla apunte hacia abajo.
+180	Chasquea la tibia o el empeine por encima de su brazo bajado hacia la cabeza.
+181	Recoge la pierna por el mismo camino y cae en guardia. Las manos arriba todo el tiempo.
+182	Enseñar pronto la patada a la cabeza
+183	La primera mitad tiene que ser idéntica a tu patada al cuerpo, o el truco no funciona.
+184	Poco giro
+185	El talón de apoyo debe girar hacia el objetivo para que la cadera pueda rodar por encima.
+186	Cuerpo, cuerpo, interrogación
+187	{0} x {1} min: dos patadas reales al cuerpo, y luego el mismo inicio se convierte en la interrogación. Lenta y alta antes que rápida.
+188	Se muestra con una captura de patada alta. La patada interrogación real empieza en la línea de la patada al cuerpo y gira tarde; los puntos clave muestran el cambio.
+189	Finta de jab, patada de atrás
+190	Una pequeña finta de jab hace que el rival suba la guardia y se congele un instante. Ese instante es cuando la patada de atrás entra en el cuerpo abierto.
+191	Finta con el hombro y un empujón corto de la mano adelantada: un tercio de jab, seco.
+192	Cuando suben sus manos, la patada de atrás ya está en camino.
+193	La patada entra en el cuerpo o en el brazo; de cualquier forma puntúa.
+194	Vuelve a la guardia con la mano del jab lista para la siguiente finta.
+195	Una finta lenta y perezosa
+196	Una finta tiene que ser tan seca como el inicio de un jab real, solo que más corta.
+197	Esperar a ver si la finta funcionó
+198	Finta y patada son un solo ritmo: ta-TÁN.
+199	Finta o de verdad
+200	{0} x {1} min: mezcla jabs reales y fintas; cada finta va seguida de la patada de atrás.
+201	Finta de patada, directo
+202	Sube la rodilla de atrás como si fueras a patear: el rival baja una mano o levanta una pierna para bloquear. Apoya el pie hacia delante y lanza el directo al hueco.
+203	Sube la rodilla de atrás con decisión, las manos se quedan en guardia.
+204	Apoya ese pie un poco más adelante, no atrás donde estaba.
+205	El directo sale cuando el pie aterriza, usando el paso para la potencia.
+206	Termina en guardia; ahora estás a distancia de puños.
+207	Finta demasiado pequeña para leerse
+208	La rodilla tiene que subir claramente, a la altura de la cadera.
+209	Echarse atrás en la finta
+210	Mantente erguido sobre la pierna de apoyo para poder golpear enseguida.
+211	Patada o finta
+212	{0} x {1} min: la mitad de las veces patea, la otra mitad finta y directo. Que ambos inicios se vean iguales.
+213	Provocar el contraataque
+214	Lanza un jab que quieras que te contraataque. Su directo de respuesta viene por una línea que ya conoces, así que lo esquivas y conectas tu propio directo mientras está abierto.
+215	Haz el jab a un ritmo que pueda leer: estás invitando al contraataque.
+216	Cuando vuelve el jab, esquiva por fuera de su mano de atrás (a tu derecha si eres ortodoxo).
+217	Desde la esquiva tu peso está cargado en la pierna de atrás: dispara el directo.
+218	Hazlo una o dos veces por asalto; una trampa que se enseña demasiado deja de funcionar.
+219	Esquivar antes de que golpee
+220	Jab, y luego reacciona al hombro. Una esquiva planeada te deja adivinando.
+221	Lanzar el jab cebo con el mentón arriba
+222	El cebo es más lento, no más descuidado: mentón abajo, mano de atrás arriba.
+223	Cebo y esquiva
+224	{0} x {1} min: jab, esquiva, directo. Imagina el contraataque en cada jab, o que un compañero lance un directo lento.
+225	Romper el ritmo
+226	Los rivales cogen tu ritmo. Un jab, una pausa corta y luego un {0}-{1} rápido les hace reaccionar a un golpe que nunca llegó.
+227	Lanza un jab normal y mantén la guardia medio segundo.
+228	Fíjate en si se relaja o empieza su propio ataque.
+229	Explota con el {0}-{1} en ese hueco.
+230	Varía la pausa: corta, larga, ninguna. El ritmo impredecible es el arma.
+231	Pausar con las manos bajas
+232	La pausa está en los golpes, no en la guardia. Mantente cerrado y listo.
+233	Siempre la misma pausa
+234	Cambia el ritmo cada vez, o se convierte en un ritmo nuevo.
+235	Asaltos a contratiempo
+236	{0} x {1} min: jab, pausa, {2}-{3}. Cuenta la pausa distinta en cada repetición (uno, uno-dos, nada).
+237	Cuerpo, luego cabeza
+238	Golpea el cuerpo y las manos bajan a protegerlo. La misma mano sube directa a la cabeza, ahora abierta.
+239	Baja con las rodillas y conecta el gancho de adelante al cuerpo.
+240	Sube mientras vuelve la mano: tus piernas te levantan hacia el segundo gancho.
+241	Segundo gancho a la cabeza por el mismo lado; mantén la mano de atrás en el mentón todo el tiempo.
+242	Sal o pivota después; no te quedes delante.
+243	Incorporarse entre los ganchos
+244	Sube mientras lanzas el gancho a la cabeza; la subida es parte de la potencia.
+245	Gancho al cuerpo desde demasiado lejos
+246	Entra primero; el gancho al cuerpo es corto.
+247	Ganchos abajo-arriba
+248	{0} x {1} min: gancho al cuerpo, gancho a la cabeza, pivote para salir. Suave y rápido en el saco o al aire.
+249	Finta de derribo, directo
+250	Baja de nivel como si entraras al derribo. Sus manos bajan a defender las piernas y el directo entra por encima al subir.
+251	Cambia de nivel rápido con las rodillas, cabeza arriba, manos arriba.
+252	No des el paso: es un descenso seco en el sitio.
+253	Sube y lanza el directo en un solo movimiento; lo impulsan las piernas.
+254	Si hace un sprawl fuerte, el directo entra en una cabeza bajada.
+255	Bajar la mirada al suelo
+256	Mírale al pecho todo el tiempo.
+257	Doblar la cintura
+258	Dobla las rodillas; la espalda recta para poder subir rápido.
+259	Derribo o directo
+260	{0} x {1} min: mezcla cambios de nivel que acaban en directo con otros que vuelven a la guardia.
+261	Teep, luego patada
+262	El teep lo saca de distancia. Cuando vuelve a entrar para acortar, se mete en tu circular.
+263	Teep al abdomen o la cadera para empujarlo atrás.
+264	Apoya el pie y espera que avance enseguida.
+265	Sincroniza la patada de atrás para recibir ese paso.
+266	Si no vuelve a entrar, teep otra vez o entra tú.
+267	Teep que solo toca
+268	Empuja a través: el teep debe moverlo, no darle un toquecito.
+269	Patear cuando todavía está fuera de distancia
+270	Espera a que entre; la trampa es su movimiento hacia delante.
+271	Empujar y recibir
+272	{0} x {1} min: teep, recolócate, patada en la entrada imaginada. Con compañero, él avanza tras cada teep.
+273	Tyson: esquiva al gancho de adelante
+274	El estilo peek-a-boo de Mike Tyson: esquiva el jab o el directo y convierte la propia esquiva en un gancho de adelante corto y demoledor. La esquiva carga el gancho como un muelle.
+275	Manos altas junto a las mejillas, mentón abajo, rodillas flexionadas: la guardia peek-a-boo.
+276	Esquiva a tu derecha doblando las rodillas y girando los hombros; el peso va a la pierna adelantada.
+277	Impúlsate con esa pierna cargada y vuelve con un gancho de adelante corto a la cabeza o al cuerpo.
+278	Sigue moviendo la cabeza después; Tyson nunca se quedaba en la línea central.
+279	Esquivar, pausar y luego el gancho
+280	La esquiva y el gancho son un solo movimiento: el gancho empieza cuando termina la esquiva.
+281	Quedarse erguido
+282	Pelea bajo con las rodillas flexionadas; la altura es lo que hace rápida la esquiva.
+283	Asaltos peek-a-boo
+284	{0} x {1} min: esquiva a la derecha, gancho de adelante; esquiva a la izquierda, directo. Bajo todo el asalto.
+285	Lomachenko: el ángulo con pivote
+286	Vasyl Lomachenko conecta, pivota alrededor del lado adelantado del rival y vuelve a golpear antes de que pueda girarse. Pelear desde ángulos significa golpear cuando él no puede.
+287	Conecta un {0}-{1} corto para que se cubra.
+288	Pivota sobre el pie adelantado, girando el pie de atrás unos {0} grados hacia su lado.
+289	Su guardia apunta ahora a donde estabas. Dispara otra vez el {0}-{1} al lado abierto.
+290	Sigue pivotando o sal antes de que se gire.
+291	Pivotar desde demasiado lejos
+292	El pivote funciona a distancia de puños, casi tocando su hombro adelantado.
+293	Bajar las manos durante el giro
+294	Las manos pegadas a la cara mientras trabajan los pies.
+295	Asaltos de ángulos
+296	{0} x {1} min: {2}-{3}, pivote, {4}-{5}. Marca un punto en el suelo como rival y gira a su alrededor.
+297	Buakaw: el teep y la patada al cuerpo
+298	Buakaw Banchamek controla los combates con el teep: frena cada ataque, mantiene la distancia y puntúa. Cuando el rival deja de avanzar, entra la patada al cuerpo.
+299	Erguido y relajado, manos largas y altas, al estilo tailandés.
+300	Teep al abdomen cada vez que entra, empujando con la cadera.
+301	Dos teeps le hacen dudar; la circular entra en esa duda.
+302	Patea con la tibia atravesando las costillas y vuelve directo a la guardia, equilibrado.
+303	Hacer el teep solo con la pierna
+304	Empuja la cadera adelante; la pierna es solo la vara.
+305	Perder el equilibrio tras la patada
+306	Gira completo y cae en guardia; el equilibrio de Buakaw es el secreto de sus patadas.
+307	Muro de teeps
+308	{0} x {1} min: teep en cada entrada imaginada, patada al cuerpo tras el segundo teep. Ritmo tailandés relajado.
+309	Pereira: el check hook de izquierda
+310	Alex Pereira espera a que el rival entre con prisa, da un pasito atrás y conecta un gancho de adelante corto cuando llega. Se mete él solo en el golpe, así que entra con doble fuerza.
+311	Relajado a distancia, déjale venir.
+312	Cuando entra, da un paso corto atrás con el pie de atrás para que tenga que estirarse.
+313	Gira la cadera adelantada y lanza un gancho de adelante corto y cerrado cuando su peso viene hacia delante.
+314	Mantén el equilibrio; deberías estar listo para otro gancho o para moverte.
+315	Abrir el gancho
+316	El gancho es corto y cerrado; él te trae la distancia.
+317	Retroceder demasiado
+318	Solo unos centímetros: lo justo para que falle, lo bastante cerca para golpear.
+319	Timing del check hook
+320	{0} x {1} min: un compañero (o el temporizador) entra, tú das un paso atrás y lanzas el gancho. Sin compañero, avanza, paso atrás, gancho.
+321	Mayweather: el pull counter
+322	Floyd Mayweather se echa hacia atrás justo fuera del alcance del jab y vuelve de golpe con el directo mientras la mano del rival sigue fuera. Sigue un gancho cuando se cubre.
+323	Hombro adelantado alto y mano de atrás junto al mentón.
+324	Cuando llega el jab, pasa el peso a la pierna de atrás e inclínate unos centímetros atrás; el jab se queda corto.
+325	Impúlsate con la pierna de atrás y dispara el directo por encima de su jab que vuelve.
+326	Añade el gancho de adelante cuando se cubra y recolócate.
+327	Echarse demasiado atrás
+328	Justo fuera de alcance: inclinarse mucho mata tu equilibrio y el contraataque.
+329	Echarse atrás con el mentón arriba
+330	El mentón se queda protegido tras el hombro adelantado al inclinarte.
+331	Retroceder y castigar
+332	{0} x {1} min: imagina o que un compañero lance un jab lento; atrás, directo, gancho. Pequeño y tranquilo.
+333	St-Pierre: del jab al derribo a dos piernas
+334	Georges St-Pierre usaba el jab para que el rival pensara en su cara y entraba al derribo a dos piernas por debajo. El derribo empieza con un golpe.
+335	Lanza un jab real y seco a la cara.
+336	Cuando vuelve, cambia de nivel enseguida: sus manos están arriba.
+337	Paso de penetración entre sus pies, cabeza arriba, y empuja a través.
+338	Si fallas la entrada, sube a la guardia detrás de tus manos.
+339	Jab, pausa, derribo
+340	La entrada es parte de la vuelta del jab. Sin hueco entre medias.
+341	Entrar desde demasiado lejos
+342	El jab encuentra la distancia; si el jab apenas llega, la entrada también.
+343	Repeticiones jab-derribo
+344	{0} x {1} min sobre colchoneta: jab, cambio de nivel, paso a través. Añade un segundo jab cada tercera repetición.
+345	Ali: jab y movimiento
+346	Muhammad Ali golpeaba y ya no estaba cuando llegaba la respuesta. Jabs rápidos y un paso fuera de la línea, así el rival siempre golpea donde él estaba.
+347	Ligero sobre la parte delantera de los pies, moviéndote todo el tiempo.
+348	Doble jab: chas, chas, ambos vuelven rápido.
+349	Sal hacia un lado justo después, nunca recto hacia atrás.
+350	Recolócate a distancia y repite desde un ángulo nuevo.
+351	Quedarse delante tras los jabs
+352	El movimiento es parte de la combinación: jab, jab, fuera.
+353	Pies planos
+354	Bota suavemente; la velocidad de Ali venía de sus pies.
+355	Golpea y muévete
+356	{0} x {1} min: doble jab, paso a la izquierda o derecha, gira, repite. Nunca te quedes quieto.
+357	La valla: crea espacio y vete
+358	Casi todos los problemas empiezan con alguien acortando la distancia mientras habla. La valla lo mantiene a un brazo sin parecer un peleador y te da tiempo para irte.
+359	Ponte de perfil con las palmas abiertas delante del pecho, como diciendo «tranquilo».
+360	Mantenlo a la distancia de tu mano adelantada; si la sobrepasa, retrocede o sal hacia un lado.
+361	Si te agarra o se lanza, empuja o dale un teep al abdomen o la cadera para crear espacio.
+362	Luego vete: retrocede de cara a él y después gírate y ve hacia la gente y la luz.
+363	Puños arriba y ponerse de frente
+364	Las manos abiertas calman la situación y te hacen parecer quien no quería problemas.
+365	Dejar que entre dentro de tus manos
+366	Las manos son una valla: cuando la tocan, te mueves.
+367	Valla y paso
+368	{0} x {1} min: camina hacia una pared como si fuera una persona, pon la valla, sal de la línea, empuja, retrocede. Di «Atrás» en voz alta.
+369	Los movimientos de defensa personal se muestran con las capturas de combate más parecidas (marcos, rodillas, codos, pasos). Los agarres y escapes exactos están en los puntos clave.
+370	El objetivo de la defensa personal es escapar a salvo, no ganar. Si puedes irte, vete. Usa solo la fuerza necesaria y practica los escapes despacio con un compañero que suelte con facilidad.
+371	Escape de agarre de muñeca
+372	Un agarre es más débil donde se juntan el pulgar y los dedos. Gira la muñeca hacia ese hueco y tira con fuerza, luego aléjate.
+373	No tires recto hacia atrás contra toda la mano: busca su pulgar.
+374	Gira el antebrazo hacia el pulgar y saca la muñeca de golpe por el hueco, con el codo doblándose hacia él.
+375	Da un paso atrás al tirar para que te ayude el peso del cuerpo.
+376	Si te agarra con las dos manos, mete la mano entre sus brazos, sujeta tu propio puño y tira hacia arriba por los pulgares.
+377	Tira y afloja
+378	Tirar recto contra cuatro dedos es perder. El pulgar es la salida.
+379	Quedarse cerca tras escapar
+380	El escape solo termina cuando te has alejado.
+381	Escapes de agarres
+382	Con un compañero que agarre firme pero con cuidado: {0} escapes por lado, luego {1} con dos manos. Despacio al principio.
+383	Espalda contra la pared
+384	Con una pared detrás no puedes retroceder y cada golpe no tiene adónde ir. El único objetivo es salir de la pared hacia un lado.
+385	Cúbrete arriba con ambos antebrazos, codos dentro, mentón protegido.
+386	Crea espacio con una rodilla al muslo o un empujón a la cadera.
+387	Sal hacia un lado a lo largo de la pared, nunca recto hacia él.
+388	Pivota para que ahora la pared quede detrás de él y vete por el lado abierto.
+389	Quedarse a intercambiar en la pared
+390	Cada segundo en la pared es un segundo sin escape. Cúbrete, crea espacio, muévete.
+391	Agacharse
+392	Bajar contra una pared te deja atrapado; quédate erguido detrás de la guardia.
+393	Salidas de la pared
+394	{0} x {1} min: de espaldas a una pared (la del garaje), cúbrete, rodilla, paso lateral, pivote, vete. Alterna los lados.
+395	Escape de abrazo de oso de frente
+396	Alguien te abraza por el cuerpo de frente con tus brazos libres. Baja tu peso, enmarca su cadera para crear espacio, golpea y libérate.
+397	Baja la cadera y abre la postura enseguida para que no pueda levantarte.
+398	Empuja con los antebrazos o las palmas contra su cadera o su cuello para abrir un hueco.
+399	Rodilla al muslo o la ingle por ese hueco hasta que afloje el agarre.

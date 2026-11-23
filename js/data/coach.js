@@ -1,7 +1,7 @@
 // Coaching captions for step-by-step mode: as you scrub, each moment of the movement is
 // named and explained. Phases come from the measured timing of each capture (combos.js).
 import { WIN, PEAK } from './combos.js';
-import { store } from '../store.js';
+import { P } from '../i18n.js';
 
 const CAT = {
   punch: ['jab', 'cross', 'onetwo', 'leadhook', 'rearhook', 'leaduppercut', 'rearuppercut', 'elbow'],
@@ -57,7 +57,7 @@ export function coachPhase(clip, f, techCat) {
   if (!w || pk == null || !cat) return null;
   const i = f < w[0] ? 0 : f < pk - 0.06 ? 1 : f <= pk + 0.08 ? 2 : f < w[1] ? 3 : 4;
   const [en, ka] = TEXT[cat][i];
-  const [name, text] = store.get().lang === 'ka' ? ka : en;
+  const [name, text] = P(en, ka);
   return { i: Math.min(i + 1, 4), name, text };
 }
 // A technique id's caption family (for sequences built from another clip, e.g. check = knee lift).

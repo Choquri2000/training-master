@@ -1,0 +1,399 @@
+1	Aujourd'hui
+2	Entraînement
+3	Moi
+4	Semaine
+5	Parcours
+6	Apprendre
+7	Plan
+8	Progrès
+9	Réglages
+10	Course
+11	Force
+12	Combat
+13	Repos
+14	Commencer la séance
+15	Pas de séance de combat aujourd'hui. Laisse reposer la technique, ou fais {0} min de shadow léger si tu te sens frais.
+16	Techniques du jour
+17	Points clés
+18	Erreurs fréquentes et corrections
+19	Exercices
+20	Phase
+21	Verrouillé
+22	En cours
+23	Fait
+24	Pas commencé
+25	Commencer
+26	Marquer comme acquise
+27	Réinitialiser
+28	Validation
+29	J'ai validé cette étape en vidéo
+30	Phase suivante débloquée
+31	Pause
+32	Reprendre
+33	Passer
+34	Arrêter
+35	Terminer
+36	C'était dur comment ? (RPE {0}-{1})
+37	Enregistrer
+38	Enregistré
+39	min
+40	séances
+41	Cette semaine
+42	Aucune séance enregistrée pour l'instant.
+43	Annonces vocales
+44	Langue
+45	Exporter mes données
+46	Importer des données
+47	Tout effacer
+48	Vitesse
+49	Lent
+50	Normal
+51	Comment s'organise la semaine
+52	Ouvrir
+53	Mes notes
+54	Semaine de décharge : technique uniquement, pas de rounds durs.
+55	Tout
+56	Comment s'est passée chaque technique ?
+57	Facile
+58	Pas réussi
+59	Les techniques « Pas réussi » reviennent plus tôt dans ton plan.
+60	Série
+61	semaines
+62	Techniques acquises
+63	Minutes de combat par semaine
+64	À travailler
+65	Tu les as notées « pas réussi ». Ton plan les ramène plus tôt.
+66	Ça passe facilement
+67	Prête à être marquée comme acquise ? Ouvre-la et touche « Marquer comme acquise ».
+68	Historique
+69	Date
+70	Séance
+71	Techniques
+72	Débutant
+73	Intermédiaire
+74	Avancé
+75	Expert
+76	Menton et mâchoire
+77	Un coup à la pointe du menton ou sur le côté de la mâchoire fait tourner la tête brutalement. Le cerveau suit le crâne avec un temps de retard, et c'est ce qui provoque le KO. La mâchoire est la cible de la plupart des coups décisifs.
+78	Crochet ou direct sur le côté de la mâchoire ; uppercut sous le menton quand la tête avance.
+79	Tempe
+80	Le côté de la tête au-dessus de l'oreille, là où le crâne est le plus fin. Les coups de pied et crochets qui touchent ici sont très dangereux, c'est pourquoi la garde la couvre avec les gants.
+81	Middle kick haut ou coup de pied point d'interrogation par-dessus la garde ; crochets autour ; revers tourné.
+82	Plexus solaire
+83	Le point mou sous le sternum, au-dessus de l'estomac. Un coup droit ici enfonce le diaphragme et coupe le souffle : l'adversaire ne peut plus respirer pendant quelques secondes.
+84	Coups droits : le direct au corps, le teep, le coup de pied retourné, un genou droit dans le clinch.
+85	Foie
+86	Sous les dernières côtes, du côté droit de l'adversaire, face à ta main avant (orthodoxe contre orthodoxe). Un coup net provoque une douleur retardée et écrasante qui met les combattants au sol alors qu'ils sont encore conscients.
+87	Crochet avant au corps, coup de pied avant au corps (avec changement), genou droit ; baisse ton niveau pour l'atteindre.
+88	Côtes et rate
+89	Le côté gauche de l'adversaire, ouvert à ton coup de pied et à ta main arrière. Les côtes flottantes du bas ne sont pas reliées au sternum et se cassent ou se froissent facilement ; la rate est juste derrière.
+90	Coup de pied circulaire arrière au corps, crochet ou uppercut arrière au corps.
+91	Cuisse (jambe avant)
+92	Le gros muscle à l'extérieur de la cuisse avant. Des low kicks répétés à cet endroit engourdissent la jambe : l'adversaire ne peut plus pousser dessus, ses coups et ses déplacements perdent leur puissance.
+93	Low kick arrière avec le tibia, quelques centimètres au-dessus du genou ; prépare-le avec des coups à la tête.
+94	Mollet (jambe avant)
+95	L'arrière et l'extérieur du mollet avant, juste sous le genou. Difficile à bloquer car il touche sous le genou, et quelques coups nets enlèvent à l'adversaire sa garde et son jeu de jambes.
+96	Le calf kick : un low kick court quand son poids est sur la jambe avant.
+97	Techniques avancées
+98	Feintes, préparations et pièges
+99	Coups signature
+100	Self-défense
+101	Calf kick
+102	Un low kick dans l'arrière du mollet avant. Il enlève à l'adversaire ses appuis et sa mobilité, et il est difficile à bloquer car il touche sous le genou.
+103	Écarte légèrement le pied avant pour ouvrir l'angle, puis bascule la hanche.
+104	Vise avec le bas du tibia la partie charnue arrière-extérieure du mollet, juste sous le creux du genou.
+105	Lance-le quand son poids est sur la jambe avant : quand il avance ou lance le jab.
+106	Coup de pied court et rapide, puis retour en garde. Ne cherche pas la puissance.
+107	Frapper l'os du tibia
+108	Vise plus bas et plus en arrière : le muscle mou derrière la jambe, pas l'avant du tibia.
+109	Baisser la main arrière en frappant
+110	Le gant arrière reste au menton ; le coup de pied vient de la hanche, pas du bras.
+111	Jab, calf kick
+112	{0} x {1} min : jab pour faire avancer son poids, puis calf kick. Touche le sac ou un coussin à hauteur de mollet.
+113	Au foie (crochet avant au corps)
+114	Le foie est sous les dernières côtes, du côté droit de l'adversaire, face à ta main avant. Un crochet net à cet endroit peut mettre un combattant au sol même s'il reste conscient.
+115	Baisse ton niveau avec les genoux, pas en te penchant à la taille. La tête part légèrement vers ton côté avant, à l'extérieur de sa main arrière.
+116	Tourne fort la hanche et le pied avant, comme pour un crochet avant normal, coude collé à tes côtes.
+117	Vise vers le haut et vers l'intérieur sous le coude : la cible, ce sont les dernières côtes de son côté droit.
+118	Remonte la main au visage, ou enchaîne avec un crochet à la tête.
+119	Frapper de trop loin
+120	C'est un coup court. Entre d'abord pour que le coude reste plié à environ {0} degrés.
+121	Se pencher avec la tête en avant
+122	Plie les genoux ; ta tête reste au-dessus du genou avant et hors de la ligne centrale.
+123	Jab, au foie
+124	{0} x {1} min : jab à la tête pour faire monter sa garde, descends, crochet avant au corps. Puis ajoute un crochet à la tête.
+125	Superman punch
+126	Un coup de la main arrière lancé pendant que le corps vole vers l'avant après une feinte de genou ou de pied. La feinte fait baisser sa garde et le saut réduit vite la distance.
+127	Feinte avec la jambe arrière : lève le genou comme pour un coup de pied ou un genou.
+128	Ramène vite cette jambe vers le bas et l'arrière en poussant sur le pied avant.
+129	Lance le direct au sommet du saut, la jambe arrière part vers l'arrière pour l'équilibre.
+130	Reçois-toi sur le pied avant en garde et sois prêt : tu es maintenant près.
+131	Sauter haut au lieu d'avancer
+132	Avance sur une courte distance ; c'est une fente, pas un saut.
+133	Pas de feinte, donc il le voit venir
+134	La feinte de la jambe arrière doit d'abord ressembler à un vrai coup de pied.
+135	Pied, pied, superman
+136	{0} x {1} min : deux vrais coups de pied arrière, puis le même départ devient un superman punch. Léger au sac ou dans le vide.
+137	Construit à partir de deux captures : une montée de genou (la feinte) enchaînée avec un direct. Un vrai superman punch lance aussi la jambe arrière vers l'arrière ; regarde ce point dans les points clés.
+138	Apprends les coups tournés et sautés au pas, sur un sol dégagé, pieds nus ou sur un tapis. Fixe un point au mur pour t'orienter et arrête si la tête te tourne.
+139	Revers tourné
+140	La main arrière fouette avec la rotation et touche avec le dos du poing. Il surprend les adversaires qui tournent pour s'éloigner de ta main arrière, ou après un crochet manqué.
+141	Croise le pied avant (un petit pas vers ta droite en orthodoxe) pour charger la rotation.
+142	Tourne d'abord la tête et regarde par-dessus l'épaule arrière : trouve la cible avant que le bras arrive.
+143	Laisse le bras arrière partir à hauteur de tête et touche avec le dos du gant, coude légèrement fléchi.
+144	Continue la rotation jusqu'à revenir en garde ; ne t'arrête jamais dos à lui.
+145	Tourner à l'aveugle
+146	La tête tourne d'abord. Si tu ne vois pas la cible, ne lance pas le bras.
+147	Le lancer de trop loin
+148	Utilise-le à distance de poings, quand il part vers ton côté arrière ou après ton crochet manqué.
+149	Rotations lentes
+150	{0} x {1} min de revers tournés lents dans le vide, en regardant par-dessus l'épaule à chaque fois. Puis {2} x {3} min en l'enchaînant après un crochet avant.
+151	Il n'existe pas de capture libre de revers tourné, alors on montre la rotation d'un coup de pied retourné enchaînée avec un coup de la main arrière. Suis les points clés pour le bras.
+152	Coup de pied retourné
+153	Un coup de pied droit envoyé vers l'arrière avec le talon, le coup de pied le plus puissant au corps. Idéal contre les adversaires qui avancent de face.
+154	Pivote sur le pied avant et regarde la cible par-dessus l'épaule arrière.
+155	Ramène le genou arrière serré contre la poitrine pendant que ton dos se tourne vers lui.
+156	Pousse le talon droit vers l'arrière en ligne, orteils vers le bas ; le pied part comme un piston, pas en arc.
+157	Ramène la jambe et termine la rotation en garde, mains hautes.
+158	Balancer la jambe comme un circulaire
+159	Genou à la poitrine, puis droit devant : le talon suit la ligne droite de ta hanche à son ventre.
+160	Tourner le dos sans regarder
+161	La tête tourne d'abord pour voir ce que tu frappes et ce qui revient.
+162	Coups de pied au mur
+163	{0} x {1} min : de profil face à un mur ou un sac, pivote, arme, pousse lentement le talon dedans. Puis {2} x {3} min après un jab ou un coup de pied manqué.
+164	Genou sauté
+165	Un genou en sautant qui couvre vite la distance. Il cueille les adversaires qui baissent la tête, tentent une amenée ou avancent.
+166	Fais un petit pas avec le pied avant, puis propulse le genou arrière vers le haut et l'avant en sautant.
+167	Change de jambe en l'air pour que le genou arrière monte (ou saute directement depuis la jambe arrière).
+168	Les mains cadrent haut, près de sa tête ou de ta garde. Les hanches poussent vers l'avant dans le genou.
+169	Retombe équilibré sur les deux pieds en garde ; ne tombe pas sur lui.
+170	Sauter tout droit vers le haut
+171	Il faut avancer : vise le menton ou la poitrine avec le genou, pas le plafond.
+172	Retomber déséquilibré
+173	Retombe sur l'avant des deux pieds, genoux souples, mains revenues en garde.
+174	Pas et envol
+175	{0} x {1} min : pas, genou sauté dans un sac suspendu ou un coussin tenu à hauteur de poitrine. Récupération complète entre les répétitions ; la qualité avant la vitesse.
+176	Coup de pied point d'interrogation
+177	Un coup de pied qui démarre comme un coup au corps et bascule tard vers la tête, en dessinant un point d'interrogation. L'adversaire baisse le bras pour protéger le corps, et la tête s'ouvre.
+178	Monte le genou sur la ligne du coup de pied au corps, comme d'habitude.
+179	Au dernier moment, pivote davantage sur le pied d'appui et bascule la hanche pour que le genou pointe vers le bas.
+180	Claque le tibia ou le cou-de-pied par-dessus son bras baissé, à la tête.
+181	Ramène la jambe par le même chemin et retombe en garde. Les mains restent hautes tout le temps.
+182	Montrer trop tôt le coup de pied à la tête
+183	La première moitié doit être identique à ton coup de pied au corps, sinon la feinte ne marche pas.
+184	Pas assez de pivot
+185	Le talon d'appui doit tourner vers la cible pour que la hanche puisse basculer.
+186	Corps, corps, point d'interrogation
+187	{0} x {1} min : deux vrais coups de pied au corps, puis le même départ devient le point d'interrogation. Lent et haut avant d'être rapide.
+188	Montré avec une capture de high kick. Le vrai coup de pied point d'interrogation démarre sur la ligne du corps et bascule tard ; les points clés montrent le changement.
+189	Feinte de jab, pied arrière
+190	Une petite feinte de jab fait monter la garde de l'adversaire et le fige un instant. C'est à ce moment que le pied arrière touche le corps ouvert.
+191	Feinte avec l'épaule et une courte poussée de la main avant : un tiers de jab, sec.
+192	Quand ses mains montent, le pied arrière est déjà parti.
+193	Le coup de pied touche le corps ou le bras ; dans les deux cas, il marque.
+194	Retour en garde, la main du jab prête pour la feinte suivante.
+195	Une feinte lente et molle
+196	Une feinte doit être aussi sèche que le départ d'un vrai jab, juste plus courte.
+197	Attendre de voir si la feinte a marché
+198	Feinte et coup de pied, c'est un seul rythme : ta-DAM.
+199	Feinte ou vrai
+200	{0} x {1} min : mélange vrais jabs et feintes ; chaque feinte est suivie du pied arrière.
+201	Feinte de pied, direct
+202	Lève le genou arrière comme pour frapper : l'adversaire baisse une main ou lève la jambe pour bloquer. Pose le pied en avant et envoie le direct dans l'ouverture.
+203	Lève le genou arrière sèchement, les mains restent en garde.
+204	Pose ce pied un peu plus en avant, pas en arrière où il était.
+205	Le direct part quand le pied se pose, en utilisant le pas pour la puissance.
+206	Termine en garde ; tu es maintenant à distance de poings.
+207	Feinte trop petite pour être lue
+208	Le genou doit monter clairement, à peu près à hauteur de hanche.
+209	Reculer le buste sur la feinte
+210	Reste droit au-dessus de la jambe d'appui pour pouvoir frapper tout de suite.
+211	Pied ou feinte
+212	{0} x {1} min : la moitié du temps frappe, l'autre moitié feinte et direct. Les deux départs doivent se ressembler.
+213	Provoquer la contre
+214	Lance un jab que tu veux qu'il contre. Son direct en contre arrive sur une ligne que tu connais déjà : tu l'esquives et places ton propre direct pendant qu'il est ouvert.
+215	Jab à un rythme qu'il peut lire : tu invites la contre.
+216	Quand le jab revient, esquive à l'extérieur de sa main arrière (vers ta droite en orthodoxe).
+217	Après l'esquive, ton poids est chargé sur la jambe arrière : envoie le direct.
+218	Fais-le une ou deux fois par round ; un piège trop montré ne marche plus.
+219	Esquiver avant qu'il frappe
+220	Jab, puis réagis à l'épaule. Une esquive prévue d'avance te laisse deviner.
+221	Lancer le jab appât menton levé
+222	L'appât est plus lent, pas plus négligé : menton baissé, main arrière haute.
+223	Appât et esquive
+224	{0} x {1} min : jab, esquive, direct. Imagine la contre à chaque jab, ou demande à un partenaire de lancer un direct lent.
+225	Casser le rythme
+226	Les adversaires calent leur timing sur ton rythme. Un jab, une courte pause, puis un {0}-{1} rapide les fait réagir à un temps qui n'est jamais venu.
+227	Lance un jab normal et tiens ta garde une demi-seconde.
+228	Regarde s'il se relâche ou lance sa propre attaque.
+229	Explose avec le {0}-{1} dans l'ouverture.
+230	Varie la pause : courte, longue, aucune. Un timing imprévisible est l'arme.
+231	Faire la pause mains basses
+232	La pause est dans les coups, pas dans la garde. Reste serré et prêt.
+233	Toujours la même pause
+234	Change le temps à chaque fois, sinon ça devient un nouveau rythme.
+235	Rounds à contretemps
+236	{0} x {1} min : jab, pause, {2}-{3}. Compte la pause différemment à chaque répétition (un, un-deux, rien).
+237	Corps, puis tête
+238	Frappe au corps et les mains descendent pour le protéger. La même main remonte aussitôt à la tête, maintenant ouverte.
+239	Descends avec les genoux et place le crochet avant au corps.
+240	Remonte pendant que la main revient : tes jambes te portent dans le deuxième crochet.
+241	Deuxième crochet à la tête du même côté ; la main arrière reste au menton tout le temps.
+242	Sors ou pivote après ; ne reste pas en face.
+243	Se redresser entre les crochets
+244	Remonte en lançant le crochet à la tête ; la remontée fait partie de la puissance.
+245	Crochet au corps de trop loin
+246	Entre d'abord ; le crochet au corps est court.
+247	Crochets bas-haut
+248	{0} x {1} min : crochet corps, crochet tête, pivote pour sortir. Léger et rapide au sac ou dans le vide.
+249	Feinte d'amenée, direct
+250	Baisse ton niveau comme pour une amenée. Ses mains descendent pour protéger les jambes, et le direct passe par-dessus quand tu remontes.
+251	Change de niveau vite avec les genoux, tête haute, mains hautes.
+252	Ne fais pas de pas : c'est une descente sèche sur place.
+253	Remonte et lance le direct d'un seul mouvement ; les jambes le propulsent.
+254	S'il fait un sprawl fort, le direct touche une tête baissée.
+255	Baisser les yeux au sol
+256	Regarde sa poitrine tout le temps.
+257	Se pencher à la taille
+258	Plie les genoux ; le dos reste droit pour remonter vite.
+259	Amenée ou direct
+260	{0} x {1} min : mélange des changements de niveau qui finissent en direct et d'autres qui reviennent en garde.
+261	Teep, puis coup de pied
+262	Le teep le repousse hors de distance. Quand il revient pour réduire l'écart, il marche dans ton circulaire.
+263	Teep au ventre ou à la hanche pour le repousser.
+264	Pose le pied et attends-toi à ce qu'il avance aussitôt.
+265	Synchronise le pied arrière pour cueillir ce pas.
+266	S'il ne revient pas, teep encore ou entre toi-même.
+267	Teep qui ne fait que toucher
+268	Pousse à travers : le teep doit le déplacer, pas le tapoter.
+269	Frapper alors qu'il est encore hors de distance
+270	Attends qu'il avance ; le piège, c'est son mouvement vers l'avant.
+271	Pousser et cueillir
+272	{0} x {1} min : teep, replace-toi, coup de pied sur l'entrée imaginée. Avec un partenaire, il avance après chaque teep.
+273	Tyson : esquive dans le crochet avant
+274	Le style peek-a-boo de Mike Tyson : esquiver le jab ou le direct et transformer l'esquive elle-même en un crochet avant court et dévastateur. L'esquive charge le crochet comme un ressort.
+275	Mains hautes près des joues, menton baissé, genoux fléchis : la garde peek-a-boo.
+276	Esquive à droite en pliant les genoux et en tournant les épaules ; le poids passe sur la jambe avant.
+277	Pousse sur cette jambe avant chargée et reviens avec un crochet avant court à la tête ou au corps.
+278	Continue à bouger la tête après ; Tyson ne restait jamais sur la ligne centrale.
+279	Esquiver, marquer une pause, puis le crochet
+280	L'esquive et le crochet ne font qu'un : le crochet commence quand l'esquive finit.
+281	Rester droit
+282	Combats bas, genoux fléchis ; c'est la hauteur qui rend l'esquive rapide.
+283	Rounds peek-a-boo
+284	{0} x {1} min : esquive à droite, crochet avant ; esquive à gauche, direct. Reste bas tout le round.
+285	Lomachenko : l'angle en pivot
+286	Vasyl Lomachenko touche, pivote autour du côté avant de l'adversaire et frappe à nouveau avant qu'il ne puisse se tourner. Combattre en angle, c'est frapper quand lui ne peut pas.
+287	Place un {0}-{1} court pour qu'il se couvre.
+288	Pivote sur le pied avant en faisant tourner le pied arrière d'environ {0} degrés vers son côté.
+289	Sa garde vise maintenant l'endroit où tu étais. Renvoie le {0}-{1} sur le côté ouvert.
+290	Continue de pivoter ou sors avant qu'il se tourne.
+291	Pivoter de trop loin
+292	Le pivot marche à distance de poings, presque contre son épaule avant.
+293	Baisser les mains pendant la rotation
+294	Les mains restent collées au visage pendant que les pieds travaillent.
+295	Rounds d'angles
+296	{0} x {1} min : {2}-{3}, pivot, {4}-{5}. Marque un point au sol comme adversaire et tourne autour.
+297	Buakaw : le teep et le middle kick
+298	Buakaw Banchamek contrôle les combats avec le teep : il stoppe chaque attaque, garde la distance et marque. Quand l'adversaire cesse d'avancer, le middle kick arrive.
+299	Debout et relâché, mains longues et hautes, à la thaïe.
+300	Teep au ventre à chaque fois qu'il avance, en poussant avec la hanche.
+301	Deux teeps le font hésiter ; le circulaire arrive dans l'hésitation.
+302	Frappe avec le tibia à travers les côtes et reviens directement en garde, équilibré.
+303	Teep avec la jambe seulement
+304	Pousse la hanche en avant ; la jambe n'est que le bâton.
+305	Perdre l'équilibre après le coup de pied
+306	Passe à travers et retombe en garde ; l'équilibre de Buakaw est le secret de ses coups de pied.
+307	Mur de teeps
+308	{0} x {1} min : teep sur chaque entrée imaginée, middle kick après le deuxième teep. Rythme thaï relâché.
+309	Pereira : le crochet gauche en reculant
+310	Alex Pereira attend que l'adversaire se précipite, fait un petit pas en arrière et place un crochet avant court quand il arrive. Il s'empale dessus, donc le coup touche avec une force double.
+311	Reste relâché à distance et laisse-le venir.
+312	Quand il entre, fais un petit pas en arrière avec le pied arrière pour l'obliger à s'allonger.
+313	Tourne la hanche avant et lance un crochet avant court et serré quand son poids arrive vers l'avant.
+314	Reste équilibré ; tu dois être prêt à recrocheter ou à bouger.
+315	Crochet trop large
+316	Le crochet est court et serré ; c'est lui qui t'apporte la distance.
+317	Reculer trop loin
+318	Quelques centimètres seulement : assez pour qu'il rate, assez près pour toucher.
+319	Timing du check hook
+320	{0} x {1} min : un partenaire (ou le minuteur) avance, tu recules et tu crochètes. Sans partenaire, avance, recule, crochet.
+321	Mayweather : la contre en retrait
+322	Floyd Mayweather se penche en arrière juste hors de portée du jab, puis revient d'un coup avec le direct pendant que la main de l'adversaire est encore dehors. Un crochet suit quand il se couvre.
+323	Épaule avant haute, main arrière au menton.
+324	Quand le jab arrive, passe le poids sur la jambe arrière et recule le buste de quelques centimètres ; le jab tombe court.
+325	Pousse sur la jambe arrière et envoie le direct par-dessus son jab qui revient.
+326	Ajoute le crochet avant quand il se couvre, puis replace-toi.
+327	Se pencher trop en arrière
+328	Juste hors de portée : se pencher loin tue ton équilibre et la contre.
+329	Reculer le buste menton levé
+330	Le menton reste caché derrière l'épaule avant quand tu te penches.
+331	Esquive arrière et punition
+332	{0} x {1} min : imagine, ou demande à un partenaire de lancer un jab lent ; retrait, direct, crochet. Petit et calme.
+333	St-Pierre : du jab à la double jambe
+334	Georges St-Pierre utilisait le jab pour faire penser l'adversaire à son visage, puis plongeait en double jambe par-dessous. L'amenée commence par un coup.
+335	Lance un vrai jab sec au visage.
+336	Quand il revient, change de niveau tout de suite : ses mains sont hautes.
+337	Pas de pénétration entre ses pieds, tête haute, et pousse à travers.
+338	Si l'amenée échoue, remonte en garde derrière tes mains.
+339	Jab, pause, amenée
+340	L'amenée fait partie du retour du jab. Aucun temps mort entre les deux.
+341	Plonger de trop loin
+342	Le jab trouve la distance ; si le jab touche tout juste, l'amenée aussi.
+343	Répétitions jab-amenée
+344	{0} x {1} min sur un tapis : jab, changement de niveau, pas à travers. Ajoute un deuxième jab toutes les trois répétitions.
+345	Ali : jab et déplacement
+346	Muhammad Ali frappait et était parti avant la réponse. Des jabs rapides, puis un pas hors de la ligne, si bien que l'adversaire frappe toujours là où il était.
+347	Reste léger sur l'avant des pieds, en mouvement tout le temps.
+348	Double jab : clac, clac, les deux reviennent vite.
+349	Sors sur le côté juste après, jamais droit en arrière.
+350	Replace-toi à distance et recommence sous un nouvel angle.
+351	Rester en face après les jabs
+352	Le déplacement fait partie de l'enchaînement : jab, jab, parti.
+353	Pieds à plat
+354	Rebondis légèrement ; la vitesse d'Ali venait de ses pieds.
+355	Toucher et bouger
+356	{0} x {1} min : double jab, pas à gauche ou à droite, tourne, recommence. Ne reste jamais immobile.
+357	La barrière : créer de l'espace et partir
+358	La plupart des problèmes commencent par quelqu'un qui réduit la distance en parlant. La barrière le garde à longueur de bras sans avoir l'air d'un combattant, et te donne le temps de partir.
+359	Tiens-toi de trois-quarts, paumes ouvertes devant la poitrine, comme pour dire « on se calme ».
+360	Garde-le à la distance de ta main avant ; s'il la dépasse, recule ou décale-toi.
+361	S'il t'attrape ou se jette, repousse-le ou fais un teep au ventre ou aux hanches pour créer de l'espace.
+362	Puis pars : recule face à lui, puis tourne-toi et va vers les gens et la lumière.
+363	Lever les poings et se mettre de face
+364	Les mains ouvertes calment la situation et montrent que c'est toi qui ne voulais pas d'ennuis.
+365	Le laisser entrer à l'intérieur de tes mains
+366	Les mains sont une barrière : quand on la touche, tu bouges.
+367	Barrière et pas
+368	{0} x {1} min : marche vers un mur comme si c'était une personne, mets la barrière, sors de la ligne, pousse, recule. Dis « Reste où tu es » à voix haute.
+369	Les gestes de self-défense sont montrés avec les captures de combat les plus proches (cadrages, genoux, coudes, pas). Les saisies et dégagements exacts sont dans les points clés.
+370	Le but de la self-défense est de s'en sortir en sécurité, pas de gagner. Si tu peux partir, pars. N'utilise que la force nécessaire, et travaille les dégagements lentement avec un partenaire qui lâche facilement.
+371	Dégagement de saisie de poignet
+372	Une saisie est plus faible là où le pouce et les doigts se rejoignent. Tourne ton poignet vers cette ouverture et tire d'un coup sec, puis éloigne-toi.
+373	Ne tire pas droit contre toute la main : trouve son pouce.
+374	Tourne l'avant-bras vers le pouce et dégage le poignet d'un coup par l'ouverture, coude qui se plie vers lui.
+375	Recule en tirant, pour que ton poids t'aide.
+376	S'il saisit à deux mains, passe la main entre ses bras, attrape ton propre poing et tire vers le haut à travers les pouces.
+377	Tir à la corde
+378	Tirer droit contre quatre doigts, c'est perdre. Le pouce est la sortie.
+379	Rester près après le dégagement
+380	Le dégagement n'est fini que quand tu t'es éloigné.
+381	Dégagements de saisies
+382	Avec un partenaire qui tient fermement mais sans danger : {0} dégagements de chaque côté, puis {1} à deux mains. Lentement au début.
+383	Dos au mur
+384	Avec un mur derrière, tu ne peux pas reculer et chaque coup encaisse tout. Le seul but est de quitter le mur par le côté.
+385	Couvre-toi haut avec les deux avant-bras, coudes rentrés, menton rentré.
+386	Crée de l'espace avec un genou dans la cuisse ou une poussée aux hanches.
+387	Sors sur le côté le long du mur, jamais droit sur lui.
+388	Pivote pour que le mur soit maintenant derrière lui, puis pars par le côté ouvert.
+389	Rester à échanger contre le mur
+390	Chaque seconde contre le mur est une seconde sans issue. Couvre-toi, crée de l'espace, bouge.
+391	Se baisser
+392	Se baisser contre un mur te piège ; reste droit derrière ta protection.
+393	Sorties du mur
+394	{0} x {1} min : dos à un mur (mur du garage), protection, genou, pas de côté, pivot, pars. Alterne les côtés.
+395	Dégagement d'étreinte de face
+396	Quelqu'un t'enlace le corps de face, tes bras sont libres. Baisse ton centre de gravité, cadre ses hanches pour créer de l'espace, frappe et dégage-toi.
+397	Baisse les hanches et élargis tes appuis tout de suite pour qu'il ne puisse pas te soulever.
+398	Pousse tes avant-bras ou tes paumes contre ses hanches ou son cou pour créer un espace.
+399	Genou dans la cuisse ou l'aine à travers cet espace jusqu'à ce que la prise se relâche.

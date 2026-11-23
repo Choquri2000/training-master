@@ -1,0 +1,399 @@
+1	Heute
+2	Training
+3	Ich
+4	Woche
+5	Lernpfad
+6	Lernen
+7	Plan
+8	Fortschritt
+9	Einstellungen
+10	Laufen
+11	Kraft
+12	Kampfsport
+13	Pause
+14	Einheit starten
+15	Heute keine Kampfeinheit. Lass die Technik ruhen oder mach {0} Min. lockeres Schattenboxen, wenn du dich frisch fühlst.
+16	Fokustechniken heute
+17	Kernpunkte
+18	Häufige Fehler und Korrekturen
+19	Übungen
+20	Phase
+21	Gesperrt
+22	Am Lernen
+23	Erledigt
+24	Nicht begonnen
+25	Lernen beginnen
+26	Als sicher markieren
+27	Zurücksetzen
+28	Prüfpunkt
+29	Ich habe diesen Prüfpunkt auf Video bestanden
+30	Nächste Phase freigeschaltet
+31	Pause
+32	Weiter
+33	Überspringen
+34	Stopp
+35	Beenden
+36	Wie hart war es? (RPE {0}-{1})
+37	Speichern
+38	Gespeichert
+39	Min.
+40	Einheiten
+41	Diese Woche
+42	Noch keine Einheiten eingetragen.
+43	Gesprochene Ansagen
+44	Sprache
+45	Meine Daten exportieren
+46	Daten importieren
+47	Alles zurücksetzen
+48	Tempo
+49	Langsam
+50	Normal
+51	Wie die Woche zusammenpasst
+52	Öffnen
+53	Meine Notizen
+54	Entlastungswoche: nur Technik, keine harten Runden.
+55	Alle
+56	Wie lief jede Technik?
+57	Leicht
+58	Lief nicht
+59	Techniken mit „Lief nicht“ kommen in deinem Plan früher wieder.
+60	Serie
+61	Wochen
+62	Sichere Techniken
+63	Kampfminuten pro Woche
+64	Braucht Arbeit
+65	Du hast diese mit „lief nicht“ bewertet. Dein Plan bringt sie früher zurück.
+66	Fühlt sich leicht an
+67	Bereit, sie als sicher zu markieren? Öffne sie und tippe auf „Als sicher markieren“.
+68	Verlauf
+69	Datum
+70	Einheit
+71	Techniken
+72	Anfänger
+73	Fortgeschritten
+74	Erfahren
+75	Experte
+76	Kinn und Kiefer
+77	Ein Treffer auf die Kinnspitze oder seitlich auf den Kiefer dreht den Kopf ruckartig. Das Gehirn bewegt sich verzögert zum Schädel, und genau das verursacht den K.o. Der Kiefer ist das Ziel der meisten entscheidenden Schläge.
+78	Haken oder Gerade seitlich auf den Kiefer; Uppercut unters Kinn, wenn der Kopf nach vorn kommt.
+79	Schläfe
+80	Die Kopfseite über dem Ohr, wo der Schädel am dünnsten ist. Kicks und Haken, die hier treffen, sind sehr gefährlich; deshalb deckt die Deckung sie mit den Handschuhen ab.
+81	Hoher Roundhouse-Kick oder Fragezeichen-Kick über die Deckung; Haken um sie herum; Spinning Backfist.
+82	Solarplexus
+83	Die weiche Stelle unter dem Brustbein, über dem Magen. Ein gerader Treffer drückt aufs Zwerchfell und raubt den Atem: Der Gegner bekommt ein paar Sekunden keine Luft.
+84	Gerade Techniken: die Gerade zum Körper, der Teep, der gedrehte Rückwärtstritt, ein gerades Knie im Clinch.
+85	Leber
+86	Unter den untersten Rippen auf der rechten Seite des Gegners, vor deiner Führhand (Rechtsausleger gegen Rechtsausleger). Ein sauberer Treffer löst einen verzögerten, überwältigenden Schmerz aus, der Kämpfer bei vollem Bewusstsein zu Boden schickt.
+87	Führhandhaken zum Körper, Körperkick mit dem vorderen Bein (Switch), gerades Knie; geh tiefer, um sie zu erreichen.
+88	Rippen und Milz
+89	Die linke Seite des Gegners, offen für deinen hinteren Kick und deine Schlaghand. Die freien Rippen unten sind nicht mit dem Brustbein verbunden und brechen oder prellen leicht; die Milz liegt dahinter.
+90	Hinterer Roundhouse-Kick zum Körper, hinterer Haken oder Uppercut zum Körper.
+91	Oberschenkel (vorderes Bein)
+92	Der große Muskel außen am vorderen Oberschenkel. Wiederholte Low Kicks dort machen das Bein taub: Der Gegner kann sich nicht mehr abdrücken, seine Schläge und Bewegung verlieren Kraft.
+93	Hinterer tiefer Roundhouse mit dem Schienbein, ein paar Zentimeter über dem Knie; bereite ihn mit Schlägen zum Kopf vor.
+94	Wade (vorderes Bein)
+95	Die Rück- und Außenseite der vorderen Wade, direkt unter dem Knie. Schwer zu checken, weil der Kick unter dem Knie trifft, und ein paar saubere Kicks nehmen dem Gegner Stand und Beinarbeit.
+96	Der Wadenkick: ein kurzer tiefer Roundhouse, wenn sein Gewicht auf dem vorderen Bein ist.
+97	Fortgeschrittene Techniken
+98	Finten, Vorbereitungen und Fallen
+99	Markenzeichen-Techniken
+100	Selbstverteidigung
+101	Wadenkick
+102	Ein tiefer Roundhouse in die Rückseite der vorderen Wade. Er nimmt dem Gegner Stand und Bewegung und ist schwer zu checken, weil er unter dem Knie trifft.
+103	Setz den vorderen Fuß leicht nach außen, um den Winkel zu öffnen, dann dreh die Hüfte ein.
+104	Ziel mit dem unteren Schienbein auf die fleischige Rück- und Außenseite der Wade, knapp unter der Kniekehle.
+105	Schlag ihn, wenn sein Gewicht auf dem vorderen Bein ist: beim Schritt oder Jab.
+106	Halt den Kick kurz und schnell, dann zurück in die Auslage. Jag nicht der Kraft hinterher.
+107	Auf den Schienbeinknochen treten
+108	Tiefer und weiter hinten zielen: auf den weichen Muskel hinten am Bein, nicht vorn aufs Schienbein.
+109	Hintere Hand beim Kicken fallen lassen
+110	Der hintere Handschuh bleibt am Kinn; der Kick kommt aus der Hüfte, nicht aus dem Arm.
+111	Jab, Wadenkick
+112	{0} x {1} Min.: Jab, um sein Gewicht nach vorn zu holen, dann Wadenkick. Berühre den Sack oder ein Kissen auf Wadenhöhe.
+113	Leberhaken (Führhandhaken zum Körper)
+114	Die Leber liegt unter den untersten Rippen auf der rechten Seite des Gegners, vor deiner Führhand. Ein sauberer Haken dort kann einen Kämpfer fällen, selbst wenn er bei Bewusstsein bleibt.
+115	Geh mit den Knien tiefer, nicht durch Beugen in der Hüfte. Der Kopf geht leicht zu deiner Führseite, außerhalb seiner Schlaghand.
+116	Dreh vordere Hüfte und Fuß kräftig ein wie beim normalen Führhandhaken, Ellbogen nah an den eigenen Rippen.
+117	Ziel nach oben und innen unter den Ellbogen: Das Ziel sind die untersten Rippen seiner rechten Seite.
+118	Komm mit der Hand am Gesicht wieder hoch oder schlag einen Haken zum Kopf hinterher.
+119	Aus zu großer Distanz schlagen
+120	Es ist ein kurzer Schlag. Erst reingehen, damit der Ellbogen etwa {0} Grad gebeugt bleibt.
+121	Vorlehnen mit dem Kopf voraus
+122	Beug die Knie; dein Kopf bleibt über dem vorderen Knie und weg von der Mittellinie.
+123	Jab, Leberhaken
+124	{0} x {1} Min.: Jab zum Kopf, damit die Deckung hochgeht, abtauchen, Führhandhaken zum Körper. Dann einen Haken zum Kopf anhängen.
+125	Superman-Punch
+126	Ein Schlag mit der hinteren Hand, während der Körper nach einem angetäuschten Knie oder Kick nach vorn fliegt. Die Finte lockt die Deckung nach unten, der Sprung überbrückt die Distanz schnell.
+127	Finte mit dem hinteren Bein: Knie heben, als würdest du kicken oder ein Knie schlagen.
+128	Das Bein schnell wieder nach unten und hinten reißen, während du dich vom vorderen Fuß abdrückst.
+129	Die Gerade am höchsten Punkt des Sprungs schlagen, das hintere Bein kickt zum Ausgleich nach hinten.
+130	Auf dem vorderen Fuß in der Auslage landen und bereit sein: Jetzt bist du nah dran.
+131	Hoch statt nach vorn springen
+132	Eine kurze Strecke nach vorn: Es ist ein Ausfallschritt, kein Sprung.
+133	Keine Finte, also sieht er es kommen
+134	Die Finte mit dem hinteren Bein muss zuerst wie ein echter Kick aussehen.
+135	Kick, Kick, Superman
+136	{0} x {1} Min.: zwei echte hintere Kicks, dann wird derselbe Ansatz zum Superman-Punch. Locker am Sack oder in der Luft.
+137	Aus zwei Aufnahmen gebaut: ein Kniehub (die Finte) verkettet mit einer Geraden. Ein echter Superman-Punch kickt auch das hintere Bein nach hinten; achte in den Kernpunkten darauf.
+138	Lerne Dreh- und Sprungtechniken im Schritttempo auf freiem Boden, barfuß oder auf einer Matte. Fixiere einen Punkt an der Wand zur Orientierung und hör auf, wenn dir schwindlig wird.
+139	Spinning Backfist
+140	Die hintere Hand schwingt mit der Drehung herum und trifft mit dem Handrücken. Überrascht Gegner, die von deiner Schlaghand wegkreisen, oder nach einem verfehlten Haken.
+141	Setz den vorderen Fuß über Kreuz (kleiner Schritt nach rechts als Rechtsausleger), um die Drehung zu laden.
+142	Dreh zuerst den Kopf und schau über die hintere Schulter: Finde das Ziel, bevor der Arm kommt.
+143	Lass den hinteren Arm auf Kopfhöhe ausschwingen und triff mit dem Handschuhrücken, Ellbogen leicht gebeugt.
+144	Dreh ganz zurück in die Auslage; bleib nie mit dem Rücken zu ihm stehen.
+145	Blind drehen
+146	Der Kopf dreht zuerst. Siehst du das Ziel nicht, schlag den Arm nicht.
+147	Aus zu großer Distanz schlagen
+148	Nutz ihn auf Schlagdistanz, wenn er zu deiner hinteren Seite geht oder nach deinem verfehlten Haken.
+149	Langsame Drehungen
+150	{0} x {1} Min. langsame Spinning Backfists in der Luft, jedes Mal über die Schulter schauen. Dann {2} x {3} Min. nach einem Führhandhaken einbauen.
+151	Es gibt keine freie Aufnahme eines Spinning Backfist, daher zeigt dies die Drehung eines gedrehten Rückwärtstritts, verkettet mit einem Schlag der hinteren Hand. Folge für den Arm den Kernpunkten.
+152	Gedrehter Rückwärtstritt
+153	Ein gerader Tritt mit der Ferse nach hinten, der stärkste Kick zum Körper. Ideal gegen Gegner, die frontal nach vorn laufen.
+154	Dreh auf dem vorderen Fuß und schau über die hintere Schulter aufs Ziel.
+155	Zieh das hintere Knie eng zur Brust, während dein Rücken zu ihm dreht.
+156	Stoß die Ferse in gerader Linie nach hinten, Zehen nach unten; der Fuß bewegt sich wie ein Kolben, nicht im Bogen.
+157	Bein zurückziehen und die Drehung in die Auslage beenden, Hände oben.
+158	Das Bein wie einen Roundhouse herumschwingen
+159	Knie zur Brust, dann gerade raus: Die Ferse geht auf der geraden Linie von deiner Hüfte zu seinem Bauch.
+160	Den Rücken zudrehen, ohne zu schauen
+161	Der Kopf dreht zuerst, damit du siehst, was du triffst und was zurückkommt.
+162	Wand-Kicks
+163	{0} x {1} Min.: seitlich zu einer Wand oder einem Sack stehen, drehen, anziehen, die Ferse langsam dagegen drücken. Dann {2} x {3} Min. nach einem Jab oder einem verfehlten Kick.
+164	Fliegendes Knie
+165	Ein Sprungknie, das schnell Distanz überbrückt. Erwischt Gegner, die den Kopf senken, zum Takedown schießen oder nach vorn laufen.
+166	Mach einen kurzen Schritt mit dem vorderen Fuß, dann treib das hintere Knie beim Sprung nach oben und vorn.
+167	Wechsle die Beine in der Luft, sodass das hintere Knie steigt (oder spring direkt vom hinteren Bein ab).
+168	Die Hände rahmen hoch, nah an seinem Kopf oder an deiner Deckung. Die Hüfte schiebt ins Knie nach vorn.
+169	Lande ausbalanciert auf beiden Füßen in der Auslage; fall nicht in ihn hinein.
+170	Senkrecht nach oben springen
+171	Es geht nach vorn: Ziel mit dem Knie auf Kinn oder Brust, nicht auf die Decke.
+172	Unausbalanciert landen
+173	Auf beiden Fußballen landen, Knie weich, Hände zurück in die Deckung.
+174	Schritt und Flug
+175	{0} x {1} Min.: Schritt, fliegendes Knie in einen hängenden Sack oder ein gehaltenes Kissen auf Brusthöhe. Volle Pause zwischen den Wiederholungen; Qualität vor Tempo.
+176	Fragezeichen-Kick
+177	Ein Kick, der wie ein Körperkick beginnt und spät zum Kopf umdreht, wie ein Fragezeichen in der Luft. Der Gegner senkt den Arm, um den Körper zu schützen, und der Kopf ist offen.
+178	Heb das Knie auf der Linie des Körperkicks, so wie du ihn immer schlägst.
+179	Im letzten Moment weiter auf dem Standfuß drehen und die Hüfte überrollen, sodass das Knie nach unten zeigt.
+180	Schienbein oder Spann über seinen gesenkten Arm zum Kopf schnappen lassen.
+181	Das Bein auf demselben Weg zurückholen und in der Auslage landen. Die Hände bleiben die ganze Zeit oben.
+182	Den Kopfkick zu früh zeigen
+183	Die erste Hälfte muss genau wie dein Körperkick aussehen, sonst funktioniert der Trick nicht.
+184	Zu wenig Drehung
+185	Die Ferse des Standbeins muss zum Ziel drehen, damit die Hüfte überrollen kann.
+186	Körper, Körper, Fragezeichen
+187	{0} x {1} Min.: zwei echte Körperkicks, dann wird derselbe Ansatz zum Fragezeichen. Langsam und hoch vor schnell.
+188	Gezeigt mit einer Aufnahme eines hohen Kicks. Der echte Fragezeichen-Kick beginnt auf der Linie des Körperkicks und dreht spät um; die Kernpunkte zeigen den Wechsel.
+189	Jab antäuschen, hinterer Kick
+190	Eine kleine Jab-Finte lässt den Gegner die Deckung heben und kurz erstarren. Genau dann landet der hintere Kick am offenen Körper.
+191	Finte mit der Schulter und einem kurzen Stoß der Führhand: ein Drittel Jab, scharf.
+192	Wenn seine Hände hochgehen, ist der hintere Kick schon unterwegs.
+193	Der Kick trifft Körper oder Arm; so oder so punktet er.
+194	Zurück in die Auslage, die Jab-Hand bereit für die nächste Finte.
+195	Eine langsame, faule Finte
+196	Eine Finte muss so scharf sein wie der Beginn eines echten Jabs, nur kürzer.
+197	Abwarten, ob die Finte gewirkt hat
+198	Finte und Kick sind ein Rhythmus: da-DAM.
+199	Finte oder echt
+200	{0} x {1} Min.: echte Jabs und Finten mischen; nach jeder Finte kommt der hintere Kick.
+201	Kick antäuschen, Gerade
+202	Heb das hintere Knie, als würdest du kicken: Der Gegner senkt eine Hand oder hebt ein Bein zum Checken. Setz den Fuß vorn ab und schlag die Gerade in die Lücke.
+203	Das hintere Knie scharf heben, die Hände bleiben in der Deckung.
+204	Den Fuß etwas weiter vorn absetzen, nicht hinten, wo er war.
+205	Die Gerade geht los, wenn der Fuß landet; der Schritt gibt die Kraft.
+206	In der Auslage enden; jetzt bist du auf Schlagdistanz.
+207	Finte zu klein, um sie zu lesen
+208	Das Knie muss deutlich steigen, etwa auf Hüfthöhe.
+209	Bei der Finte nach hinten lehnen
+210	Bleib aufrecht über dem Standbein, damit du sofort schlagen kannst.
+211	Kick oder Finte
+212	{0} x {1} Min.: die Hälfte der Zeit kicken, die andere Hälfte Finte und Gerade. Beide Ansätze müssen gleich aussehen.
+213	Den Konter provozieren
+214	Schlag einen Jab, den er kontern soll. Seine Konter-Gerade kommt auf einer Linie, die du schon kennst; du weichst aus und landest deine eigene Gerade, während er offen ist.
+215	Jab in einem Tempo, das er lesen kann: Du lädst den Konter ein.
+216	Wenn der Jab zurückkommt, weich außen an seiner Schlaghand vorbei aus (nach rechts als Rechtsausleger).
+217	Aus dem Ausweichen ist dein Gewicht aufs hintere Bein geladen: feuer die Gerade.
+218	Ein- oder zweimal pro Runde; eine Falle, die zu oft gezeigt wird, wirkt nicht mehr.
+219	Ausweichen, bevor er schlägt
+220	Jab, dann auf die Schulter reagieren. Ein geplantes Ausweichen lässt dich raten.
+221	Den Köder-Jab mit hohem Kinn schlagen
+222	Der Köder ist langsamer, nicht schlampiger: Kinn runter, hintere Hand oben.
+223	Köder und ausweichen
+224	{0} x {1} Min.: Jab, ausweichen, Gerade. Stell dir bei jedem Jab den Konter vor oder lass einen Partner eine langsame Gerade schlagen.
+225	Den Rhythmus brechen
+226	Gegner timen deinen Rhythmus. Ein Jab, eine kurze Pause, dann eine schnelle {0}-{1} lässt sie auf einen Schlag reagieren, der nie kam.
+227	Schlag einen normalen Jab und halte eine halbe Sekunde die Deckung.
+228	Achte darauf, ob er sich entspannt oder selbst angreift.
+229	Explodier mit der {0}-{1} in die Lücke.
+230	Variier die Pause: kurz, lang, keine. Unberechenbares Timing ist die Waffe.
+231	Pause mit gesenkten Händen
+232	Die Pause liegt in den Schlägen, nicht in der Deckung. Bleib eng und bereit.
+233	Immer dieselbe Pause
+234	Wechsle jedes Mal den Takt, sonst wird es ein neuer Rhythmus.
+235	Runden gegen den Takt
+236	{0} x {1} Min.: Jab, Pause, {2}-{3}. Zähl die Pause bei jeder Wiederholung anders (eins, eins-zwei, keine).
+237	Körper, dann Kopf
+238	Triff den Körper, und die Hände gehen runter, um ihn zu schützen. Dieselbe Hand geht direkt wieder hoch zum jetzt offenen Kopf.
+239	Mit den Knien abtauchen und den Führhandhaken zum Körper landen.
+240	Hochkommen, während die Hand zurückkehrt: Deine Beine heben dich in den zweiten Haken.
+241	Zweiter Haken zum Kopf auf derselben Seite; die hintere Hand bleibt die ganze Zeit am Kinn.
+242	Danach raussteppen oder drehen; bleib nicht frontal stehen.
+243	Zwischen den Haken aufrichten
+244	Beim Kopfhaken hochkommen; das Aufrichten ist Teil der Kraft.
+245	Körperhaken aus zu großer Distanz
+246	Erst rein; der Körperhaken ist kurz.
+247	Haken tief-hoch
+248	{0} x {1} Min.: Haken Körper, Haken Kopf, rausdrehen. Locker und schnell am Sack oder in der Luft.
+249	Takedown antäuschen, Gerade
+250	Geh tief, als würdest du zum Takedown schießen. Seine Hände sinken, um die Beine zu schützen, und die Gerade kommt beim Hochkommen drüber.
+251	Level schnell mit den Knien wechseln, Kopf oben, Hände oben.
+252	Kein Schritt nach vorn: Es ist ein scharfes Abtauchen auf der Stelle.
+253	In einer Bewegung hochkommen und die Gerade schlagen; die Beine treiben sie.
+254	Wenn er hart sprawlt, trifft die Gerade einen gesenkten Kopf.
+255	Den Blick auf den Boden senken
+256	Schau die ganze Zeit auf seine Brust.
+257	In der Hüfte beugen
+258	Beug die Knie; der Rücken bleibt gerade, damit du schnell hochkommst.
+259	Takedown oder Gerade
+260	{0} x {1} Min.: Levelwechsel mischen, die mal in eine Gerade gehen und mal zurück in die Auslage.
+261	Teep, dann Kick
+262	Der Teep schiebt ihn aus der Distanz. Wenn er wieder reinkommt, um die Lücke zu schließen, läuft er in deinen Roundhouse.
+263	Teep zu Bauch oder Hüfte, um ihn zurückzuschieben.
+264	Fuß absetzen und damit rechnen, dass er sofort nach vorn kommt.
+265	Den hinteren Kick so timen, dass er diesen Schritt trifft.
+266	Kommt er nicht wieder rein, noch ein Teep oder selbst reingehen.
+267	Teep, der nur antippt
+268	Durchschieben: Der Teep soll ihn bewegen, nicht antippen.
+269	Kicken, während er noch außer Reichweite ist
+270	Warte auf seinen Schritt nach vorn; die Falle ist seine Vorwärtsbewegung.
+271	Schieben und empfangen
+272	{0} x {1} Min.: Teep, neu sortieren, Kick auf den vorgestellten Schritt nach vorn. Mit Partner läuft er nach jedem Teep rein.
+273	Tyson: Ausweichen in den Führhandhaken
+274	Mike Tysons Peek-a-Boo-Stil: dem Jab oder der Geraden ausweichen und das Ausweichen selbst in einen kurzen, vernichtenden Führhandhaken verwandeln. Das Ausweichen lädt den Haken wie eine Feder.
+275	Hände hoch an den Wangen, Kinn runter, Knie gebeugt: die Peek-a-Boo-Deckung.
+276	Nach rechts ausweichen, indem du die Knie beugst und die Schultern drehst; das Gewicht geht aufs vordere Bein.
+277	Vom geladenen vorderen Bein abdrücken und mit einem kurzen Führhandhaken zu Kopf oder Körper zurückdrehen.
+278	Danach den Kopf weiter bewegen; Tyson blieb nie auf der Mittellinie.
+279	Ausweichen, Pause, dann Haken
+280	Ausweichen und Haken sind eine Bewegung: Der Haken beginnt, wenn das Ausweichen endet.
+281	Aufrecht stehen
+282	Kämpf tief mit gebeugten Knien; die Tiefe macht das Ausweichen schnell.
+283	Peek-a-Boo-Runden
+284	{0} x {1} Min.: nach rechts ausweichen, Führhandhaken; nach links ausweichen, Gerade. Die ganze Runde tief bleiben.
+285	Lomachenko: der Drehwinkel
+286	Wassyl Lomatschenko trifft, dreht sich um die Führseite des Gegners und schlägt erneut, bevor der sich zu ihm drehen kann. Aus Winkeln kämpfen heißt treffen, wenn er es nicht kann.
+287	Lande eine kurze {0}-{1}, damit er sich deckt.
+288	Dreh auf dem vorderen Fuß, den hinteren Fuß etwa {0} Grad zu seiner Seite herumschwingen.
+289	Seine Deckung zeigt jetzt dorthin, wo du warst. Feuer die {0}-{1} erneut in die offene Seite.
+290	Weiter drehen oder raussteppen, bevor er sich dreht.
+291	Aus zu großer Distanz drehen
+292	Die Drehung funktioniert auf Schlagdistanz, fast an seiner vorderen Schulter.
+293	Hände beim Drehen senken
+294	Die Hände kleben am Gesicht, während die Füße arbeiten.
+295	Winkel-Runden
+296	{0} x {1} Min.: {2}-{3}, drehen, {4}-{5}. Markier einen Punkt am Boden als Gegner und kreis um ihn.
+297	Buakaw: Teep und Körperkick
+298	Buakaw Banchamek kontrolliert Kämpfe mit dem Teep: Er stoppt jeden Angriff, hält die Distanz und punktet. Wenn der Gegner aufhört vorzurücken, landet der Körperkick.
+299	Aufrecht und locker, Hände lang und hoch, im Thai-Stil.
+300	Teep zum Bauch, jedes Mal wenn er reinkommt, mit der Hüfte durchschieben.
+301	Zwei Teeps lassen ihn zögern; der Roundhouse landet im Zögern.
+302	Mit dem Schienbein durch die Rippen kicken und ausbalanciert direkt in die Auslage zurück.
+303	Teep nur mit dem Bein
+304	Die Hüfte nach vorn treiben; das Bein ist nur die Stange.
+305	Nach dem Kick das Gleichgewicht verlieren
+306	Durchschwingen und in der Auslage landen; Buakaws Balance ist das Geheimnis seiner Kicks.
+307	Teep-Wand
+308	{0} x {1} Min.: Teep bei jedem vorgestellten Schritt nach vorn, Körperkick nach dem zweiten Teep. Lockerer Thai-Rhythmus.
+309	Pereira: der linke Check Hook
+310	Alex Pereira wartet, bis der Gegner reinstürmt, macht einen kleinen Schritt zurück und landet einen kurzen Führhandhaken, wenn er ankommt. Er läuft hinein, also trifft er mit doppelter Wucht.
+311	Bleib auf Distanz locker und lass ihn kommen.
+312	Wenn er reinkommt, mach einen kurzen Schritt zurück mit dem hinteren Fuß, damit er sich strecken muss.
+313	Vordere Hüfte drehen und einen kurzen, engen Führhandhaken schlagen, wenn sein Gewicht nach vorn kommt.
+314	Bleib ausbalanciert; du solltest bereit sein, erneut zu haken oder dich zu bewegen.
+315	Weit ausholen
+316	Der Haken ist kurz und eng; er bringt dir die Distanz.
+317	Zu weit zurückgehen
+318	Nur ein paar Zentimeter: genug, damit er verfehlt, nah genug, um zu treffen.
+319	Check-Hook-Timing
+320	{0} x {1} Min.: Ein Partner (oder der Timer) kommt rein, du gehst zurück und hakst. Ohne Partner: vorgehen, zurück, Haken.
+321	Mayweather: der Pull Counter
+322	Floyd Mayweather lehnt sich knapp außer Reichweite des Jabs zurück und schnellt dann mit der Geraden nach vorn, während die Hand des Gegners noch draußen ist. Ein Haken folgt, wenn er sich deckt.
+323	Vordere Schulter hoch, hintere Hand am Kinn.
+324	Wenn der Jab kommt, Gewicht aufs hintere Bein und ein paar Zentimeter zurücklehnen; der Jab fällt zu kurz.
+325	Vom hinteren Bein abdrücken und die Gerade über seinen zurückkehrenden Jab feuern.
+326	Den Führhandhaken anhängen, wenn er sich deckt, dann neu sortieren.
+327	Zu weit zurücklehnen
+328	Knapp außer Reichweite: Weit lehnen zerstört deine Balance und den Konter.
+329	Mit hohem Kinn zurücklehnen
+330	Das Kinn bleibt beim Lehnen hinter der vorderen Schulter versteckt.
+331	Ziehen und bestrafen
+332	{0} x {1} Min.: vorstellen oder von einem Partner einen langsamen Jab schlagen lassen; zurückziehen, Gerade, Haken. Klein und ruhig.
+333	St-Pierre: vom Jab zum Double-Leg
+334	Georges St-Pierre ließ den Gegner mit dem Jab an sein Gesicht denken und schoss dann darunter zum Double-Leg. Der Takedown beginnt mit einem Schlag.
+335	Schlag einen echten, scharfen Jab ins Gesicht.
+336	Wenn er zurückkommt, sofort das Level wechseln: Seine Hände sind oben.
+337	Eindringschritt zwischen seine Füße, Kopf oben, und durchdrücken.
+338	Wenn der Takedown nicht klappt, hinter der Deckung in die Auslage hochkommen.
+339	Jab, Pause, Takedown
+340	Der Takedown ist Teil des Jab-Rückzugs. Keine Lücke dazwischen.
+341	Aus zu großer Distanz schießen
+342	Der Jab findet die Distanz; reicht der Jab gerade so, reicht auch der Takedown.
+343	Jab-Takedown-Wiederholungen
+344	{0} x {1} Min. auf einer Matte: Jab, Levelwechsel, durchschreiten. Bei jeder dritten Wiederholung einen zweiten Jab dazu.
+345	Ali: Jab und Bewegung
+346	Muhammad Ali schlug und war weg, bevor die Antwort kam. Schnelle Jabs, dann ein Schritt aus der Linie, sodass der Gegner immer dorthin schlägt, wo er gerade noch war.
+347	Bleib leicht auf den Fußballen, die ganze Zeit in Bewegung.
+348	Doppelter Jab: zack, zack, beide kommen schnell zurück.
+349	Direkt danach zur Seite raus, nie gerade zurück.
+350	Auf Distanz neu ansetzen und aus einem neuen Winkel wiederholen.
+351	Nach den Jabs frontal stehen bleiben
+352	Die Bewegung ist Teil der Kombination: Jab, Jab, weg.
+353	Platte Füße
+354	Leicht federn; Alis Tempo kam aus seinen Füßen.
+355	Treffen und bewegen
+356	{0} x {1} Min.: doppelter Jab, Schritt links oder rechts, kreisen, wiederholen. Nie stillstehen.
+357	Der Zaun: Raum schaffen und gehen
+358	Die meisten Probleme beginnen damit, dass jemand im Gespräch die Distanz verkürzt. Der Zaun hält ihn auf Armlänge, ohne dass du wie ein Kämpfer aussiehst, und gibt dir Zeit zu gehen.
+359	Steh seitlich mit offenen Handflächen vor der Brust, als würdest du „ganz ruhig“ sagen.
+360	Halt ihn auf der Distanz deiner Führhand; drängt er daran vorbei, geh zurück oder zur Seite.
+361	Packt er zu oder stürzt vor, stoß ihn oder setz einen Teep auf Bauch oder Hüfte, um Raum zu schaffen.
+362	Dann geh: rückwärts weg, ihm zugewandt, dann umdrehen und zu Menschen und Licht gehen.
+363	Fäuste hoch und frontal hinstellen
+364	Offene Hände beruhigen die Lage, und du bleibst der, der keinen Ärger wollte.
+365	Ihn in deine Hände hineinlaufen lassen
+366	Die Hände sind ein Zaun: Wird er berührt, bewegst du dich.
+367	Zaun und Schritt
+368	{0} x {1} Min.: auf eine Wand zugehen, als wäre sie ein Mensch, Zaun aufbauen, aus der Linie treten, schieben, zurückweichen. Sag laut „Bleib zurück“.
+369	Selbstverteidigungstechniken werden mit den ähnlichsten Kampfaufnahmen gezeigt (Rahmen, Knie, Ellbogen, Schritte). Die genauen Griffe und Befreiungen stehen in den Kernpunkten.
+370	Ziel der Selbstverteidigung ist, sicher wegzukommen, nicht zu gewinnen. Wenn du gehen kannst, geh. Nutz nur so viel Kraft wie nötig und üb Befreiungen langsam mit einem Partner, der leicht loslässt.
+371	Befreiung aus dem Handgelenkgriff
+372	Ein Griff ist dort am schwächsten, wo Daumen und Finger sich treffen. Dreh dein Handgelenk zu dieser Lücke und zieh es ruckartig heraus, dann geh weg.
+373	Zieh nicht gerade gegen die ganze Hand zurück: Finde seinen Daumen.
+374	Dreh den Unterarm zum Daumen und reiß das Handgelenk durch die Lücke heraus, Ellbogen beugt sich zu ihm.
+375	Beim Ziehen einen Schritt zurück, damit dein Körpergewicht hilft.
+376	Packt er mit beiden Händen, greif zwischen seine Arme, fass deine eigene Faust und zieh durch die Daumen nach oben.
+377	Tauziehen
+378	Gerade gegen vier Finger ziehen verliert. Der Daumen ist der Ausgang.
+379	Nach der Befreiung nah bleiben
+380	Die Befreiung ist erst fertig, wenn du weggegangen bist.
+381	Griffbefreiungen
+382	Mit einem Partner, der fest, aber sicher greift: {0} Befreiungen pro Seite, dann {1} mit zwei Händen. Am Anfang langsam.
+383	Rücken an der Wand
+384	Mit einer Wand im Rücken kannst du nicht zurückweichen, und jeder Treffer wirkt voll. Das einzige Ziel ist, seitlich von der Wand wegzukommen.
+385	Hoch decken mit beiden Unterarmen, Ellbogen innen, Kinn eingezogen.
+386	Raum schaffen mit einem Knie auf den Oberschenkel oder einem Stoß gegen die Hüfte.
+387	Entlang der Wand seitlich raus, nie gerade nach vorn in ihn hinein.
+388	Dreh dich so, dass jetzt die Wand hinter ihm ist, dann geh über die offene Seite.
+389	An der Wand bleiben und Schläge tauschen
+390	Jede Sekunde an der Wand ist eine Sekunde ohne Ausweg. Decken, Raum schaffen, bewegen.
+391	Abducken
+392	An einer Wand tief gehen macht dich gefangen; bleib aufrecht hinter der Deckung.
+393	Weg von der Wand
+394	{0} x {1} Min.: Rücken zur Wand (Garagenwand), decken, Knie, Seitschritt, drehen, weggehen. Seiten abwechseln.
+395	Befreiung aus der Bärenumklammerung von vorn
+396	Jemand umklammert dich von vorn um den Körper, deine Arme sind frei. Senk dein Gewicht, rahme seine Hüfte, um Raum zu schaffen, schlag und befrei dich.
+397	Sofort die Hüfte senken und breit stehen, damit er dich nicht hochheben kann.
+398	Unterarme oder Handflächen gegen seine Hüfte oder seinen Hals drücken, um eine Lücke zu schaffen.
+399	Knie auf den Oberschenkel oder in die Leiste durch die Lücke, bis der Griff lockerer wird.

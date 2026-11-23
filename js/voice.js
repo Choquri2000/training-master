@@ -1,4 +1,5 @@
 import { store } from './store.js';
+import { CALLS } from './data/calls.js';
 // Georgian voice. Phones have no Georgian text-to-speech, so every phrase the coach says is
 // pre-recorded with a natural Georgian neural voice (tools/make_voice_ka.py) into voice/ka/<hash>.mp3.
 // Lookup order: a clip for the whole phrase, clips for each part, then a Georgian system voice if
@@ -20,20 +21,22 @@ export const CALL_KA = {
 };
 const KEYS = Object.keys(CALL_KA).sort((a, b) => b.length - a.length);
 
-// English call -> list of Georgian parts ("one two, kick" -> ["ერთი", "ორი", "წიხლი"]). null if a word is unknown.
-export function callParts(en) {
+// English call -> list of parts in a language ("one two, kick" -> ["ერთი", "ორი", "წიხლი"]). null if a word is unknown.
+export function callParts(en, dict = CALL_KA) {
   let s = ` ${String(en).toLowerCase().replace(/\.\.\.|[,!.]/g, ' ').replace(/\s+/g, ' ').trim()} `;
   const out = [];
   while (s.trim()) {
     s = s.replace(/^\s+/, '');
     const k = KEYS.find(k => s.startsWith(k + ' '));
     if (!k) return null;
-    out.push(CALL_KA[k]); s = s.slice(k.length);
+    out.push(dict[k]); s = s.slice(k.length);
   }
   return out;
 }
 // Whole call in Georgian, as one phrase (this is what gets recorded).
 export const callKa = en => { const p = callParts(en); return p && p.join(', '); };
+// Same for the other languages (spoken by the device's own voice).
+export const callIn = (en, code) => { const p = CALLS[code] && callParts(en, CALLS[code]); return p && p.join(', '); };
 
 // Same hash in tools/make_voice_ka.py (FNV-1a over UTF-16 code units).
 export function hashKa(text) {

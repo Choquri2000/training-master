@@ -1,0 +1,399 @@
+1	Oggi
+2	Allenati
+3	Io
+4	Settimana
+5	Percorso
+6	Impara
+7	Piano
+8	Progressi
+9	Impostazioni
+10	Corsa
+11	Forza
+12	Combattimento
+13	Riposo
+14	Inizia la sessione
+15	Oggi niente sessione di combattimento. Fai riposare la tecnica, o fai {0} min di shadow leggero se ti senti fresco.
+16	Tecniche di oggi
+17	Punti chiave
+18	Errori comuni e correzioni
+19	Esercizi
+20	Fase
+21	Bloccato
+22	In corso
+23	Fatto
+24	Non iniziato
+25	Inizia a imparare
+26	Segna come acquisita
+27	Azzera
+28	Verifica
+29	Ho superato questa verifica in video
+30	Fase successiva sbloccata
+31	Pausa
+32	Riprendi
+33	Salta
+34	Ferma
+35	Fine
+36	Quanto è stato duro? (RPE {0}-{1})
+37	Salva
+38	Salvato
+39	min
+40	sessioni
+41	Questa settimana
+42	Nessuna sessione registrata.
+43	Comandi vocali
+44	Lingua
+45	Esporta i miei dati
+46	Importa dati
+47	Azzera tutto
+48	Velocità
+49	Lento
+50	Normale
+51	Come si incastra la settimana
+52	Apri
+53	Le mie note
+54	Settimana di scarico: solo tecnica, niente round duri.
+55	Tutto
+56	Com'è andata ogni tecnica?
+57	Facile
+58	Non è venuta
+59	Le tecniche «Non è venuta» tornano prima nel tuo piano.
+60	Serie
+61	settimane
+62	Tecniche acquisite
+63	Minuti di combattimento a settimana
+64	Da migliorare
+65	Le hai segnate «non è venuta». Il tuo piano le riporta prima.
+66	Vengono facili
+67	Pronta da segnare come acquisita? Aprila e tocca «Segna come acquisita».
+68	Storico
+69	Data
+70	Sessione
+71	Tecniche
+72	Principiante
+73	Intermedio
+74	Avanzato
+75	Esperto
+76	Mento e mascella
+77	Un colpo sulla punta del mento o sul lato della mascella fa girare la testa di scatto. Il cervello resta indietro rispetto al cranio, ed è questo che provoca il KO. La mascella è il bersaglio della maggior parte dei colpi decisivi.
+78	Gancio o diretto sul lato della mascella; montante sotto il mento quando la testa viene avanti.
+79	Tempia
+80	Il lato della testa sopra l'orecchio, dove il cranio è più sottile. Calci e ganci che arrivano qui sono molto pericolosi; per questo la guardia la copre con i guantoni.
+81	Calcio circolare alto o calcio a punto interrogativo sopra la guardia; ganci attorno; pugno girato.
+82	Plesso solare
+83	Il punto morbido sotto lo sterno, sopra lo stomaco. Un colpo dritto qui spinge sul diaframma e toglie il fiato: l'avversario non riesce a respirare per qualche secondo.
+84	Colpi dritti: il diretto al corpo, il teep, il calcio girato all'indietro, una ginocchiata dritta nel clinch.
+85	Fegato
+86	Sotto le ultime costole sul lato destro dell'avversario, davanti alla tua mano avanti (ortodosso contro ortodosso). Un colpo pulito provoca un dolore ritardato e travolgente che manda giù i fighter ancora coscienti.
+87	Gancio avanti al corpo, calcio al corpo con la gamba avanti (con cambio), ginocchiata dritta; abbassati per arrivarci.
+88	Costole e milza
+89	Il lato sinistro dell'avversario, aperto al tuo calcio e alla tua mano dietro. Le costole fluttuanti in basso non sono attaccate allo sterno e si rompono o si incrinano facilmente; la milza è dietro di loro.
+90	Calcio circolare dietro al corpo, gancio o montante dietro al corpo.
+91	Coscia (gamba avanti)
+92	Il grande muscolo all'esterno della coscia avanti. Low kick ripetuti lì addormentano la gamba: l'avversario non riesce a spingere, e i suoi colpi e movimenti perdono forza.
+93	Low kick dietro con la tibia, qualche centimetro sopra il ginocchio; preparalo con colpi alla testa.
+94	Polpaccio (gamba avanti)
+95	Il retro e l'esterno del polpaccio avanti, appena sotto il ginocchio. È difficile da parare perché arriva sotto il ginocchio, e pochi calci puliti tolgono all'avversario guardia e gioco di gambe.
+96	Il calcio al polpaccio: un circolare basso e corto quando il suo peso è sulla gamba avanti.
+97	Colpi avanzati
+98	Finte, preparazioni e trappole
+99	Colpi firma
+100	Difesa personale
+101	Calcio al polpaccio
+102	Un circolare basso sul retro del polpaccio avanti. Toglie all'avversario base e movimento, ed è difficile da parare perché arriva sotto il ginocchio.
+103	Porta leggermente fuori il piede avanti per aprire l'angolo, poi ruota l'anca.
+104	Punta con la parte bassa della tibia sulla zona carnosa dietro-esterna del polpaccio, appena sotto la piega del ginocchio.
+105	Tiralo quando il suo peso è sulla gamba avanti: quando fa un passo o tira il jab.
+106	Calcio corto e veloce, poi torna in guardia. Non inseguire la potenza.
+107	Colpire l'osso della tibia
+108	Mira più in basso e più indietro: il muscolo morbido dietro la gamba, non la parte davanti della tibia.
+109	Abbassare la mano dietro calciando
+110	Il guantone dietro resta sul mento; il calcio parte dall'anca, non dal braccio.
+111	Jab, calcio al polpaccio
+112	{0} x {1} min: jab per portare avanti il suo peso, poi calcio al polpaccio. Tocca il sacco o un cuscino all'altezza del polpaccio.
+113	Al fegato (gancio avanti al corpo)
+114	Il fegato è sotto le ultime costole sul lato destro dell'avversario, davanti alla tua mano avanti. Un gancio pulito lì può mandare giù un fighter anche se resta cosciente.
+115	Abbassati con le ginocchia, non piegandoti in vita. La testa va un po' verso il tuo lato avanti, fuori dalla sua mano dietro.
+116	Ruota forte anca e piede avanti, come in un gancio avanti normale, gomito vicino alle tue costole.
+117	Mira in alto e verso l'interno sotto il gomito: il bersaglio sono le ultime costole del suo lato destro.
+118	Risali con la mano al viso, o continua con un gancio alla testa.
+119	Colpire da troppo lontano
+120	È un colpo corto. Entra prima, così il gomito resta piegato a circa {0} gradi.
+121	Sporgersi con la testa in avanti
+122	Piega le ginocchia; la testa resta sopra il ginocchio avanti e fuori dalla linea centrale.
+123	Jab, al fegato
+124	{0} x {1} min: jab alla testa per alzargli la guardia, abbassati, gancio avanti al corpo. Poi aggiungi un gancio alla testa.
+125	Superman punch
+126	Un colpo con la mano dietro tirato mentre il corpo vola in avanti dopo una finta di ginocchio o di calcio. La finta abbassa la guardia e il salto accorcia la distanza in fretta.
+127	Finta con la gamba dietro: alza il ginocchio come per calciare o dare una ginocchiata.
+128	Riporta di scatto quella gamba giù e indietro mentre spingi con il piede avanti.
+129	Tira il diretto al culmine del salto, la gamba dietro calcia indietro per l'equilibrio.
+130	Atterra sul piede avanti in guardia e sii pronto: ora sei vicino.
+131	Saltare in alto invece che in avanti
+132	Avanza di poco; è un affondo, non un salto.
+133	Niente finta, quindi lo vede arrivare
+134	La finta con la gamba dietro deve prima sembrare un vero calcio.
+135	Calcio, calcio, superman
+136	{0} x {1} min: due veri calci dietro, poi lo stesso inizio diventa un superman punch. Leggero al sacco o a vuoto.
+137	Costruito da due catture: un'alzata di ginocchio (la finta) concatenata con un diretto. Un vero superman punch calcia anche la gamba dietro all'indietro; guarda quel dettaglio nei punti chiave.
+138	Impara le tecniche girate e saltate a passo lento su un pavimento libero, scalzo o su un tappetino. Fissa un punto sul muro per orientarti e fermati se ti gira la testa.
+139	Pugno girato
+140	La mano dietro frusta con la rotazione e colpisce con il dorso del pugno. Sorprende gli avversari che girano lontano dalla tua mano dietro, o dopo un gancio a vuoto.
+141	Incrocia il piede avanti (un passetto a destra se sei ortodosso) per caricare la rotazione.
+142	Gira prima la testa e guarda sopra la spalla dietro: trova il bersaglio prima che arrivi il braccio.
+143	Lascia uscire il braccio dietro all'altezza della testa e colpisci con il dorso del guantone, gomito leggermente piegato.
+144	Continua a girare fino a tornare in guardia; non fermarti mai di spalle.
+145	Girare alla cieca
+146	La testa gira per prima. Se non vedi il bersaglio, non tirare il braccio.
+147	Tirarlo da troppo lontano
+148	Usalo a distanza di pugni, quando si sposta verso il tuo lato dietro o dopo un tuo gancio a vuoto.
+149	Rotazioni lente
+150	{0} x {1} min di pugni girati lenti a vuoto, guardando sopra la spalla ogni volta. Poi {2} x {3} min inserendolo dopo un gancio avanti.
+151	Non esiste una cattura libera del pugno girato, quindi si mostra la rotazione di un calcio girato all'indietro concatenata con un colpo della mano dietro. Segui i punti chiave per il braccio.
+152	Calcio girato all'indietro
+153	Un calcio dritto spinto all'indietro con il tallone, il calcio più potente al corpo. Ottimo contro avversari che avanzano frontali.
+154	Ruota sul piede avanti e guarda il bersaglio sopra la spalla dietro.
+155	Carica il ginocchio dietro stretto al petto mentre la schiena si gira verso di lui.
+156	Spingi il tallone dritto indietro in linea, punte verso il basso; il piede viaggia come un pistone, non ad arco.
+157	Ritira la gamba e completa la rotazione in guardia, mani alte.
+158	Far girare la gamba come un circolare
+159	Ginocchio al petto, poi dritto fuori: il tallone va in linea retta dalla tua anca al suo addome.
+160	Girare la schiena senza guardare
+161	La testa gira per prima, così vedi cosa colpisci e cosa torna indietro.
+162	Calci al muro
+163	{0} x {1} min: di lato a un muro o a un sacco, ruota, carica, spingi lentamente il tallone contro. Poi {2} x {3} min dopo un jab o un calcio a vuoto.
+164	Ginocchiata volante
+165	Una ginocchiata in salto che copre distanza in fretta. Sorprende avversari che abbassano la testa, entrano per un atterramento o avanzano.
+166	Fai un passo corto con il piede avanti, poi spingi il ginocchio dietro in alto e in avanti saltando.
+167	Cambia gamba in aria così sale il ginocchio dietro (o salta direttamente dalla gamba dietro).
+168	Le mani incorniciano in alto, vicino alla sua testa o alla tua guardia. Le anche spingono avanti nella ginocchiata.
+169	Atterra in equilibrio su entrambi i piedi in guardia; non cadergli addosso.
+170	Saltare dritto in alto
+171	È un movimento in avanti: punta il ginocchio al suo mento o al petto, non al soffitto.
+172	Atterrare sbilanciato
+173	Atterra sugli avampiedi, ginocchia morbide, mani di nuovo in guardia.
+174	Passo e volo
+175	{0} x {1} min: passo, ginocchiata volante in un sacco appeso o un cuscino tenuto all'altezza del petto. Recupero completo tra le ripetizioni; qualità prima della velocità.
+176	Calcio a punto interrogativo
+177	Un calcio che parte come un calcio al corpo e gira tardi verso la testa, disegnando un punto interrogativo nell'aria. L'avversario abbassa il braccio per coprire il corpo e la testa si apre.
+178	Alza il ginocchio sulla linea del calcio al corpo, come lo tiri sempre.
+179	All'ultimo momento ruota di più sul piede d'appoggio e gira l'anca così il ginocchio punta in basso.
+180	Schiocca la tibia o il collo del piede sopra il suo braccio abbassato, alla testa.
+181	Riporta la gamba per la stessa strada e atterra in guardia. Le mani restano alte tutto il tempo.
+182	Mostrare troppo presto il calcio alla testa
+183	La prima metà deve essere identica al tuo calcio al corpo, o il trucco non funziona.
+184	Rotazione insufficiente
+185	Il tallone d'appoggio deve girare verso il bersaglio perché l'anca possa ruotare sopra.
+186	Corpo, corpo, punto interrogativo
+187	{0} x {1} min: due veri calci al corpo, poi lo stesso inizio diventa il punto interrogativo. Lento e alto prima che veloce.
+188	Mostrato con una cattura di calcio alto. Il vero calcio a punto interrogativo parte sulla linea del corpo e gira tardi; i punti chiave mostrano il cambio.
+189	Finta di jab, calcio dietro
+190	Una piccola finta di jab fa alzare la guardia all'avversario e lo blocca per un attimo. È in quell'attimo che il calcio dietro arriva sul corpo scoperto.
+191	Finta con la spalla e una breve spinta della mano avanti: un terzo di jab, secco.
+192	Quando le sue mani salgono, il calcio dietro è già partito.
+193	Il calcio prende il corpo o il braccio; in ogni caso fa punto.
+194	Torna in guardia con la mano del jab pronta per la finta successiva.
+195	Una finta lenta e pigra
+196	Una finta deve essere secca come l'inizio di un vero jab, solo più corta.
+197	Aspettare di vedere se la finta ha funzionato
+198	Finta e calcio sono un solo ritmo: ta-DAM.
+199	Finta o vero
+200	{0} x {1} min: mescola jab veri e finte; ogni finta è seguita dal calcio dietro.
+201	Finta di calcio, diretto
+202	Alza il ginocchio dietro come per calciare: l'avversario abbassa una mano o alza una gamba per parare. Appoggia il piede in avanti e tira il diretto nel varco.
+203	Alza il ginocchio dietro con decisione, le mani restano in guardia.
+204	Appoggia quel piede un po' più avanti, non dietro dov'era.
+205	Il diretto parte quando il piede atterra, usando il passo per la potenza.
+206	Finisci in guardia; ora sei a distanza di pugni.
+207	Finta troppo piccola per essere letta
+208	Il ginocchio deve salire chiaramente, circa all'altezza dell'anca.
+209	Sbilanciarsi indietro sulla finta
+210	Resta dritto sopra la gamba d'appoggio così puoi colpire subito.
+211	Calcio o finta
+212	{0} x {1} min: metà delle volte calcia, metà finta e diretto. I due inizi devono sembrare uguali.
+213	Provocare il contrattacco
+214	Tira un jab che vuoi che contri. Il suo diretto di risposta arriva su una linea che conosci già: lo schivi e metti il tuo diretto mentre è scoperto.
+215	Jab a un ritmo che può leggere: stai invitando il contrattacco.
+216	Quando il jab torna, schiva all'esterno della sua mano dietro (verso destra se sei ortodosso).
+217	Dalla schivata il peso è caricato sulla gamba dietro: spara il diretto.
+218	Fallo una o due volte per round; una trappola mostrata troppo spesso smette di funzionare.
+219	Schivare prima che colpisca
+220	Jab, poi reagisci alla spalla. Una schivata programmata ti lascia a indovinare.
+221	Tirare il jab esca con il mento alto
+222	L'esca è più lenta, non più sciatta: mento basso, mano dietro alta.
+223	Esca e schivata
+224	{0} x {1} min: jab, schivata, diretto. Immagina il contrattacco a ogni jab, o fai tirare un diretto lento a un compagno.
+225	Rompere il ritmo
+226	Gli avversari prendono il tempo sul tuo ritmo. Un jab, una breve pausa, poi un {0}-{1} veloce li fa reagire a un colpo mai arrivato.
+227	Tira un jab normale e tieni la guardia mezzo secondo.
+228	Guarda se si rilassa o parte con un suo attacco.
+229	Esplodi con l'{0}-{1} nel varco.
+230	Varia la pausa: corta, lunga, nessuna. Il tempo imprevedibile è l'arma.
+231	Fare la pausa con le mani basse
+232	La pausa è nei colpi, non nella guardia. Resta chiuso e pronto.
+233	Sempre la stessa pausa
+234	Cambia tempo ogni volta, o diventa un nuovo ritmo.
+235	Round fuori tempo
+236	{0} x {1} min: jab, pausa, {2}-{3}. Conta la pausa in modo diverso a ogni ripetizione (uno, uno-due, niente).
+237	Corpo, poi testa
+238	Colpisci il corpo e le mani scendono a proteggerlo. La stessa mano risale subito alla testa, ora scoperta.
+239	Abbassati con le ginocchia e metti il gancio avanti al corpo.
+240	Risali mentre la mano torna: le gambe ti spingono nel secondo gancio.
+241	Secondo gancio alla testa dallo stesso lato; la mano dietro resta sul mento tutto il tempo.
+242	Esci o ruota dopo; non restare davanti.
+243	Raddrizzarsi tra i ganci
+244	Risali mentre tiri il gancio alla testa; la risalita fa parte della potenza.
+245	Gancio al corpo da troppo lontano
+246	Entra prima; il gancio al corpo è corto.
+247	Ganci basso-alto
+248	{0} x {1} min: gancio al corpo, gancio alla testa, ruota fuori. Leggero e veloce al sacco o a vuoto.
+249	Finta di atterramento, diretto
+250	Abbassati come per entrare in atterramento. Le sue mani scendono a difendere le gambe e il diretto passa sopra mentre risali.
+251	Cambia livello veloce con le ginocchia, testa alta, mani alte.
+252	Non fare il passo: è un abbassamento secco sul posto.
+253	Risali e tira il diretto in un unico movimento; lo spingono le gambe.
+254	Se fa uno sprawl forte, il diretto prende una testa abbassata.
+255	Abbassare lo sguardo a terra
+256	Guardagli il petto tutto il tempo.
+257	Piegarsi in vita
+258	Piega le ginocchia; la schiena resta dritta così risali in fretta.
+259	Atterramento o diretto
+260	{0} x {1} min: mescola cambi di livello che finiscono in diretto con altri che tornano in guardia.
+261	Teep, poi calcio
+262	Il teep lo spinge fuori distanza. Quando rientra per accorciare, finisce dentro il tuo circolare.
+263	Teep all'addome o all'anca per spingerlo indietro.
+264	Appoggia il piede e aspettati che avanzi subito.
+265	Sincronizza il calcio dietro per incontrare quel passo.
+266	Se non rientra, teep di nuovo o entra tu.
+267	Teep che tocca soltanto
+268	Spingi attraverso: il teep deve spostarlo, non sfiorarlo.
+269	Calciare quando è ancora fuori distanza
+270	Aspetta che entri; la trappola è il suo movimento in avanti.
+271	Spingi e incontra
+272	{0} x {1} min: teep, risistemati, calcio sull'entrata immaginata. Con un compagno, lui avanza dopo ogni teep.
+273	Tyson: schivata nel gancio avanti
+274	Lo stile peek-a-boo di Mike Tyson: schiva il jab o il diretto e trasforma la schivata stessa in un gancio avanti corto e devastante. La schivata carica il gancio come una molla.
+275	Mani alte vicino alle guance, mento basso, ginocchia piegate: la guardia peek-a-boo.
+276	Schiva a destra piegando le ginocchia e girando le spalle; il peso va sulla gamba avanti.
+277	Spingi da quella gamba carica e torna con un gancio avanti corto alla testa o al corpo.
+278	Continua a muovere la testa dopo; Tyson non restava mai sulla linea centrale.
+279	Schivare, fermarsi, poi il gancio
+280	Schivata e gancio sono un solo movimento: il gancio parte quando finisce la schivata.
+281	Restare alti
+282	Combatti basso con le ginocchia piegate; è l'altezza che rende veloce la schivata.
+283	Round peek-a-boo
+284	{0} x {1} min: schiva a destra, gancio avanti; schiva a sinistra, diretto. Resta basso tutto il round.
+285	Lomachenko: l'angolo con il perno
+286	Vasyl Lomachenko colpisce, ruota attorno al lato avanti dell'avversario e colpisce ancora prima che lui possa girarsi. Combattere dagli angoli significa colpire quando lui non può.
+287	Metti un {0}-{1} corto perché si copra.
+288	Ruota sul piede avanti, girando il piede dietro di circa {0} gradi verso il suo lato.
+289	La sua guardia ora punta dove eri tu. Spara di nuovo l'{0}-{1} sul lato scoperto.
+290	Continua a ruotare o esci prima che si giri.
+291	Ruotare da troppo lontano
+292	Il perno funziona a distanza di pugni, quasi toccando la sua spalla avanti.
+293	Abbassare le mani durante la rotazione
+294	Le mani restano incollate al viso mentre lavorano i piedi.
+295	Round di angoli
+296	{0} x {1} min: {2}-{3}, perno, {4}-{5}. Segna un punto a terra come avversario e giragli attorno.
+297	Buakaw: il teep e il calcio al corpo
+298	Buakaw Banchamek controlla gli incontri con il teep: ferma ogni attacco, tiene la distanza e fa punti. Quando l'avversario smette di avanzare, arriva il calcio al corpo.
+299	Dritto e rilassato, mani lunghe e alte, in stile thai.
+300	Teep all'addome ogni volta che entra, spingendo con l'anca.
+301	Due teep lo fanno esitare; il circolare arriva nell'esitazione.
+302	Calcia con la tibia attraverso le costole e torna subito in guardia, in equilibrio.
+303	Teep solo con la gamba
+304	Spingi l'anca in avanti; la gamba è solo l'asta.
+305	Perdere l'equilibrio dopo il calcio
+306	Passa attraverso e atterra in guardia; l'equilibrio di Buakaw è il segreto dei suoi calci.
+307	Muro di teep
+308	{0} x {1} min: teep su ogni entrata immaginata, calcio al corpo dopo il secondo teep. Ritmo thai rilassato.
+309	Pereira: il check hook sinistro
+310	Alex Pereira aspetta che l'avversario entri di corsa, fa un piccolo passo indietro e mette un gancio avanti corto mentre arriva. Ci corre dentro, così il colpo arriva con forza doppia.
+311	Resta rilassato a distanza e lascialo venire.
+312	Quando entra, fai un piccolo passo indietro con il piede dietro per costringerlo ad allungarsi.
+313	Ruota l'anca avanti e tira un gancio avanti corto e stretto mentre il suo peso viene avanti.
+314	Resta in equilibrio; devi essere pronto a un altro gancio o a muoverti.
+315	Gancio troppo largo
+316	Il gancio è corto e stretto; è lui a portarti la distanza.
+317	Indietreggiare troppo
+318	Solo pochi centimetri: abbastanza perché sbagli, abbastanza vicino per colpire.
+319	Tempo del check hook
+320	{0} x {1} min: un compagno (o il timer) entra, tu fai un passo indietro e tiri il gancio. Senza compagno, avanza, passo indietro, gancio.
+321	Mayweather: il pull counter
+322	Floyd Mayweather si inclina indietro appena fuori portata del jab, poi scatta avanti con il diretto mentre la mano dell'avversario è ancora fuori. Segue un gancio quando si copre.
+323	Spalla avanti alta e mano dietro vicino al mento.
+324	Quando arriva il jab, sposta il peso sulla gamba dietro e inclinati indietro di qualche centimetro; il jab arriva corto.
+325	Spingi dalla gamba dietro e spara il diretto sopra il suo jab che rientra.
+326	Aggiungi il gancio avanti quando si copre, poi risistemati.
+327	Inclinarsi troppo indietro
+328	Appena fuori portata: inclinarsi molto uccide il tuo equilibrio e il contrattacco.
+329	Inclinarsi indietro con il mento alto
+330	Il mento resta nascosto dietro la spalla avanti mentre ti inclini.
+331	Tira indietro e punisci
+332	{0} x {1} min: immagina o fai tirare a un compagno un jab lento; indietro, diretto, gancio. Piccolo e calmo.
+333	St-Pierre: dal jab alla doppia gamba
+334	Georges St-Pierre usava il jab per far pensare l'avversario al proprio viso, poi entrava in doppia gamba sotto. L'atterramento inizia con un pugno.
+335	Tira un jab vero e secco al viso.
+336	Quando torna, cambia livello subito: le sue mani sono alte.
+337	Passo di penetrazione tra i suoi piedi, testa alta, e spingi attraverso.
+338	Se l'entrata fallisce, risali in guardia dietro le mani.
+339	Jab, pausa, entrata
+340	L'entrata fa parte del ritorno del jab. Nessuno spazio in mezzo.
+341	Entrare da troppo lontano
+342	Il jab trova la distanza; se il jab arriva appena, arriva anche l'entrata.
+343	Ripetizioni jab-entrata
+344	{0} x {1} min su un tappetino: jab, cambio di livello, passo attraverso. Aggiungi un secondo jab ogni tre ripetizioni.
+345	Ali: jab e movimento
+346	Muhammad Ali colpiva ed era già sparito prima della risposta. Jab veloci, poi un passo fuori dalla linea, così l'avversario colpisce sempre dove lui era.
+347	Resta leggero sugli avampiedi, sempre in movimento.
+348	Doppio jab: tac, tac, entrambi tornano veloci.
+349	Esci di lato subito dopo, mai dritto indietro.
+350	Risistemati a distanza e rifallo da un nuovo angolo.
+351	Restare davanti dopo i jab
+352	Il movimento fa parte della combinazione: jab, jab, via.
+353	Piedi piatti
+354	Saltella leggero; la velocità di Ali veniva dai piedi.
+355	Colpisci e muoviti
+356	{0} x {1} min: doppio jab, passo a sinistra o a destra, gira, ripeti. Mai fermo.
+357	La barriera: crea spazio e vattene
+358	Quasi tutti i guai iniziano con qualcuno che accorcia la distanza parlando. La barriera lo tiene a un braccio senza farti sembrare un fighter, e ti dà il tempo di andartene.
+359	Mettiti di tre quarti con i palmi aperti davanti al petto, come per dire «calmati».
+360	Tienilo alla distanza della tua mano avanti; se la supera, indietreggia o spostati di lato.
+361	Se ti afferra o si lancia, spingilo o dai un teep all'addome o alle anche per creare spazio.
+362	Poi vattene: indietreggia guardandolo, poi girati e vai verso la gente e la luce.
+363	Alzare i pugni e mettersi di fronte
+364	Le mani aperte calmano la situazione e ti fanno sembrare chi non voleva guai.
+365	Lasciarlo entrare dentro le tue mani
+366	Le mani sono una barriera: quando la tocca, ti muovi.
+367	Barriera e passo
+368	{0} x {1} min: cammina verso un muro come se fosse una persona, metti la barriera, esci dalla linea, spingi, indietreggia. Di' «Stai indietro» ad alta voce.
+369	Le tecniche di difesa personale sono mostrate con le catture di combattimento più vicine (barriere, ginocchia, gomiti, passi). Prese e liberazioni esatte sono nei punti chiave.
+370	Lo scopo della difesa personale è andarsene sani e salvi, non vincere. Se puoi andartene, vattene. Usa solo la forza necessaria e prova le liberazioni lentamente con un compagno che lascia facilmente.
+371	Liberazione dalla presa al polso
+372	Una presa è più debole dove si incontrano pollice e dita. Gira il polso verso quel varco e tira di scatto, poi allontanati.
+373	Non tirare dritto indietro contro tutta la mano: cerca il suo pollice.
+374	Ruota l'avambraccio verso il pollice e sfila il polso di scatto dal varco, con il gomito che si piega verso di lui.
+375	Fai un passo indietro mentre tiri, così ti aiuta il peso del corpo.
+376	Se afferra con due mani, infila la mano tra le sue braccia, prendi il tuo pugno e tira su attraverso i pollici.
+377	Tiro alla fune
+378	Tirare dritto contro quattro dita è perdere. Il pollice è l'uscita.
+379	Restare vicino dopo la liberazione
+380	La liberazione è finita solo quando ti sei allontanato.
+381	Liberazioni dalle prese
+382	Con un compagno che tiene forte ma in sicurezza: {0} liberazioni per lato, poi {1} a due mani. Piano all'inizio.
+383	Spalle al muro
+384	Con un muro dietro non puoi indietreggiare e ogni colpo arriva pieno. L'unico obiettivo è uscire di lato dal muro.
+385	Copriti in alto con entrambi gli avambracci, gomiti dentro, mento basso.
+386	Crea spazio con una ginocchiata alla coscia o una spinta alle anche.
+387	Esci di lato lungo il muro, mai dritto verso di lui.
+388	Ruota così che ora il muro sia dietro di lui, poi vattene dal lato aperto.
+389	Restare a scambiare contro il muro
+390	Ogni secondo contro il muro è un secondo senza via d'uscita. Copriti, crea spazio, muoviti.
+391	Abbassarsi
+392	Abbassarsi contro un muro ti intrappola; resta alto dietro la copertura.
+393	Uscite dal muro
+394	{0} x {1} min: spalle a un muro (quello del garage), copertura, ginocchiata, passo laterale, perno, vattene. Alterna i lati.
+395	Liberazione dall'abbraccio frontale
+396	Qualcuno ti cinge il corpo da davanti con le tue braccia libere. Abbassa il peso, incornicia le sue anche per creare spazio, colpisci e liberati.
+397	Abbassa le anche e allarga subito la posizione così non può sollevarti.
+398	Spingi avambracci o palmi contro le sue anche o il collo per aprire un varco.
+399	Ginocchiata alla coscia o all'inguine attraverso il varco finché la presa non si allenta.
