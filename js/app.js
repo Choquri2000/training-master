@@ -151,7 +151,7 @@ function Me() {
   const ids = picks().length ? picks() : TECHNIQUES.map(x => x.id);
   const solid = ids.filter(id => s.status[id] === 'done').length;
   const mins = s.log.reduce((a, e) => a + (e.minutes || 0), 0);
-  const c = careerOf(s), fightReady = !c.fights.length || campDone(s, c) >= MIN_CAMP;
+  const c = careerOf(s), fightReady = campDone(s, c) >= MIN_CAMP;
   const row = (href, icon, title, sub, flag) => `<a class="lrow nav" href="${href}"><i>${icon}</i><span><b>${title}</b>${sub ? `<small>${sub}</small>` : ''}</span>${flag ? '<em class="flag"></em>' : ''}</a>`;
   const unsafe = syncAvailable() ? !cloudOn : backupDue();
   const el = h(`<section class="me"><h1>${tr('Me')}</h1>
