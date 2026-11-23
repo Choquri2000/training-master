@@ -30,7 +30,7 @@ import { store } from './store.js';
 import { PRESETS, picks, programFocus, volume, blockWeek, themeOf, stage, learnedCount, fighterVolume, weekCombos, sharpenSkills, myCombos, fixActive, findWeak, eventInfo, phaseWeek } from './program.js';
 import { profile, hasProfile, DEFAULT_PROFILE, CHOICES, weekDays, dayPlan, legsDay, suitable, adaptSession, coachNote, safetyNote, LEVELS } from './profile.js';
 import { t, L, LANGS, tr } from './i18n.js';
-import { initSync, onSync, signIn, signInGoogle, signOut, resetPassword, syncAvailable } from './sync.js';
+import { initSync, onSync, signIn, signInGoogle, signOut, resetPassword, syncAvailable, deleteAccount } from './sync.js';
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const view = $('#view');
@@ -727,6 +727,8 @@ function Settings() {
       <div class="cloud-in" hidden>
         <p class="cloud-status"></p>
         <button class="btn ghost" data-a="signout">${tr('Sign out')}</button>
+        <button class="btn ghost danger" data-a="delacct">${tr('Delete account')}</button>
+        <p class="acct-msg small"></p>
       </div>
       <form class="cloud-out" hidden>
         <p class="small">${tr('Sign in once and everything you do is saved to your account automatically, on every phone you use.')}</p>
@@ -756,6 +758,7 @@ function Settings() {
       </div>
       <button class="btn danger" data-a="reset">${t('resetData')}</button>
     </div>
+    <p class="legal small muted"><a href="privacy.html">${tr('Privacy policy')}</a> · <a href="terms.html">${tr('Terms of use')}</a></p>
   </section>`);
   view.replaceChildren(el);
   if (syncAvailable()) {
@@ -781,6 +784,12 @@ function Settings() {
       }
     });
     $('[data-a=signout]', el).onclick = () => signOut();
+    $('[data-a=delacct]', el).onclick = async e => {
+      const b = e.currentTarget, m = $('.acct-msg', el);
+      if (b.textContent !== tr('Tap again to delete forever')) { b.textContent = tr('Tap again to delete forever'); m.textContent = tr('This removes your account and cloud copy. Data on this device stays.'); return; }
+      try { await deleteAccount(); m.textContent = tr('Account deleted.'); }
+      catch (err) { m.textContent = err.code === 'auth/requires-recent-login' ? tr('For safety, sign out, sign in again, then delete.') : authError(err); }
+    };
   }
   $('.voice', el).onchange = e => store.set({ voice: e.target.checked });
   $('.model', el).onchange = e => store.set({ model: e.target.value });

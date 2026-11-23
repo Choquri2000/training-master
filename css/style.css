@@ -682,3 +682,4 @@ body.immersive #toast { bottom: auto; top: calc(12px + env(safe-area-inset-top))
 .card.list.exp details > .card > h3 { display: none; }
 select { max-width: 100%; box-sizing: border-box; }
 section > select, section > label > select { width: 100%; }
+.legal { text-align: center; margin: 8px 0 24px; } .legal a { color: inherit; }

@@ -1,0 +1,16 @@
+rules_version = '2';
+// Each user can only read and write their own document: users/{uid}.
+// Paste into Firebase console > Firestore > Rules, then Publish.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{uid} {
+      allow read, delete: if request.auth != null && request.auth.uid == uid;
+      allow create, update: if request.auth != null && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['data', 'updatedAt'])
+        && request.resource.data.data is string
+        && request.resource.data.data.size() < 900000
+        && request.resource.data.updatedAt is int;
+    }
+    match /{document=**} { allow read, write: if false; }
+  }
+}

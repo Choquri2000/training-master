@@ -75,4 +75,11 @@ export async function signInGoogle() {
   await fb.signInWithPopup(auth, new fb.GoogleAuthProvider());
 }
 export const signOut = () => fb.signOut(auth);
+// Permanently delete the cloud copy and the sign-in account (required by app stores).
+export async function deleteAccount() {
+  if (!user) return;
+  const u = user;
+  await fb.deleteDoc(fb.doc(db, 'users', u.uid));
+  await fb.deleteUser(u);
+}
 export const resetPassword = email => fb.sendPasswordResetEmail(auth, email);
