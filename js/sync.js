@@ -3,7 +3,7 @@
 // Firestore keeps its own offline queue, so changes made without signal upload later.
 import { FIREBASE_CONFIG } from './firebase-config.js';
 import { store } from './store.js';
-import { initPro } from './pro.js';
+import { initPro, proLogOut } from './pro.js';
 
 const V = '10.12.2';
 const CDN = `https://www.gstatic.com/firebasejs/${V}`;
@@ -80,12 +80,13 @@ export async function signInGoogle() {
   const r = await native.signInWithGoogle();
   await fb.signInWithCredential(auth, fb.GoogleAuthProvider.credential(r.credential?.idToken));
 }
-export const signOut = () => fb.signOut(auth);
+export const signOut = () => { proLogOut(); return fb.signOut(auth); };
 // Permanently delete the cloud copy and the sign-in account (required by app stores).
 export async function deleteAccount() {
   if (!user) return;
   const u = user;
   await fb.deleteDoc(fb.doc(db, 'users', u.uid));
   await fb.deleteUser(u);
+  proLogOut();
 }
 export const resetPassword = email => fb.sendPasswordResetEmail(auth, email);
