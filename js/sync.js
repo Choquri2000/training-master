@@ -3,11 +3,12 @@
 // Firestore keeps its own offline queue, so changes made without signal upload later.
 import { FIREBASE_CONFIG } from './firebase-config.js';
 import { store } from './store.js';
-import { initPro, proLogOut } from './pro.js';
+import { setEntitlement, proAvailable, api } from './pro.js';
+import { PADDLE } from './paddle-config.js';
 
 const V = '10.12.2';
 const CDN = `https://www.gstatic.com/firebasejs/${V}`;
-let fb = null, auth, db, docRef, user = null, timer = 0;
+let fb = null, auth, db, docRef, user = null, timer = 0, stopEnt = null;
 const status = { state: FIREBASE_CONFIG ? 'signed-out' : 'off', at: null, error: null };
 const subs = new Set();
 const emit = () => subs.forEach(f => f({ ...status, email: user?.email }));
@@ -60,9 +61,11 @@ export async function initSync(onDataChanged) {
   db = f.initializeFirestore(appI, { localCache: f.persistentLocalCache() });
   a.onAuthStateChanged(auth, async u => {
     user = u;
-    if (!u) { status.state = 'signed-out'; emit(); return; }
+    if (!u) { stopEnt?.(); stopEnt = null; status.state = 'signed-out'; emit(); return; }
     docRef = f.doc(db, 'users', u.uid);
-    initPro(u.uid);
+    // Pro status: written only by the payment-check server, read live here.
+    stopEnt?.(); stopEnt = null;
+    if (proAvailable()) stopEnt = f.onSnapshot(f.doc(db, 'entitlements', u.uid), d => setEntitlement(d.exists() ? d.data() : null), () => {});
     try { await pull(); onDataChanged?.(); } catch (e) { status.state = 'error'; status.error = e.message; emit(); }
   });
   store.onChange(() => { clearTimeout(timer); timer = setTimeout(upload, 800); });
@@ -80,13 +83,21 @@ export async function signInGoogle() {
   const r = await native.signInWithGoogle();
   await fb.signInWithCredential(auth, fb.GoogleAuthProvider.credential(r.credential?.idToken));
 }
-export const signOut = () => { proLogOut(); return fb.signOut(auth); };
+export const signOut = () => { setEntitlement(null); return fb.signOut(auth); };
+export const currentUser = () => user && { uid: user.uid, email: user.email };
+export const idToken = () => user?.getIdToken();
+// Paddle's page where the customer can cancel, change plan, update card or get invoices.
+export async function manageSubscription() { return (await api('/portal', await user.getIdToken())).url; }
 // Permanently delete the cloud copy and the sign-in account (required by app stores).
 export async function deleteAccount() {
   if (!user) return;
   const u = user;
+  // Firebase only deletes accounts signed in during the last few minutes; check before cancelling anything.
+  if (Date.now() - Date.parse(u.metadata.lastSignInTime) > 4 * 60 * 1000) throw Object.assign(new Error('recent'), { code: 'auth/requires-recent-login' });
+  // Cancel any subscription and remove the Pro record first, so nobody is charged after deleting.
+  if (proAvailable() && PADDLE.api) await api('/delete', await u.getIdToken(true));
   await fb.deleteDoc(fb.doc(db, 'users', u.uid));
   await fb.deleteUser(u);
-  proLogOut();
+  setEntitlement(null);
 }
 export const resetPassword = email => fb.sendPasswordResetEmail(auth, email);

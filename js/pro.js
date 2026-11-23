@@ -1,64 +1,77 @@
-// Combat Coach Pro: subscriptions through Google Play / App Store billing, managed by RevenueCat.
-// Only active inside the store app with a RevenueCat key set; the web version is unaffected.
-// Uses the native plugin through the Capacitor bridge, so no bundler is needed.
-export const REVENUECAT_ANDROID_KEY = ''; // public SDK key "goog_..." from RevenueCat > Project > API keys
-const ENTITLEMENT = 'pro';
+// Combat Coach Pro, sold on the website through Paddle (merchant of record).
+// Who is Pro is decided only by the payment-check server (worker/), which writes the read-only
+// Firestore record entitlements/{uid} from Paddle's signed webhooks. The app just reads it.
+// The Android app never shows a way to buy (Google Play rule); Pro unlocks there by signing in.
+import { PADDLE } from './paddle-config.js';
 
-const P = () => window.Capacitor?.isNativePlatform?.() && REVENUECAT_ANDROID_KEY ? window.Capacitor.Plugins.Purchases : null;
-// Last known status, so a paying user is never locked out offline or during start-up.
-// RevenueCat checks every purchase with Google on its servers; this is only a local copy of that answer.
+const native = () => !!window.Capacitor?.isNativePlatform?.();
+export const proAvailable = () => !!PADDLE.token;        // payments switched on at all
+export const canBuy = () => proAvailable() && !native(); // only on the website
+
+// Last known answer, so a paying user is never locked out offline or while the app starts.
 const CACHE = 'cc-pro';
-let pro = (() => { try { return localStorage.getItem(CACHE) === '1'; } catch { return false; } })();
-let chain = Promise.resolve(), configured = false;
+let ent = (() => { try { return JSON.parse(localStorage.getItem(CACHE) || 'null'); } catch { return null; } })();
 const subs = new Set();
-const set = info => {
-  if (!info) return pro;
-  pro = !!info.entitlements?.active?.[ENTITLEMENT];
-  try { localStorage.setItem(CACHE, pro ? '1' : '0'); } catch { /* private mode */ }
-  subs.forEach(f => f(pro));
-  return pro;
-};
-
-export const proAvailable = () => !!P();
-export const isPro = () => pro;
-// Free plan: Stage 1, phase 1 only. Everything else needs Pro (store app only).
-export const locked = () => proAvailable() && !pro;
+export const isPro = () => !!ent?.pro;
+export const entitlement = () => ent;
+export const locked = () => proAvailable() && !isPro();
 export const PRO_ROUTES = ['spar', 'career', 'combos', 'tests', 'targets', 'iq'];
-export const onPro = f => { subs.add(f); f(pro); return () => subs.delete(f); };
+export const onPro = f => { subs.add(f); f(isPro()); return () => subs.delete(f); };
 
-// Call once at start, and again with the Firebase uid after sign-in so Pro follows the account
-// to every phone. Calls run one after another, so sign-in never races the first set-up.
-export function initPro(uid) {
-  const p = P(); if (!p) return Promise.resolve(false);
-  chain = chain.then(async () => {
-    if (!configured) {
-      await p.configure({ apiKey: REVENUECAT_ANDROID_KEY, appUserID: uid || null });
-      configured = true;
-      // Renewals, expiries and refunds arrive here while the app is open.
-      p.addCustomerInfoUpdateListener(info => set(info));
-    } else if (uid) set((await p.logIn({ appUserID: uid })).customerInfo);
-    return set((await p.getCustomerInfo()).customerInfo);
-  }).catch(() => pro);
-  return chain;
+// Called by sync.js with the live Firestore record (null when signed out or never subscribed).
+export function setEntitlement(e) {
+  const was = isPro();
+  ent = e ? { pro: !!e.pro, status: e.status || '', endsAt: e.endsAt || '', cancelAt: e.cancelAt || '' } : null;
+  try { ent ? localStorage.setItem(CACHE, JSON.stringify(ent)) : localStorage.removeItem(CACHE); } catch { /* private mode */ }
+  if (was !== isPro()) subs.forEach(f => f(isPro()));
 }
-export const proLogOut = () => { const p = P(); if (p && configured) chain = chain.then(() => p.logOut()).then(r => set(r?.customerInfo)).catch(() => pro); };
 
-// Monthly and yearly packages of the current offering, with store-formatted prices.
+let paddle = null;
+function loadPaddle(onDone) {
+  if (paddle) return paddle;
+  paddle = new Promise((res, rej) => {
+    const s = document.createElement('script');
+    s.src = 'https://cdn.paddle.com/paddle/v2/paddle.js';
+    s.onload = () => {
+      if (PADDLE.env === 'sandbox') window.Paddle.Environment.set('sandbox');
+      window.Paddle.Initialize({ token: PADDLE.token, eventCallback: e => onDone?.(e) });
+      res(window.Paddle);
+    };
+    s.onerror = () => { paddle = null; rej(new Error('offline')); };
+    document.head.append(s);
+  });
+  return paddle;
+}
+
+// Local prices with tax for the visitor's country, e.g. "$4.99" or "€4.99".
 export async function plans() {
-  const p = P(); if (!p) return [];
-  await chain;
-  const o = (await p.getOfferings())?.current;
-  return (o?.availablePackages || []).map(pk => ({
-    id: pk.identifier, type: pk.packageType, price: pk.product.priceString,
-    trial: pk.product.introPrice?.price === 0 ? pk.product.introPrice.periodNumberOfUnits + ' ' + pk.product.introPrice.periodUnit.toLowerCase() : '',
-    pkg: pk,
-  }));
+  if (!canBuy()) return [];
+  const P = await loadPaddle();
+  const ids = [['monthly', PADDLE.monthly], ['yearly', PADDLE.yearly]].filter(x => x[1]);
+  try {
+    const r = await P.PricePreview({ items: ids.map(([, priceId]) => ({ priceId, quantity: 1 })) });
+    return ids.map(([type, id], i) => ({ type, id, price: r.data.details.lineItems[i].formattedTotals.total }));
+  } catch { return ids.map(([type, id]) => ({ type, id, price: type === 'yearly' ? '$29.99' : '$4.99' })); }
 }
-export async function buy(plan) {
-  const { customerInfo } = await P().purchasePackage({ aPackage: plan.pkg });
-  return set(customerInfo);
+
+// Opens Paddle's checkout. The account id travels with the order so the server can unlock Pro.
+let onCheckoutDone = null;
+export async function buy(plan, user) {
+  const P = await loadPaddle(e => { if (e.name === 'checkout.completed') onCheckoutDone?.(); });
+  return new Promise(res => {
+    onCheckoutDone = res;
+    P.Checkout.open({
+      items: [{ priceId: plan.id, quantity: 1 }],
+      customer: user.email ? { email: user.email } : undefined,
+      customData: { uid: user.uid },
+      settings: { displayMode: 'overlay', theme: matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light', allowLogout: false },
+    });
+  });
 }
-export async function restore() {
-  const { customerInfo } = await P().restorePurchases();
-  return set(customerInfo);
+
+// Calls to the payment-check server, signed with the user's Firebase sign-in token.
+export async function api(path, token) {
+  const r = await fetch(PADDLE.api.replace(/\/$/, '') + path, { method: 'POST', headers: { Authorization: 'Bearer ' + token } });
+  if (!r.ok) throw new Error((await r.text()) || 'server');
+  return r.json();
 }

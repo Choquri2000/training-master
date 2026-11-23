@@ -1,0 +1,8 @@
+name = "combat-coach-pay"
+main = "index.js"
+compatibility_date = "2026-11-01"
+
+[vars]
+FIREBASE_PROJECT_ID = "combat-coach-b8f28"
+PADDLE_ENV = "sandbox"
+ALLOWED_ORIGINS = "https://choquri2000.github.io,https://localhost"
