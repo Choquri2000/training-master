@@ -51,15 +51,8 @@ export const STRINGS = {
   },
 };
 
-export const LANGS = [
-  { code: 'en', label: 'English', speech: 'en-US' },
-  { code: 'es', label: 'Español', speech: 'es-ES' },
-  { code: 'de', label: 'Deutsch', speech: 'de-DE' },
-  { code: 'fr', label: 'Français', speech: 'fr-FR' },
-  { code: 'it', label: 'Italiano', speech: 'it-IT' },
-  { code: 'ka', label: 'ქართული', speech: 'ka-GE' },
-  { code: 'ru', label: 'Русский', speech: 'ru-RU' },
-];
+export { LANGS, langDir } from './langs.js';
+import { LANGS } from './langs.js';
 export const lang = () => store.get().lang || 'en';
 export const speechLang = () => (LANGS.find(l => l.code === lang()) || LANGS[0]).speech;
 // Languages that use the English-keyed maps.

@@ -41,7 +41,7 @@ for (const f of [...files, 'js/app.js', 'js/session.js', 'js/mocap.js', 'js/figu
   }
 }
 // Pieces of joined labels (see X(): "Circuit 1/3: Push-ups", "Drill of the day · ...").
-['Circuit {0}/{1}', 'Drill of the day', 'Technique, set {0}', 'Technique, set {0} (slow)', '{0} min', 'Round {0}', 'Drill {0}'].forEach(add);
+['Circuit 1/1', 'Drill of the day', 'Technique, set 1', 'Technique, set 1 (slow)', '1 min', 'Round 1', 'Drill 1'].forEach(add);
 // Spoken calls ("one two, kick") are translated word by word in js/data/calls.js instead.
 const { callParts } = await import(new URL('js/voice.js', root));
 const list = [...out].filter(s => !/^\{\d+\}$/.test(s) && !/^[A-Z_]+$/.test(s) && !(s === s.toLowerCase() && callParts(s.replace(/\{\d+\}/g, 'one'))));

@@ -1,9 +1,10 @@
+import { LANGS } from './langs.js';
 // Tiny persistence layer on localStorage. Everything the app remembers lives under one key,
 // so export/import is a single JSON blob.
 const KEY = 'combat-coach-v1';
 
 // New users start in their phone's language when the app has it.
-const LANG0 = (() => { try { const l = (navigator.language || 'en').slice(0, 2).toLowerCase(); return ['en', 'es', 'de', 'fr', 'it', 'ka', 'ru'].includes(l) ? l : 'en'; } catch { return 'en'; } })();
+const LANG0 = (() => { try { const l = (navigator.language || 'en').slice(0, 2).toLowerCase(); return LANGS.some(x => x.code === l) ? l : 'en'; } catch { return 'en'; } })();
 const DEFAULTS = {
   lang: LANG0,
   voice: true,

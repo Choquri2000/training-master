@@ -1990,9 +1990,9 @@
 "Get ready: bounce, hands up, eyes forward",
 "Round {0} of {1}",
 "Sparring round {0} of {1}: defend, then counter",
-"Circuit {{0}}/{{1}}",
-"Technique, set {{0}}",
-"Technique, set {{0}} (slow)",
-"{{0}} min",
-"Round {{0}}",
-"Drill {{0}}"]
+"Circuit {0}/{1}",
+"Technique, set {0}",
+"Technique, set {0} (slow)",
+"{0} min",
+"Round {0}",
+"Drill {0}"]

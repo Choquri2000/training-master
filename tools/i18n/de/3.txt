@@ -1,0 +1,400 @@
+1200	Nach hinten lehnen
+1201	Dein Kopf sollte sich leicht nach vorn bewegen, während der Schlag steigt.
+1202	Hinterer Aufwärtshaken, vorderer Haken, Gerade. {0} x {1} Min.
+1203	Abrollen (Bob and Weave)
+1204	Unter einem Haken in U-Form durchtauchen und in Reichweite zum Kontern hochkommen.
+1205	Beuge die Knie, um unter den Schlag zu kommen; der Kopf beschreibt ein "U".
+1206	Bewege dich in die Richtung, in die der Schlag fliegt (unter einem vorderen Haken = nach links abrollen).
+1207	Hände oben, Blick nach vorn.
+1208	Komm schlagbereit hoch, meist mit einem Haken.
+1209	Nutze die Schnur-Übung: geh mit den Beinen unter der Schnur durch.
+1210	Zu tief gehen
+1211	Nur so tief, dass der Schlag über deinen Kopf geht.
+1212	Abrollen unter der Schnur
+1213	Unter einer Schnur auf Kinnhöhe abrollen und dabei an ihr entlanggehen. {0} x {1} Min.
+1214	{0}-{1}-abrollen-{2}
+1215	Jab, Gerade, abrollen, Gerade. {0} x {1} Min.
+1216	Switch-Kick (vorderer Roundhouse)
+1217	Ein schneller Fußwechsel, damit das vordere Bein mit Kraft treten kann.
+1218	Kleiner Hüpfer oder Schritt zum Wechseln: der vordere Fuß geht zurück, der hintere kommt nach vorn und außen.
+1219	Tritt direkt aus dem Wechsel, gleiche Technik wie beim hinteren Roundhouse.
+1220	Halte den Wechsel klein: große Wechsel verraten den Tritt.
+1221	Großer, offensichtlicher Wechsel
+1222	Die Füße bewegen sich beim Wechsel nur {0} bis {1} cm.
+1223	Pause nach dem Wechsel
+1224	Wechsel und Tritt sind eine Bewegung: "ba-BAM".
+1225	{0}-Switch-Kick
+1226	Jab, dann Switch-Kick. {0} x {1} Min.
+1227	Gerades Knie
+1228	Stoß das hintere Knie auf kurze Distanz in den Körper.
+1229	Die Hände greifen nach vorn (als würdest du Kopf oder Schultern packen) und ziehen nach unten.
+1230	Geh auf die Zehen des Standbeins und schieb die Hüfte nach vorn.
+1231	Zehen nach unten, damit das Knie die Spitze bildet.
+1232	Knie heben ohne Hüfteinsatz
+1233	Denk "Hüfte vor", nicht "Knie hoch".
+1234	Über das Knie nach vorn lehnen
+1235	Lehn dich leicht zurück, damit die Hüfte durchschieben kann.
+1236	Knie bis zum Gong
+1237	{0} x {1} Min abwechselnd Knie, Auslage zwischen den Wiederholungen wechseln.
+1238	Levelwechsel
+1239	Senke die Hüfte schnell (ohne dich vorzubeugen), um einen Takedown vorzubereiten oder anzutäuschen.
+1240	Beuge die Knie, um die Hüfte zu senken; Rücken aufrecht, Kopf oben.
+1241	Die Hände bleiben vorn, bereit zum Verteidigen oder Greifen.
+1242	Oft nach einem Schlag: {0}-{1}, dann Levelwechsel.
+1243	In der Hüfte abknicken (Kopf unter der Hüfte)
+1244	Halte den Kopf über den Knien.
+1245	{0}-{1}-Levelwechsel
+1246	Technisches Aufstehen
+1247	Steh sicher vom Boden auf, mit Deckung oben und weg vom Gegner.
+1248	Im Sitzen: eine Hand hinter dir am Boden, der andere Arm schützt das Gesicht.
+1249	Drück dich mit der Bodenhand und dem gegenüberliegenden Fuß ab, um die Hüfte zu heben.
+1250	Schwing das freie Bein nach hinten durch und lande mit Abstand in der Auslage.
+1251	Gerade vor dem Gegner aufstehen
+1252	Das Bein geht nach hinten und du landest einen Schritt entfernt.
+1253	Die Deckungshand fallen lassen
+1254	Halte den freien Arm die ganze Zeit vor dem Gesicht.
+1255	Aufstehen
+1256	{0} x {1} pro Seite, abwechselnd.
+1257	Ausweichen und Konter-Gerade
+1258	Weich dem Jab nach innen aus und lande gleichzeitig eine Gerade.
+1259	Ausweichen und Schlagen zusammen: das Ausweichen lädt die hintere Hüfte.
+1260	Der Konter bleibt gerade und kurz.
+1261	Nach dem Konter neu ausrichten oder im Winkel raus; bleib nicht vorn stehen.
+1262	Ausweichen, Pause, dann schlagen
+1263	Sag beim Üben "ausweichen-zwei" wie ein Wort.
+1264	Konter im Schattenboxen
+1265	Stell dir den Jab vor, weich aus und kontere. {0} x {1} Min.
+1266	Rückzugskonter
+1267	Lehn dich knapp aus der Reichweite des Jabs zurück und feuere eine Gerade, während er zurückgezogen wird.
+1268	Gewicht aufs hintere Bein, der Kopf geht über das hintere Knie.
+1269	Hände oben; die vordere Hand kann den Jab abfangen.
+1270	Federe vom hinteren Bein nach vorn in die Gerade.
+1271	Mit gestreckten Beinen zurücklehnen
+1272	Beuge das hintere Knie, damit die Bewegung aus den Beinen kommt.
+1273	Zurück-{0}
+1274	Nach Kombis im Winkel raus
+1275	Bleib nach dem Schlagen nie vorn stehen: beende jede Kombi, indem du die Linie verlässt.
+1276	Beende die Kombi, dann drehen oder seitlich nach außen am vorderen Fuß vorbei.
+1277	Hände oben beim Bewegen, Blick aufs Ziel.
+1278	Stehen bleiben und die Kombi bewundern
+1279	Jede Kombi endet mit einem laut gesagten "bewegen".
+1280	Kombi + Bewegung
+1281	{0} x {1} Min beliebige Kombis, jede endet mit Drehung oder Schritt.
+1282	Horizontaler Ellbogen
+1283	Schneidender Schlag auf kurze Distanz mit der Ellbogenspitze.
+1284	Ellbogen auf Schulterhöhe heben, Hand nahe am eigenen Ohr.
+1285	Hüfte und Schultern durchdrehen und quer durchs Ziel schneiden.
+1286	Die andere Hand schützt das Gesicht.
+1287	Ellbogen treffen innerhalb der Hakendistanz.
+1288	Lockere Hand
+1289	Halte die Handfläche nah am Kopf, damit die Ellbogenspitze vorangeht.
+1290	{0}-Ellbogen
+1291	Vorderer Haken, dann hinterer Ellbogen. {0} x {1} Min.
+1292	Tritt fangen und kontern
+1293	Fang einen Körpertritt und kontere, solange der Gegner auf einem Bein steht.
+1294	Nimm den Tritt mit Arm und Körper derselben Seite auf, dann schaufle das Bein.
+1295	Tritt zurück oder dreh dich, um ihn aus dem Gleichgewicht zu bringen.
+1296	Kontere sofort: Gerade oder Tritt gegen das Standbein.
+1297	Dem Tritt entgegengreifen
+1298	Lass den Tritt zu dir kommen, dann umklammern.
+1299	Fangen und kontern solo
+1300	Stell dir den Tritt vor, fangen, zurücktreten, Gerade. {0} x {1} Min.
+1301	Clinch-Haltung und Knie
+1302	Kontrolliere den Kopf und lande Knie aus dem Thai-Clinch.
+1303	Hände übereinander hinter dem Kopf des Gegners, Finger nicht verschränkt.
+1304	Ellbogen vor seiner Brust zusammendrücken, deine Hüfte nach vorn.
+1305	Zieh den Kopf nach unten und stoß die Knie hoch.
+1306	Finger verschränken
+1307	Handfläche auf dem Handrücken, Finger frei.
+1308	Hüfte hinten
+1309	Aufrecht stehen, Hüfte rein, Brust raus.
+1310	Clinch-Knie (solo)
+1311	Arme in Clinch-Position, abwechselnd Knie. {0} x {1} Min.
+1312	Double-Leg-Eingang (Schatten)
+1313	Eindringschritt für den klassischen Double-Leg-Takedown, solo geübt.
+1314	Erst Levelwechsel, dann ein langer Schritt mit dem vorderen Fuß zwischen die Füße des Gegners.
+1315	Das hintere Knie setzt leicht auf; Kopf oben, Rücken gerade.
+1316	Die Hände gehen in die Kniekehlen; hinteres Bein nachziehen und durchdrücken.
+1317	Mit den Händen greifen, bevor die Füße da sind
+1318	Der Schritt macht die Arbeit: die Hände greifen erst am Ende.
+1319	Kopf unten
+1320	Dein Kopf bleibt oben, Kinn nach vorn.
+1321	Eindringschritte
+1322	{0} x {1} pro Seite quer durch die Garage. Nimm eine Matte oder einen Teppich fürs Knie.
+1323	Sprawl und schlagen
+1324	Wehr den Takedown ab und komm sofort schlagend wieder hoch.
+1325	Sprawl, dann in einer Bewegung zurück in die Auslage.
+1326	Lande den ersten Schlag, sobald die Füße stehen.
+1327	Langsam aufstehen mit Händen unten
+1328	Die Hände kommen beim Hochkommen zurück zum Gesicht.
+1329	Sprawl-{0}-{1}
+1330	(dauert {0} Sekunden).
+1331	{0}-{1} Min Beinarbeit (optional)
+1332	Sichern
+1333	Meinen Plan erstellen
+1334	Skills ändern
+1335	Cloud-Speicherung
+1336	Kombis, die der Timer jetzt ansagen kann:
+1337	Weiter mit Google
+1338	Konto erstellen
+1339	Fertig!
+1340	Das üben ({0} x {1} Min)
+1341	E-Mail oder Passwort ist falsch.
+1342	Jede {0}. Woche ab diesem Datum ist eine Entlastungswoche.
+1343	Blau = vordere Seite, grau = hintere Seite. "Vorne" ist, was dein Gegner sieht.
+1344	Motion Capture eines echten Kämpfers. Ziehen zum Drehen, zwei Finger zum Zoomen. "Vorne" ist, was dein Gegner sieht.
+1345	Kämpfer
+1346	Puppe (vordere Seite blau)
+1347	Passwort vergessen
+1348	Von
+1349	dein Plan
+1350	Vorne
+1351	Seite
+1352	Schritt für Schritt
+1353	Kompletter {0}-Wochen-Plan und deine Skills
+1354	Google-Anmeldung wurde blockiert oder geschlossen. Versuch es erneut oder nutze E-Mail und Passwort.
+1355	Geh die Technik durch
+1356	Mein Skill-Plan
+1357	Keine harten Tritte (Beintag).
+1358	Kein Internet. Versuch es, wenn du online bist.
+1359	Noch nicht gespeichert, neuer Versuch folgt
+1360	Nicht angemeldet: Daten nur auf diesem Handy
+1361	Oder nutze E-Mail (klappt am besten, wenn die App auf dem Startbildschirm installiert ist):
+1362	Bestanden
+1363	Passwort ({0}+ Zeichen)
+1364	Checkpoint von Phase {n} bestanden
+1365	Checkpoint von Phase {n} entfernt
+1366	Skills wählen
+1367	Wähle die Skills, die du lernen willst, und die App erstellt deinen wöchentlichen Kampfplan.
+1368	Wähle deine Skills
+1369	für einen kompletten Wochenplan.
+1370	Plan gespeichert
+1371	Planstart (Montag von Woche {0})
+1372	E-Mail zum Zurücksetzen gesendet.
+1373	In der Cloud gespeichert um
+1374	Einheit gespeichert
+1375	Anmelden
+1376	Einmal anmelden
+1377	um es automatisch in der Cloud zu speichern.
+1378	Melde dich einmal an und alles, was du tust, wird automatisch in deinem Konto gespeichert, auf jedem Handy, das du nutzt.
+1379	Abmelden
+1380	Aktiv
+1381	Alles freischalten
+1382	Alle Skill-Pfade und Techniken
+1383	Kämpfer-Routine, Kombinationen und Sparringspartner
+1384	Kämpferkarriere und Skill-Tests
+1385	Neue Skills und Pläne mit der Zeit
+1386	Wird geladen...
+1387	Käufe wiederherstellen
+1388	Verlängert sich automatisch bis zur Kündigung. Kündige jederzeit in Google Play, mindestens {0} Stunden vor der Verlängerung.
+1389	Pro ist aktiv. Danke!
+1390	Pläne sind gerade nicht verfügbar.
+1391	Jährlich
+1392	Monatlich
+1393	kostenloser Test
+1394	Der Kauf ist nicht durchgegangen. Dir wurde nichts berechnet.
+1395	Kein Abo für dieses Konto gefunden.
+1396	Store nicht erreichbar. Versuch es erneut.
+1397	Das gehört zu Pro. Die erste Phase bleibt kostenlos.
+1398	{0} Tage kostenlos, dann wird abgerechnet, bis du kündigst. Kündige jederzeit mit zwei Tipps. Volle Erstattung innerhalb von {1} Tagen nach deiner ersten Zahlung.
+1399	Endet am {d}
+1400	Verlängert sich am {d}
+1401	Abo verwalten
+1402	Melde dich zuerst an, damit Pro dir auf jedes Gerät folgt.
+1403	{0} Tage kostenlos
+1404	Zahlung erhalten. Pro wird freigeschaltet...
+1405	Zahlungsseite nicht erreichbar. Prüfe deine Verbindung.
+1406	Deine Abo-Seite konnte nicht geöffnet werden. Versuch es erneut.
+1407	Konto löschen
+1408	Nochmal tippen, um endgültig zu löschen
+1409	Das kündigt jedes Abo und entfernt dein Konto und die Cloud-Kopie. Daten auf diesem Gerät bleiben.
+1410	Konto gelöscht.
+1411	Melde dich zur Sicherheit ab, wieder an und lösche dann.
+1412	Datenschutzerklärung
+1413	Nutzungsbedingungen
+1414	Angemeldet als
+1415	Nochmal tippen zum Bestätigen
+1416	Tippe die Skills an, die du trainieren willst. Starte gern mit einem fertigen Set und füge dann hinzu oder entferne.
+1417	Diese E-Mail hat schon ein Konto. Tippe auf Anmelden.
+1418	Diese Datei konnte nicht gelesen werden.
+1419	Gib zuerst deine E-Mail ein.
+1420	Rückgängig
+1421	Achte auf
+1422	Woche
+1423	Was fühlte sich falsch an? Was hat das Video gezeigt?
+1424	Deine Daten bleiben auf diesem Gerät (Browserspeicher). Exportiere sie ab und zu als Sicherung.
+1425	Dein Fortschritt ist nur auf diesem Handy gespeichert.
+1426	Dein Fortschritt ist noch nicht gesichert.
+1427	Deine Skills
+1428	nach dem Kampftraining
+1429	Entlastung
+1430	Fokus
+1431	bestehe zuerst den Checkpoint von Phase {n}.
+1432	{n} gewählt
+1433	{n} x {0} Min pro Skill (erster Satz langsam), dann lockeres Schattenboxen
+1434	{n} x {t} Runden auf Ansage, nach {0} Min pro Skill
+1435	Als im Lernen markiert
+1436	Als sicher markiert
+1437	Status zurückgesetzt
+1438	Daten importiert
+1439	Alles wurde zurückgesetzt
+1440	Konto wird erstellt...
+1441	Anmeldung läuft...
+1442	✓ Gespeichert
+1443	Wird gespeichert
+1444	Offline
+1445	Nicht gesichert
+1446	Technik
+1447	Zurück in die Deckung
+1448	Zieh den Regler oder die Figur, um sie zu drehen
+1449	Technik
+1450	Haupt
+1451	Beinarbeit
+1452	Übung
+1453	Allround (empfohlen)
+1454	Alles
+1455	Aufbau: langsam lernen
+1456	Aufbau: Tempo dazu
+1457	Spitze: Druckrunden
+1458	Entlastung: nur Technik
+1459	Hände
+1460	Tritte, Knie und Ellbogen
+1461	MMA: Levelwechsel und Boden
+1462	Verteidigung und Konter
+1463	Kämpfertraining
+1464	Kombis der Woche
+1465	Heute schärfen
+1466	{n} x {t} Kampfrunden
+1467	{n} Schlagserien, Sprawls, Core
+1468	Beinarbeit, {n} Verteidigungsrunden, Kombis nur mit Händen
+1469	Lerne die Skills
+1470	{n} von {m} als sicher markiert
+1471	Die Routine, die du jahrelang behältst
+1472	Zurück zum Lernen (neue Skills hinzufügen)
+1473	Ich kann sie: Kämpfertraining starten
+1474	Kämpfertraining gestartet
+1475	Zurück zum Lernen
+1476	Basis: sauber und scharf
+1477	Aufbau: mehr Runden
+1478	Spitze: Kampftempo
+1479	Entlastung: leicht und technisch
+1480	Verteidigung
+1481	Kampfrunden
+1482	Stufe {0}: Du lernst die Skills, die du gewählt hast. Alle {1} Wochen ist ein Block ({2} Wochen Aufbau + eine leichte Woche), der durch jeden Skill rotiert. Wenn ein Skill sitzt, öffne ihn und tippe auf "Als sicher markieren". Wenn alle sitzen, wechselt die App von selbst ins Kämpfertraining (oder tippe unten auf den Button, wenn du bereit bist).
+1483	Stufe {0}: Du trainierst jetzt wie ein Kämpfer mit den Skills, die du gelernt hast. Diese Routine endet nie: Dein erster Tag sind Kombinationen (zwei Kombis der Woche, geübt bis sie automatisch sind), der nächste ist Verteidigung, Beinarbeit und Konter (keine Tritte), und der harte Tag sind Kampfrunden und Kondition. Alle {1} Wochen: {2} Wochen, in denen Runden und Tempo steigen, dann eine leichte Woche. Die Kombis und die zu schärfenden Skills wechseln jede Woche, so bleibt alles scharf.
+1484	Kurzhantel-Bankdrücken (flach)
+1485	Einarmiges Kurzhantelrudern
+1486	Schulterdrücken im Sitzen
+1487	Vorgebeugtes Reverse Flys
+1488	Hammercurls
+1489	French Press im Liegen
+1490	Goblet Squat
+1491	Rumänisches Kreuzheben mit Kurzhanteln
+1492	Ausfallschritt nach hinten
+1493	Einbeiniges Wadenheben
+1494	Dead Bug
+1495	Schrägbankdrücken mit Kurzhanteln
+1496	Vorgebeugtes beidarmiges Rudern
+1497	Kurzhantel-Pullover
+1498	Seitheben
+1499	Liegestütze (Defizit oder Diamant)
+1500	Russian Twists + Seitstütz
+1501	{0} x {1}-{2} je
+1502	{0} x {1} pro Bein
+1503	{0} x {1} je
+1504	{0} x {1} pro Seite
+1505	{0} x bis kurz vor Muskelversagen
+1506	{0} x {1} / {2} x {3} s je
+1507	Jab, Gerade ({0}-{1})
+1508	Block
+1509	Zurück, Gerade ({0})
+1510	Teep
+1511	Roundhouse-Kick
+1512	Switch-Kick
+1513	Knie
+1514	Ellbogen
+1515	Double-Leg
+1516	Drunter abrollen
+1517	Tritt checken
+1518	Tritt fangen
+1519	Aufgebaut aus
+1520	etwa {n} Min
+1521	Trainerhinweis
+1522	Sicherheit
+1523	Profil
+1524	Dein Profil
+1525	Profil ändern
+1526	Willkommen bei Combat Coach
+1527	Ein paar Fragen, damit der Plan zu dir passt. Jede Antwort kannst du später in den Einstellungen ändern.
+1528	Die App schon auf einem anderen Handy genutzt?
+1529	und dein Plan ist wieder da.
+1530	Deine Erfahrung
+1531	Deine Auslage
+1532	Trainingstage
+1533	Zeit pro Einheit
+1534	Dein Ziel
+1535	Ausrüstung
+1536	Etwas zu schonen?
+1537	Wähle {0} bis {1} Tage. Lass zwischen harten Einheiten möglichst einen Tag frei.
+1538	Techniken, die diese Bereiche belasten, werden weggelassen, und Übungen werden durch sicherere ersetzt. Wenn etwas schmerzt, geh zuerst zu Arzt oder Physio.
+1539	Auch meinen Lauf- und Kraftplan zeigen
+1540	Plan erstellt
+1541	Profil gespeichert
+1542	Nie trainiert oder nur ein bisschen
+1543	Kenne die Basics: Auslage, Jab, Gerade
+1544	Ein Jahr oder länger trainiert
+1545	schonen
+1546	Grundlagen für Einsteiger
+1547	Wegen der Grenzen in deinem Profil aus deinem Plan genommen.
+1548	Als Rechtsausleger (gespiegelt) gezeigt, passend zu deiner Auslage. Vorne heißt deine rechte Seite.
+1549	{0} Min
+1550	Deine monatlichen Tests stehen an.
+1551	Skill-Tests
+1552	{n} Ergebnisse
+1553	Meine Kombis
+1554	Bau deine eigenen, animiert
+1555	Rundentimer
+1556	Sack, Pratzen, Sparring
+1557	Fortschritt monatlich messen
+1558	Kampf-IQ
+1559	Strategie, mit Übungen
+1560	Bring Schläge, Verteidigungen und Bewegungen in eine Reihenfolge. Die App animiert die Kombination aus echtem Motion Capture, und der Timer sagt sie in deinen Runden an.
+1561	Neue Kombination
+1562	Üben
+1563	Noch keine Kombinationen. Fang mit einer an, die du beherrschen willst, z. B. {0}-{1}, ausweichen, {2}.
+1564	Angriff
+1565	Bewegung
+1566	Kombination bearbeiten
+1567	Tippen zum Hinzufügen (bis zu {0}). Tippe einen Schritt in der Folge an, um ihn zu entfernen.
+1568	Name (optional)
+1569	Löschen
+1570	Deine Kombination wird hier abgespielt.
+1571	Der Timer sagt
+1572	Kombination gespeichert
+1573	Kombination gelöscht
+1574	Für Sack, Pratzen, Sparring oder einen Kurs. Gong zu Beginn und Ende jeder Runde, ein Klick {0} Sekunden vor Schluss.
+1575	Runden
+1576	Rundenlänge
+1577	Ansagen
+1578	Ansagetempo
+1579	Keine Ansagen (nur Gong)
+1580	Boxen: nur Hände
+1581	Muay Thai / Kickboxen
+1582	Kampf-Mix
+1583	Mittel
+1584	Schnell
+1585	Zuletzt
+1586	Bestwert
+1587	Noch nicht gemacht
+1588	Mach alle vier einmal im Monat, an einem ausgeruhten Tag, nach dem Aufwärmen. Jedes Mal gleiche Bedingungen, damit die Zahlen vergleichbar sind.
+1589	Ergebnis gespeichert
+1590	Deine Anzahl
+1591	Ich habe selbst gestoppt
+1592	Bereit
+1593	Tippen zum Starten
+1594	Warte…
+1595	Zu früh. Warte auf die Ansage.
+1596	Deine typische Reaktion (Median aus {0}).
+1597	Die {0} Runden machen
+1598	Bewerte jeden Punkt von {0} bis {1}
+1599	{n} Runden à {t}, der Timer sagt an.

@@ -5,7 +5,7 @@ import { readFileSync, readdirSync, writeFileSync, existsSync } from 'node:fs';
 const dir = new URL('i18n/', import.meta.url);
 const en = JSON.parse(readFileSync(new URL('en.json', dir), 'utf8'));
 const slots = s => (s.match(/\{\w+\}/g) || []).sort().join();
-for (const code of ['es', 'de', 'fr', 'it', 'ru']) {
+for (const code of readdirSync(new URL('i18n/', import.meta.url)).filter(f => !f.includes('.'))) {
   const d = new URL(`${code}/`, dir); if (!existsSync(d)) continue;
   const map = {}; let bad = 0;
   for (const f of readdirSync(d).filter(f => f.endsWith('.txt')).sort()) {

@@ -1,0 +1,400 @@
+1200	Inclinarsi all'indietro
+1201	La testa deve andare leggermente avanti mentre il colpo sale.
+1202	Montante posteriore, gancio anteriore, diretto. {0} x {1} min.
+1203	Rotazione (bob and weave)
+1204	Passa sotto un gancio disegnando una U e risali a distanza per contrattaccare.
+1205	Piega le ginocchia per scendere sotto il colpo; la testa disegna una "U".
+1206	Muoviti nella direzione del colpo (sotto un gancio anteriore = ruota verso sinistra).
+1207	Mani alte e sguardo avanti.
+1208	Risali pronto a colpire, di solito con un gancio.
+1209	Usa l'esercizio della corda: passa sotto la corda con le gambe.
+1210	Scendere troppo
+1211	Solo quanto basta perché il colpo passi sopra la testa.
+1212	Rotazioni sotto la corda
+1213	Ruota sotto una corda all'altezza del mento muovendoti lungo di essa. {0} x {1} min.
+1214	{0}-{1}-rotazione-{2}
+1215	Jab, diretto, rotazione, diretto. {0} x {1} min.
+1216	Calcio con cambio (circolare anteriore)
+1217	Un rapido cambio dei piedi perché la gamba anteriore calci con potenza.
+1218	Piccolo saltello o passo per cambiare i piedi: il piede anteriore va indietro, quello posteriore avanza e si apre.
+1219	Calcia subito dal cambio, stessa meccanica del circolare posteriore.
+1220	Tieni il cambio piccolo: un cambio grande annuncia il calcio.
+1221	Cambio grande ed evidente
+1222	I piedi si muovono solo da {0} a {1} cm durante il cambio.
+1223	Fermarsi dopo il cambio
+1224	Cambio e calcio sono un solo movimento: "ba-BAM".
+1225	{0}-calcio con cambio
+1226	Jab, poi calcio con cambio. {0} x {1} min.
+1227	Ginocchiata dritta
+1228	Spingi il ginocchio posteriore nel corpo a corta distanza.
+1229	Le mani vanno avanti (come per afferrare testa o spalle) e tirano giù.
+1230	Sali sulla punta del piede d'appoggio e spingi le anche in avanti.
+1231	Punta le dita del piede in basso così il ginocchio è la punta.
+1232	Alzare il ginocchio senza spinta delle anche
+1233	Pensa "anche avanti", non "ginocchio su".
+1234	Sporgersi in avanti sul ginocchio
+1235	Inclinati un po' indietro così le anche possono spingere.
+1236	Ginocchiate fino al gong
+1237	{0} x {1} min alternando le ginocchia, cambiando guardia tra le ripetizioni.
+1238	Cambio di livello
+1239	Abbassa le anche rapidamente (senza piegarti) per preparare o fintare un atterramento.
+1240	Piega le ginocchia per abbassare le anche; schiena dritta e testa alta.
+1241	Le mani restano davanti, pronte a difendere o afferrare.
+1242	Spesso dopo un colpo: {0}-{1} poi cambio di livello.
+1243	Piegarsi in vita (la testa scende sotto le anche)
+1244	Tieni la testa sopra le ginocchia.
+1245	{0}-{1}-cambio di livello
+1246	Rialzata tecnica
+1247	Rialzati da terra in sicurezza, con la guardia alta e lontano dall'avversario.
+1248	Seduto: una mano a terra dietro di te, l'altro braccio protegge il viso.
+1249	Spingi con la mano a terra e il piede opposto per sollevare le anche.
+1250	Porta la gamba libera indietro e atterra in guardia a distanza.
+1251	Alzarsi dritto davanti all'avversario
+1252	La gamba va indietro e atterri a un passo di distanza.
+1253	Abbassare la mano di guardia
+1254	Tieni il braccio libero davanti al viso per tutto il tempo.
+1255	Rialzate
+1256	{0} x {1} per lato, alternando.
+1257	Schivata e diretto di contro
+1258	Schiva il jab all'interno e porta un diretto nello stesso momento.
+1259	Schivata e colpo insieme: la schivata carica l'anca posteriore.
+1260	Il contro resta dritto e corto.
+1261	Dopo il contro riposizionati o esci d'angolo; non restare davanti.
+1262	Schivare, pausa, poi colpire
+1263	Di' "schiva-due" come una parola sola mentre ti alleni.
+1264	Contrattacchi a vuoto
+1265	Immagina il jab, schiva e contrattacca. {0} x {1} min.
+1266	Contro in arretramento
+1267	Inclinati indietro appena fuori portata del jab, poi lancia un diretto mentre rientra.
+1268	Sposta il peso sulla gamba posteriore, la testa va sopra il ginocchio posteriore.
+1269	Mani alte; la mano anteriore può prendere il jab.
+1270	Spingi dalla gamba posteriore nel diretto.
+1271	Inclinarsi indietro a gambe tese
+1272	Piega il ginocchio posteriore così il movimento parte dalle gambe.
+1273	Indietro-{0}
+1274	Esci d'angolo dopo le combinazioni
+1275	Non restare mai davanti dopo aver colpito: chiudi ogni combinazione uscendo dalla linea.
+1276	Finisci la combinazione, poi ruota o fai un passo laterale all'esterno del piede anteriore.
+1277	Mani alte mentre ti muovi; occhi sul bersaglio.
+1278	Ammirare la combinazione da fermo
+1279	Ogni combinazione finisce dicendo "muoviti" ad alta voce.
+1280	Combinazione + movimento
+1281	{0} x {1} min di combinazioni a scelta, ognuna chiusa con una rotazione o un passo.
+1282	Gomitata orizzontale
+1283	Colpo tagliente a corta distanza con la punta del gomito.
+1284	Alza il gomito all'altezza della spalla, la mano vicino al tuo orecchio.
+1285	Ruota anche e spalle, tagliando attraverso il bersaglio.
+1286	L'altra mano protegge il viso.
+1287	Le gomitate entrano più vicino dei ganci.
+1288	Mano molle
+1289	Tieni il palmo vicino alla testa così la punta del gomito guida.
+1290	{0}-gomitata
+1291	Gancio anteriore poi gomitata posteriore. {0} x {1} min.
+1292	Prendere il calcio e rispondere
+1293	Blocca un calcio al corpo e contrattacca mentre l'avversario è su una gamba.
+1294	Assorbi il calcio con braccio e corpo dello stesso lato, poi raccogli la gamba.
+1295	Fai un passo indietro o ruota per sbilanciarlo.
+1296	Rispondi subito: diretto o calcio alla gamba d'appoggio.
+1297	Andare a prendere il calcio
+1298	Lascia che il calcio arrivi a te, poi avvolgilo.
+1299	Prendi e rispondi da solo
+1300	Immagina il calcio, prendi, passo indietro, diretto. {0} x {1} min.
+1301	Postura di clinch e ginocchiate
+1302	Controlla la testa e porta ginocchiate dal clinch thai.
+1303	Mani sovrapposte dietro la testa dell'avversario (una sull'altra), senza intrecciare le dita.
+1304	I gomiti si stringono davanti al suo petto, le tue anche spingono avanti.
+1305	Tira giù la testa mentre spingi su le ginocchia.
+1306	Intrecciare le dita
+1307	Palmo sul dorso della mano, dita libere.
+1308	Anche indietro
+1309	Stai dritto, anche dentro, petto alto.
+1310	Ginocchiate in clinch (da solo)
+1311	Braccia in posizione di clinch, ginocchiate alternate. {0} x {1} min.
+1312	Entrata double-leg (a vuoto)
+1313	Passo di penetrazione per il classico atterramento double-leg, da solo.
+1314	Prima il cambio di livello, poi un passo lungo con il piede anteriore tra i piedi dell'avversario.
+1315	Il ginocchio posteriore tocca terra piano; testa alta, schiena dritta.
+1316	Le mani vanno dietro le ginocchia; porta su la gamba posteriore e spingi attraverso.
+1317	Allungare le mani prima che arrivino i piedi
+1318	Il passo fa il lavoro: le mani afferrano solo alla fine.
+1319	Testa bassa
+1320	La testa resta alta, mento avanti.
+1321	Passi di penetrazione
+1322	{0} x {1} per lato attraverso il garage. Usa un tappetino o un tappeto per il ginocchio.
+1323	Sprawl e colpo
+1324	Difendi l'atterramento e torna subito su colpendo.
+1325	Sprawl, poi torna in guardia in un solo movimento.
+1326	Porta il primo colpo appena i piedi sono a posto.
+1327	Rialzarsi lentamente con le mani basse
+1328	Le mani tornano al viso mentre risali.
+1329	Sprawl-{0}-{1}
+1330	(dura {0} secondi).
+1331	{0}-{1} min di gioco di gambe (facoltativo)
+1332	Fai un backup
+1333	Crea il mio piano
+1334	Cambia abilità
+1335	Salvataggio nel cloud
+1336	Combinazioni che il timer può chiamare adesso:
+1337	Continua con Google
+1338	Crea account
+1339	Fatto!
+1340	Allenala ({0} x {1} min)
+1341	Email o password errate.
+1342	Ogni {0}ª settimana da questa data è di scarico.
+1343	Blu = lato anteriore, grigio = lato posteriore. "Fronte" è ciò che vede l'avversario.
+1344	Motion capture di un vero combattente. Trascina per ruotare la vista, pizzica per zoomare. "Fronte" è ciò che vede l'avversario.
+1345	Combattente
+1346	Manichino (lato anteriore in blu)
+1347	Password dimenticata
+1348	Da
+1349	il tuo piano
+1350	Fronte
+1351	Lato
+1352	Passo per passo
+1353	Piano completo di {0} settimane e le tue abilità
+1354	L'accesso con Google è stato bloccato o chiuso. Riprova o usa email e password.
+1355	Scorri la tecnica
+1356	Il mio piano abilità
+1357	Niente calci forti (giorno gambe).
+1358	Niente internet. Riprova quando sei online.
+1359	Non ancora salvato, nuovo tentativo in arrivo
+1360	Accesso non effettuato: i dati sono solo su questo telefono
+1361	Oppure usa l'email (funziona meglio se l'app è installata nella schermata Home):
+1362	Superato
+1363	Password ({0}+ caratteri)
+1364	Verifica della fase {n} superata
+1365	Verifica della fase {n} rimossa
+1366	Scegli abilità
+1367	Scegli le abilità che vuoi imparare e l'app crea il tuo piano di combattimento settimanale.
+1368	Scegli le tue abilità
+1369	per avere un piano settimanale completo.
+1370	Piano salvato
+1371	Inizio piano (lunedì della settimana {0})
+1372	Email di ripristino inviata.
+1373	Salvato nel cloud alle
+1374	Sessione salvata
+1375	Accedi
+1376	Accedi una volta
+1377	per salvarlo automaticamente nel cloud.
+1378	Accedi una volta e tutto ciò che fai viene salvato automaticamente nel tuo account, su ogni telefono che usi.
+1379	Esci
+1380	Attivo
+1381	Sblocca tutto
+1382	Tutti i percorsi di abilità e le tecniche
+1383	Routine da combattente, combinazioni e sparring partner
+1384	Carriera da combattente e test di abilità
+1385	Nuove abilità e piani nel tempo
+1386	Caricamento...
+1387	Ripristina acquisti
+1388	Si rinnova automaticamente fino alla disdetta. Disdici quando vuoi su Google Play, almeno {0} ore prima del rinnovo.
+1389	Pro è attivo. Grazie!
+1390	I piani non sono disponibili al momento.
+1391	Annuale
+1392	Mensile
+1393	prova gratuita
+1394	L'acquisto non è andato a buon fine. Non ti è stato addebitato nulla.
+1395	Nessun abbonamento trovato per questo account.
+1396	Impossibile raggiungere lo store. Riprova.
+1397	Fa parte di Pro. La prima fase resta gratuita.
+1398	{0} giorni gratis, poi addebito fino alla disdetta. Disdici quando vuoi in due tocchi. Rimborso completo entro {1} giorni dal primo pagamento.
+1399	Termina il {d}
+1400	Si rinnova il {d}
+1401	Gestisci abbonamento
+1402	Accedi prima, così Pro ti segue su ogni dispositivo.
+1403	{0} giorni gratis
+1404	Pagamento ricevuto. Sblocco di Pro...
+1405	Impossibile aprire la pagina di pagamento. Controlla la connessione.
+1406	Impossibile aprire la pagina dell'abbonamento. Riprova.
+1407	Elimina account
+1408	Tocca di nuovo per eliminare per sempre
+1409	Questo annulla ogni abbonamento e rimuove il tuo account e la copia nel cloud. I dati su questo dispositivo restano.
+1410	Account eliminato.
+1411	Per sicurezza, esci, accedi di nuovo e poi elimina.
+1412	Informativa sulla privacy
+1413	Termini d'uso
+1414	Accesso effettuato come
+1415	Tocca di nuovo per confermare
+1416	Tocca le abilità che vuoi allenare. Se vuoi, parti da un set pronto, poi aggiungi o togli.
+1417	Questa email ha già un account. Tocca Accedi.
+1418	Impossibile leggere il file.
+1419	Scrivi prima la tua email.
+1420	Annulla
+1421	Fai attenzione a
+1422	settimana
+1423	Cosa non andava? Cosa ha mostrato il video?
+1424	I tuoi dati restano su questo dispositivo (memoria del browser). Esportali ogni tanto come backup.
+1425	I tuoi progressi sono salvati solo su questo telefono.
+1426	I tuoi progressi non hanno ancora un backup.
+1427	Le tue abilità
+1428	dopo il combattimento
+1429	scarico
+1430	focus
+1431	supera prima la verifica della fase {n}.
+1432	{n} scelte
+1433	{n} x {0} min per abilità (prima serie lenta), poi shadow leggera
+1434	{n} x {t} round a chiamata, dopo {0} min per abilità
+1435	Segnata come in apprendimento
+1436	Segnata come solida
+1437	Stato azzerato
+1438	Dati importati
+1439	Tutto è stato azzerato
+1440	Creazione account...
+1441	Accesso in corso...
+1442	✓ Salvato
+1443	Salvataggio
+1444	Offline
+1445	Senza backup
+1446	Tecnica
+1447	Ritorno in guardia
+1448	Trascina il cursore, o la figura per ruotarla
+1449	tecnica
+1450	principale
+1451	gioco di gambe
+1452	esercizio
+1453	Completo (consigliato)
+1454	Tutto
+1455	Costruzione: imparala lenta
+1456	Costruzione: aggiungi velocità
+1457	Picco: round di pressione
+1458	Scarico: solo tecnica
+1459	Pugni
+1460	Calci, ginocchiate e gomitate
+1461	MMA: cambi di livello e terra
+1462	Difesa e contrattacchi
+1463	Allenamento da combattente
+1464	Combinazioni della settimana
+1465	Da affinare oggi
+1466	{n} x {t} round di combattimento
+1467	{n} raffiche di pugni, sprawl, core
+1468	Gioco di gambe, {n} round di difesa, combinazioni solo pugni
+1469	Impara le abilità
+1470	{n} su {m} segnate come solide
+1471	La routine che mantieni per anni
+1472	Torna a imparare (aggiungi abilità)
+1473	Le ho imparate: inizia l'allenamento da combattente
+1474	Allenamento da combattente iniziato
+1475	Torna a imparare
+1476	Base: pulito e preciso
+1477	Costruzione: più round
+1478	Picco: ritmo da match
+1479	Scarico: leggero e tecnico
+1480	Difesa
+1481	Round di combattimento
+1482	Fase {0}: stai imparando le abilità che hai scelto. Ogni {1} settimane è un blocco ({2} settimane di crescita + una settimana leggera), ruotando su ogni abilità. Quando un'abilità è solida, aprila e tocca "Segna come solida". Quando lo sono tutte, l'app passa da sola all'allenamento da combattente (o tocca il pulsante qui sotto quando ti senti pronto).
+1483	Fase {0}: ora ti alleni come un combattente, con le abilità che hai imparato. Questa routine non finisce mai: il primo giorno sono combinazioni (due combinazioni della settimana fino a renderle automatiche), il successivo difesa, gioco di gambe e contrattacchi (niente calci), e il giorno duro round di combattimento e condizionamento. Ogni {1} settimane: {2} settimane in cui round e ritmo crescono, poi una settimana leggera. Le combinazioni e le abilità da affinare cambiano ogni settimana, così tutto resta affilato.
+1484	Panca piana con manubri
+1485	Rematore con manubrio a un braccio
+1486	Lento avanti da seduto
+1487	Alzate posteriori a busto flesso
+1488	Curl a martello
+1489	French press da sdraiato
+1490	Goblet squat
+1491	Stacco rumeno con manubri
+1492	Affondo indietro
+1493	Calf raise su una gamba
+1494	Dead bug
+1495	Panca inclinata con manubri
+1496	Rematore a busto flesso a due braccia
+1497	Pullover con manubrio
+1498	Alzate laterali
+1499	Piegamenti (in deficit o a diamante)
+1500	Russian twist + plank laterale
+1501	{0} x {1}-{2} ciascuno
+1502	{0} x {1} per gamba
+1503	{0} x {1} ciascuno
+1504	{0} x {1} per lato
+1505	{0} x vicino al cedimento
+1506	{0} x {1} / {2} x {3} s ciascuno
+1507	Jab, diretto ({0}-{1})
+1508	Parata
+1509	Indietro, diretto ({0})
+1510	Teep
+1511	Calcio circolare
+1512	Calcio con cambio
+1513	Ginocchiata
+1514	Gomitata
+1515	Double-leg
+1516	Rotazione sotto
+1517	Para il calcio
+1518	Prendi il calcio
+1519	Costruita da
+1520	circa {n} min
+1521	Nota del coach
+1522	Sicurezza
+1523	Profilo
+1524	Il tuo profilo
+1525	Cambia profilo
+1526	Benvenuto in Combat Coach
+1527	Qualche domanda perché il piano sia adatto a te. Puoi cambiare ogni risposta più tardi in Impostazioni.
+1528	Hai usato l'app su un altro telefono?
+1529	e il tuo piano ritorna.
+1530	La tua esperienza
+1531	La tua guardia
+1532	Giorni di allenamento
+1533	Tempo per sessione
+1534	Il tuo obiettivo
+1535	Attrezzatura
+1536	Qualcosa da proteggere?
+1537	Scegli da {0} a {1} giorni. Se puoi, lascia un giorno libero tra le sessioni dure.
+1538	Le tecniche che caricano queste zone vengono escluse e gli esercizi sostituiti con altri più sicuri. Se qualcosa fa male, consulta prima un medico o un fisioterapista.
+1539	Mostra anche il mio piano di corsa e forza
+1540	Piano creato
+1541	Profilo salvato
+1542	Mai allenato, o solo un po'
+1543	Conosco le basi: guardia, jab, diretto
+1544	Mi alleno da un anno o più
+1545	proteggere
+1546	Basi per principianti
+1547	Escluso dal tuo piano per i limiti del tuo profilo.
+1548	Mostrato in guardia mancina (a specchio) per corrispondere alla tua guardia. Anteriore indica il tuo lato destro.
+1549	{0} min
+1550	È ora dei test mensili.
+1551	Test di abilità
+1552	{n} risultati
+1553	Le mie combinazioni
+1554	Crea le tue, animate
+1555	Timer dei round
+1556	Sacco, colpitori, sparring
+1557	Misura i progressi ogni mese
+1558	Intelligenza di combattimento
+1559	Strategia, con esercizi
+1560	Metti in ordine colpi, difese e movimenti. L'app anima la combinazione con vera motion capture e il timer la chiama nei tuoi round.
+1561	Nuova combinazione
+1562	Allena
+1563	Ancora nessuna combinazione. Inizia con una che vuoi padroneggiare, come {0}-{1}, schiva, {2}.
+1564	Attacco
+1565	Movimento
+1566	Modifica combinazione
+1567	Tocca per aggiungere (fino a {0}). Tocca un passo nella sequenza per toglierlo.
+1568	Nome (facoltativo)
+1569	Elimina
+1570	La tua combinazione verrà riprodotta qui.
+1571	Il timer dirà
+1572	Combinazione salvata
+1573	Combinazione eliminata
+1574	Per sacco, colpitori, sparring o un corso. Gong all'inizio e alla fine di ogni round, un clic {0} secondi prima della fine.
+1575	Round
+1576	Durata del round
+1577	Chiamate
+1578	Ritmo delle chiamate
+1579	Nessuna chiamata (solo gong)
+1580	Boxe: solo pugni
+1581	Muay thai / kickboxing
+1582	Mix da combattimento
+1583	Medio
+1584	Veloce
+1585	Ultimo
+1586	Migliore
+1587	Non ancora fatto
+1588	Fai tutti e quattro una volta al mese, in un giorno riposato, dopo il riscaldamento. Stesse condizioni ogni volta, così i numeri sono confrontabili.
+1589	Risultato salvato
+1590	Il tuo conteggio
+1591	L'ho cronometrato io
+1592	Pronto
+1593	Tocca per iniziare
+1594	Aspetta…
+1595	Troppo presto. Aspetta la chiamata.
+1596	La tua reazione tipica (mediana di {0}).
+1597	Fai i {0} round
+1598	Valuta ogni punto da {0} a {1}
+1599	{n} round da {t}, il timer li chiama.

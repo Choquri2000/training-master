@@ -61,7 +61,7 @@ import { unlockVoice } from './voice.js';
 import { store } from './store.js';
 import { planWeek, PROGRAM_WEEKS, PRESETS, picks, programFocus, volume, blockWeek, themeOf, stage, learnedCount, fighterVolume, weekCombos, sharpenSkills, myCombos, fixActive, findWeak, eventInfo, phaseWeek } from './program.js';
 import { profile, hasProfile, DEFAULT_PROFILE, CHOICES, weekDays, dayPlan, legsDay, suitable, adaptSession, coachNote, safetyNote, LEVELS } from './profile.js';
-import { t, L, P, LANGS, tr, loadLang, speechLang } from './i18n.js';
+import { t, L, P, LANGS, langDir, tr, loadLang, speechLang } from './i18n.js';
 import { isPro, onPro, locked, locked as proLocked, PRO_ROUTES, proAvailable, canBuy, entitlement, plans, buy } from './pro.js';
 import { initSync, onSync, signIn, signInGoogle, signOut, resetPassword, syncAvailable, deleteAccount, currentUser, manageSubscription } from './sync.js';
 
@@ -1549,6 +1549,7 @@ const NAVMAP = { pro: 'me', career: 'me', drills: 'library', week: 'me', plan: '
 function render() {
   cleanup.forEach(f => f()); cleanup = [];
   document.documentElement.lang = store.get().lang || 'en';
+  document.documentElement.dir = langDir(document.documentElement.lang);
   document.body.classList.toggle('first', !hasProfile());
   let [name = 'today', ...args] = location.hash.replace(/^#\/?/, '').split('/');
   if (locked() && (PRO_ROUTES.includes(name) || (name === 'tech' && techById(args[0])?.phase > 1))) { name = 'pro'; args = [true]; }

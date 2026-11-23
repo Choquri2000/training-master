@@ -1,0 +1,392 @@
+1600	Empezar el ejercicio
+1601	Estudiado
+1602	Marcar como estudiado
+1603	Actualizado
+1604	La técnica gana intercambios; la comprensión gana combates. Cada lección se lee en pocos minutos y trae un ejercicio.
+1605	Volumen de golpes
+1606	Tiempo de reacción
+1607	Técnica con fatiga
+1608	Ritmo de trabajo
+1609	golpes
+1610	repeticiones
+1611	Golpes rectos (jab, directo) durante {0} segundos a máxima velocidad. Cada golpe debe volver a la guardia. Cuenta una mano y multiplica por dos.
+1612	Diez llamadas de defensa aparecen en momentos aleatorios. Toca el botón grande en cuanto veas u oigas una. Mide lo rápido que reaccionas.
+1613	Haz {0} asaltos de {1} minutos con llamadas y luego puntúate con sinceridad de {2} a {3} en cada aspecto. Mejor comprobarlo en un espejo.
+1614	Sprawls durante {0} segundos, tantos como puedas con buena técnica: manos al suelo, pies atrás, cadera al suelo y vuelta a la guardia.
+1615	Golpes rectos durante {0} segundos a máxima velocidad, sin salir de la guardia. Cuenta una mano y multiplica por dos.
+1616	La guardia se mantiene arriba
+1617	Barbilla abajo, mirada arriba
+1618	Cada golpe vuelve a la guardia
+1619	Equilibrio y juego de pies
+1620	Relajado, soltando aire en cada golpe
+1621	Atrás
+1622	Paso atrás
+1623	Salida lateral
+1624	Pivote
+1625	Mi combo
+1626	Ejercicio de inteligencia de combate
+1627	Prueba de técnica
+1628	Estilos de combate
+1629	Peek-a-boo, escuela soviética, Muay Khao, estilo holandés, wrestle-boxing y más, comparados
+1630	Cómo pelean los grandes estilos, en qué se basan, dónde son fuertes y dónde se les puede ganar. Compara dos cualesquiera lado a lado.
+1631	Cómo pelea
+1632	Habilidades en las que se basa
+1633	Puntos fuertes
+1634	Puntos débiles
+1635	Cómo ganarle
+1636	Te va si
+1637	Entrena así ({0} asaltos)
+1638	Comparar con
+1639	Comparar estilos
+1640	Habilidades que usan ambos
+1641	Cuando se enfrentan
+1642	{a} contra {b}
+1643	Presión
+1644	Juego de pies
+1645	Potencia
+1646	Distancia
+1647	Ejercicio de estilo
+1648	También hoy
+1649	Tu estilo
+1650	Cambiar
+1651	¿Entrenar hacia un estilo de combate?
+1652	Encontrar mi estilo
+1653	Próximas semanas
+1654	Carrera y fuerza esta semana
+1655	Cómo funciona el plan
+1656	Fases y controles
+1657	Técnicas
+1658	¿Qué estilo te va?
+1659	{0} preguntas rápidas
+1660	Plan para el enfrentamiento
+1661	Tu estilo contra el suyo
+1662	Ocho preguntas rápidas. Responde según cómo eres ahora, no cómo quieres ser.
+1663	Ver mi estilo
+1664	Porque dijiste
+1665	Hacerlo mi estilo
+1666	Leer sobre él
+1667	También encaja bien
+1668	Elegir
+1669	Estilo elegido
+1670	Planear un enfrentamiento contra él
+1671	Peleas como
+1672	El rival pelea como
+1673	Tu plan de combate
+1674	Cuidado con
+1675	Lo que intentará contra ti
+1676	Prepárate: {0} asaltos
+1677	Preparación del enfrentamiento
+1678	Compañero de sparring
+1679	Mixto (completo)
+1680	Tu compañero pelea como
+1681	Tu compañero canta sus ataques en voz alta. Defiende cada uno y contraataca enseguida; la respuesta sale en pantalla. "Ahora" significa un hueco: ataca. Tras los asaltos, di cómo fue y tu compañero se adapta.
+1682	Nivel del compañero
+1683	Más nivel: ataques más rápidos, dobles, asaltos más largos.
+1684	¿Cómo te fue con tu compañero?
+1685	Me pillaron mucho
+1686	Más o menos bien
+1687	Lo controlé todo
+1688	Bloque de corrección
+1689	día {n} de {0}
+1690	Cada sesión empieza con uno de estos
+1691	Terminarlo antes
+1692	El último bloque terminó. Vuelve a hacer las pruebas y puntúa esas habilidades para ver qué cambió.
+1693	Puntúa habilidades tras las sesiones o haz las pruebas, y la app encuentra qué corregir.
+1694	Qué corregir
+1695	Empezar un bloque de corrección de {0} semanas
+1696	Bloque de corrección iniciado
+1697	Bloque de corrección terminado
+1698	Fecha de combate o prueba
+1699	Tu fecha
+1700	¡hoy!
+1701	Faltan {n} días
+1702	Las tres últimas semanas antes suben, llegan al pico y luego bajan para que llegues fresco.
+1703	Fija un día de combate, examen o sparring y el plan llega al pico para él.
+1704	Quitar fecha
+1705	Fecha guardada
+1706	Fecha eliminada
+1707	Afinamiento: preciso y fresco
+1708	Ejercicio del día
+1709	Ejercicios prácticos
+1710	Caja de juego de pies, gomas, mancuernas ligeras, estímulos de reacción, equilibrio, preparación física, finales fuertes
+1711	Necesitas
+1712	Cómo hacerlo
+1713	Errores comunes
+1714	Indicaste molestias en el hombro, así que el plan omite este ejercicio. Hazlo solo si un entrenador o fisio te lo autoriza.
+1715	Ejercicios en solitario para poco espacio. Tu plan pone uno en cada sesión como ejercicio del día; también puedes hacer cualquiera por separado.
+1716	Cómo ataca tu compañero
+1717	Lo canta en voz alta
+1718	Rival {0}D en pantalla
+1719	Rival {0}D: un luchador con captura de movimiento te lanza ataques reales. Reacciona a lo que ves; la respuesta sale tras cada ataque. Las velocidades salen de tiempos de combate reales y suben con el nivel del compañero.
+1725	¿Cómo fue el combate?
+1726	La noche del combate está lista
+1727	Carrera de luchador
+1728	Campamento
+1729	¡Has ganado!
+1730	Has perdido
+1731	Victoria por {how} contra {opp}.
+1732	Derrota por {how} contra {opp}.
+1733	Subes en el ranking.
+1734	Todo campeón tiene derrotas. Haz un campamento completo y vuelve más fuerte.
+1735	{n} defensas del título
+1736	Próximo combate
+1737	Pelea como
+1738	título en juego
+1739	Campamento completo: llegas con ventaja.
+1740	Puedes pelear ya, pero un campamento completo te da ventaja.
+1741	Entrena {n} sesiones más para desbloquear el combate.
+1742	Noche del combate
+1743	Cada sesión que entrenas forma parte de tu campamento. La noche del combate tu compañero de sparring pelea con el estilo de este rival; después dices cómo fue, y eso junto a tu campamento decide el resultado.
+1744	Récord
+1745	Combate de carrera
+1746	Sparring {0}D
+1747	Juego de pies, gomas, mancuernas, preparación física
+1748	{0} estilos, test y enfrentamientos
+1749	Dónde cae cada golpe
+1750	Buscar técnicas
+1751	Ninguna técnica coincide.
+1752	Usar correo en su lugar
+1753	El correo funciona mejor si la app está instalada en la pantalla de inicio.
+1754	Tus datos
+1755	Todos los pasos
+1756	Día de descanso
+1757	Cerrar
+1758	esta semana
+1759	Mi plan
+1760	{n} min entrenados
+1761	Guardado en la nube
+1762	A continuación
+1763	{a} de {b} habilidades sólidas
+1764	Profundizar
+1765	Todas las técnicas
+1766	{n} habilidades
+1767	¿Cuánto has entrenado?
+1768	¿Qué días puedes entrenar?
+1769	¿Qué pie pones delante?
+1770	Elige de {0} a {1} días.
+1771	Siguiente
+1772	Atrás
+1773	Sólida
+1774	Girar vista
+1775	Pasos
+1776	Cómo
+1777	Errores
+1778	Entrénalo
+1779	Figura {0}D
+1780	Estilo de combate
+1781	Extra opcional
+1782	Semana {w} de {n}
+1783	Semana {w}
+1784	Una semana cuenta cuando la entrenas, así que las semanas perdidas nunca te hacen saltar.
+1785	¿Algo no salió bien?
+1786	Tócalo y volverá antes.
+1787	¿Qué tal fue?
+1788	Duro
+1789	Bien
+1790	Ya es sólida
+1791	Corrige el error
+1792	Gancho de delante al hígado
+1793	Finta de rodilla o patada
+1794	Directo en el aire
+1795	Cruza el paso y gira
+1796	Puño giratorio con el brazo de atrás
+1797	Cae en guardia
+1798	Finta de jab
+1799	Patada de atrás
+1800	Finta de patada
+1801	Directo
+1802	Jab de cebo
+1803	Esquiva su contra
+1804	Directo de vuelta
+1805	Jab
+1806	Pausa: rompe el ritmo
+1807	Luego {0}-{1}
+1808	Gancho al cuerpo
+1809	Gancho a la cabeza
+1810	Finta de derribo
+1811	Directo cuando reacciona
+1812	Teep: empújalo atrás
+1813	Patada cuando vuelve a entrar
+1814	Esquiva hacia fuera
+1815	Gancho de delante desde la esquiva
+1816	Jab, directo
+1817	Pivota al nuevo ángulo
+1818	Jab, directo desde el ángulo
+1819	Teep otra vez
+1820	Patada al cuerpo
+1821	Pequeño paso atrás
+1822	Chequea, gancho de izquierda
+1823	Atrás, directo
+1824	Gancho de delante
+1825	Doble pierna detrás
+1826	Sal de la línea
+1827	Valla: manos arriba, palmas abiertas
+1828	Apártalo de un empujón
+1829	Retrocede y vete
+1830	Gira la muñeca hacia su pulgar
+1831	Suéltate y aléjate
+1832	Cúbrete
+1833	Rodilla para hacer espacio
+1834	Sal de la pared
+1835	Gira: ahora la pared está detrás de él
+1836	Bloquea la cadera y la rodilla
+1837	Libérate y aléjate
+1838	Mete la barbilla, quita sus manos
+1839	Gira y golpea por encima de sus brazos
+1840	Aléjate y vete
+1841	Protégete y levántate con seguridad
+1842	Nota sobre la animación
+1843	Objetivos en el cuerpo
+1844	Dónde debe caer cada golpe y por qué funciona, en una figura {0}D
+1845	Toca un objetivo en la figura o abajo. Arrastra la figura para girarla.
+1846	Cómo llegar
+1847	Golpes que caen aquí
+1848	Entrénalos en saco, manoplas o al aire. Con compañero, toca los objetivos suave; nunca golpees fuerte la cabeza, la garganta ni las articulaciones al practicar.
+1850	Nuevo en esto
+1851	Algo de experiencia
+1852	Con experiencia
+1853	Diestro (pie izquierdo delante)
+1854	Zurdo (pie derecho delante)
+1855	Estándar ({0} a {1})
+1856	Habilidades completas
+1857	Forma física
+1858	Competición
+1859	Nada (sombra)
+1860	Saco pesado
+1861	Compañero con manoplas
+1862	Rodillas
+1863	Zona lumbar
+1864	Hombros
+1865	Semana de afinamiento: menos volumen, máxima velocidad. Llega a tu fecha fresco y afilado; nada nuevo ahora.
+1866	Semana de descarga: más ligera a propósito. Tu cuerpo asimila ahora las tres últimas semanas; mantenlo preciso, no duro.
+1867	Nuevo bloque: empieza despacio y exacto. La velocidad viene de repeticiones limpias.
+1868	Semana de progresión: mismas habilidades, algo más de velocidad y volumen.
+1869	Semana pico: la más dura del bloque. Sube el ritmo pero cuida la técnica; la próxima semana es más ligera.
+1870	Día de técnica: calidad antes que cantidad. Para una serie si se rompe tu técnica.
+1871	Día de asaltos: suelta el aire en cada golpe y vuelve a la guardia tras cada combinación.
+1872	Día de defensa: reacciona, defiende y contraataca a la vez. Defender sin contraatacar es solo la mitad del trabajo.
+1873	Día de combinaciones: repite los combos de la semana hasta que salgan sin pensar.
+1874	Tus últimas sesiones fueron muy duras, así que hoy hay un asalto menos.
+1875	Tus últimas sesiones fueron fáciles, así que hoy hay un asalto más.
+1876	Los asaltos son más cortos mientras empiezas. Aprende a relajarte y respirar.
+1877	Habilidades que marcaste como "no salió bien"
+1878	Tiempo de reacción: defiende antes
+1879	Técnica con fatiga: vuelta a lo básico
+1880	Bajó el volumen de golpes: trabajo de velocidad
+1881	Campeón
+1882	N.º {0}, opción al título
+1883	Sin clasificar
+1884	Respira. Buen asalto.
+1885	Respira hondo, baja los hombros.
+1886	Relájate. Aire por la nariz.
+1887	Buen trabajo. Calma la respiración.
+1888	Dobla el jab antes de lanzar la derecha.
+1889	Manos a la barbilla tras cada combinación.
+1890	Mueve la cabeza después de golpear. Nunca te quedes en la línea.
+1891	Termina cada combinación saliendo en ángulo.
+1892	Primero finta, luego entra.
+1893	Primero el cuerpo, luego la cabeza.
+1894	Gira alejándote de su mano fuerte.
+1895	Sobre las puntas. Pasos cortos, nunca cruces los pies.
+1896	Contraataca enseguida. Defiende y responde en un tiempo.
+1897	Barbilla abajo, mirada arriba.
+1898	Lanza de tres en tres. Un solo golpe es fácil de leer.
+1899	Chequea cada patada y responde con otra.
+1900	Calidad antes que velocidad. Solo repeticiones limpias.
+1901	Suelta el aire en cada golpe.
+1902	Vuelve a la guardia tras cada repetición.
+1903	Gira la cadera, no solo los brazos.
+1904	La mano de guardia se queda en casa.
+1905	Último asalto. Vacía el depósito.
+1906	El último. Gana este asalto.
+1907	Entra y sal recto. Misma distancia en ambos sentidos.
+1908	Paso atrás y luego lateral: una L que sale de la línea.
+1909	Pivota sobre el pie de delante y gira el pie de atrás.
+1910	Saca el pie de delante y pivota para encarar la nueva línea.
+1911	Pasos cortos sobre la cinta, primero el pie de delante.
+1912	Pasos cortos hacia el otro lado, primero el pie de atrás.
+1913	Cruza la esquina de la caja para cerrar el espacio.
+1914	Entra detrás del jab, conecta el {0} y sal.
+1915	Lanza un {0} y sal a {1} grados.
+1916	Rolling
+1917	Bloquea, luego {0}-{1}
+1918	Pivota fuera
+1919	{0}-{1} adelante
+1920	Patada
+1921	Rojo = bloquea, {0}-{1} · Azul = pivota fuera · Verde = {2}-{3} adelante · Amarillo = patada
+1922	Caja de juego de pies {0} de {1}
+1923	Con goma {0} de {1}: suelta y recoge
+1924	Sin goma: mismas combinaciones, máxima velocidad
+1925	Asalto con mancuernas {0} de {1}: golpes rectos, manos a casa
+1926	Reacción {0}: números en voz alta
+1927	Reacción {0}: mira la pantalla
+1928	Reacción {0}: colores en pantalla
+1929	Apoyado en la pierna izquierda, rodilla derecha arriba, guardia arriba
+1930	Apoyado en la pierna derecha, rodilla izquierda arriba, guardia arriba
+1931	Patadas a cámara lenta, pierna de atrás: {0} s subir, {1} s mantener, {2} s bajar
+1932	Patadas a cámara lenta, pierna de delante: {0} s subir, {1} s mantener, {2} s bajar
+1933	Chequea y patea: vuelve a la guardia cada vez
+1934	Ráfaga: golpes rectos rápidos
+1935	Pies rápidos en guardia, manos arriba
+1936	Sprawls, volviendo a la guardia cada vez
+1937	Sombra en movimiento: dentro, fuera, ángulos
+1938	Subidas al banco, alternando piernas
+1939	Remo con goma, junta las escápulas
+1940	Remo con mancuerna, una mano en el banco
+1941	Sombra suave: respira, manos arriba
+1942	Asalto {0} de {1}: técnico, con llamadas
+1943	ÚLTIMOS {0} SEGUNDOS: a tope hasta la campana
+1944	Últimos {0} segundos: a tope hasta la campana
+1945	Prepárate: rebota, suelta los hombros
+1946	Asalto
+1947	Vuelta a la calma
+1948	Vuelta a la calma y estiramientos
+1949	Comparado con la mayoría, eres…
+1950	Más bajo
+1951	De altura media
+1952	Más alto
+1953	¿Qué es lo que más disfrutas?
+1954	Golpear con los puños
+1955	Patear
+1956	Clinch y rodillas
+1957	Derribos y lucha
+1958	Cuando empieza el combate, quieres…
+1959	Avanzar y presionar
+1960	Controlar la distancia y elegir mis golpes
+1961	Esperar, hacerle fallar y contraatacar
+1962	Tu resistencia es…
+1963	Enorme: aguanto todo el día
+1964	Normal
+1965	Mejor en ráfagas cortas y explosivas
+1966	Tu potencia está sobre todo en…
+1967	Manos pesadas
+1968	Velocidad y precisión
+1969	Mis patadas pegan más que mis puños
+1970	En cuanto a recibir golpes…
+1971	Aguanto y sigo avanzando
+1972	Prefiero que no me den nunca
+1973	El juego de pies me resulta…
+1974	Natural: me encanta moverme
+1975	Bien
+1976	Prefiero plantarme
+1977	¿Qué reglas te interesan más?
+1978	Muay Thai o kickboxing
+1979	Aún no lo sé
+1980	Pelea largo: mantenlo al final de tu jab y tus patadas y sal en ángulo cada vez que entre.
+1981	Pelea corto: quítale la distancia, entra tras una guardia cerrada y quédate ahí.
+1982	Gana el centro: toma el centro del ring y sé el primero en conectar.
+1983	Marca el ritmo: hazle trabajar hacia atrás y que se canse.
+1984	Deja que venga: hazle fallar, luego contraataca y muévete.
+1985	Desvía, rolling, contraataca
+1986	Bloquea, bloquea, chequea y luego contraataca
+1987	Rolling, codo abajo, luego {0}-{1}
+1988	Bloquea, bloquea, rolling, luego {0}-{1}
+1989	Prepárate: rebota, manos arriba, mirada al frente
+1990	Asalto {0} de {1}
+1991	Asalto de sparring {0} de {1}: defiende y contraataca
+1992	Circuito {0}/{1}
+1993	Técnica, serie {0}
+1994	Técnica, serie {0} (lenta)
+1995	{0} min
+1996	Asalto {0}
+1997	Ejercicio {0}
