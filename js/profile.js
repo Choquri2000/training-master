@@ -4,7 +4,8 @@ import { store } from './store.js';
 import { TECHNIQUES, techById } from './data/techniques.js';
 
 export const DEFAULT_PROFILE = { level: 'some', stance: 'orth', days: [0, 2, 4], minutes: 0, goal: 'skills', kit: 'none', limits: [], other: false };
-export const profile = () => ({ ...DEFAULT_PROFILE, ...(store.get().profile || {}) });
+// The app is 100% combat (Beka, 2026-11-23): running and strength are never part of the plan, so `other` is always off.
+export const profile = () => ({ ...DEFAULT_PROFILE, ...(store.get().profile || {}), other: false });
 export const hasProfile = () => !!store.get().profile;
 
 // Choices shown in the profile form. [value, English, Georgian, hint]
@@ -28,7 +29,7 @@ export function weekDays(fighter) {
 }
 export const dayPlan = (day, fighter) => weekDays(fighter).find(x => x.day === day) || null;
 // The day kicks and knees stay off: the gym legs day, for people who also lift (shown plan).
-export const legsDay = () => (profile().other ? 2 : -1);
+export const legsDay = () => -1;
 
 // ---------- what to leave out ----------
 const AVOID = {

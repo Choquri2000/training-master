@@ -38,7 +38,17 @@ export const blockWeek = week => ((week - 1) % 4) + 1;
 // With a date set, the last three weeks before it become build -> peak -> taper.
 const DAY = 864e5;
 const d0 = iso => new Date(iso + 'T00:00:00');
-function weekStart(week) { const s = d0(store.get().startDate || '2026-11-16'); s.setDate(s.getDate() + (week - 1) * 7); return s; }
+const mondayOf = d => { const x = new Date(d); x.setHours(0, 0, 0, 0); x.setDate(x.getDate() - (x.getDay() + 6) % 7); return x; };
+// Your plan week. It moves on only after a week you actually trained (at least half your planned
+// sessions), so a missed week or a holiday never skips you ahead (Beka, 2026-11-23).
+export function planWeek() {
+  const s = store.get(), need = Math.max(1, Math.ceil(profile().days.length / 2));
+  const thisMon = mondayOf(new Date()).getTime(), start = mondayOf(d0(s.startDate || '2026-11-16')).getTime();
+  const per = {};
+  (s.log || []).forEach(e => { const m = mondayOf(d0(e.date)).getTime(); if (m >= start && m < thisMon) per[m] = (per[m] || 0) + 1; });
+  return 1 + Object.values(per).filter(n => n >= need).length;
+}
+function weekStart(week) { const s = mondayOf(new Date()); s.setDate(s.getDate() + (week - planWeek()) * 7); return s; }
 export function eventInfo() {
   const e = store.get().event; if (!e?.date) return null;
   const now = new Date(); now.setHours(0, 0, 0, 0);
@@ -87,8 +97,17 @@ export const THEMES = [
   { name: 'Defence and counters', has: t => DEFENCE.has(t.id) || t.discipline === 'counters' },
 ];
 export const blockNo = week => Math.floor((week - 1) / 4);
+// The 16-week program (about 4 months): fundamentals first, then defence, hands, kicks.
+// After week 16 the themes keep rotating forever, and fundamentals stay in every session.
+export const FUND = new Set(['stance', 'step', 'pivot', 'jab', 'cross', 'block', 'slip', 'parry', 'angleout', 'c12', 'c112']);
+const FOUNDATIONS = { name: 'Foundations', has: t => FUND.has(t.id) };
+export const PROGRAM = [FOUNDATIONS, THEMES[3], THEMES[0], THEMES[1]];
+export const PROGRAM_WEEKS = 16;
 export function themeOf(week) {
   const p = picks();
+  if (week <= PROGRAM_WEEKS) {
+    for (let i = 0; i < PROGRAM.length; i++) { const th = PROGRAM[(blockNo(week) + i) % PROGRAM.length]; if (p.some(id => th.has(techById[id]))) return th; }
+  }
   for (let i = 0; i < THEMES.length; i++) { // skip themes you picked nothing for
     const th = THEMES[(blockNo(week) + i + (profile().goal === 'selfdef' ? 3 : 0)) % THEMES.length]; // self-defence starts with defence
     if (p.some(id => th.has(techById[id]))) return th;
@@ -112,6 +131,9 @@ export function programFocus(day, week) {
   const out = [...take(theme, nTheme, k * nTheme), ...take(rest, n - Math.min(nTheme, theme.length), k)];
   let res = [...new Set(out)].slice(0, n);
   if (!res.length) res = take(p, n, k);
+  // Fundamentals never leave: after the first block, one slot keeps a basic skill sharp.
+  const fund = p.filter(id => FUND.has(id) && okDay(id));
+  if (blockNo(week) > 0 && fund.length && !res.some(id => FUND.has(id))) { const f = fund[k % fund.length]; if (res.length >= n) res[res.length - 1] = f; else res.push(f); }
   // Skills you rated "felt off" come back sooner: the oldest one takes the last slot.
   const fx = fixActive();
   if (fx) { // fix-it block: one of your weak skills leads every session

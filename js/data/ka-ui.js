@@ -260,3 +260,11 @@ Object.assign(KA, {
   'How': 'როგორ', 'Mistakes': 'შეცდომები', 'Drill it': 'ივარჯიშე', '3D figure': '3D ფიგურა', 'Fighting style': 'საბრძოლო სტილი',
   'Fight or test date': 'ბრძოლის ან ტესტის თარიღი',
 });
+Object.assign(KA, { 'Optional extra': 'სურვილისამებრ დამატებით' });
+Object.assign(KA, {
+  'Foundations': 'საფუძვლები', 'Hands': 'ხელები', 'Week {w} of {n}': 'კვირა {w} / {n}', 'Week {w}': 'კვირა {w}',
+  'A week counts once you train it, so missed weeks never skip you ahead.': 'კვირა მხოლოდ ვარჯიშის შემდეგ ითვლება, ამიტომ გაცდენილი კვირა წინ არ გადაგიყვანს.',
+  'Anything felt off?': 'რამე ვერ გამოვიდა?', 'Tap it, and it comes back sooner.': 'მონიშნე და მალე დაბრუნდება გეგმაში.',
+  'How did it go?': 'როგორ ჩაიარა?', 'Hard': 'რთული', 'Good': 'კარგი', 'Now solid': 'ახლა ათვისებულია',
+  'Fix the mistake': 'შეცდომის გასწორება',
+});
