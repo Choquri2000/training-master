@@ -105,8 +105,8 @@ export const SESSION_TYPES = {
     build: ({ v = {} }) => [
       { label: { en: 'Warm-up: skipping in place, mobility, easy shadowbox', ka: 'გახურება: ადგილზე ხტუნვა, მოქნილობა, მსუბუქი ჩრდილთან ბრძოლა' }, kind: 'warm', secs: 480 },
       ...Array.from({ length: v.rounds || 4 }, (_, i) => [{ label: { en: `Fight round ${i + 1} of ${v.rounds || 4}: attack, defend, move`, ka: `საბრძოლო რაუნდი ${i + 1} / ${v.rounds || 4}: შეტევა, დაცვა, მოძრაობა` }, kind: 'work', secs: v.roundSecs || 180, calls: 'fight', pace: i === 0 ? 'medium' : (v.pace || 'medium') }, { label: { en: 'Rest', ka: 'დასვენება' }, kind: 'rest', secs: v.rest || 60 }]).flat(),
-      ...Array.from({ length: v.burst || 0 }, (_, i) => [{ label: { en: `Punch-out ${i + 1} of ${v.burst}: straight punches, all-out`, ka: `სწრაფი დარტყმები ${i + 1} / ${v.burst}: პირდაპირი დარტყმები, მაქსიმუმი` }, kind: 'work', secs: 20 }, { label: { en: 'Rest', ka: 'დასვენება' }, kind: 'rest', secs: 10 }]).flat(),
-      ...(v.burst ? [{ label: { en: 'Sprawls: 30 s, as many as you can with good form', ka: 'სპრაულები: 30 წმ, რაც შეიძლება მეტი, სწორი ტექნიკით' }, kind: 'work', secs: 30 }, { label: { en: 'Rest', ka: 'დასვენება' }, kind: 'rest', secs: 30 }] : []),
+      ...Array.from({ length: v.burst || 0 }, (_, i) => [{ label: { en: `Punch-out ${i + 1} of ${v.burst}: straight punches, all-out`, ka: `სწრაფი დარტყმები ${i + 1} / ${v.burst}: პირდაპირი დარტყმები, მაქსიმუმი` }, kind: 'work', show: 'onetwo', secs: 20 }, { label: { en: 'Rest', ka: 'დასვენება' }, kind: 'rest', secs: 10 }]).flat(),
+      ...(v.burst ? [{ label: { en: 'Sprawls: 30 s, as many as you can with good form', ka: 'სპრაულები: 30 წმ, რაც შეიძლება მეტი, სწორი ტექნიკით' }, kind: 'work', secs: 30, show: 'sprawl' }, { label: { en: 'Rest', ka: 'დასვენება' }, kind: 'rest', secs: 30 }] : []),
       { label: { en: 'Core: dead bug, side plank, sprawls', ka: 'კორი: dead bug, გვერდითი პლანკი, სპრაულები' }, kind: 'work', secs: 240 },
       { label: { en: 'Cool-down and stretch', ka: 'გაგრილება და გაჭიმვა' }, kind: 'cool', secs: 300 },
     ],

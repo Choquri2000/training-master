@@ -8,7 +8,6 @@ import { STYLES, styleById, STYLE_DISC, DIMS } from './data/styles.js';
 import { ATTACKS, STYLE_W } from './data/spar.js';
 import { DRILLS, drillById, drillOfDay, withDrill, COLORS } from './data/drills.js';
 import { addCorner } from './data/corner.js';
-import { voiceCtlOK, listen } from './voicectl.js';
 import { CAMP, MIN_CAMP, careerOf, tierOf, rankOf, record, campDone, nextOpponent, decide, applyResult, HOW } from './data/career.js';
 import { TARGETS, targetById, createTargetFigure } from './targets.js';
 
@@ -29,10 +28,24 @@ import { Player, availableCombos, say, bell } from './session.js';
 const normCall = c => String(c).toLowerCase().replace(/\.\.\.|[,!.]/g, ' ').replace(/\s+/g, ' ').trim();
 const STEP_SAYS = STEPS.map(x => [x.say, x.id]).sort((a, b) => b[0].length - a[0].length);
 let callMap = null; const callMemo = {};
+// Calls that are not a skill name: footwork patterns, reaction answers. A string is another call; an array is a capture sequence.
+const CALL_ALIAS = {
+  'step forward': 'step', 'step left': [['sidestep', 0, 1]], 'step right': [['sidestep', 0, 1, { mirror: true }]],
+  'in and out': [['step', 0, 1], ['stepback', 0.1, 1]], 'in out': [['step', 0, 1], ['stepback', 0.1, 1]],
+  'one step': [['jab', 0.05, 0.9], ['step', 0, 1]], 'l step': [['stepback', 0, 0.9], ['sidestep', 0.08, 1]],
+  'pivot left': 'pivot', 'pivot right': [['sidestep', 0, 0.92], ['pivot', 0.23, 1]],
+  'circle left': [['sidestep', 0, 0.92], ['sidestep', 0.08, 1]], 'circle right': [['sidestep', 0, 0.92, { mirror: true }], ['sidestep', 0.08, 1, { mirror: true }]],
+  'cut off': [['step', 0, 1], ['sidestep', 0.08, 1]], 'step in one two': [['step', 0, 1], ['onetwo', 0.08, 1]], 'angle out': 'two move',
+  'one two level change': [['onetwo', 0.08, 0.77], ['doubleleg', 0, 0.13], ['doubleleg', 0.13, 0.13, { hold: 0.5 }], ['doubleleg', 0.13, 0]],
+  'last thirty all out': 'one two three two', go: 'one two three two', 'keep going': 'one two', 'hands back': 'block',
+};
 function callAnim(call) {
   const k = normCall(call); if (!k) return null;
   if (k in callMemo) return callMemo[k];
   if (!callMap) { callMap = {}; for (const x of [...COMBO_TECHS, ...TECHNIQUES]) if (x.callout?.en) callMap[normCall(x.callout.en)] ??= x.id; }
+  const al = CALL_ALIAS[k];
+  if (typeof al === 'string') return (callMemo[k] = callAnim(al));
+  if (al) { if (!webglOK()) return (callMemo[k] = null); registerSeq('call:' + k, al); return (callMemo[k] = 'call:' + k); }
   let id = callMap[k] && MOCAP.has(callMap[k]) ? callMap[k] : null;
   if (!id && webglOK()) {
     const mine = (store.get().myCombos || []).find(c => c.steps?.length && normCall(c.say) === k);
@@ -622,7 +635,6 @@ function Session(kind, techCsv) {
       <button class="btn" data-a="skip">${t('skip')}</button>
       <button class="btn ghost" data-a="finish">${t('finish')}</button>
     </div>
-    ${voiceCtlOK() ? `<p class="mic"><button type="button" class="pill${store.get().voiceCtl ? ' on' : ''}" data-a="mic">🎤 ${tr('Voice control')}</button> <span class="muted small micstat"></span></p>` : ''}
     <details class="steps"><summary>${tr('All steps')} (${segs.length})</summary><ol class="seglist">${segs.map((s, i) => `<li data-i="${i}" class="kind-${s.kind}">${esc(L(s.label))}${s.tech ? `: ${esc(L(techById[s.tech].name))}` : ''} <span>${fmt(s.secs)}</span></li>`).join('')}</ol></details>
     <div class="logform" hidden>
       ${kind.startsWith('spar') || kind === 'career' ? `<h2>${tr(kind === 'career' ? 'How did the fight go?' : 'How did you handle your partner?')}</h2><div class="sparbox"><div class="seg sparrate">${[[1, 'I got caught a lot'], [2, 'About right'], [3, 'I handled everything']].map(([v, n]) => `<button class="pill${v === 2 ? ' on' : ''}" data-r="${v}">${tr(n)}</button>`).join('')}</div></div>` : ''}
@@ -649,15 +661,19 @@ function Session(kind, techCsv) {
       co.classList.toggle('late', late);
     }
     co.classList.toggle('cue', !!s.silent); co.style.color = (s.colors && COLORS[p.lastCall]) || '';
-    if (s.corner && s.kind === 'rest') $('.hint', el).textContent = '🗣 ' + L(s.corner); else $('.hint', el).textContent = (p.lastCall && (!opp || Date.now() - oppAt > oppDur + 350) && s.hints?.[p.lastCall]) || '';
+    if (s.corner && s.kind === 'rest') $('.hint', el).textContent = '🗣 ' + L(s.corner); else $('.hint', el).textContent = (p.lastCall && (!opp || Date.now() - oppAt > oppDur + 350) && s.hints?.[p.lastCall] && L(s.hints[p.lastCall])) || '';
     $('[data-a=toggle]', el).textContent = p.running ? t('pause') : (p.elapsed ? t('resume') : t('start'));
     el.querySelectorAll('.seglist li').forEach(li => li.classList.toggle('cur', +li.dataset.i === p.i));
-    const tech = s.tech || null, call = !tech && !opp && !p.done && p.lastCall ? callAnim(p.lastCall) : null;
-    const figKey = tech ? tech + (s.fix ? ':fix' : '') : call && `${call}#${p.calls}`;
+    // Called combinations play on screen (not in reaction rounds, where reading the cue is the drill).
+    const tech = s.tech || null, cueRound = s.silent || s.legend;
+    const call = !tech && !opp && !p.done ? (p.lastCall && !cueRound ? callAnim(p.lastCall) : (!p.lastCall && s.show) || null) : null;
+    const figKey = tech ? tech + (s.fix ? ':fix' : '') : call && `${call}#${p.lastCall ? p.calls : 's' + p.i}`;
     if (figKey !== figTech) {
       figTech = figKey; fig?.destroy(); fig = null;
       $('.fig-big', el).classList.toggle('callfig', !!call);
-      if (call) fig = createViewer($('.fig-big', el), call, {});
+      // The next call waits until this one has played through once, plus a beat to do it.
+      const key = figKey;
+      if (call) fig = createViewer($('.fig-big', el), call, { speed: s.show && s.slow ? 0.4 : 1, onReady: d => { if (figTech === key && p.lastCall) p.nextCall = Math.max(p.nextCall, Date.now() + d * 1000 + 900); } });
       else if (tech && s.fix) {
         fig = createViewer($('.fig-big', el), tech, { speed: 0.4, step: !MOCAP.has(tech) });
         $('.cues', el).innerHTML = `<div class="fixbox"><p class="fixm">✗ ${esc(L(s.fix).m)}</p><p class="fixf">✓ ${esc(L(s.fix).fix)}</p></div>`;
@@ -673,17 +689,6 @@ function Session(kind, techCsv) {
   render(player);
   cleanup.push(() => { player.stop(); fig?.destroy(); });
 
-  // Hands-free: "pause", "go", "next", "again".
-  let unlisten = null;
-  const micState = (st, cmd) => { const m = $('.micstat', el); if (!m) return;
-    m.textContent = st === 'listening' ? tr('Say: pause, go, next, again') : st === 'heard' ? `✓ ${tr(cmd)}` : st === 'denied' ? tr('Microphone blocked. Allow it in the browser settings.') : ''; };
-  const micOn = () => { if (unlisten || !voiceCtlOK()) return; unlisten = listen(cmd => {
-    if (cmd === 'pause') player.pause(); if (cmd === 'go') { player.start(); wake(); } if (cmd === 'next') player.next();
-    if (cmd === 'again') { if (player.lastCall) say(player.lastCall); else { player.left = player.seg?.secs ?? 0; } player.onTick(player); }
-  }, { lang: store.get().lang === 'ka' ? 'ka-GE' : 'en-US', onState: micState }); };
-  const micOff = () => { unlisten?.(); unlisten = null; };
-  cleanup.push(micOff);
-
   // Keep the screen on during a session where supported.
   let lock = null;
   const wake = async () => { try { lock = await navigator.wakeLock?.request('screen'); } catch { /* ignore */ } };
@@ -696,8 +701,7 @@ function Session(kind, techCsv) {
     if (offb) { offb.classList.toggle('on'); return; }
     const face = +(e.target.closest('[data-face]')?.dataset.face || 0);
     const a = e.target.dataset.a;
-    if (a === 'toggle') { unlockVoice(); player.toggle(); if (player.running) { wake(); if (store.get().voiceCtl) micOn(); } }
-    if (a === 'mic') { const on = !store.get().voiceCtl; store.set({ voiceCtl: on }); e.target.classList.toggle('on', on); on ? micOn() : micOff(); }
+    if (a === 'toggle') { unlockVoice(); player.toggle(); if (player.running) wake(); }
     if (a === 'skip') player.next();
     if (a === 'finish') { player.stop(); player.done = true; render(player); }
     if (face) { // one tap saves: Hard / Good / Easy, plus any skill marked "felt off"

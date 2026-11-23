@@ -90,11 +90,11 @@ export const DRILLS = [
       B('Check and kick: when called, check or kick and land straight back in stance, hands up.', 'ჩეკი და წიხლი: ბრძანებაზე გააკეთე ჩეკი ან წიხლი და დაეშვი პირდაპირ დგომაში, ხელები ზევით.')],
     mistakes: [B('Leaning back to get the leg higher', 'უკან გადახრა ფეხის ასაწევად'), B('Hands dropping during the kick', 'წიხლისას ხელების დაშვება'), B('Standing on a flat, locked knee', 'დაჭიმულ, ჩაკეტილ მუხლზე დგომა')],
     build: ({ short }) => [
-      work(B('Stand on the left leg, right knee up, guard up', 'დადექი მარცხენა ფეხზე, მარჯვენა მუხლი ზევით, დაცვა'), 30),
-      work(B('Stand on the right leg, left knee up, guard up', 'დადექი მარჯვენა ფეხზე, მარცხენა მუხლი ზევით, დაცვა'), 30, { cont: 'switch' }),
+      work(B('Stand on the left leg, right knee up, guard up', 'დადექი მარცხენა ფეხზე, მარჯვენა მუხლი ზევით, დაცვა'), 30, { show: 'check' }),
+      work(B('Stand on the right leg, left knee up, guard up', 'დადექი მარჯვენა ფეხზე, მარცხენა მუხლი ზევით, დაცვა'), 30, { cont: 'switch', show: 'check' }),
       rest(15),
-      work(B('Slow-motion kicks, rear leg: 3 s up, hold 2 s, 3 s down', 'ნელი წიხლები, უკანა ფეხი: 3 წმ ზევით, 2 წმ გაჩერება, 3 წმ დაბლა'), short ? 45 : 60),
-      work(B('Slow-motion kicks, lead leg: 3 s up, hold 2 s, 3 s down', 'ნელი წიხლები, წინა ფეხი: 3 წმ ზევით, 2 წმ გაჩერება, 3 წმ დაბლა'), short ? 45 : 60, { cont: 'switch' }),
+      work(B('Slow-motion kicks, rear leg: 3 s up, hold 2 s, 3 s down', 'ნელი წიხლები, უკანა ფეხი: 3 წმ ზევით, 2 წმ გაჩერება, 3 წმ დაბლა'), short ? 45 : 60, { show: 'roundhouse', slow: true }),
+      work(B('Slow-motion kicks, lead leg: 3 s up, hold 2 s, 3 s down', 'ნელი წიხლები, წინა ფეხი: 3 წმ ზევით, 2 წმ გაჩერება, 3 წმ დაბლა'), short ? 45 : 60, { cont: 'switch', show: 'leadkick', slow: true }),
       ...(short ? [] : [rest(20), work(B('Check and kick: land back in stance every time', 'ჩეკი და წიხლი: ყოველ ჯერზე დაეშვი დგომაში'), 90, { pool: ['check', 'check', 'kick', 'switch kick', 'check, kick', 'teep'], pace: 'medium' })]),
     ],
   },
@@ -115,7 +115,7 @@ export const DRILLS = [
         p?.limits?.includes('back') ? B('Band rows, squeeze the shoulder blades', 'რეზინის რიგები, ბეჭების მოჭერა') : B('Dumbbell rows, one hand on the bench', 'ჰანტელის რიგები, ერთი ხელი სკამზე'),
         B('Easy shadowbox: breathe, hands up', 'მსუბუქი ჩრდილთან ბრძოლა: ისუნთქე, ხელები ზევით'),
       ];
-      return rounds(short ? 1 : 3, (i, n) => st.map((s, k) => work(B(`Circuit ${i + 1}/${n}: ${s.en}`, `წრე ${i + 1}/${n}: ${s.ka}`), 30, k ? { cont: 'next' } : {})), 60);
+      return rounds(short ? 1 : 3, (i, n) => st.map((s, k) => work(B(`Circuit ${i + 1}/${n}: ${s.en}`, `წრე ${i + 1}/${n}: ${s.ka}`), 30, { ...(k ? { cont: 'next' } : {}), show: [ 'onetwo', noFloor ? null : 'sprawl', null, null, 'onetwo'][k] || undefined })), 60);
     },
   },
   {

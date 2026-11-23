@@ -124,7 +124,7 @@ function tintMannequin(THREE, root) {
   });
 }
 
-export function createMocap(container, techId, { speed = 1, view = 'three', step = false, model = 'fighter', mirror = false, onLabel, onFail } = {}) {
+export function createMocap(container, techId, { speed = 1, view = 'three', step = false, model = 'fighter', mirror = false, onLabel, onFail, onReady } = {}) {
   let dead = false, raf = 0, api = {};
   const st = { speed, view, step, paused: false };
   container.classList.add('mocap', 'loading');
@@ -186,6 +186,7 @@ export function createMocap(container, techId, { speed = 1, view = 'three', step
     const idle = piece(['stance', 0, 1]);
     const isStance = techId === 'stance';
     const total = pieces.reduce((s, p) => s + p.dur, 0);
+    onReady?.(total); // seconds for one pass at speed 1
     const cycle = isStance ? total : total + REST;
     const at = (p, u) => (p.hold ? p.from : p.from + Math.sign(p.to - p.from) * Math.min(u, p.dur));
 
