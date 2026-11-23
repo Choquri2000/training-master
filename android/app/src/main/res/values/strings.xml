@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Combat Coach</string>
+    <string name="title_activity_main">Combat Coach</string>
+    <string name="package_name">app.combatcoach</string>
+    <string name="custom_url_scheme">app.combatcoach</string>
+</resources>
