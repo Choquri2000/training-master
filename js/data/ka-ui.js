@@ -208,3 +208,16 @@ export const EN_LONG = {
   LEARN_INTRO: 'Stage 1: you are learning the skills you picked. Every 4 weeks is one block (3 weeks building up + an easy week), rotating through each skill. When a skill feels solid, open it and tap "Mark as solid". When all of them are solid, the app switches to fighter training on its own (or tap the button below when you feel ready).',
   FIGHTER_INTRO: 'Stage 2: you now train like a fighter, using the skills you learned. This routine never ends: your first day is combinations (two combos of the week drilled until automatic), the next is defence, footwork and counters (no kicks), and the hard day is fight rounds and conditioning. Every 4 weeks: 3 weeks where rounds and pace build, then an easy week. The combos and the skills to sharpen change every week, so everything stays sharp.',
 };
+
+// UI polish (2026-11-23)
+Object.assign(KA, {
+  'Footwork, bands, dumbbells, conditioning': 'ფეხის მუშაობა, რეზინი, ჰანტელები, გამძლეობა',
+  '13 styles, quiz and matchups': '13 სტილი, ქვიზი და დაპირისპირებები',
+  'Where each strike lands': 'სად უნდა მოხვდეს ყოველი დარტყმა',
+  'Search techniques': 'ტექნიკის ძებნა',
+  'No technique matches.': 'ასეთი ტექნიკა ვერ მოიძებნა.',
+  'Use email instead': 'ელფოსტით შესვლა',
+  'Email works best if the app is installed on your home screen.': 'ელფოსტა უკეთ მუშაობს, თუ აპი მთავარ ეკრანზეა დაყენებული.',
+  'Your data': 'შენი მონაცემები',
+  'All steps': 'ყველა ეტაპი',
+});
