@@ -1,4 +1,5 @@
 // Session player: runs a list of segments with a countdown, bell sounds and spoken callouts.
+import { sayKa, stopVoice } from './voice.js';
 import { COMBOS, FOOTWORK_CALLS, techById } from './data/techniques.js';
 import { store } from './store.js';
 import { programCombos, stage, offenceCombos, defenceCalls } from './program.js';
@@ -36,8 +37,11 @@ function clack() {
   } catch { /* ignore */ }
 }
 
-export function say(text) {
-  if (!store.get().voice || !('speechSynthesis' in window)) return;
+// text: what to say in English. ka: the Georgian version (string or list of phrases), if the caller has one.
+export function say(text, ka) {
+  if (!store.get().voice) return;
+  if (store.get().lang === 'ka' && sayKa(ka || text)) return;
+  if (!('speechSynthesis' in window)) return;
   speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text);
   u.lang = 'en-US'; u.rate = 1.15;
@@ -75,14 +79,14 @@ export class Player {
     this.timer = setInterval(() => this.step(), 250);
     this.onTick(this);
   }
-  pause() { this.running = false; clearInterval(this.timer); speechSynthesis?.cancel?.(); this.onTick(this); }
+  pause() { this.running = false; clearInterval(this.timer); speechSynthesis?.cancel?.(); stopVoice(); this.onTick(this); }
   toggle() { this.running ? this.pause() : this.start(); }
   enter() {
     const s = this.seg; if (!s) return;
     if (s.kind === 'work' && s.cont) { if (s.cont === 'next') clack(); else setTimeout(() => say(s.cont === 'switch' ? 'switch sides' : s.cont), 150); } // same round goes on: no bell
     else if (s.kind === 'work') bell(1);
-    if (s.kind === 'rest') { bell(2); if (s.corner) setTimeout(() => { if (this.seg === s && this.running) say(s.corner.en); }, 2600); } // corner coach
-    if (s.tech) setTimeout(() => say(techById[s.tech].name.en), 900);
+    if (s.kind === 'rest') { bell(2); if (s.corner) setTimeout(() => { if (this.seg === s && this.running) say(s.corner.en, s.corner.parts || s.corner.ka); }, 2600); } // corner coach
+    if (s.tech) setTimeout(() => say(techById[s.tech].name.en, techById[s.tech].name.ka), 900);
     this.nextCall = Date.now() + 3500;
   }
   step() {

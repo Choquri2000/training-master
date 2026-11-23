@@ -25,6 +25,7 @@ function createViewer(el, id, opts = {}) {
   };
 }
 import { Player, availableCombos, say, bell } from './session.js';
+import { unlockVoice } from './voice.js';
 import { store } from './store.js';
 import { PRESETS, picks, programFocus, volume, blockWeek, themeOf, stage, learnedCount, fighterVolume, weekCombos, sharpenSkills, myCombos, fixActive, findWeak, eventInfo, phaseWeek } from './program.js';
 import { profile, hasProfile, DEFAULT_PROFILE, CHOICES, weekDays, dayPlan, legsDay, suitable, adaptSession, coachNote, safetyNote, LEVELS } from './profile.js';
@@ -563,7 +564,7 @@ function Session(kind, techCsv) {
   }
   { // corner coach in the rests; weaves in the skills you are working on
     const ids = [...new Set([...focus, ...(fixActive()?.skills || [])])].filter(id => techById[id]).slice(0, 4);
-    const cue = id => { const x = techById[id], k = x.keyPoints; return { en: `${x.name.en}: ${(k.en || k)[0]}`, ka: `${L(x.name)}: ${L(k)[0]}` }; };
+    const cue = id => { const x = techById[id], k = x.keyPoints; return { en: `${x.name.en}: ${(k.en || k)[0]}`, ka: `${L(x.name)}: ${L(k)[0]}`, parts: [L(x.name), L(k)[0]] }; };
     segs = addCorner(segs, { fight: /spar|fight|vs|style|timer|career/.test(kind), focus: ids.map(cue) });
   }
   const startedAt = Date.now();
@@ -648,7 +649,7 @@ function Session(kind, techCsv) {
     const r = e.target.closest('[data-r]');
     if (r) { r.parentElement.querySelectorAll('.pill').forEach(x => x.classList.toggle('on', x === r)); return; }
     const a = e.target.dataset.a;
-    if (a === 'toggle') { player.toggle(); if (player.running) { wake(); if (store.get().voiceCtl) micOn(); } }
+    if (a === 'toggle') { unlockVoice(); player.toggle(); if (player.running) { wake(); if (store.get().voiceCtl) micOn(); } }
     if (a === 'mic') { const on = !store.get().voiceCtl; store.set({ voiceCtl: on }); e.target.classList.toggle('on', on); on ? micOn() : micOff(); }
     if (a === 'skip') player.next();
     if (a === 'finish') { player.stop(); player.done = true; render(player); }
