@@ -112,7 +112,8 @@ function Today() {
         <h1>${tr('Rest day')}</h1>
         <p class="focus">${t('noCombatToday')}</p>
         <a class="go soft" href="#/session/footwork/" aria-label="${tr('10-15 min footwork (optional)')}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></a>
-        <p class="go-label">${tr('10-15 min footwork (optional)')}</p>`}
+        <p class="go-label">${tr('10-15 min footwork (optional)')}</p>
+        ${(() => { const x = EXTRA_TIPS[(weekNumber() + d.day) % EXTRA_TIPS.length]; return `<div class="extra"><p class="eyebrow">${tr('Optional extra')}</p><b>${esc(L(x.t))}</b><span>${esc(L(x.d))}</span></div>`; })()}`}
     </div>
     <nav class="also-links"><a href="#/timer">⏱ ${tr('Round timer')}</a><a href="#/spar">🥊 ${tr('Sparring partner')}</a></nav>
   </section>`);
@@ -123,7 +124,7 @@ function Today() {
     const same = !peek.hidden && peek.dataset.day == i;
     el.querySelectorAll('.sd').forEach(b => b.classList.toggle('sel', !same && b === btn));
     peek.hidden = same; peek.dataset.day = i;
-    peek.innerHTML = `<b>${esc(L(DAY_NAMES)[i])}</b><span>${doneDays.has(dates[i]) ? '✓ ' : ''}${esc(sname(k))}</span>${other && wd.run ? `<span><span class="dot k-run"></span>${t('run')}: ${esc(L(wd.run))}</span>` : ''}${other && wd.strength ? `<span><span class="dot k-strength"></span>${esc(L(STRENGTH[wd.strength].name))}</span>` : ''}`;
+    peek.innerHTML = `<b>${esc(L(DAY_NAMES)[i])}</b><span>${doneDays.has(dates[i]) ? '✓ ' : ''}${esc(sname(k))}</span>`;
   });
   view.replaceChildren(el);
 }
@@ -175,6 +176,16 @@ function Me() {
   </section>`);
   view.replaceChildren(el);
 }
+
+// Optional extras, shown only on rest days as a suggestion (never part of the plan).
+const EXTRA_TIPS = [
+  { t: { en: 'Home dumbbells for punching power', ka: 'ჰანტელები სახლში დარტყმის ძალისთვის' }, d: { en: '20 min: goblet squats, push-ups, one-arm rows, light dumbbell punches. Stop two reps before failure.', ka: '20 წთ: გობლეტ-ჩაჯდომა, აზიდვა, ერთი ხელით წევა, მსუბუქი ჰანტელით დარტყმები. შეჩერდი დაღლამდე ორი გამეორებით ადრე.' } },
+  { t: { en: 'Easy run for round stamina', ka: 'მსუბუქი სირბილი რაუნდების გამძლეობისთვის' }, d: { en: '20-30 min at a pace where you can still talk. It builds the base that keeps your hands up in round three.', ka: '20-30 წთ ისეთი ტემპით, რომ საუბარი შეგეძლოს. ეს ქმნის ბაზას, რომელიც მესამე რაუნდში ხელებს მაღლა გიჭერს.' } },
+  { t: { en: 'Core and neck for taking shots', ka: 'კორპუსი და კისერი დარტყმების ასატანად' }, d: { en: '15 min: planks, side planks, dead bugs, gentle neck holds with your hand. Slow and controlled.', ka: '15 წთ: პლანკი, გვერდითი პლანკი, „მკვდარი ხოჭო“, კისრის ნაზი დაჭიმვა ხელით. ნელა და კონტროლით.' } },
+  { t: { en: 'Mobility for kicks and slips', ka: 'მოქნილობა წიხლებისა და სლიპებისთვის' }, d: { en: '15 min: hips, hamstrings, thoracic spine. Higher kicks and easier head movement.', ka: '15 წთ: მენჯი, ბარძაყის უკანა კუნთები, გულმკერდის ხერხემალი. უფრო მაღალი წიხლები და მარტივი თავის მოძრაობა.' } },
+  { t: { en: 'Intervals for fight pace', ka: 'ინტერვალები ბრძოლის ტემპისთვის' }, d: { en: 'Run or skip rope: 6 x 1 min hard, 1 min easy. Like real rounds.', ka: 'სირბილი ან სკაკალკა: 6 x 1 წთ ძლიერად, 1 წთ მსუბუქად. როგორც ნამდვილი რაუნდები.' } },
+  { t: { en: 'Full rest', ka: 'სრული დასვენება' }, d: { en: 'Sleep and food are training too. Skills settle while you rest.', ka: 'ძილი და კვებაც ვარჯიშია. უნარები დასვენებისას მყარდება.' } },
+];
 
 // The whole week with running and strength (only for people who show their other training).
 function fullWeek() {
@@ -251,7 +262,6 @@ function Plan(mode) {
     <div class="card list exp">
       <details><summary class="lrow"><i>${icon('career')}</i><span><b>${tr('Fight or test date')}</b>${ev ? `<small>${esc(ev.name || tr('Your date'))}: ${tr('{n} days to go', { n: ev.days })}</small>` : ''}</span></summary>${eventCard()}</details>
       ${wk < first + 3 ? `<details><summary class="lrow"><i>${icon('plan')}</i><span><b>${tr('Next weeks')}</b></span></summary><div class="week">${[1, 2, 3].map(i => first + blockWeek(wk) - 1 + i).filter(w => w <= first + 3).map(w => planCard(w, false)).join('')}</div></details>` : ''}
-      ${profile().other ? `<details><summary class="lrow"><i>${icon('drills')}</i><span><b>${tr('Running and strength this week')}</b></span></summary>${fullWeek()}</details>` : ''}
       <details><summary class="lrow"><i>${icon('iq')}</i><span><b>${tr('How the plan works')}</b></span></summary><p>${tr(fighter ? 'FIGHTER_INTRO' : 'LEARN_INTRO')}</p>
         ${fighter ? `<button class="btn ghost" data-stage="learn">${tr('Back to learning (add new skills)')}</button>` : `<button class="btn" data-stage="fighter">${tr("I've learned them: start fighter training")}</button>`}
         <p class="small"><a href="#/pathway">${tr('Phases and checkpoints')}</a></p></details>
@@ -373,7 +383,6 @@ function Profile(first) {
     <h2>${tr('Equipment')}</h2>${group('kit')}
     <h2>${tr('Anything to protect?')}</h2>${group('limits', true)}
     <p class="muted small">${tr('Techniques that load these areas are left out, and exercises are swapped for safer ones. If something hurts, see a doctor or physio first.')}</p>
-    ${p.other ? `<label class="row"><input type="checkbox" class="other" checked> ${tr('Also show my running and strength plan')}</label>` : ''}
     <div class="savebar"><button class="btn primary" data-save>${first ? tr('Build my plan') : t('save')}</button></div>
   </section>`);
   const val = { ...p, days: [...p.days], limits: [...p.limits] };
@@ -1475,7 +1484,7 @@ function addCombos() {
 function addProfile() {
   const s = store.get();
   if (s.profile || !(s.program?.picks?.length || s.log.length)) return;
-  store.set({ profile: { ...DEFAULT_PROFILE, days: [0, 2, 4, 5], other: true } });
+  store.set({ profile: { ...DEFAULT_PROFILE, days: [0, 2, 4, 5] } });
 }
 seed(); addCombos(); addProfile();
 initSync(() => { addCombos(); addProfile(); render(); });

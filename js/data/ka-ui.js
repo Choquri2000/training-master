@@ -235,3 +235,4 @@ Object.assign(KA, {
   'How': 'როგორ', 'Mistakes': 'შეცდომები', 'Drill it': 'ივარჯიშე', '3D figure': '3D ფიგურა', 'Fighting style': 'საბრძოლო სტილი',
   'Fight or test date': 'ბრძოლის ან ტესტის თარიღი',
 });
+Object.assign(KA, { 'Optional extra': 'სურვილისამებრ დამატებით' });
