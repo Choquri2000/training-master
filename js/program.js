@@ -2,6 +2,7 @@
 // for your training days (see profile.js: which days, which session, what to avoid).
 import { TECHNIQUES, techById, COMBOS } from './data/techniques.js';
 import { store } from './store.js';
+import { locked } from './pro.js';
 import { stepsKick, stepsDefFirst } from './data/combos.js';
 import { styleById } from './data/styles.js';
 // Your chosen fighting style (profile): its skills get a slot most days and its combinations are called.
@@ -83,7 +84,7 @@ export function fixActive() {
   const day = Math.floor((now - d0(f.start)) / DAY) + 1;
   return day >= 1 && day <= 14 ? { ...f, day } : null;
 }
-export const picks = () => (store.get().program?.picks || []).filter(suitable); // minus what your limits rule out
+export const picks = () => (store.get().program?.picks || []).filter(suitable).filter(id => !locked() || techById(id)?.phase === 1); // minus what your limits rule out
 
 // The plan never ends: each 4-week block has a theme that gets most of the time,
 // themes rotate (boxing -> kicks -> MMA -> defence and counters), and every block
@@ -166,6 +167,7 @@ export function programCombos() {
 export function stage() {
   const p = store.get().program;
   if (!p?.picks?.length) return 'none';
+  if (locked()) return picks().length ? 'learn' : 'none';
   if (p.fighter) return 'fighter';
   return picks().every(id => store.get().status[id] === 'done') ? 'fighter' : 'learn';
 }

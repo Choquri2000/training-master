@@ -30,7 +30,8 @@ import { store } from './store.js';
 import { planWeek, PROGRAM_WEEKS, PRESETS, picks, programFocus, volume, blockWeek, themeOf, stage, learnedCount, fighterVolume, weekCombos, sharpenSkills, myCombos, fixActive, findWeak, eventInfo, phaseWeek } from './program.js';
 import { profile, hasProfile, DEFAULT_PROFILE, CHOICES, weekDays, dayPlan, legsDay, suitable, adaptSession, coachNote, safetyNote, LEVELS } from './profile.js';
 import { t, L, LANGS, tr } from './i18n.js';
-import { initSync, onSync, signIn, signInGoogle, signOut, resetPassword, syncAvailable } from './sync.js';
+import { initPro, isPro, onPro, locked, locked as proLocked, PRO_ROUTES, proAvailable, plans, buy, restore } from './pro.js';
+import { initSync, onSync, signIn, signInGoogle, signOut, resetPassword, syncAvailable, deleteAccount } from './sync.js';
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const view = $('#view');
@@ -166,6 +167,7 @@ function Me() {
       ${row('#/career', icon('career'), tr('Fighter career'), fightReady ? tr('Fight night is ready') : '', fightReady)}
     </div>
     <div class="card list">
+      ${proAvailable() ? row('#/pro', icon('career'), 'Combat Coach Pro', isPro() ? tr('Active') : tr('Unlock everything')) : ''}
       ${row('#/profile', icon('profile'), tr('Your profile'), '')}
       ${row('#/settings', icon('settings'), t('settings'), cloudOn ? tr('Saved to the cloud') : '', unsafe)}
     </div>
@@ -405,9 +407,9 @@ function Pathway() {
   const el = h(`<section><h1>${t('pathway')}</h1>${PHASES.map(p => {
     const techs = TECHNIQUES.filter(x => x.phase === p.phase);
     const doneN = techs.filter(x => s.status[x.id] === 'done').length;
-    const locked = p.phase > s.phaseUnlocked;
+    const locked = p.phase > s.phaseUnlocked, pay = p.phase > 1 && proLocked();
     return `<div class="phase ${locked ? 'locked' : ''}">
-      <h2>${t('phase')} ${p.phase}: ${esc(L(p.name))} <small>${tr('weeks')} ${p.weeks}</small></h2>
+      <h2>${t('phase')} ${p.phase}: ${esc(L(p.name))} <small>${pay ? '<a href="#/pro">Pro</a>' : `${tr('weeks')} ${p.weeks}`}</small></h2>
       <p>${esc(L(p.goal))}</p>
       <div class="progress"><div style="width:${(doneN / techs.length) * 100}%"></div></div>
       <p class="muted">${doneN} / ${techs.length} ${t('done').toLowerCase()}</p>
@@ -747,6 +749,36 @@ function Log() {
   view.replaceChildren(el);
 }
 
+function Pro(gated) {
+  const perks = ['Every skill pathway and technique', 'Fighter routine, combinations and sparring partner', 'Fighter career and skill tests', 'New skills and plans added over time'];
+  const el = h(`<section class="pro"><h1>Combat Coach Pro</h1>${gated ? `<p class="muted">${tr('This is part of Pro. The first phase stays free.')}</p>` : ''}
+    <ul class="perks">${perks.map(x => `<li>${tr(x)}</li>`).join('')}</ul>
+    <div class="plans"><p class="muted">${tr('Loading...')}</p></div>
+    <button class="btn ghost" data-a="restore">${tr('Restore purchases')}</button>
+    <p class="pro-msg small"></p>
+    <p class="small muted">${tr('Renews automatically until cancelled. Cancel any time in Google Play, at least 24 hours before renewal.')} <a href="terms.html">${tr('Terms of use')}</a> · <a href="privacy.html">${tr('Privacy policy')}</a></p>
+  </section>`);
+  view.replaceChildren(el);
+  const box = $('.plans', el), msg = $('.pro-msg', el);
+  const off = onPro(on => { if (!el.isConnected) return off?.(); if (on) box.innerHTML = `<p class="ok">✓ ${tr('Pro is active. Thank you!')}</p>`; });
+  if (isPro()) return;
+  plans().then(list => {
+    if (isPro()) return;
+    if (!list.length) { box.innerHTML = `<p class="muted">${tr('Plans are not available right now.')}</p>`; return; }
+    const yearly = list.find(x => x.type === 'ANNUAL');
+    box.innerHTML = list.map((x, i) => `<button class="btn plan ${x === yearly ? 'primary' : ''}" data-i="${i}">
+      <b>${x.type === 'ANNUAL' ? tr('Yearly') : tr('Monthly')}</b> ${esc(x.price)}${x.trial ? ` · ${tr('free trial')}` : ''}</button>`).join('');
+    box.onclick = async e => {
+      const b = e.target.closest('[data-i]'); if (!b) return;
+      msg.textContent = '';
+      try { await buy(list[+b.dataset.i]); } catch (err) { if (!err?.userCancelled && !/cancel/i.test(err?.message || '')) msg.textContent = tr('Purchase did not go through. You were not charged.'); }
+    };
+  });
+  $('[data-a=restore]', el).onclick = async () => {
+    try { msg.textContent = (await restore()) ? '' : tr('No subscription found for this account.'); } catch { msg.textContent = tr('Could not reach the store. Try again.'); }
+  };
+}
+
 function Settings() {
   const s = store.get();
   const el = h(`<section class="settings"><h1>${t('settings')}</h1>
@@ -755,6 +787,8 @@ function Settings() {
       <div class="cloud-in" hidden>
         <p class="cloud-status"></p>
         <button class="btn ghost" data-a="signout">${tr('Sign out')}</button>
+        <button class="btn ghost danger" data-a="delacct">${tr('Delete account')}</button>
+        <p class="acct-msg small"></p>
       </div>
       <form class="cloud-out" hidden>
         <p class="small">${tr('Sign in once and everything you do is saved to your account automatically, on every phone you use.')}</p>
@@ -784,6 +818,7 @@ function Settings() {
       </div>
       <button class="btn danger" data-a="reset">${t('resetData')}</button>
     </div>
+    <p class="legal small muted"><a href="privacy.html">${tr('Privacy policy')}</a> · <a href="terms.html">${tr('Terms of use')}</a></p>
   </section>`);
   view.replaceChildren(el);
   if (syncAvailable()) {
@@ -809,6 +844,12 @@ function Settings() {
       }
     });
     $('[data-a=signout]', el).onclick = () => signOut();
+    $('[data-a=delacct]', el).onclick = async e => {
+      const b = e.currentTarget, m = $('.acct-msg', el);
+      if (b.textContent !== tr('Tap again to delete forever')) { b.textContent = tr('Tap again to delete forever'); m.textContent = tr('This removes your account and cloud copy. Data on this device stays.'); return; }
+      try { await deleteAccount(); m.textContent = tr('Account deleted.'); }
+      catch (err) { m.textContent = err.code === 'auth/requires-recent-login' ? tr('For safety, sign out, sign in again, then delete.') : authError(err); }
+    };
   }
   $('.voice', el).onchange = e => store.set({ voice: e.target.checked });
   $('.model', el).onchange = e => store.set({ model: e.target.value });
@@ -1460,14 +1501,15 @@ function eventClick(e, root) {
 }
 
 // ---------- router ----------
-const routes = { me: Me, targets: Targets, career: Career, drills: Drills, spar: Spar, styles: Styles, combos: MyCombos, timer: Timer, tests: Tests, iq: IQ, profile: () => Profile(false), today: Today, week: () => Plan(), plan: Plan, pathway: Pathway, library: Library, tech: Tech, session: Session, log: Log, settings: Settings };
+const routes = { pro: Pro, me: Me, targets: Targets, career: Career, drills: Drills, spar: Spar, styles: Styles, combos: MyCombos, timer: Timer, tests: Tests, iq: IQ, profile: () => Profile(false), today: Today, week: () => Plan(), plan: Plan, pathway: Pathway, library: Library, tech: Tech, session: Session, log: Log, settings: Settings };
 
-const NAVMAP = { career: 'me', drills: 'library', week: 'me', plan: 'me', pathway: 'me', profile: 'me', settings: 'me', log: 'me', tech: 'library', styles: 'library', iq: 'library', combos: 'library', targets: 'library', tests: 'me', timer: 'today', spar: 'today', session: 'today' };
+const NAVMAP = { pro: 'me', career: 'me', drills: 'library', week: 'me', plan: 'me', pathway: 'me', profile: 'me', settings: 'me', log: 'me', tech: 'library', styles: 'library', iq: 'library', combos: 'library', targets: 'library', tests: 'me', timer: 'today', spar: 'today', session: 'today' };
 function render() {
   cleanup.forEach(f => f()); cleanup = [];
   document.documentElement.lang = store.get().lang || 'en';
   document.body.classList.toggle('first', !hasProfile());
-  const [name = 'today', ...args] = location.hash.replace(/^#\/?/, '').split('/');
+  let [name = 'today', ...args] = location.hash.replace(/^#\/?/, '').split('/');
+  if (locked() && (PRO_ROUTES.includes(name) || (name === 'tech' && techById(args[0])?.phase > 1))) { name = 'pro'; args = [true]; }
   (routes[name] || Today)(...args);
   document.body.classList.toggle('immersive', name === 'session');
   // Pages one level under "Me" get a way back.
@@ -1506,6 +1548,8 @@ function addProfile() {
   store.set({ profile: { ...DEFAULT_PROFILE, days: [0, 2, 4, 5] } });
 }
 seed(); addCombos(); addProfile();
+initPro();
+onPro(() => { if (document.readyState !== 'loading') try { render(); } catch { /* starting up */ } });
 initSync(() => { addCombos(); addProfile(); render(); });
 try { navigator.storage?.persist?.(); } catch { /* not supported */ }
 window.addEventListener('hashchange', render);
@@ -1518,4 +1562,4 @@ onSync(st => {
 });
 render();
 
-if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' });
+if ('serviceWorker' in navigator && location.protocol === 'https:' && !window.Capacitor) navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' });

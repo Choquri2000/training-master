@@ -3,6 +3,7 @@
 // Firestore keeps its own offline queue, so changes made without signal upload later.
 import { FIREBASE_CONFIG } from './firebase-config.js';
 import { store } from './store.js';
+import { initPro, proLogOut } from './pro.js';
 
 const V = '10.12.2';
 const CDN = `https://www.gstatic.com/firebasejs/${V}`;
@@ -61,6 +62,7 @@ export async function initSync(onDataChanged) {
     user = u;
     if (!u) { status.state = 'signed-out'; emit(); return; }
     docRef = f.doc(db, 'users', u.uid);
+    initPro(u.uid);
     try { await pull(); onDataChanged?.(); } catch (e) { status.state = 'error'; status.error = e.message; emit(); }
   });
   store.onChange(() => { clearTimeout(timer); timer = setTimeout(upload, 800); });
@@ -72,7 +74,19 @@ export async function signIn(email, password, create) {
   await fn(auth, email, password);
 }
 export async function signInGoogle() {
-  await fb.signInWithPopup(auth, new fb.GoogleAuthProvider());
+  const native = window.Capacitor?.isNativePlatform?.() && window.Capacitor.Plugins.FirebaseAuthentication;
+  if (!native) return fb.signInWithPopup(auth, new fb.GoogleAuthProvider());
+  // Inside the Android app Google blocks web pop-ups, so use the phone's own Google account picker.
+  const r = await native.signInWithGoogle();
+  await fb.signInWithCredential(auth, fb.GoogleAuthProvider.credential(r.credential?.idToken));
 }
-export const signOut = () => fb.signOut(auth);
+export const signOut = () => { proLogOut(); return fb.signOut(auth); };
+// Permanently delete the cloud copy and the sign-in account (required by app stores).
+export async function deleteAccount() {
+  if (!user) return;
+  const u = user;
+  await fb.deleteDoc(fb.doc(db, 'users', u.uid));
+  await fb.deleteUser(u);
+  proLogOut();
+}
 export const resetPassword = email => fb.sendPasswordResetEmail(auth, email);
