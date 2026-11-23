@@ -30,7 +30,7 @@ import { store } from './store.js';
 import { PRESETS, picks, programFocus, volume, blockWeek, themeOf, stage, learnedCount, fighterVolume, weekCombos, sharpenSkills, myCombos, fixActive, findWeak, eventInfo, phaseWeek } from './program.js';
 import { profile, hasProfile, DEFAULT_PROFILE, CHOICES, weekDays, dayPlan, legsDay, suitable, adaptSession, coachNote, safetyNote, LEVELS } from './profile.js';
 import { t, L, LANGS, tr } from './i18n.js';
-import { initPro, isPro, onPro, proAvailable, plans, buy, restore } from './pro.js';
+import { initPro, isPro, onPro, locked, locked as proLocked, PRO_ROUTES, proAvailable, plans, buy, restore } from './pro.js';
 import { initSync, onSync, signIn, signInGoogle, signOut, resetPassword, syncAvailable, deleteAccount } from './sync.js';
 
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -401,9 +401,9 @@ function Pathway() {
   const el = h(`<section><h1>${t('pathway')}</h1>${PHASES.map(p => {
     const techs = TECHNIQUES.filter(x => x.phase === p.phase);
     const doneN = techs.filter(x => s.status[x.id] === 'done').length;
-    const locked = p.phase > s.phaseUnlocked;
+    const locked = p.phase > s.phaseUnlocked, pay = p.phase > 1 && proLocked();
     return `<div class="phase ${locked ? 'locked' : ''}">
-      <h2>${t('phase')} ${p.phase}: ${esc(L(p.name))} <small>${tr('weeks')} ${p.weeks}</small></h2>
+      <h2>${t('phase')} ${p.phase}: ${esc(L(p.name))} <small>${pay ? '<a href="#/pro">Pro</a>' : `${tr('weeks')} ${p.weeks}`}</small></h2>
       <p>${esc(L(p.goal))}</p>
       <div class="progress"><div style="width:${(doneN / techs.length) * 100}%"></div></div>
       <p class="muted">${doneN} / ${techs.length} ${t('done').toLowerCase()}</p>
@@ -721,9 +721,9 @@ function Log() {
   view.replaceChildren(el);
 }
 
-function Pro() {
-  const perks = ['Every skill pathway and technique', 'Fighter routine, combinations and sparring partner', 'Fighter career and skill tests', 'Coach voice and cloud save on all your phones'];
-  const el = h(`<section class="pro"><h1>Combat Coach Pro</h1>
+function Pro(gated) {
+  const perks = ['Every skill pathway and technique', 'Fighter routine, combinations and sparring partner', 'Fighter career and skill tests', 'New skills and plans added over time'];
+  const el = h(`<section class="pro"><h1>Combat Coach Pro</h1>${gated ? `<p class="muted">${tr('This is part of Pro. The first phase stays free.')}</p>` : ''}
     <ul class="perks">${perks.map(x => `<li>${tr(x)}</li>`).join('')}</ul>
     <div class="plans"><p class="muted">${tr('Loading...')}</p></div>
     <button class="btn ghost" data-a="restore">${tr('Restore purchases')}</button>
@@ -738,7 +738,7 @@ function Pro() {
     if (isPro()) return;
     if (!list.length) { box.innerHTML = `<p class="muted">${tr('Plans are not available right now.')}</p>`; return; }
     const yearly = list.find(x => x.type === 'ANNUAL');
-    box.innerHTML = list.map((x, i) => `<button class="btn plan ${x === yearly ? '' : 'ghost'}" data-i="${i}">
+    box.innerHTML = list.map((x, i) => `<button class="btn plan ${x === yearly ? 'primary' : ''}" data-i="${i}">
       <b>${x.type === 'ANNUAL' ? tr('Yearly') : tr('Monthly')}</b> ${esc(x.price)}${x.trial ? ` · ${tr('free trial')}` : ''}</button>`).join('');
     box.onclick = async e => {
       const b = e.target.closest('[data-i]'); if (!b) return;
@@ -1480,7 +1480,8 @@ function render() {
   cleanup.forEach(f => f()); cleanup = [];
   document.documentElement.lang = store.get().lang || 'en';
   document.body.classList.toggle('first', !hasProfile());
-  const [name = 'today', ...args] = location.hash.replace(/^#\/?/, '').split('/');
+  let [name = 'today', ...args] = location.hash.replace(/^#\/?/, '').split('/');
+  if (locked() && (PRO_ROUTES.includes(name) || (name === 'tech' && techById(args[0])?.phase > 1))) { name = 'pro'; args = [true]; }
   (routes[name] || Today)(...args);
   document.body.classList.toggle('immersive', name === 'session');
   // Pages one level under "Me" get a way back.
@@ -1520,6 +1521,7 @@ function addProfile() {
 }
 seed(); addCombos(); addProfile();
 initPro();
+onPro(() => { if (document.readyState !== 'loading') try { render(); } catch { /* starting up */ } });
 initSync(() => { addCombos(); addProfile(); render(); });
 try { navigator.storage?.persist?.(); } catch { /* not supported */ }
 window.addEventListener('hashchange', render);

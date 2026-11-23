@@ -11,6 +11,9 @@ const set = info => { pro = !!info?.entitlements?.active?.[ENTITLEMENT]; subs.fo
 
 export const proAvailable = () => !!P();
 export const isPro = () => pro;
+// Free plan: Stage 1, phase 1 only. Everything else needs Pro (store app only).
+export const locked = () => proAvailable() && !pro;
+export const PRO_ROUTES = ['spar', 'career', 'combos', 'tests', 'targets', 'iq'];
 export const onPro = f => { subs.add(f); f(pro); return () => subs.delete(f); };
 
 // Call once at start, and again with the Firebase uid after sign-in so Pro follows the account.
