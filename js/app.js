@@ -925,7 +925,7 @@ function Timer() {
   };
   const NAMES = { rounds: 'Rounds', secs: 'Round length', rest: 'Rest', calls: 'Calls', pace: 'Call pace' };
   const total = () => { const x = timerOpts(); return Math.round((x.rounds * x.secs + (x.rounds - 1) * x.rest + 10) / 60); };
-  const el = h(`<section class="profile"><a href="#/today" class="back">← ${t('today')}</a><h1>${tr('Round timer')}</h1>
+  const el = h(`<section class="profile"><a href="#/today" class="back">← ${t('train')}</a><h1>${tr('Round timer')}</h1>
     <p class="muted">${tr('For the bag, pads, sparring or a class. Bell at the start and end of each round, a click 10 seconds before the end.')}</p>
     ${Object.entries(G).map(([k, opts]) => `<h2>${tr(NAMES[k])}</h2><div class="pgroup" data-k="${k}">${opts.map(([v, n]) => `<button type="button" class="pill${o[k] === v ? ' on' : ''}" data-v="${v}">${esc(tr(n))}</button>`).join('')}</div>`).join('')}
     <div class="savebar"><span class="count"></span><a class="btn primary" href="#/session/timer/">${t('start')}</a></div>
@@ -1304,7 +1304,7 @@ function sparSegs(opp, see = false, o = {}) {
 function Spar() {
   const sp = store.get().spar || {}, L0 = sparLevel(), mine = profile().style;
   const opts = `<option value="mixed">${tr('Mixed (all-rounder)')}</option>${Object.entries(STYLE_DISC).map(([k, d]) => `<optgroup label="${esc(L(d))}">${STYLES.filter(s => s.disc === k).map(s => `<option value="${s.id}"${sp.lastOpp === s.id ? ' selected' : ''}>${esc(SL(s).name)}</option>`).join('')}</optgroup>`).join('')}`;
-  const el = h(`<section class="profile"><a href="#/today" class="back">← ${t('today')}</a><h1>${tr('Sparring partner')}</h1>
+  const el = h(`<section class="profile"><a href="#/today" class="back">← ${t('train')}</a><h1>${tr('Sparring partner')}</h1>
     <p class="muted">${tr('Your partner calls its attacks out loud. Defend each one and counter straight away; the answer is shown on screen. "Now" means an opening: attack. After the rounds, say how it went and your partner adapts.')}</p>
     <label class="row">${tr('Your partner fights like')} <select class="opp">${opts}</select></label>
     <div class="card"><h3>${tr('Partner level')}</h3><p class="stat">${L0} <small>/ 10</small></p>
