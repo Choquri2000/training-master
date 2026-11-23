@@ -27,7 +27,7 @@ function createViewer(el, id, opts = {}) {
 import { Player, availableCombos, say, bell } from './session.js';
 import { unlockVoice } from './voice.js';
 import { store } from './store.js';
-import { PRESETS, picks, programFocus, volume, blockWeek, themeOf, stage, learnedCount, fighterVolume, weekCombos, sharpenSkills, myCombos, fixActive, findWeak, eventInfo, phaseWeek } from './program.js';
+import { planWeek, PROGRAM_WEEKS, PRESETS, picks, programFocus, volume, blockWeek, themeOf, stage, learnedCount, fighterVolume, weekCombos, sharpenSkills, myCombos, fixActive, findWeak, eventInfo, phaseWeek } from './program.js';
 import { profile, hasProfile, DEFAULT_PROFILE, CHOICES, weekDays, dayPlan, legsDay, suitable, adaptSession, coachNote, safetyNote, LEVELS } from './profile.js';
 import { t, L, LANGS, tr } from './i18n.js';
 import { initSync, onSync, signIn, signInGoogle, signOut, resetPassword, syncAvailable } from './sync.js';
@@ -43,11 +43,7 @@ const todayIdx = () => (new Date().getDay() + 6) % 7; // Monday = 0
 const isoDate = (d = new Date()) => d.toISOString().slice(0, 10);
 const fmt = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
 
-function weekNumber() {
-  const start = new Date((store.get().startDate || '2026-11-16') + 'T00:00:00');
-  const n = Math.floor((Date.now() - start) / 864e5 / 7) + 1;
-  return Math.max(1, n);
-}
+const weekNumber = () => planWeek(); // advances only after weeks you trained
 const isDeload = () => phaseWeek(weekNumber()) === 4;
 
 function statusOf(id) {
@@ -252,8 +248,9 @@ function Plan(mode) {
   const ev = eventInfo();
   const el = h(`<section class="planpage">
     <h1>${tr('My plan')}</h1>
-    <p class="sub">${fighter ? tr('Fighter training') + ' · ' + tr('The routine you keep for years') : tr('Learn the skills') + ' · ' + tr('{n} of {m} marked solid', { n, m: mine.length })}</p>
-    ${fighter ? '' : `<div class="progress"><div style="width:${(n / mine.length) * 100}%"></div></div>`}
+    <p class="sub">${wk <= PROGRAM_WEEKS ? tr('Week {w} of {n}', { w: wk, n: PROGRAM_WEEKS }) : tr('Week {w}', { w: wk })}${themeOf(wk) ? ' · ' + esc(tr(themeOf(wk).name)) : ''} · ${tr('{n} of {m} marked solid', { n, m: mine.length })}</p>
+    ${wk <= PROGRAM_WEEKS ? `<div class="roadmap">${[0, 1, 2, 3].map(b => `<div class="${b < Math.floor((wk - 1) / 4) ? 'past' : b === Math.floor((wk - 1) / 4) ? 'cur' : ''}"><i style="width:${b === Math.floor((wk - 1) / 4) ? (((wk - 1) % 4) + 1) * 25 : b < Math.floor((wk - 1) / 4) ? 100 : 0}%"></i><span>${esc(tr(['Foundations', 'Defence and counters', 'Hands', 'Kicks, knees and elbows'][b]))}</span></div>`).join('')}</div>
+    <p class="muted small">${tr('A week counts once you train it, so missed weeks never skip you ahead.')}</p>` : ''}
     ${planCard(wk, false)}
     <div class="card list">
       <a class="lrow nav" href="#/plan/edit"><i>${icon('targets')}</i><span><b>${tr('Your skills')}</b><small>${mine.length}</small></span></a>
@@ -551,6 +548,20 @@ function Tech(id) {
 }
 
 // A session as it will actually run for you (volume, profile, time limit).
+// Every plan session starts (after the warm-up) with 2 slow minutes fixing one common mistake.
+// Skills you rated "felt off" get picked first; the mistake rotates day by day.
+function addFix(segs, focus) {
+  const feel = store.get().feel || {}, day = Math.floor(Date.now() / 864e5);
+  const ids = focus.filter(id => techById[id]?.mistakes);
+  if (!ids.length) return segs;
+  const off = ids.filter(id => feel[id]?.r === 3), pool = off.length ? off : ids, id = pool[day % pool.length];
+  const ms = techById[id].mistakes, en = ms.en || ms, ka = ms.ka || en, k = day % en.length;
+  const out = [...segs], i = out.findIndex(x => x.kind === 'warm');
+  out.splice(i + 1, 0, { label: { en: 'Fix the mistake', ka: 'შეცდომის გასწორება' }, kind: 'work', secs: 120, tech: id, slow: true, fix: { en: en[k], ka: ka[k] || en[k] } },
+    { label: { en: 'Rest', ka: 'დასვენება' }, kind: 'rest', secs: 30 });
+  return out;
+}
+
 function buildSession(kind, focus) {
   const type = SESSION_TYPES[kind] || SESSION_TYPES.technique;
   const fk = kind.startsWith('f') && kind !== 'footwork';
@@ -569,7 +580,7 @@ function Session(kind, techCsv) {
     ];
   } else {
     if (!focus.length && !['footwork', 'ffight', 'fcombo', 'fdefence'].includes(kind)) focus = focusTechs(kind === 'main' ? 3 : 2);
-    segs = buildSession(kind, focus);
+    segs = addFix(buildSession(kind, focus), focus);
   }
   { // corner coach in the rests; weaves in the skills you are working on
     const ids = [...new Set([...focus, ...(fixActive()?.skills || [])])].filter(id => techById[id]).slice(0, 4);
@@ -593,13 +604,10 @@ function Session(kind, techCsv) {
     ${voiceCtlOK() ? `<p class="mic"><button type="button" class="pill${store.get().voiceCtl ? ' on' : ''}" data-a="mic">🎤 ${tr('Voice control')}</button> <span class="muted small micstat"></span></p>` : ''}
     <details class="steps"><summary>${tr('All steps')} (${segs.length})</summary><ol class="seglist">${segs.map((s, i) => `<li data-i="${i}" class="kind-${s.kind}">${esc(L(s.label))}${s.tech ? `: ${esc(L(techById[s.tech].name))}` : ''} <span>${fmt(s.secs)}</span></li>`).join('')}</ol></details>
     <div class="logform" hidden>
-      <h2>${t('howHard')}</h2>
-      <input type="range" min="1" max="10" value="5" class="rpe"><output>5</output>
-      ${focus.length ? `<h2>${t('howFelt')}</h2><div class="rates">${focus.map(id => `<div class="rate" data-id="${id}"><span>${esc(L(techById[id].name))}</span>
-        <div class="seg">${[[1, 'feltEasy'], [2, 'feltOk'], [3, 'feltOff']].map(([v, k]) => `<button class="pill${v === 2 ? ' on' : ''}" data-r="${v}">${t(k)}</button>`).join('')}</div></div>`).join('')}</div>
-        <p class="muted small">${t('rateHint')}</p>` : ''}
       ${kind.startsWith('spar') || kind === 'career' ? `<h2>${tr(kind === 'career' ? 'How did the fight go?' : 'How did you handle your partner?')}</h2><div class="sparbox"><div class="seg sparrate">${[[1, 'I got caught a lot'], [2, 'About right'], [3, 'I handled everything']].map(([v, n]) => `<button class="pill${v === 2 ? ' on' : ''}" data-r="${v}">${tr(n)}</button>`).join('')}</div></div>` : ''}
-      <button class="btn primary" data-a="save">${t('save')}</button>
+      ${focus.length ? `<h2>${tr('Anything felt off?')}</h2><p class="muted small">${tr('Tap it, and it comes back sooner.')}</p><div class="offpick">${focus.map(id => `<button type="button" class="pill" data-off="${id}">${esc(L(techById[id].name))}</button>`).join('')}</div>` : ''}
+      <h2>${tr('How did it go?')}</h2>
+      <div class="faces">${[[3, '😮‍💨', 'Hard'], [2, '👍', 'Good'], [1, '😎', 'Easy']].map(([v, i, n]) => `<button type="button" data-face="${v}"><i>${i}</i><b>${tr(n)}</b></button>`).join('')}</div>
     </div>
   </section>`);
   view.replaceChildren(el);
@@ -610,7 +618,7 @@ function Session(kind, techCsv) {
   const render = p => {
     const s = p.seg || segs[segs.length - 1];
     $('.seg-label', el).textContent = p.done ? tr('Done!') : `${L(s.label)}${s.tech ? ': ' + L(techById[s.tech].name) : ''}`;
-    $('.clock', el).textContent = fmt(Math.max(0, Math.ceil(p.left)));
+    $('.clock', el).textContent = p.done ? '✓' : fmt(Math.max(0, Math.ceil(p.left)));
     el.className = `session kind-${p.done ? 'done' : s.kind}${opp ? ' opp-on' : ''}`;
     const co = $('.callout', el); co.textContent = p.lastCall || '';
     if (opp) { // 3D opponent: you see the attack; the name and the answer appear just after it lands
@@ -623,10 +631,13 @@ function Session(kind, techCsv) {
     if (s.corner && s.kind === 'rest') $('.hint', el).textContent = '🗣 ' + L(s.corner); else $('.hint', el).textContent = (p.lastCall && (!opp || Date.now() - oppAt > oppDur + 350) && s.hints?.[p.lastCall]) || '';
     $('[data-a=toggle]', el).textContent = p.running ? t('pause') : (p.elapsed ? t('resume') : t('start'));
     el.querySelectorAll('.seglist li').forEach(li => li.classList.toggle('cur', +li.dataset.i === p.i));
-    const tech = s.tech || null;
-    if (tech !== figTech) {
-      figTech = tech; fig?.destroy(); fig = null;
-      if (tech) {
+    const tech = s.tech || null, figKey = tech && tech + (s.fix ? ':fix' : '');
+    if (figKey !== figTech) {
+      figTech = figKey; fig?.destroy(); fig = null;
+      if (tech && s.fix) {
+        fig = createViewer($('.fig-big', el), tech, { speed: 0.4, step: !MOCAP.has(tech) });
+        $('.cues', el).innerHTML = `<div class="fixbox"><p class="fixm">✗ ${esc(L(s.fix).m)}</p><p class="fixf">✓ ${esc(L(s.fix).fix)}</p></div>`;
+      } else if (tech) {
         fig = createViewer($('.fig-big', el), tech, { speed: s.slow ? 0.4 : 1, step: !!s.slow && !MOCAP.has(tech) });
         $('.cues', el).innerHTML = `<ul>${L(techById[tech].keyPoints).slice(0, 3).map(k => `<li>${esc(k)}</li>`).join('')}</ul><p class="muted">${tr('Watch for')}: ${esc(L(techById[tech].mistakes)[0].m)}</p>`;
       } else { $('.fig-big', el).replaceChildren(); $('.cues', el).innerHTML = ''; }
@@ -657,19 +668,28 @@ function Session(kind, techCsv) {
   el.addEventListener('click', e => {
     const r = e.target.closest('[data-r]');
     if (r) { r.parentElement.querySelectorAll('.pill').forEach(x => x.classList.toggle('on', x === r)); return; }
+    const offb = e.target.closest('[data-off]');
+    if (offb) { offb.classList.toggle('on'); return; }
+    const face = +(e.target.closest('[data-face]')?.dataset.face || 0);
     const a = e.target.dataset.a;
     if (a === 'toggle') { unlockVoice(); player.toggle(); if (player.running) { wake(); if (store.get().voiceCtl) micOn(); } }
     if (a === 'mic') { const on = !store.get().voiceCtl; store.set({ voiceCtl: on }); e.target.classList.toggle('on', on); on ? micOn() : micOff(); }
     if (a === 'skip') player.next();
     if (a === 'finish') { player.stop(); player.done = true; render(player); }
-    if (a === 'save') {
+    if (face) { // one tap saves: Hard / Good / Easy, plus any skill marked "felt off"
       const minutes = Math.max(1, Math.round((Date.now() - startedAt) / 60000));
-      const ratings = {};
-      el.querySelectorAll('.rate').forEach(d => { ratings[d.dataset.id] = +$('.pill.on', d).dataset.r; });
+      const ratings = {}, solid = [];
+      focus.forEach(id => { ratings[id] = el.querySelector(`[data-off="${id}"].on`) ? 3 : face === 1 ? 1 : 2; });
+      { const s0 = store.get(); focus.forEach(id => { if (ratings[id] === 1 && (s0.feel?.[id]?.easy || 0) + 1 >= 3 && s0.status[id] === 'learning') solid.push(L(techById[id].name)); }); }
       store.update(st => {
-        st.log.push({ date: isoDate(), at: new Date().toISOString().slice(11, 19), type: kind, minutes, rpe: +$('.rpe', el).value, techs: focus, ratings });
+        st.log.push({ date: isoDate(), at: new Date().toISOString().slice(11, 19), type: kind, minutes, rpe: { 3: 8, 2: 6, 1: 4 }[face], feel: face, techs: focus, ratings });
         st.feel = { ...(st.feel || {}) };
-        Object.entries(ratings).forEach(([id, v]) => { st.feel[id] = { r: v, date: isoDate() }; });
+        Object.entries(ratings).forEach(([id, v]) => {
+          const easy = v === 1 ? (st.feel[id]?.easy || 0) + 1 : v === 3 ? 0 : st.feel[id]?.easy || 0;
+          st.feel[id] = { r: v, date: isoDate(), easy };
+          // Progress moves by itself: three easy sessions on a skill you're learning mark it solid.
+          if (easy >= 3 && st.status[id] === 'learning') st.status[id] = 'done';
+        });
         if (kind === 'career') { // fight night: how it went + the camp decide the result
           const c = careerOf(st), r = +$('.sparrate .pill.on', el).dataset.r, op = nextOpponent(c, careerStyles());
           st.career = { ...applyResult(c, decide(r, campDone(st, c) >= CAMP, op.n), op), logAt: st.log.length, seen: false };
@@ -678,11 +698,10 @@ function Session(kind, techCsv) {
           const r = +$('.sparrate .pill.on', el).dataset.r, sp = st.spar || { level: 3 };
           st.spar = { ...sp, level: Math.max(1, Math.min(10, sp.level + (r === 3 ? 1 : r === 1 ? -1 : 0))), last: { date: isoDate(), opp: techCsv, r } };
         }
-      }, tr('Session saved'));
+      }, tr('Session saved') + (solid.length ? ' · ' + tr('Now solid') + ': ' + solid.join(', ') : ''));
       location.hash = kind === 'formtest' ? '#/tests/form' : kind === 'career' ? '#/career' : kind.startsWith('spar') ? '#/spar' : '#/log';
     }
   });
-  $('.rpe', el).addEventListener('input', e => { e.target.nextElementSibling.textContent = e.target.value; });
 }
 
 function Log() {
