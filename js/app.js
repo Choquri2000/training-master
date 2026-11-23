@@ -88,33 +88,47 @@ function Today() {
   const mine = picks().length > 0;
   const focus = fighter ? (sessionKey === 'ffight' || sessionKey === 'footwork' ? [] : sharpenSkills(d.day, weekNumber())) : sessionKey && sessionKey !== 'footwork' ? (mine && programFocus(d.day, weekNumber()).length ? programFocus(d.day, weekNumber()) : focusTechs(sessionKey === 'main' ? 3 : 2)) : [];
   const note = sessionKey ? coachNote({ key: sessionKey, bw: phaseWeek(weekNumber()), fighter, deload: isDeload() }) : '';
-  const el = h(`<section>
-    <h1>${L(DAY_NAMES)[d.day]} <small>· ${tr('week')} ${weekNumber()}${isDeload() ? ' (' + tr('deload') + ')' : ''}</small></h1>
-    ${eventInfo() ? `<p class="evbadge">🥊 ${esc(eventInfo().name || tr('Your date'))}: ${eventInfo().days === 0 ? tr('today!') : tr('{n} days to go', { n: eventInfo().days })}</p>` : ''}
-    ${fixActive() ? `<p class="note">${tr('Fix-it block')} · ${tr('day {n} of 14', { n: fixActive().day })}</p>` : ''}
-    ${isDeload() ? `<p class="note">${t('deloadNote')}</p>` : ''}
-    ${syncAvailable() && !cloudOn ? `<p class="note"><strong>${tr("Your progress isn't backed up yet.")}</strong> <a href="#/settings">${tr('Sign in once')}</a> ${tr('to save it to the cloud automatically.')}</p>` : ''}
-    ${testsDue() ? `<p class="note">${tr('Your monthly tests are due.')} <a href="#/tests">${tr('Skill tests')}</a></p>` : ''}
-    ${backupDue() ? `<p class="note">${tr('Your progress is saved only on this phone.')} <a href="#/settings">${tr('Back it up')}</a> ${tr('(takes 2 seconds).')}</p>` : ''}
-    <div class="card k-combat big">
-      <h3>${t('combat')}</h3>
+  const ev = eventInfo(), dd = sessionKey ? drillOfDay(sessionKey, weekNumber(), profile()) : null;
+  // Only the most important notices, so the session stays the focus.
+  const notes = [
+    syncAvailable() && !cloudOn ? `<a class="notice warn" href="#/settings"><b>${tr("Your progress isn't backed up yet.")}</b><span>${tr('Sign in once')} ${tr('to save it to the cloud automatically.')}</span></a>` : '',
+    !syncAvailable() && backupDue() ? `<a class="notice warn" href="#/settings"><b>${tr('Your progress is saved only on this phone.')}</b><span>${tr('Back it up')} ${tr('(takes 2 seconds).')}</span></a>` : '',
+    testsDue() ? `<a class="notice" href="#/tests"><b>${tr('Your monthly tests are due.')}</b><span>${tr('Skill tests')}</span></a>` : '',
+    fixActive() ? `<p class="notice"><b>${tr('Fix-it block')}</b><span>${tr('day {n} of 14', { n: fixActive().day })}</span></p>` : '',
+    isDeload() ? `<p class="notice"><span>${t('deloadNote')}</span></p>` : '',
+  ].filter(Boolean).slice(0, 2).join('');
+  const career = (() => { const c = careerOf(store.get()), n = campDone(store.get(), c); return !c.fights.length || n >= MIN_CAMP ? nextOpponent(c, careerStyles()).name : ''; })();
+  const el = h(`<section class="today">
+    <header class="phead">
+      <p class="eyebrow">${tr('week')} ${weekNumber()}${isDeload() ? ' · ' + tr('deload') : ''}${mine ? ' · ' + esc(tr((fighter ? fighterVolume : volume)(weekNumber()).label)) : ''}</p>
+      <h1>${L(DAY_NAMES)[d.day]}</h1>
+      ${ev ? `<p class="evbadge">🥊 ${esc(ev.name || tr('Your date'))}: ${ev.days === 0 ? tr('today!') : tr('{n} days to go', { n: ev.days })}</p>` : ''}
+    </header>
+    ${notes}
+    <div class="hero">
       ${sessionKey ? `
-        <p><strong>${esc(L(SESSION_TYPES[sessionKey].name))}</strong> · ${tr('about {n} min', { n: sessionMinutes(sessionKey, focus) })}<br>${esc(L(SESSION_TYPES[sessionKey].blurb).replace(/^\d+(-\d+| to \d+)? (min|წთ)[.,]? /, ''))}</p>
-        ${mine ? `<p class="muted small">${tr('From')} <a href="#/plan">${tr('your plan')}</a>: ${fighter ? tr('Fighter training') + ' · ' : ''}${esc(tr((fighter ? fighterVolume : volume)(weekNumber()).label))}</p>` : `<p class="muted small"><a href="#/plan">${tr('Pick your skills')}</a> ${tr('to get a full weekly plan.')}</p>`}
-        ${note ? `<p class="coach"><strong>${tr("Coach's note")}:</strong> ${esc(note)}</p>` : ''}
-        ${fighter && sessionKey === 'fcombo' ? `<p class="muted">${tr('Combos of the week')}: <strong>${weekCombos(weekNumber()).map(c => esc(c.say)).join(' · ')}</strong></p>` : ''}
-        ${(() => { const dd = drillOfDay(sessionKey, weekNumber(), profile()); return dd ? `<p class="muted">${tr('Drill of the day')}: <a href="#/drills/${dd.id}">${esc(L(dd.name))}</a></p>` : ''; })()}
-        ${focus.length ? `<p class="muted">${fighter ? tr('Sharpen today') : t('focusToday')}:</p><ul class="chips">${focus.map(id => `<li><a href="#/tech/${id}">${esc(L(techById[id].name))}</a></li>`).join('')}</ul>` : ''}
-        <a class="btn primary" href="#/session/${sessionKey}/${focus.join(',')}">${t('start')}</a>
-      ` : `<p>${t('noCombatToday')}</p>
-        <a class="btn" href="#/session/footwork/">${tr('10-15 min footwork (optional)')}</a>`}
+        <p class="eyebrow">${fighter ? tr('Fighter training') : t('combat')}</p>
+        <h2>${esc(L(SESSION_TYPES[sessionKey].name))}</h2>
+        <p class="meta"><span>⏱ ${tr('about {n} min', { n: sessionMinutes(sessionKey, focus) })}</span></p>
+        <p class="sub">${esc(L(SESSION_TYPES[sessionKey].blurb).replace(/^\d+(-\d+| to \d+)? (min|წთ)[.,]? /, ''))}</p>
+        ${fighter && sessionKey === 'fcombo' ? `<p class="sub">${tr('Combos of the week')}: <strong>${weekCombos(weekNumber()).map(c => esc(c.say)).join(' · ')}</strong></p>` : ''}
+        ${focus.length ? `<p class="label">${fighter ? tr('Sharpen today') : t('focusToday')}</p><ul class="chips">${focus.map(id => `<li><a href="#/tech/${id}">${esc(L(techById[id].name))}</a></li>`).join('')}</ul>` : ''}
+        ${dd ? `<a class="row-link" href="#/drills/${dd.id}"><span class="label">${tr('Drill of the day')}</span><b>${esc(L(dd.name))}</b></a>` : ''}
+        <a class="btn primary block xl" href="#/session/${sessionKey}/${focus.join(',')}">▶ ${t('start')}</a>
+        ${note ? `<details class="coach"><summary>${tr("Coach's note")}</summary><p>${esc(note)}</p></details>` : ''}
+        ${mine ? '' : `<p class="muted small center"><a href="#/plan">${tr('Pick your skills')}</a> ${tr('to get a full weekly plan.')}</p>`}
+      ` : `<p class="eyebrow">${t('combat')}</p><h2>${t('noCombatToday')}</h2>
+        <a class="btn block" href="#/session/footwork/">${tr('10-15 min footwork (optional)')}</a>`}
     </div>
-    ${other ? `<div class="card also"><h3>${tr('Also today')}</h3>
+    <div class="quick">
+      <a href="#/spar"><i>🥊</i><b>${tr('Sparring partner')}</b></a>
+      <a href="#/timer"><i>⏱</i><b>${tr('Round timer')}</b></a>
+      ${career ? `<a href="#/career" class="wide"><i>🏆</i><b>${tr('Fight night is ready')}</b><span>${esc(career)}</span></a>` : ''}
+    </div>
+    ${other ? `<div class="card also"><p class="label">${tr('Also today')}</p>
       <p><span class="dot k-run"></span>${t('run')}: ${d.run ? esc(L(d.run)) : t('rest')}</p>
       ${d.strength ? `<details><summary><span class="dot k-strength"></span>${esc(L(STRENGTH[d.strength].name))}${d.combat ? ' · ' + tr('after combat') : ''}</summary><ul class="slist">${STRENGTH[d.strength].items.map(([n, r]) => `<li>${esc(tr(n))} <em>${esc(tr(r))}</em></li>`).join('')}</ul></details>` : ''}
     </div>` : ''}
-    ${(() => { const c = careerOf(store.get()), d = campDone(store.get(), c); return !c.fights.length || d >= MIN_CAMP ? `<p class="note">🥊 ${tr('Fight night is ready')}: <a href="#/career">${esc(nextOpponent(c, careerStyles()).name)}</a></p>` : ''; })()}
-    <p class="center"><a class="btn ghost" href="#/spar">🥊 ${tr('Sparring partner')}</a> <a class="btn ghost" href="#/timer">⏱ ${tr('Round timer')}</a></p>
   </section>`);
   view.replaceChildren(el);
 }
@@ -337,14 +351,20 @@ function Pathway() {
 function Library() {
   const filter = sessionStorage.getItem('libFilter') || 'all';
   const list = TECHNIQUES.filter(x => filter === 'all' || x.discipline === filter);
-  const el = h(`<section><h1>${t('learn')}</h1>
+  const el = h(`<section class="learn"><h1>${t('learn')}</h1>
     ${toolsRow()}
-    <h2>${tr('Techniques')}</h2>
-    <div class="filters">${['all', ...Object.keys(DISCIPLINES)].map(k => `<button class="pill ${k === filter ? 'on' : ''}" data-f="${k}">${k === 'all' ? t('filterAll') : esc(L(DISCIPLINES[k]))}</button>`).join('')}</div>
-    <div class="libgrid">${list.map(x => `<a class="libcard" href="#/tech/${x.id}">
+    <h2>${t('techniques')} <small>${list.length}</small></h2>
+    <input type="search" class="search" placeholder="${tr('Search techniques')}" aria-label="${tr('Search techniques')}">
+    <div class="filters scroll">${['all', ...Object.keys(DISCIPLINES)].map(k => `<button class="pill ${k === filter ? 'on' : ''}" data-f="${k}">${k === 'all' ? t('filterAll') : esc(L(DISCIPLINES[k]))}</button>`).join('')}</div>
+    <div class="libgrid">${list.map(x => `<a class="libcard" href="#/tech/${x.id}" data-q="${esc((L(x.name) + ' ' + x.name.en).toLowerCase())}">
       <div class="fig-slot" data-tech="${x.id}"></div>
-      <div><strong>${esc(L(x.name))}</strong><br><span class="muted">${esc(L(LEVELS[x.phase]))} · ${esc(L(DISCIPLINES[x.discipline]))}</span><br>${statusBadge(statusOf(x.id))}</div>
-    </a>`).join('')}</div></section>`);
+      <div><strong>${esc(L(x.name))}</strong><span class="muted small">${esc(L(LEVELS[x.phase]))} · ${esc(L(DISCIPLINES[x.discipline]))}</span>${statusBadge(statusOf(x.id))}</div>
+    </a>`).join('')}</div><p class="muted center nores" hidden>${tr('No technique matches.')}</p></section>`);
+  $('.search', el).addEventListener('input', e => {
+    const q = e.target.value.trim().toLowerCase(); let n = 0;
+    el.querySelectorAll('.libcard').forEach(c => { const hit = !q || c.dataset.q.includes(q); c.hidden = !hit; n += hit; });
+    $('.nores', el).hidden = n > 0;
+  });
   el.querySelector('.filters').addEventListener('click', e => {
     if (e.target.dataset.f) { try { sessionStorage.setItem('libFilter', e.target.dataset.f); } catch { /* ignore */ } Library(); }
   });
@@ -464,7 +484,7 @@ function Session(kind, techCsv) {
       <button class="btn ghost" data-a="finish">${t('finish')}</button>
     </div>
     ${voiceCtlOK() ? `<p class="mic"><button type="button" class="pill${store.get().voiceCtl ? ' on' : ''}" data-a="mic">🎤 ${tr('Voice control')}</button> <span class="muted small micstat"></span></p>` : ''}
-    <ol class="seglist">${segs.map((s, i) => `<li data-i="${i}" class="kind-${s.kind}">${esc(L(s.label))}${s.tech ? `: ${esc(L(techById[s.tech].name))}` : ''} <span>${fmt(s.secs)}</span></li>`).join('')}</ol>
+    <details class="steps"><summary>${tr('All steps')} (${segs.length})</summary><ol class="seglist">${segs.map((s, i) => `<li data-i="${i}" class="kind-${s.kind}">${esc(L(s.label))}${s.tech ? `: ${esc(L(techById[s.tech].name))}` : ''} <span>${fmt(s.secs)}</span></li>`).join('')}</ol></details>
     <div class="logform" hidden>
       <h2>${t('howHard')}</h2>
       <input type="range" min="1" max="10" value="5" class="rpe"><output>5</output>
@@ -577,24 +597,27 @@ function Log() {
   const feel = s.feel || {};
   const off = ids.filter(id => feel[id]?.r === 3), easy = ids.filter(id => feel[id]?.r === 1 && s.status[id] !== 'done');
   const chip = id => `<li><a href="#/tech/${id}">${esc(L(techById[id].name))}</a></li>`;
-  const el = h(`<section><h1>${t('log')}</h1>
-    <a class="tool testscard" href="#/tests"><b>${tr('Skill tests')}</b><span>${testsDue() ? tr('Your monthly tests are due.') : tr('{n} results', { n: (s.tests || []).length })}</span></a>
-    ${careerCard()}
-    ${fixCard()}
+  const el = h(`<section class="progresspage"><h1>${t('log')}</h1>
     <div class="stats">
       <div class="card"><h3>${t('thisWeek')}</h3><p class="stat">${wk.length}</p><small>${t('sessions')}</small></div>
       <div class="card"><h3>${t('streak')}</h3><p class="stat">${streak}</p><small>${t('weeks')}</small></div>
       <div class="card"><h3>${t('skillsSolid')}</h3><p class="stat">${solid}<small> / ${ids.length}</small></p><small>${learning} ${t('learning').toLowerCase()}</small></div>
     </div>
-    <h2>${t('minutesPerWeek')}</h2>
+    <div class="card chart"><h3>${t('minutesPerWeek')}</h3>
     <div class="bars">${weeks.map(w => `<div class="bar ${w === thisMon ? 'now' : ''}"><span style="height:${(mins(w) / max) * 100}%"></span><b>${mins(w) || ''}</b><i>${w.slice(8)}.${w.slice(5, 7)}</i></div>`).join('')}</div>
-    <div class="progress"><div style="width:${(solid / ids.length) * 100}%"></div></div>
+    <p class="label">${t('skillsSolid')} · ${Math.round((solid / ids.length) * 100)}%</p>
+    <div class="progress"><div style="width:${(solid / ids.length) * 100}%"></div></div></div>
+    <div class="stack">
+    <a class="tool row" href="#/tests"><i>📋</i><b>${tr('Skill tests')}</b><span>${testsDue() ? tr('Your monthly tests are due.') : tr('{n} results', { n: (s.tests || []).length })}</span></a>
+    ${careerCard()}
+    ${fixCard()}
+    </div>
     ${off.length ? `<h2>${t('needsWork')}</h2><p class="muted small">${t('needsWorkHint')}</p><ul class="chips">${off.map(chip).join('')}</ul>` : ''}
     ${easy.length ? `<h2>${t('feelsEasy')}</h2><p class="muted small">${t('feelsEasyHint')}</p><ul class="chips">${easy.map(chip).join('')}</ul>` : ''}
     <h2>${t('history')}</h2>
-    ${s.log.length ? `<table class="logtable"><thead><tr><th>${t('date')}</th><th>${t('session')}</th><th>${t('minutes')}</th><th>RPE</th><th>${t('techniques')}</th></tr></thead><tbody>
-      ${s.log.slice(-30).reverse().map(e => `<tr><td>${e.date.slice(5)}</td><td>${esc(tr(e.type))}</td><td>${e.minutes}</td><td>${e.rpe}</td><td>${(e.techs || []).map(id => esc(L(techById[id]?.name)) + (e.ratings?.[id] === 3 ? ' ✗' : e.ratings?.[id] === 1 ? ' ✓' : '')).join(', ')}</td></tr>`).join('')}
-    </tbody></table>` : `<p class="muted">${t('noLog')}</p>`}
+    ${s.log.length ? `<ul class="history">
+      ${s.log.slice(-30).reverse().map(e => `<li><div class="hd"><b>${esc(SESSION_TYPES[e.type] ? L(SESSION_TYPES[e.type].name) : tr(e.type))}</b><span>${e.date.slice(8)}.${e.date.slice(5, 7)}</span></div><div class="muted small">${e.minutes} ${t('minutes')}${e.rpe ? ' · RPE ' + e.rpe : ''}${(e.techs || []).length ? ' · ' + (e.techs || []).map(id => esc(L(techById[id]?.name) || id) + (e.ratings?.[id] === 3 ? ' ✗' : e.ratings?.[id] === 1 ? ' ✓' : '')).join(', ') : ''}</div></li>`).join('')}
+    </ul>` : `<p class="muted">${t('noLog')}</p>`}
   </section>`);
   el.addEventListener('click', e => { if (fixClick(e)) Log(); });
   view.replaceChildren(el);
@@ -602,7 +625,7 @@ function Log() {
 
 function Settings() {
   const s = store.get();
-  const el = h(`<section><h1>${t('settings')}</h1>
+  const el = h(`<section class="settings"><h1>${t('settings')}</h1>
     ${syncAvailable() ? `<div class="card cloud">
       <h3>${tr('Cloud save')}</h3>
       <div class="cloud-in" hidden>
@@ -611,28 +634,33 @@ function Settings() {
       </div>
       <form class="cloud-out" hidden>
         <p class="small">${tr('Sign in once and everything you do is saved to your account automatically, on every phone you use.')}</p>
-        <button class="btn primary" type="button" data-a="google">${tr('Continue with Google')}</button>
-        <p class="small muted">${tr('Or use email (works best if the app is installed on your home screen):')}</p>
+        <button class="btn primary block" type="button" data-a="google">${tr('Continue with Google')}</button>
+        <details class="email"><summary>${tr('Use email instead')}</summary>
         <input type="email" name="email" placeholder="Email" autocomplete="email" required>
         <input type="password" name="pw" placeholder="${tr('Password (6+ characters)')}" autocomplete="current-password" minlength="6" required>
-        <button class="btn" type="submit">${tr('Sign in')}</button>
-        <button class="btn" type="button" data-a="create">${tr('Create account')}</button>
-        <button class="btn ghost" type="button" data-a="forgot">${tr('Forgot password')}</button>
+        <div class="btnrow"><button class="btn" type="submit">${tr('Sign in')}</button>
+        <button class="btn" type="button" data-a="create">${tr('Create account')}</button></div>
+        <button class="btn link" type="button" data-a="forgot">${tr('Forgot password')}</button>
+        <p class="small muted">${tr('Email works best if the app is installed on your home screen.')}</p>
+        </details>
         <p class="cloud-msg small"></p>
       </form>
     </div>` : ''}
     <div class="card"><h3>${tr('Your profile')}</h3><p class="small">${esc(profileSummary())}</p><a class="btn" href="#/profile">${tr('Change profile')}</a></div>
-    <label class="row"><input type="checkbox" class="voice" ${s.voice ? 'checked' : ''}> ${t('voice')}</label>
-    <label class="row">${t('language')} <select class="lang">${LANGS.map(l => `<option value="${l.code}" ${l.code === s.lang ? 'selected' : ''}>${l.label}</option>`).join('')}</select></label>
-    <label class="row">${tr('Plan start (Monday of week 1)')} <input type="date" class="start" value="${s.startDate || '2026-11-16'}"></label>
-    <p class="muted small">${tr('Every 4th week from this date is a deload week.')}</p>
-    <div class="actions">
-      <button class="btn" data-a="export">${t('exportData')}</button>
-      <label class="btn">${t('importData')}<input type="file" accept="application/json" class="imp" hidden></label>
-      <button class="btn ghost" data-a="reset">${t('resetData')}</button>
+    <div class="card list">
+      <label class="lrow"><span>${t('voice')}</span><input type="checkbox" class="voice switch" ${s.voice ? 'checked' : ''}></label>
+      <label class="lrow"><span>${t('language')}</span><select class="lang">${LANGS.map(l => `<option value="${l.code}" ${l.code === s.lang ? 'selected' : ''}>${l.label}</option>`).join('')}</select></label>
+      <label class="lrow"><span>${tr('Plan start (Monday of week 1)')}<small class="muted">${tr('Every 4th week from this date is a deload week.')}</small></span><input type="date" class="start" value="${s.startDate || '2026-11-16'}"></label>
     </div>
-    <p class="muted small">${tr('Your data stays on this device (browser storage). Export it now and then as a backup.')}</p>
-    <p class="muted small">${tr('Combos the timer can call right now:')} ${availableCombos().map(c => esc(c.say)).join(' · ')}</p>
+    <div class="card"><h3>${tr('Your data')}</h3>
+      <p class="muted small">${tr('Your data stays on this device (browser storage). Export it now and then as a backup.')}</p>
+      <div class="actions btnrow">
+        <button class="btn" data-a="export">${t('exportData')}</button>
+        <label class="btn">${t('importData')}<input type="file" accept="application/json" class="imp" hidden></label>
+      </div>
+      <button class="btn danger" data-a="reset">${t('resetData')}</button>
+    </div>
+    <p class="muted small center">${tr('Combos the timer can call right now:')} ${availableCombos().map(c => esc(c.say)).join(' · ')}</p>
   </section>`);
   view.replaceChildren(el);
   if (syncAvailable()) {
@@ -715,11 +743,11 @@ store.onAction(label => {
 
 // ---------- tools: my combos, quick timer, skill tests, fight IQ ----------
 const toolsRow = () => `<div class="tools">
-  <a class="tool wide" href="#/drills"><b>${tr('Practical drills')}</b><span>${tr('Footwork box, bands, light dumbbells, reaction cues, balance, conditioning, strong finishes')}</span></a>
-  <a class="tool wide" href="#/styles"><b>${tr('Fighting styles')}</b><span>${tr('Peek-a-boo, Soviet school, Muay Khao, Dutch, wrestle-boxing and more, compared')}</span></a>
-  <a class="tool wide" href="#/targets"><b>${tr('Targets on the body')}</b><span>${tr('Where each strike should land and why it works, on a 3D figure')}</span></a>
-  <a class="tool" href="#/iq"><b>${tr('Fight IQ')}</b><span>${tr('Strategy, with drills')}</span></a>
-  <a class="tool" href="#/combos"><b>${tr('My combos')}</b><span>${tr('Build your own, animated')}</span></a>
+  <a class="tool" href="#/drills"><i>🏃</i><b>${tr('Practical drills')}</b><span>${tr('Footwork, bands, dumbbells, conditioning')}</span></a>
+  <a class="tool" href="#/styles"><i>🥋</i><b>${tr('Fighting styles')}</b><span>${tr('13 styles, quiz and matchups')}</span></a>
+  <a class="tool" href="#/targets"><i>🎯</i><b>${tr('Targets on the body')}</b><span>${tr('Where each strike lands')}</span></a>
+  <a class="tool" href="#/iq"><i>🧠</i><b>${tr('Fight IQ')}</b><span>${tr('Strategy, with drills')}</span></a>
+  <a class="tool wide" href="#/combos"><i>✍️</i><b>${tr('My combos')}</b><span>${tr('Build your own, animated')}</span></a>
 </div>`;
 
 const R1 = s => ({ en: s[0], ka: s[1] });
@@ -1314,6 +1342,7 @@ const NAVMAP = { career: 'log', drills: 'library', week: 'plan', pathway: 'plan'
 function render() {
   cleanup.forEach(f => f()); cleanup = [];
   document.documentElement.lang = store.get().lang || 'en';
+  document.body.classList.toggle('first', !hasProfile());
   const [name = 'today', ...args] = location.hash.replace(/^#\/?/, '').split('/');
   (routes[name] || Today)(...args);
   document.querySelectorAll('nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === `#/${name}` || (NAVMAP[name] || name) === a.getAttribute('href').slice(2)));
