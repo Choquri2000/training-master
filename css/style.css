@@ -709,3 +709,8 @@ section > select, section > label > select { width: 100%; }
 .fixm, .fixf { margin: 0; padding: 12px 14px; border-radius: var(--radius-s); font-weight: 600; }
 .fixm { background: color-mix(in srgb, var(--brand) 12%, var(--surface)); }
 .fixf { background: color-mix(in srgb, var(--ok) 12%, var(--surface)); }
+
+/* Callout rounds: the called combination plays under its name */
+.session .fig-big.callfig { max-width: 360px; animation: callin .18s ease-out; }
+.session .fig-big.callfig.loading::after { content: ''; }
+@keyframes callin { from { opacity: .35; } to { opacity: 1; } }

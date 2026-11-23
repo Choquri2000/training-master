@@ -2,7 +2,7 @@ import { TECHNIQUES, techById, DISCIPLINES } from './data/techniques.js';
 import { PHASES, SESSION_TYPES, WEEK, DAY_NAMES, STRENGTH, RULES } from './data/plan.js';
 import { createFigure } from './figure.js';
 import { MOCAP, createMocap, webglOK, registerSeq, createOpponent, OPP_CALLS, oppSlow } from './mocap.js';
-import { STEPS, stepsSeq, stepsSay } from './data/combos.js';
+import { STEPS, stepsSeq, stepsSay, COMBO_TECHS } from './data/combos.js';
 import { LESSONS, lessonById } from './data/iq.js';
 import { STYLES, styleById, STYLE_DISC, DIMS } from './data/styles.js';
 import { ATTACKS, STYLE_W } from './data/spar.js';
@@ -25,6 +25,25 @@ function createViewer(el, id, opts = {}) {
   };
 }
 import { Player, availableCombos, say, bell } from './session.js';
+// What a called combination looks like: its own capture, else one chained from the building blocks ("one two, kick").
+const normCall = c => String(c).toLowerCase().replace(/\.\.\.|[,!.]/g, ' ').replace(/\s+/g, ' ').trim();
+const STEP_SAYS = STEPS.map(x => [x.say, x.id]).sort((a, b) => b[0].length - a[0].length);
+let callMap = null; const callMemo = {};
+function callAnim(call) {
+  const k = normCall(call); if (!k) return null;
+  if (k in callMemo) return callMemo[k];
+  if (!callMap) { callMap = {}; for (const x of [...COMBO_TECHS, ...TECHNIQUES]) if (x.callout?.en) callMap[normCall(x.callout.en)] ??= x.id; }
+  let id = callMap[k] && MOCAP.has(callMap[k]) ? callMap[k] : null;
+  if (!id && webglOK()) {
+    const mine = (store.get().myCombos || []).find(c => c.steps?.length && normCall(c.say) === k);
+    let steps = mine?.steps, rest = k;
+    if (!steps) { steps = []; while (rest) { const m = STEP_SAYS.find(([w]) => rest === w || rest.startsWith(w + ' ')); if (!m) { steps = null; break; } steps.push(m[1]); rest = rest.slice(m[0].length).trim(); } }
+    if (steps?.length) { id = 'call:' + k; registerSeq(id, stepsSeq(steps)); }
+  }
+  if (!id && callMap[k]) id = callMap[k]; // no 3D here: the drawn figure still shows it
+  return (callMemo[k] = id);
+}
+
 import { unlockVoice } from './voice.js';
 import { store } from './store.js';
 import { planWeek, PROGRAM_WEEKS, PRESETS, picks, programFocus, volume, blockWeek, themeOf, stage, learnedCount, fighterVolume, weekCombos, sharpenSkills, myCombos, fixActive, findWeak, eventInfo, phaseWeek } from './program.js';
@@ -633,10 +652,13 @@ function Session(kind, techCsv) {
     if (s.corner && s.kind === 'rest') $('.hint', el).textContent = '🗣 ' + L(s.corner); else $('.hint', el).textContent = (p.lastCall && (!opp || Date.now() - oppAt > oppDur + 350) && s.hints?.[p.lastCall]) || '';
     $('[data-a=toggle]', el).textContent = p.running ? t('pause') : (p.elapsed ? t('resume') : t('start'));
     el.querySelectorAll('.seglist li').forEach(li => li.classList.toggle('cur', +li.dataset.i === p.i));
-    const tech = s.tech || null, figKey = tech && tech + (s.fix ? ':fix' : '');
+    const tech = s.tech || null, call = !tech && !opp && !p.done && p.lastCall ? callAnim(p.lastCall) : null;
+    const figKey = tech ? tech + (s.fix ? ':fix' : '') : call && `${call}#${p.calls}`;
     if (figKey !== figTech) {
       figTech = figKey; fig?.destroy(); fig = null;
-      if (tech && s.fix) {
+      $('.fig-big', el).classList.toggle('callfig', !!call);
+      if (call) fig = createViewer($('.fig-big', el), call, {});
+      else if (tech && s.fix) {
         fig = createViewer($('.fig-big', el), tech, { speed: 0.4, step: !MOCAP.has(tech) });
         $('.cues', el).innerHTML = `<div class="fixbox"><p class="fixm">✗ ${esc(L(s.fix).m)}</p><p class="fixf">✓ ${esc(L(s.fix).fix)}</p></div>`;
       } else if (tech) {
